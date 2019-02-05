@@ -1,5 +1,11 @@
 export default () => (
   <footer className="footer">
+    <style jsx>{`
+      a {
+        color: white;
+        margin-left: 10px;
+      }
+    `}</style>
     <div
       className="floater navbar-expand-lg navbar-dark"
       style={{
@@ -10,11 +16,7 @@ export default () => (
     >
       <div className="pull-left copyright" style={{ marginTop: '.6rem' }}>
         &copy; 2018-2019 Aggregate Intellect Inc.
-      </div>
-      <div className="pull-right back-to-top" style={{ marginTop: '.6rem' }}>
-        <a href="#top" style={{ color: 'white' }}>
-          Back to top
-        </a>
+        <a href="/code-of-conduct">Code of Conduct</a>
       </div>
     </div>
   </footer>
