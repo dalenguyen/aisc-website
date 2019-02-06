@@ -3,8 +3,6 @@ import React, { useEffect } from 'react';
 
 import Link from 'next/link';
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
-
 import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -13,7 +11,6 @@ import ThemesAndSuch from '../components/themes-and-such';
 import { UpcomingEvents, PastEvents } from '../components/event-related';
 import { EventModalWrapper, EventModalContext } from '../components/event-modal';
 import GetEngagedSection from '../components/get-engaged-section';
-import UsefulLinksSection from '../components/useful-links-section';
 
 
 const EventRoutingHandler = ({ openEventModal }) => {

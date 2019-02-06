@@ -7,7 +7,7 @@ const fs = require('fs')
 
 const SITE_ROOT = process.env.SITE_ROOT || 'https://tdls.a-i.science'
 const SOURCE = process.env.SOURCE || path.join(__dirname, '..', 'pages', '/**/*.js')
-const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', 'static', 'sitemap.xml')
+const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', 'out', 'sitemap.xml')
 
 let diskPages = glob.sync(SOURCE)
 

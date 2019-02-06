@@ -5,9 +5,9 @@
   "main": "main.js",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && npm run build-sitemap",
     "start": "next start",
-    "export": "npm run build && next export",
+    "export": "npm run build && next export && cp root-static/* out/",
     "build-sitemap": "node scripts/build-sitemap.js"
   },
   "repository": {
