@@ -105,10 +105,7 @@ export default () => {
               </a>
             </div>
             <a className="scroll-button" href="#intro"><span></span></a>
-
           </section>
-
-
           <section className="container tdls-intro" id="intro">
             <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
             <div className="abstract">
@@ -122,7 +119,6 @@ export default () => {
               </p>
             </div>
           </section>
-
           <section id="events" className="container">
             <hr />
             <h2 className="inline">Events</h2>
