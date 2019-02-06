@@ -528,17 +528,6 @@ div.committee {
   color: #007bff;
 }
 
-footer {
-  text-align: center;
-  color: #fff;
-  line-height: 1.1em;
-}
-
-footer .floater {
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
 section h3 {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -546,12 +535,6 @@ section h3 {
 
 #useful-links > ul {
   list-style-type: none;
-}
-
-@media (max-width: 576px) {
-  footer {
-    font-size: 0.7em;
-  }
 }
 
 @media (max-width: 800px) {

@@ -1,27 +1,43 @@
 import Link from 'next/link';
+import { Fragment } from 'react';
+import UsefulLinksSection from '../components/useful-links-section';
 
 export default () => (
-  <footer className="footer">
+  <Fragment>
     <style jsx>{`
-      a {
+      .footer {
+        background-color: #5a5a5a;
+        color: #fff;
+        margin-top: 30px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      .footer a {
         color: white;
-        margin-left: 10px;
       }
     `}</style>
-    <div
-      className="floater navbar-expand-lg navbar-dark"
-      style={{
-        backgroundColor: '#5a5a5a',
-        height: '2.5rem',
-        marginTop: '5rem',
-      }}
-    >
-      <div className="pull-left copyright" style={{ marginTop: '.6rem' }}>
-        &copy; 2018-2019 Aggregate Intellect Inc.
-        <Link href="/code-of-conduct">
-          <a>Code of Conduct</a>
-        </Link>
+    <footer className="footer navbar-expand-lg navbar-dark">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-6">
+            <div className="copyright">
+              &copy; 2018-2019
+              Aggregate Intellect Inc.
+            </div>
+          </div>
+          <div className="col-sm-3">
+            <ul className="list-unstyled">
+              <Link href="/code-of-conduct">
+                <a>Code of Conduct</a>
+              </Link>
+            </ul>
+          </div>
+          <div className="col-sm-3">
+            <h6>Useful Links</h6>
+            <UsefulLinksSection />
+          </div>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </Fragment>
 );

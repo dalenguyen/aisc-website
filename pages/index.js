@@ -1,6 +1,10 @@
 import { Fragment } from 'react';
 import React, { useEffect } from 'react';
 
+import Link from 'next/link';
+
+import Jumbotron from 'react-bootstrap/Jumbotron';
+
 import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -8,6 +12,8 @@ import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
 import { UpcomingEvents, PastEvents } from '../components/event-related';
 import { EventModalWrapper, EventModalContext } from '../components/event-modal';
+import GetEngagedSection from '../components/get-engaged-section';
+import UsefulLinksSection from '../components/useful-links-section';
 
 
 const EventRoutingHandler = ({ openEventModal }) => {
@@ -346,27 +352,27 @@ export default () => {
               </div>
             </div>
           </section>
-          <section className="container" id="useful_links" >
-            <hr />
-            <h2>Useful Links</h2>
-            <article id="useful-links">
-              <ul>
-                {[
-                  ["Distill Pub", "https://distill.pub/about/"],
-                  ["Papers with Code", "https://paperswithcode.com/"],
-                  ["ArXiv", "https://arxiv.org/archive/cs"],
-                  ["Arxiv Sanity", "http://www.arxiv-sanity.com/"],
-                  ["State of the Art in AI", "https://www.stateoftheart.ai/"],
-                  ["TDLS Classic Papers", "https://docs.google.com/spreadsheets/d/1PTaFyE2AsgTd0p7A5aHvEw0lLzw-9OXJC8Wa1Bg10ug"],
-                ].map(([name, link]) => (
-                  <li key={name}>
-                    <a href={link} target="_blank">
-                      <p className="card-title">{name}</p>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </article>
+          <GetEngagedSection />
+          <style jsx>{`
+            section.about-tdls {
+              text-align: center;
+            }
+          `}</style>
+          <section className="container about-tdls">
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <h2>About TDLS</h2>
+                <p className="lead">
+                  TDLS is a community of intellectually curious individuals, centered around technical
+                  review and discussion of advances in machine learning.
+            </p>
+                <p>
+                  <Link href="/about">
+                    <a className="btn">Learn more...</a>
+                  </Link>
+                </p>
+              </div>
+            </div>
           </section>
         </main>
       </EventModalWrapper>
