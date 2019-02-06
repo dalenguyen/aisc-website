@@ -73,10 +73,10 @@ function rawRowToRow(rawHeader, rawRow) {
   const subjects = (rawRow[rawHeader.indexOf('Subject Matter Area')] || '').split(',').map(s => s.trim()).filter(s => s);
 
   const dateAtMidnight = new Date((rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, ''));
-  const dateAtSeven = new Date(dateAtMidnight.getTime() + 19 * 60 * 60 * 1000);
+  const dateAtSixThirty = new Date(dateAtMidnight.getTime() + (18 * 60 + 30) * 60 * 1000);
   return {
     title,
-    date: dateAtSeven,
+    date: dateAtSixThirty,
     lead,
     venue,
     facilitators,
