@@ -2,7 +2,16 @@ import Link from 'next/link';
 import LiveButton from '../components/live-button';
 
 export default () => (
+
   <header id="main-navbar">
+    <style jsx>{`
+    @media (max-width: 430px) {
+      .navbar {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  `}</style>
     <nav
       className="navbar navbar-expand-md fixed-top navbar-light"
       style={{ backgroundColor: 'white' }}
@@ -11,7 +20,9 @@ export default () => (
         <img src="/static/images/tdls_logo.svg" style={{ height: '30px' }} />{' '}
         TDLS
       </a>
-      <LiveButton />
+      <form class="form-inline">
+        <LiveButton />
+      </form>
       <button
         className="navbar-toggler"
         type="button"
