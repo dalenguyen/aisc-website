@@ -7,6 +7,7 @@ import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
+import { pad } from '../utils/event';
 
 import {
   READABLE_EVENT_TYPE, getEventId, isTentative,
@@ -65,16 +66,17 @@ export const EventModalWrapper = ({ children }) => {
         {children}
         {ev &&
           <Modal centered={true}
-            show={isOpen} size="lg" onHide={closeEventModal}>
+            show={isOpen} size="lg"
+            onHide={closeEventModal}>
             <Modal.Header closeButton>
               <Modal.Title className="title">{ev.title}</Modal.Title>
             </Modal.Header>
             <Modal.Body className={isTentative(ev) ? 'tentative' : ''}>
               <dl className="row">
-                <dt className="col-sm-4">Date:</dt>
+                <dt className="col-sm-4">Time:</dt>
                 <dd className="col-sm-8">
-                  {WEEKDAYS[ev.date.getDay()]},&nbsp;
-              {ev.date.getDate()}-{MONTH_NAMES[ev.date.getMonth()]}-{ev.date.getYear() + 1900}
+                  {WEEKDAYS[ev.date.getDay()]}&nbsp;
+              {dashedDate(ev.date)}&nbsp;{time(ev.date)}
                   {expired && ' (This is a past event.)'}
                 </dd>
                 {!expired ? (
@@ -160,6 +162,14 @@ export const EventModalWrapper = ({ children }) => {
     </EventModalContext.Provider>
   );
 };
+
+function dashedDate(date) {
+  return `${date.getDate()}-${MONTH_NAMES[date.getMonth()]}-${date.getYear() + 1900}`;
+}
+
+function time(date) {
+  return `${pad(date.getHours())}:${pad(date.getMinutes())}`
+}
 
 function ytThumbModal(url) {
   return (
