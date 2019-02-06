@@ -43,7 +43,7 @@ export default () => {
           }
         }
       `}</style>
-        <a className="live-button btn btn-danger" href={`/#/events/${getEventId(upcomingEvent)}`}>
+        <a className="live-button btn btn-danger btn-sm" href={`/#/events/${getEventId(upcomingEvent)}`}>
           <i className="fa fa-play-circle"></i>
           &nbsp;Live in {pad(h)}:{pad(m)}:{pad(s)}
         </a>
