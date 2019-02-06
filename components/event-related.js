@@ -32,8 +32,8 @@ export const UpcomingEvents = ({ }) => {
   return (
     <ul className="list-group upcoming-event-list">
       {
-        // display only first 3
-        events.slice(0, 3).map(event => {
+        // display only first 8
+        events.slice(0, 8).map(event => {
           const leadLink = linkedInDict[event.lead];
           const facLinks = event.facilitators.map(n => linkedInDict[n]);
           return (
@@ -109,37 +109,37 @@ export const PastEvents = ({ }) => {
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 4.1,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1300,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.1,
           slidesToScroll: 1
         }
       }
