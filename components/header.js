@@ -11,6 +11,7 @@ export default () => (
         <img src="/static/images/tdls_logo.svg" style={{ height: '30px' }} />{' '}
         TDLS
       </a>
+      <LiveButton />
       <button
         className="navbar-toggler"
         type="button"
@@ -22,7 +23,6 @@ export default () => (
       >
         <span className="navbar-toggler-icon" />
       </button>
-      <LiveButton />
 
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
