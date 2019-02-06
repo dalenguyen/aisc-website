@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default () => (
   <footer className="footer">
     <style jsx>{`
@@ -16,7 +18,9 @@ export default () => (
     >
       <div className="pull-left copyright" style={{ marginTop: '.6rem' }}>
         &copy; 2018-2019 Aggregate Intellect Inc.
-        <a href="/code-of-conduct">Code of Conduct</a>
+        <Link href="/code-of-conduct">
+          <a>Code of Conduct</a>
+        </Link>
       </div>
     </div>
   </footer>

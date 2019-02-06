@@ -37,10 +37,6 @@ header .social-buttons {
   fill: #5a5a5a;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-size: 1em;
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',

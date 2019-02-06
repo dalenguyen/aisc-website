@@ -7,12 +7,10 @@ import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
 import { UpcomingEvents, PastEvents } from '../components/event-related';
-import { YouTubeModalWrapper } from '../components/youtube-modal';
 import { EventModalWrapper, EventModalContext } from '../components/event-modal';
 
 
 const EventRoutingHandler = ({ openEventModal }) => {
-
   function registerRoutes() {
     window.addEventListener("hashchange", ({ newURL }) => {
       handleHashChange(newURL);
@@ -56,8 +54,8 @@ export default () => {
         <ThemesAndSuch />
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css" />
+        <link href="/static/smooth-scroll.css" rel="stylesheet" />
 
-        <link rel="icon" type="image/png" href="/static/images/tdls_logo.png" />
       </Head>
       <Header />
       <EventModalWrapper>
@@ -68,6 +66,7 @@ export default () => {
         </EventModalContext.Consumer>
         <main role="main">
           <style jsx>{`
+
               #welcome {
                 position: relative;
               }
@@ -147,7 +146,7 @@ export default () => {
                 <span className="sr-only">Next</span>
               </a>
             </div>
-            <a className="scroll-button" href="#intro"><span></span></a>
+            <a className="scroll-button" href="#events"><span></span></a>
             <div className="container tdls-intro">
               <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
             </div>

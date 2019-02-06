@@ -6,6 +6,8 @@ import { ModalVideoContext, YouTubeModalWrapper } from '../components/youtube-mo
 import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
+import Link from 'next/link';
+
 import {
   READABLE_EVENT_TYPE, getEventId, isTentative,
   nameToLink, getEventsAndGroupings, getLinkedInProfiles
@@ -60,7 +62,6 @@ export const EventModalWrapper = ({ children }) => {
       value={(eventId) => openEventModal(eventId)}
     >
       <YouTubeModalWrapper>
-
         {children}
         {ev &&
           <Modal centered={true}
@@ -144,6 +145,13 @@ export const EventModalWrapper = ({ children }) => {
             <Modal.Footer>
               <Button id="copy-link" variant="info" onClick={copyLink}>Copy link</Button>
               <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
+              {
+                !expired && (
+                  <Link>
+                    <a href="/code-of-conduct" className="btn btn-secondary">Code of Conduct</a>
+                  </Link>
+                )
+              }
               <Button variant="secondary" onClick={closeEventModal}>Close</Button>
             </Modal.Footer>
           </Modal>
