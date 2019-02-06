@@ -11,8 +11,7 @@ const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', 'stati
 
 let diskPages = glob.sync(SOURCE)
 
-let xml = `
-<?xml version="1.0" encoding="UTF-8"?>
+let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `
 
