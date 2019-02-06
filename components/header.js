@@ -20,9 +20,7 @@ export default () => (
         <img src="/static/images/tdls_logo.svg" style={{ height: '30px' }} />{' '}
         TDLS
       </a>
-      <form class="form-inline">
-        <LiveButton />
-      </form>
+      <LiveButton />
       <button
         className="navbar-toggler"
         type="button"
