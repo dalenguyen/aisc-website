@@ -67,6 +67,49 @@ export default () => {
           }
         </EventModalContext.Consumer>
         <main role="main">
+          <style jsx>{`
+              #welcome {
+                position: relative;
+              }
+              #welcome .carousel-caption {
+                font-style: italic;
+                letter-spacing: 0.12em;
+                border-radius: 10px;
+              }
+              .tdls-intro {
+                text-shadow: 0 0 15px #000;
+                position: absolute;
+                bottom: 35%;
+                z-index: 1;
+                text-align: center;
+                left: 0;
+                right: 0;
+                color: #fff;
+              }
+
+              .tdls-intro .title {
+                /* font-family: serif; */
+                /* font-size: 2em; */
+                font-weight: bold;
+                margin-top: 30px;
+                padding-top: 30px;
+                font-style: italic;
+                /* border-top-style: solid;
+                border-top-width: 7px; */
+                /* padding-bottom: 30px; */
+                /* border-bottom-style: solid; */
+                /* border-bottom-width: 2px; */
+                text-align: center;
+              }
+
+              .tdls-intro .abstract,
+              .tdls-intro .authors {
+                max-width: 650px;
+                margin-top: 60px;
+                margin-left: auto;
+                margin-right: auto;
+              }
+          `}</style>
           <section id="welcome">
             <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
               <ol className="carousel-indicators">
@@ -79,19 +122,19 @@ export default () => {
                 <div className="carousel-item active">
                   <img className="d-block w-100" src="/static/images/slide_01.jpeg" alt="First slide" />
                   <div className="carousel-caption d-none d-md-block bg-dark">
-                    <h3>#tdls: welcoming & supportive community</h3>
+                    <h4>welcoming & supportive community</h4>
                   </div>
                 </div>
                 <div className="carousel-item">
                   <img className="d-block w-100" src="/static/images/slide_02.jpeg" alt="Second slide" />
                   <div className="carousel-caption d-none d-md-block bg-dark">
-                    <h3>#tdls: intellectually curious individuals</h3>
+                    <h4>intellectually curious individuals</h4>
                   </div>
                 </div>
                 <div className="carousel-item">
                   <img className="d-block w-100" src="/static/images/slide_03.jpeg" alt="Third slide" />
                   <div className="carousel-caption d-none d-md-block bg-dark">
-                    <h3>#tdls: engaging technical discussions</h3>
+                    <h4>engaging technical discussions</h4>
                   </div>
                 </div>
               </div>
@@ -105,18 +148,8 @@ export default () => {
               </a>
             </div>
             <a className="scroll-button" href="#intro"><span></span></a>
-          </section>
-          <section className="container tdls-intro" id="intro">
-            <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
-            <div className="abstract">
-              <p className="lead">
-                TDLS is a community of intellectually curious individuals, centered around technical
-                review and discussion
-                of advances in machine learning.
-                </p>
-              <p>
-                <a className="btn" href="#events">Our events...</a>
-              </p>
+            <div className="container tdls-intro">
+              <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
             </div>
           </section>
           <section id="events" className="container">
@@ -276,14 +309,13 @@ export default () => {
                 </div>
               </div>
             </div>
-
+            <h3 id="past-events-title">Recent Sessions</h3>
+            <article id="past-events">
+              <PastEvents />
+            </article>
             <h3>Upcoming Sessions</h3>
             <article id="upcoming-events">
               <UpcomingEvents />
-            </article>
-            <h3 id="past-events-title">Past Sessions</h3>
-            <article id="past-events">
-              <PastEvents />
             </article>
           </section>
 
