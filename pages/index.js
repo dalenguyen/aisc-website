@@ -76,9 +76,9 @@ export default () => {
                 border-radius: 10px;
               }
               .tdls-intro {
-                text-shadow: 0 0 15px #000;
+                text-shadow: 0 0 10vw #000;
                 position: absolute;
-                bottom: 35%;
+                bottom: 15vw;
                 z-index: 1;
                 text-align: center;
                 left: 0;
@@ -88,10 +88,8 @@ export default () => {
 
               .tdls-intro .title {
                 /* font-family: serif; */
-                /* font-size: 2em; */
+                font-size: 5vw;
                 font-weight: bold;
-                margin-top: 30px;
-                padding-top: 30px;
                 font-style: italic;
                 /* border-top-style: solid;
                 border-top-width: 7px; */
