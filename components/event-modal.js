@@ -110,7 +110,7 @@ export const EventModalWrapper = ({ children }) => {
                   </Fragment>
                 )}
                 {[
-                  [ev.video, expired ? 'Recording' : 'Live Stream', ytThumbLink],
+                  [ev.video, expired ? 'Recording' : 'Live Stream', expired ? ytThumbModal : ytThumbLink],
                   [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
                   [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')(`/static/${link}`)],
                   [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
@@ -161,21 +161,41 @@ export const EventModalWrapper = ({ children }) => {
   );
 };
 
-function ytThumbLink(url) {
+function ytThumbModal(url) {
   return (
     <ModalVideoContext.Consumer>
       {(openYoutube) => (
         <a type="button" onClick={() => openYoutube(getYouTubeId(url))}>
-          <div className="youtube-thumb-outer">
-            <img src={ytThumb(url)} />
-            <div className="overlay">
-            </div>
-          </div>
+          {ytThumbPic(url)}
         </a>
       )}
     </ModalVideoContext.Consumer>
   )
+}
 
+function ytThumbLink(url) {
+  return (
+    <a href={url} target="_blank">
+      {ytThumbPic(url)}
+    </a>
+  )
+}
+
+function ytThumbPic(url) {
+  return (
+    <Fragment>
+      <style jsx>{`
+      .youtube-thumb-outer {
+        display: inline-block;
+      }
+      `}</style>
+      <div className="youtube-thumb-outer">
+        <img src={ytThumb(url)} />
+        <div className="overlay">
+        </div>
+      </div>
+    </Fragment>
+  );
 }
 
 async function copyLink() {
@@ -183,12 +203,14 @@ async function copyLink() {
 }
 
 async function copyToClipboard(text) {
-  try {
-    const toCopy = text || location.href;
-    await navigator.clipboard.writeText(toCopy);
-  } catch (err) {
-    console.error('Failed to copy: ', err);
-  }
+  // noop for now. this thing is kinda broken
+  return null;
+  // try {
+  //   const toCopy = text || location.href;
+  //   await navigator.clipboard.writeText(toCopy);
+  // } catch (err) {
+  //   console.error('Failed to copy: ', err);
+  // }
 }
 
 
