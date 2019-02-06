@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import fetch from 'isomorphic-unfetch'
+import fetch from 'isomorphic-fetch'
 
 import Header from '../components/header'
 import Footer from '../components/footer'

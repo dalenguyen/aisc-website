@@ -274,7 +274,7 @@ export default () => {
             <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
               <h3>Upcoming Sessions</h3>
             </a>
-            <div class="collapse" id="collapseExample">
+            <div className="collapse" id="collapseExample">
               <div class="card card-body">
                 <p>Click on each stream name to
                 know more about them and then explore our upcoming and past events.</p>

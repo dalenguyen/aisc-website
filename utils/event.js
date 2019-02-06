@@ -1,5 +1,5 @@
 
-import fetch from 'isomorphic-unfetch'
+import fetch from 'isomorphic-fetch'
 
 export const READABLE_EVENT_TYPE = {
   'classics': 'Classics',
