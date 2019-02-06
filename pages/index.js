@@ -90,9 +90,9 @@ export default () => {
                 border-radius: 10px;
               }
               .tdls-intro {
-                text-shadow: 0 0 15px #000;
+                text-shadow: 0 0 10vw #000;
                 position: absolute;
-                bottom: 35%;
+                bottom: 15vw;
                 z-index: 1;
                 text-align: center;
                 left: 0;
@@ -102,10 +102,8 @@ export default () => {
 
               .tdls-intro .title {
                 /* font-family: serif; */
-                /* font-size: 2em; */
+                font-size: 5vw;
                 font-weight: bold;
-                margin-top: 30px;
-                padding-top: 30px;
                 font-style: italic;
                 /* border-top-style: solid;
                 border-top-width: 7px; */
@@ -166,50 +164,15 @@ export default () => {
             </div>
           </section>
           <section id="events" className="container">
+            <h3 id="past-events-title">Recent Sessions</h3>
+            <article id="past-events">
+              <PastEvents />
+            </article>
+          </section>
+          <section id="events" className="container">
             <hr />
             <h2 className="inline">Events</h2>
-            &nbsp;(<a className="event-link" href="#upcoming-events">Upcoming</a>,&nbsp;
-    <a className="event-link" href="#past-events">Past</a>)
-    <p>We meet twice a week to review advances in machine learning in various "streams".
-      <br />
-              Click on each stream name to
-      know more about them and then explore our upcoming and past events.</p>
-            <ul className="list-inline legend-list" id="streams">
-              <li className="list-inline-item">
-                <a href="" className="legend-event-main" data-toggle="modal" data-target="#modal_main_stream">
-                  <span className="legend main">&nbsp;</span>
-                  &nbsp;Main stream<i className="fa fa-question"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href="" data-toggle="modal" className="legend-event-classics" data-target="#modal_classics_stream">
-                  <span className="legend classics"></span>
-                  &nbsp;Classics Stream<i className="fa fa-question"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href="" data-toggle="modal" className="legend-event-fasttrack" data-target="#modal_fast_stream">
-                  <span className="legend fasttrack"></span>
-                  &nbsp;Fast Track Stream<i className="fa fa-question"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href="" data-toggle="modal" className="legend-event-codereview" data-target="#modal_codereview_stream">
-                  <span className="legend codereview"></span>
-                  &nbsp;Code Review Stream<i className="fa fa-question"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href="" data-toggle="modal" className="legend-event-authors" data-target="#modal_authors_stream">
-                  <span className="legend authors"></span>
-                  &nbsp;Authors Stream<i className="fa fa-question"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <span className="legend tentative"></span>&nbsp;
-            <span className="legend-event-tentative">Tentative Sessions</span>
-              </li>
-            </ul>
+            <p>We meet twice a week to review advances in machine learning in various "streams".</p>
             <div className="modal" tabIndex="-1" role="dialog" id="modal_main_stream">
               <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
@@ -322,14 +285,54 @@ export default () => {
                 </div>
               </div>
             </div>
-            <h3 id="past-events-title">Recent Sessions</h3>
-            <article id="past-events">
-              <PastEvents />
-            </article>
-            <h3>Upcoming Sessions</h3>
-            <article id="upcoming-events">
-              <UpcomingEvents />
-            </article>
+            <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <h3>Upcoming Sessions</h3>
+            </a>
+            <div className="collapse" id="collapseExample">
+              <div class="card card-body">
+                <p>Click on each stream name to
+                know more about them and then explore our upcoming and past events.</p>
+                <ul className="list-inline legend-list" id="streams">
+                  <li className="list-inline-item">
+                    <a href="" className="legend-event-main" data-toggle="modal" data-target="#modal_main_stream">
+                      <span className="legend main">&nbsp;</span>
+                      &nbsp;Main stream<i className="fa fa-question"></i>
+                    </a>
+                  </li>
+                  <li className="list-inline-item">
+                    <a href="" data-toggle="modal" className="legend-event-classics" data-target="#modal_classics_stream">
+                      <span className="legend classics"></span>
+                      &nbsp;Classics Stream<i className="fa fa-question"></i>
+                    </a>
+                  </li>
+                  <li className="list-inline-item">
+                    <a href="" data-toggle="modal" className="legend-event-fasttrack" data-target="#modal_fast_stream">
+                      <span className="legend fasttrack"></span>
+                      &nbsp;Fast Track Stream<i className="fa fa-question"></i>
+                    </a>
+                  </li>
+                  <li className="list-inline-item">
+                    <a href="" data-toggle="modal" className="legend-event-codereview" data-target="#modal_codereview_stream">
+                      <span className="legend codereview"></span>
+                      &nbsp;Code Review Stream<i className="fa fa-question"></i>
+                    </a>
+                  </li>
+                  <li className="list-inline-item">
+                    <a href="" data-toggle="modal" className="legend-event-authors" data-target="#modal_authors_stream">
+                      <span className="legend authors"></span>
+                      &nbsp;Authors Stream<i className="fa fa-question"></i>
+                    </a>
+                  </li>
+                  <li className="list-inline-item">
+                    <span className="legend tentative"></span>&nbsp;
+                    <span className="legend-event-tentative">Tentative Sessions</span>
+                  </li>
+                </ul>
+                <article id="upcoming-events">
+                  <UpcomingEvents />
+                </article>
+              </div>
+            </div>
           </section>
 
           <section id="areas" className="container">

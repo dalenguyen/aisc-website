@@ -5,17 +5,18 @@ Source code for TDLS website.
 
 ## Instructions
 
-First, clone this repository from command line. 
+First, install Node version > 10.0.0.
 
-To view the site on your local machine, use a static server of your choosing. For python 3 users, try running this (from the repository directory):
+nvm is highly recommended.
 
-```python
-python -m http.server 8080
+
+```bash
+npm run dev
 ```
 
-And then navigate to `http://127.0.0.1:8080`
+And then navigate to `http://localhost:3000`
 
-Note: only 8080 may work due to domain restrictions on Google Key. Similarly, only `127.0.0.1` may work, instead of `localhost` or `0.0.0.0`.
+Note: only `3000` may work due to domain restrictions on Google Key. Similarly, only `localhost` may work, instead of `127.0.0.1` or `0.0.0.0`.
 
 (Troubleshooting note: If the events schedule does not load, this is likely the step that you are missing!)
 

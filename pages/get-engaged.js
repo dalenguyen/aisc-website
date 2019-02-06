@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-unfetch'
-
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Head from 'next/head'

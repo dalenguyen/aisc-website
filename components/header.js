@@ -24,29 +24,9 @@ export default () => (
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Events
-            </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="/#streams">
-                Streams
-              </a>
-              <div className="dropdown-divider" />
-              <a className="dropdown-item" href="/#upcoming-events">
-                Upcoming Sessions
-              </a>
-              <a className="dropdown-item" href="/#past-events">
-                Past Sessions
-              </a>
-            </div>
+            <Link href="/#events">
+              <a className="nav-link">Events</a>
+            </Link>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="/#areas">
