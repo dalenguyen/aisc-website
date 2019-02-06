@@ -59,7 +59,7 @@ export const EventModalWrapper = ({ children }) => {
 
   return (
     <EventModalContext.Provider
-      value={(eventId) => openEventModal(eventId)}
+      value={openEventModal}
     >
       <YouTubeModalWrapper>
         {children}
@@ -110,7 +110,7 @@ export const EventModalWrapper = ({ children }) => {
                   </Fragment>
                 )}
                 {[
-                  [ev.video, 'Recording', ytThumbLink],
+                  [ev.video, expired ? 'Recording' : 'Live Stream', ytThumbLink],
                   [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
                   [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')(`/static/${link}`)],
                   [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
@@ -193,6 +193,6 @@ async function copyToClipboard(text) {
 
 
 function eventExpired(ev) {
-  return ev && ev.date < new Date();
+  return ev && new Date(ev.date.getTime() + 60 * 60 * 1000 * 3) < new Date();
 }
 

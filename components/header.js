@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LiveButton from '../components/live-button';
 
 export default () => (
   <header id="main-navbar">
@@ -21,17 +22,14 @@ export default () => (
       >
         <span className="navbar-toggler-icon" />
       </button>
+      <LiveButton />
+
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item dropdown">
             <Link href="/#events">
               <a className="nav-link">Events</a>
             </Link>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/#areas">
-              Subject Areas
-            </a>
           </li>
           <li className="nav-item">
             <Link href="/get-engaged">

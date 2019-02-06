@@ -90,7 +90,7 @@ export default () => {
                 border-radius: 10px;
               }
               .tdls-intro {
-                text-shadow: 0 0 10vw #000;
+                text-shadow: 0 0 5vh #000;
                 position: absolute;
                 bottom: 15vw;
                 z-index: 1;
@@ -102,7 +102,7 @@ export default () => {
 
               .tdls-intro .title {
                 /* font-family: serif; */
-                font-size: 5vw;
+                font-size: 4vw;
                 font-weight: bold;
                 font-style: italic;
                 /* border-top-style: solid;
@@ -289,7 +289,7 @@ export default () => {
               <h3>Upcoming Sessions</h3>
             </a>
             <div className="collapse" id="collapseExample">
-              <div class="card card-body">
+              <div className="card card-body">
                 <p>Click on each stream name to
                 know more about them and then explore our upcoming and past events.</p>
                 <ul className="list-inline legend-list" id="streams">

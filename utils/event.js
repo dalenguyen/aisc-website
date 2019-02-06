@@ -192,7 +192,7 @@ export const getEventsAndGroupings = runOnlyOnce(async () => {
 })
 
 
-function pad(num) {
+export function pad(num) {
   // pad single digit number with zero
   return num < 10 ? '0' + num : num;
 }
@@ -212,4 +212,12 @@ export function isTentative(ev) {
   // broadly speaking, a question mark indicates uncertainty
   return ev.title.indexOf('?') >= 0 ||
     ev.lead.indexOf('?') >= 0;
+}
+
+export function sleep(millsecs) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, millsecs)
+  });
 }
