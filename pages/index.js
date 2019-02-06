@@ -75,6 +75,20 @@ export default () => {
                 letter-spacing: 0.12em;
                 border-radius: 10px;
               }
+
+              #welcome .scroll-button {
+                position: absolute;
+                bottom: 0;
+                z-index: 1;
+                left: 50%;
+                transform: translateX(-50%);
+              }
+
+              #welcome .carousel-caption {
+                font-style: italic;
+                letter-spacing: 0.12em;
+                border-radius: 10px;
+              }
               .tdls-intro {
                 text-shadow: 0 0 15px #000;
                 position: absolute;

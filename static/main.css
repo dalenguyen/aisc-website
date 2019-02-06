@@ -125,20 +125,6 @@ a.scroll-button span {
   }
 }
 
-#welcome .scroll-button {
-  position: absolute;
-  bottom: 0;
-  z-index: 9999;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-#welcome .carousel-caption {
-  font-style: italic;
-  letter-spacing: 0.12em;
-  border-radius: 10px;
-}
-
 #events .event-link {
   color: #5a5a5a;
   text-decoration: underline;
