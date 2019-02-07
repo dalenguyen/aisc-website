@@ -9,7 +9,7 @@ import {
 } from '../utils/event';
 
 
-export default ({ filter = null }) => {
+export default ({ filter = null, shuffle = false }) => {
   const [{ events }, setEventsData] = useState({ events: [] });
   const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
 
@@ -71,7 +71,7 @@ export default ({ filter = null }) => {
 
   return (
     <Slider className="past-event-list" {...settings}>
-      {filterEvents(events, filter).map((event, idx) => {
+      {(shuffle ? randomShuffle : a => a)(filterEvents(events, filter), 41).map((event, idx) => {
         const leadLink = linkedInDict[event.lead];
         const facLinks = event.facilitators.map(n => linkedInDict[n]);
         return (
@@ -167,4 +167,24 @@ function SampleNextArrow({ className, style, onClick }) {
       onClick={onClick}
     />
   );
+}
+
+function randomShuffle(array, seed) {
+  let currentIndex = array.length, temporaryValue, randomIndex;
+  seed = seed || 1;
+  let random = function () {
+    var x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+  };
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(random() * currentIndex);
+    currentIndex -= 1;
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
 }

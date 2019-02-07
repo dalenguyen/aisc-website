@@ -360,7 +360,7 @@ export default () => {
                 <Fragment key={label}>
                   <div style={{ marginTop: '10px' }}>
                     <h4><span className="badge badge-primary badge-info">{label}</span></h4>
-                    <EventCarousel filter={filter} />
+                    <EventCarousel filter={filter} shuffle={true} />
                   </div>
                 </Fragment>
               ))
