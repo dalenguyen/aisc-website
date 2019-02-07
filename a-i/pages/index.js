@@ -9,6 +9,9 @@ import AIThemes from '../components/ai-themes';
 export default () => (
   <Fragment>
     <Head>
+      <title>Aggregate Intellect</title>
+      <meta name="description"
+        content="Redefining scientific discovery" />
       <AIThemes />
     </Head>
     <Header />

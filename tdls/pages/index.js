@@ -47,13 +47,8 @@ export default () => {
     <Fragment>
       <Head>
         <title>Toronto Deep Learning Series #TDLS</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="canonical" href="./index.html" />
-        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131780670-1"></script>
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
+        <link rel="canonical" href="./index.html" />
         <ThemesAndSuch />
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
         <link href="/static/smooth-scroll.css" rel="stylesheet" />
