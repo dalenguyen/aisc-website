@@ -14,6 +14,7 @@ export const UpcomingEvents = ({ }) => {
 
   const fetchAndSetFutureEvent = async () => {
     const { futureEvents } = await getEventsAndGroupings();
+
     setEventsData({ events: futureEvents });
   }
 
@@ -26,7 +27,6 @@ export const UpcomingEvents = ({ }) => {
     fetchAndSetFutureEvent();
     fetchAndSetProfile();
   }, []);
-
   return (
     <ul className="list-group upcoming-event-list">
       {

@@ -72,7 +72,7 @@ function rawRowToRow(rawHeader, rawRow) {
   const type = rawRow[rawHeader.indexOf('Stream')];
   const subjects = (rawRow[rawHeader.indexOf('Subject Matter Area')] || '').split(',').map(s => s.trim()).filter(s => s);
 
-  const dateAtMidnight = new Date((rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, ''));
+  const dateAtMidnight = new Date((rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, '').replace(/\-/g, ' '));
   const dateAtSixThirty = new Date(dateAtMidnight.getTime() + (18 * 60 + 30) * 60 * 1000);
   return {
     title,
@@ -109,7 +109,7 @@ function splitEvents(events) {
 }
 
 function eventExpired(ev) {
-  return ev && ev.date < new Date();
+  return ev && ev.date.getTime() < new Date().getTime();
 }
 
 
@@ -167,7 +167,6 @@ export const getEventsAndGroupings = runOnlyOnce(async () => {
       //only care about rows that have both title and lead
       e => e.title && e.lead
     );
-
   const [pastEvents, futureEvents] = splitEvents(events);
 
   const subjects = pastEvents.reduce((subjects, ev) => {
