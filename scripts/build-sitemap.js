@@ -12,7 +12,7 @@ assert(siteName, 'site name argument is required.');
 
 const SITE_ROOT = process.env.SITE_ROOT || 'https://tdls.a-i.science'
 const SOURCE = process.env.SOURCE || path.join(__dirname, '..', siteName, 'pages', '/**/*.js')
-const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', 'root-static', 'sitemap.xml')
+const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', siteName, 'root-static', 'sitemap.xml')
 
 let diskPages = glob.sync(SOURCE)
 
