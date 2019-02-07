@@ -4,11 +4,16 @@
   "description": "Source code for TDLS website.",
   "main": "main.js",
   "scripts": {
-    "dev": "next",
-    "build": "next build && npm run build-sitemap",
-    "start": "next start",
-    "export": "npm run build && next export && cp root-static/* out/",
-    "build-sitemap": "node scripts/build-sitemap.js"
+    "tdls": "next tdls -p 3000",
+    "a-i": "next a-i -p 3100",
+    "tdls-build-sitemap": "node scripts/build-sitemap.js tdls",
+    "a-i-build-sitemap": "node scripts/build-sitemap.js a-i",
+    "tdls-build": "next build tdls && npm run tdls-build-sitemap tdls",
+    "a-i-build": "next build a-i && npm run a-i-build-sitemap a-i",
+    "tdls-start": "next start tdls",
+    "a-i-start": "next start a-i",
+    "tdls-export": "npm run tdls-build && next export tdls && cp tdls/root-static/* tdls/out/",
+    "a-i-export": "npm run a-ibuild && next export a-i && cp a-i/root-static/* a-i/out/"
   },
   "repository": {
     "type": "git",

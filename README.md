@@ -3,6 +3,8 @@ Source code for TDLS website.
 
 [![Release](https://img.shields.io/badge/release-v.0.1.0-yellow.svg)](https://github.com/TDLS/tdls.github.io/releases/tag/v.0.1.0)
 
+Note: this repository contains multiple websites.
+
 ## Instructions
 
 First, install Node version > 10.0.0.
@@ -11,7 +13,7 @@ nvm is highly recommended.
 
 
 ```bash
-npm run dev
+npm run tdls
 ```
 
 And then navigate to `http://localhost:3000`

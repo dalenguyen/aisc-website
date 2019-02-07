@@ -4,9 +4,14 @@
 const path = require('path')
 const glob = require('glob')
 const fs = require('fs')
+const assert = require('assert');
+
+const [siteName] = process.argv;
+
+assert(siteName, 'site name argument is required.');
 
 const SITE_ROOT = process.env.SITE_ROOT || 'https://tdls.a-i.science'
-const SOURCE = process.env.SOURCE || path.join(__dirname, '..', 'pages', '/**/*.js')
+const SOURCE = process.env.SOURCE || path.join(__dirname, '..', siteName, 'pages', '/**/*.js')
 const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', 'root-static', 'sitemap.xml')
 
 let diskPages = glob.sync(SOURCE)
