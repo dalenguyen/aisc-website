@@ -13,7 +13,7 @@
     "tdls-start": "next start tdls",
     "a-i-start": "next start a-i",
     "tdls-export": "npm run tdls-build && next export tdls && cp tdls/root-static/* tdls/out/",
-    "a-i-export": "npm run a-ibuild && next export a-i && cp a-i/root-static/* a-i/out/"
+    "a-i-export": "npm run a-i-build && next export a-i && cp a-i/root-static/* a-i/out/"
   },
   "repository": {
     "type": "git",

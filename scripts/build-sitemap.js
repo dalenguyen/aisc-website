@@ -6,7 +6,7 @@ const glob = require('glob')
 const fs = require('fs')
 const assert = require('assert');
 
-const [siteName] = process.argv;
+const [n, _, siteName] = process.argv;
 
 assert(siteName, 'site name argument is required.');
 
