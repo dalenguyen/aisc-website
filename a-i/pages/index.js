@@ -45,9 +45,7 @@ export default () => (
                 target="_blank" noValidate>
                 <div id="mc_embed_signup_scroll">
                   <div className="mc-field-group text-center">
-                    <label htmlFor="mce-EMAIL">Email Address <span className="asterisk">*</span>
-                    </label>
-                    <input type="email" name="EMAIL" className="required email" id="mce-EMAIL" />
+                    <input placeholder="Email address" type="email" name="EMAIL" className="required email text-center" id="mce-EMAIL" />
                   </div>
                   <div
                     style={{ position: 'absolute', left: '-5000px' }}
