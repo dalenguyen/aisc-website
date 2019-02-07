@@ -8,7 +8,8 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
-import { UpcomingEvents, PastEvents } from '../components/event-related';
+import { UpcomingEvents } from '../components/event-related';
+import EventCarousel from '../components/event-carousel';
 import { EventModalWrapper, EventModalContext } from '../components/event-modal';
 import GetEngagedSection from '../components/get-engaged-section';
 
@@ -175,7 +176,7 @@ export default () => {
           <section id="events" className="container">
             <h3 id="past-events-title">Recent Sessions</h3>
             <article id="past-events">
-              <PastEvents />
+              <EventCarousel />
             </article>
           </section>
           <section id="events" className="container">
@@ -347,7 +348,24 @@ export default () => {
               </div>
             </div>
           </section>
-
+          <section className="container">
+            <h3>More Sessions</h3>
+            {
+              [
+                ['Representation Learning', { subjects: 'Representation Learning' }],
+                ['Natural Language Processing', { subjects: 'Natural Language Processing' }],
+                ['Reinforcement Learning', { subjects: 'Reinforcement Learning' }],
+                ['Classic Papers', { type: 'classics' }]
+              ].map(([label, filter]) => (
+                <Fragment key={label}>
+                  <div style={{ marginTop: '10px' }}>
+                    <h4><span className="badge badge-primary badge-info">{label}</span></h4>
+                    <EventCarousel filter={filter} />
+                  </div>
+                </Fragment>
+              ))
+            }
+          </section>
           <section id="areas" className="container">
 
             <h2>Subject Matter Areas</h2>
