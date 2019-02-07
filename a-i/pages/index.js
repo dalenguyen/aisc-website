@@ -44,7 +44,7 @@ export default () => (
                 method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate"
                 target="_blank" noValidate>
                 <div id="mc_embed_signup_scroll">
-                  <div className="mc-field-group">
+                  <div className="mc-field-group text-center">
                     <label htmlFor="mce-EMAIL">Email Address <span className="asterisk">*</span>
                     </label>
                     <input type="email" name="EMAIL" className="required email" id="mce-EMAIL" />
