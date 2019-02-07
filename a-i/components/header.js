@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
-import LiveButton from '../components/live-button';
 
 export default () => (
   <Fragment>
@@ -35,10 +34,8 @@ export default () => (
         style={{ backgroundColor: 'white' }}
       >
         <a href="/" className="navbar-brand">
-          <img src="/static/images/tdls_logo.svg" style={{ height: '30px' }} />{' '}
-          TDLS
+          aggregate intellect
       </a>
-        <LiveButton />
         <button
           className="navbar-toggler"
           type="button"
@@ -54,31 +51,22 @@ export default () => (
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item dropdown">
-              <Link href="/#events">
-                <a className="nav-link">Events</a>
+              <Link href="//tdls.a-i.science">
+                <a className="nav-link">TDLS</a>
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/get-engaged">
-                <a className="nav-link">Get Engaged</a>
+              <Link href="">
+                <a className="nav-link">Blog</a>
               </Link>
             </li>
-            <li className="nav-item dropdown">
-              <Link href="/about">
-                <a className="nav-link">About Us</a>
-              </Link>
+            <li className="nav-item">
+              <a className="nav-link"
+                href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg"
+                target="_blank">YouTube</a>
             </li>
           </ul>
           <ul className="list-inline social-buttons">
-            <li className="list-inline-item">
-              <div
-                className="g-ytsubscribe"
-                data-channelid="UCfk3pS8cCPxOgoleriIufyg"
-                data-layout="default"
-                data-theme="default"
-                data-count="default"
-              />
-            </li>
             <li className="list-inline-item">
               <a
                 href="https://www.youtube.com/c/TorontoDeepLearningSeries"
@@ -116,5 +104,6 @@ export default () => (
         </div>
       </nav>
     </header>
+    <script src="https://apis.google.com/js/platform.js"></script>
   </Fragment>
 );
