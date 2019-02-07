@@ -117,6 +117,18 @@ export default () => {
                 margin-left: auto;
                 margin-right: auto;
               }
+
+              a {
+                color: #5a5a5a;
+              }
+
+              .collapse-button .fa:before {   
+                content: "\f139";
+              }
+              
+              .collapse-button.collapsed .fa:before {
+                content: "\f13a";
+              }
           `}</style>
           <section id="welcome">
             <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
@@ -282,8 +294,12 @@ export default () => {
                 </div>
               </div>
             </div>
-            <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              <h3>Upcoming Sessions</h3>
+
+            <a className="collapse-button collapsed" data-toggle="collapse"
+              href="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample">
+              <h3>Upcoming Sessions <i className="fa"></i></h3>
             </a>
             <div className="collapse" id="collapseExample">
               <div className="card card-body">

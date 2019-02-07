@@ -1,3 +1,5 @@
+import YoutubeSubscribeButton from "./youtube-subscribe-button";
+
 export default () => (
   <section className="container" id="get-engaged">
     <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css" />
@@ -133,8 +135,7 @@ export default () => (
             <h5 className="card-title">YouTube</h5>
             <p className="card-text">To get updates about our videos subscribe to our YouTube channel for a front row
     seat.</p>
-            <div className="g-ytsubscribe" data-channelid="UCfk3pS8cCPxOgoleriIufyg" data-layout="default" data-theme="default"
-              data-count="default"></div>
+            <YoutubeSubscribeButton />
           </div>
         </div>
       </div>
