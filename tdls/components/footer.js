@@ -21,8 +21,10 @@ export default () => (
         <div className="row">
           <div className="col-sm-6">
             <div className="copyright">
-              &copy; 2018-2019
-              Aggregate Intellect Inc.
+              &copy; 2018-2019&nbsp;
+              <a href="//a-i.science">
+                Aggregate Intellect Inc.
+              </a>
             </div>
           </div>
           <div className="col-sm-3">
