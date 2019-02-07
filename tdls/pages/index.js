@@ -368,13 +368,13 @@ export default () => {
           </section>
           <section id="areas" className="container">
 
-            <h2>Subject Matter Areas</h2>
+            <h2>Areas Covered So Far</h2>
             <div className="row">
-              <div className="col-lg-6" id="sma-links">
-
-              </div>
               <div className="col-lg-6">
                 <iframe width="100%" height="600" seamless frameBorder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRY6QXhp9sU4Y_ede25AEAwkSnS-xcOCQhxJMUfiq4xtWB04chEpkyDgWvFHSD0zakgSqnxuNzTGwk6/pubchart?oid=1131229791&format=interactive"></iframe>
+              </div>
+              <div className="col-lg-6" id="sma-links">
+
               </div>
             </div>
           </section>
