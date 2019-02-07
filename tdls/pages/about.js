@@ -64,8 +64,7 @@ const About = ({ contributors }) => (
       <div className="row profile-list">
         {[
           ['Paul Finlay', 'Sound Engineer', '/static/images/paul.jpeg', 'https://www.linkedin.com/in/paulfinlay314/'],
-          ['Mark Donaldson', 'Social Media Lead', '/static/images/mark.jpeg', 'https://www.linkedin.com/in/markdonaldson888/'],
-          ['Helen Ngo', '"Classics" Stream Lead', '/static/images/helen.jpeg', 'https://www.linkedin.com/in/helen-ngo/'],
+          ['Helen Ngo', 'Former Steering Committee Member', '/static/images/helen.jpeg', 'https://www.linkedin.com/in/helen-ngo/'],
         ].map(profileCard)
         }
       </div>
