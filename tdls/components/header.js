@@ -1,34 +1,12 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import LiveButton from '../components/live-button';
+import SocialButtons from '../components/social-buttons';
+
+import './header.scss';
 
 export default () => (
   <Fragment>
-    <style jsx>{`
-    @media (max-width: 430px) {
-      .navbar {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-    }
-
-    .main-navbar .nav-item a {
-      color: black;
-      font-weight: 500;
-      letter-spacing: 0.07em;
-    }
-
-    .main-navbar .dropdown-menu a {
-      color: black;
-    }
-
-    .navbar {
-      box-shadow: 0px 13px 18px -12px rgba(171, 183, 186, 1);
-      padding-left: 3rem;
-      padding-right: 3rem;
-    }
-
-  `}</style>
     <header className="main-navbar">
       <nav
         className="navbar navbar-expand-md fixed-top navbar-light"
@@ -69,52 +47,14 @@ export default () => (
               </Link>
             </li>
           </ul>
-          <ul className="list-inline social-buttons">
-            <li className="list-inline-item">
-              <div
-                className="g-ytsubscribe"
-                data-channelid="UCfk3pS8cCPxOgoleriIufyg"
-                data-layout="default"
-                data-theme="default"
-                data-count="default"
-              />
-            </li>
-            <li className="list-inline-item">
-              <a
-                href="https://www.youtube.com/c/TorontoDeepLearningSeries"
-                target="_blank"
-              >
-                <i className="fa fa-youtube fa-2x" />
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href="https://www.reddit.com/user/tdls_to" target="_blank">
-                <i className="fa fa-reddit fa-2x" />
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href="https://twitter.com/tdls_to" target="_blank">
-                <i className="fa fa-twitter fa-2x" />
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href="https://github.com/TDLS" target="_blank">
-                <i className="fa fa-github fa-2x" />
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href="https://www.instagram.com/tdls_to/" target="_blank">
-                <i className="fa fa-instagram fa-2x" />
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href="mailto:tdls@torontomachinelearning.com" target="_blank">
-                <i className="fa fa-envelope fa-2x" />
-              </a>
-            </li>
-          </ul>
+          <div className="social-buttons desktop">
+          <SocialButtons />
+          </div>
         </div>
       </nav>
     </header>
+    <div className="social-buttons mobile">
+      <SocialButtons />
+    </div>
   </Fragment>
 );
