@@ -104,6 +104,5 @@ export default () => (
         </div>
       </nav>
     </header>
-    <script src="https://apis.google.com/js/platform.js"></script>
   </Fragment>
 );

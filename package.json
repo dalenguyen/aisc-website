@@ -31,6 +31,8 @@
   "homepage": "https://github.com/tdls/tdls.github.io#readme",
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
+    "contentful": "^7.2.0",
+    "dotenv": "^6.2.0",
     "isomorphic-fetch": "^2.2.1",
     "next": "^7.0.2",
     "node-sass": "^4.11.0",

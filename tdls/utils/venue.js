@@ -1,5 +1,19 @@
+import { createClient } from '../common/contentful';
 
-export function venueToLink(name) {
+export async function getVenues() {
+  const client = createClient();
+
+  const { items } = await client.getEntries({
+    content_type: 'venue'
+  });
+  return items.map(({ fields }) => fields);
+}
+
+(async () => {
+  console.log(await getVenues());
+})()
+
+async function venueToLink(name) {
   const url = {
     'RBC': 'https://www.rbcroyalbank.com',
     'Rangle': 'https://rangle.io',
