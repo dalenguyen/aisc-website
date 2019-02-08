@@ -174,10 +174,22 @@ export default () => {
             </div>
           </section>
           <section id="events" className="container">
-            <h3 id="past-events-title">Recent Sessions</h3>
-            <article id="past-events">
-              <EventCarousel />
-            </article>
+            {
+              [
+                ['Trending Papers', { type: 'fasttrack' }],
+                ['Authors Speaking', { type: 'authors' }],
+                ['Recent Papers', { type: 'main' }],
+                ['Implementations', { type: 'codereview' }],
+                ['Classic Papers', { type: 'classics' }]
+              ].map(([label, filter]) => (
+                <Fragment key={label}>
+                  <div style={{ marginTop: '10px' }}>
+                    <h4><span className="badge badge-primary badge-info">{label}</span></h4>
+                    <EventCarousel filter={filter} shuffle={false} />
+                  </div>
+                </Fragment>
+              ))
+            }
           </section>
           <section id="events" className="container">
             <hr />
@@ -347,24 +359,6 @@ export default () => {
                 </article>
               </div>
             </div>
-          </section>
-          <section className="container">
-            <h3>More Sessions</h3>
-            {
-              [
-                ['Representation Learning', { subjects: 'Representation Learning' }],
-                ['Natural Language Processing', { subjects: 'Natural Language Processing' }],
-                ['Reinforcement Learning', { subjects: 'Reinforcement Learning' }],
-                ['Classic Papers', { type: 'classics' }]
-              ].map(([label, filter]) => (
-                <Fragment key={label}>
-                  <div style={{ marginTop: '10px' }}>
-                    <h4><span className="badge badge-primary badge-info">{label}</span></h4>
-                    <EventCarousel filter={filter} shuffle={true} />
-                  </div>
-                </Fragment>
-              ))
-            }
           </section>
           <section id="areas" className="container">
 

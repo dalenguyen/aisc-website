@@ -110,7 +110,6 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
       }
     `}</style>
       <a className="title card-title" href={`/#/events/${getEventId(ev)}`}>
-        {ev.type !== 'main' ? `[${READABLE_EVENT_TYPE[ev.type]}]`.toLowerCase() + ' ' : null}
         {ev.title.toLowerCase()}
       </a>
     </Fragment>
