@@ -372,7 +372,6 @@ export default () => {
               </div>
             </div>
           </section>
-          <GetEngagedSection />
           <style jsx>{`
             section.about-tdls {
               text-align: center;

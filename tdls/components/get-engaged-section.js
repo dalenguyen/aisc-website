@@ -9,7 +9,7 @@ export default () => (
       Want to get involved? Here are some ways you can join in the fun - or email/tweet at us if you have other
       thoughts or ideas!
     </p>
-    <h4>Contribute to TDLS</h4>
+    <h4 id="get-engaged-contribute">Contribute to TDLS</h4>
     <div className="row">
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
@@ -152,7 +152,7 @@ export default () => (
         </div>
       </div>
     </div>
-    <h4>For organizations</h4>
+    <h4 id="get-engaged-organizations">For organizations</h4>
 
     <div className="row">
       <div className="col-lg-3 col-md-4 col-sm-6">
