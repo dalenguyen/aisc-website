@@ -255,17 +255,12 @@ a.scroll-button span {
 
 .past-event-list .event-fasttrack,
 .past-event-list .event-fasttrack a {
-  color: var(--fasttrack-color);
+  color: var(--main-color);
 }
 
 .past-event-list .event-classics,
 .past-event-list .event-classics a {
-  color: var(--classics-color);
-}
-
-.past-event-list .event-fasttrack,
-.past-event-list .event-fasttrack a {
-  color: var(--fasttrack-color);
+  color: var(--main-color);
 }
 
 .past-event-list .event-main,
@@ -275,17 +270,17 @@ a.scroll-button span {
 
 .past-event-list .event-codereview,
 .past-event-list .event-codereview a {
-  color: var(--codereview-color);
+  color: var(--main-color);
 }
 
 .past-event-list .event-authors,
 .past-event-list .event-authors a {
-  color: var(--authors-color);
+  color: var(--main-color);
 }
 
 .past-event-list .title {
   font-style: italic;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .modal-dialog .modal-header {
@@ -350,6 +345,11 @@ a.scroll-button span {
   background-image: url('images/youtube_play.png');
   top: 0;
   left: 0;
+}
+
+.card-img-top {
+    height: 9.5rem;
+    object-fit: cover;
 }
 /* 
 #past-event-list .youtube-thumb::after {
@@ -441,6 +441,10 @@ a.scroll-button span {
 .carousel-caption {
   opacity: 0.7;
   background-color: #000 !important;
+}
+
+.carousel-taint {
+  filter: sepia(80%);
 }
 
 a.person-name,

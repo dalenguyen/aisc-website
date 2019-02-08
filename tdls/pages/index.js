@@ -141,19 +141,19 @@ export default () => {
 
               <div className="carousel-inner">
                 <div className="carousel-item active">
-                  <img className="d-block w-100" src="/static/images/slide_01.jpeg" alt="First slide" />
+                  <img className="d-block w-100 carousel-taint" src="/static/images/slide_01.jpeg" alt="First slide" />
                   <div className="carousel-caption d-none d-md-block bg-dark">
                     <h4>welcoming & supportive community</h4>
                   </div>
                 </div>
                 <div className="carousel-item">
-                  <img className="d-block w-100" src="/static/images/slide_02.jpeg" alt="Second slide" />
+                  <img className="d-block w-100 carousel-taint" src="/static/images/slide_02.jpeg" alt="Second slide" />
                   <div className="carousel-caption d-none d-md-block bg-dark">
                     <h4>intellectually curious individuals</h4>
                   </div>
                 </div>
                 <div className="carousel-item">
-                  <img className="d-block w-100" src="/static/images/slide_03.jpeg" alt="Third slide" />
+                  <img className="d-block w-100 carousel-taint" src="/static/images/slide_03.jpeg" alt="Third slide" />
                   <div className="carousel-caption d-none d-md-block bg-dark">
                     <h4>engaging technical discussions</h4>
                   </div>
@@ -173,7 +173,7 @@ export default () => {
               <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
             </div>
           </section>
-          <section id="events" className="container">
+          <section id="content" className="container">
             {
               [
                 ['Trending Papers', { type: 'fasttrack' }],
@@ -317,7 +317,7 @@ export default () => {
             <div className="collapse" id="collapseExample">
               <div className="card card-body">
                 <p>Click on each stream name to
-                know more about them and then explore our upcoming and past events.</p>
+                know more about them and then explore our upcoming events.</p>
                 <ul className="list-inline legend-list" id="streams">
                   <li className="list-inline-item">
                     <a href="" className="legend-event-main" data-toggle="modal" data-target="#modal_main_stream">
@@ -357,18 +357,6 @@ export default () => {
                 <article id="upcoming-events">
                   <UpcomingEvents />
                 </article>
-              </div>
-            </div>
-          </section>
-          <section id="areas" className="container">
-
-            <h2>Areas Covered So Far</h2>
-            <div className="row">
-              <div className="col-lg-6">
-                <iframe width="100%" height="600" seamless frameBorder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRY6QXhp9sU4Y_ede25AEAwkSnS-xcOCQhxJMUfiq4xtWB04chEpkyDgWvFHSD0zakgSqnxuNzTGwk6/pubchart?oid=1131229791&format=interactive"></iframe>
-              </div>
-              <div className="col-lg-6" id="sma-links">
-
               </div>
             </div>
           </section>

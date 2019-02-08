@@ -144,11 +144,6 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
       <div className="card-body">
         {cardTitle}
         {toolbar}
-        <p className="card-text date">
-          <small className="text-muted">
-            {toShortDateString(ev.date)}
-          </small>
-        </p>
       </div>
     </div>
   );

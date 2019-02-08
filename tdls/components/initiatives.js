@@ -14,7 +14,7 @@ export default () => (
         ["Blog", "https://blog.a-i.science/"],
         ["Live Papers", "#"],
         ["Spotlight", "#"],
-        ["Podcast", "/3"]
+        ["Podcast", "#"]
       ].map(([name, link]) => (
         <li key={name}>
           <a href={link} target="_blank">
