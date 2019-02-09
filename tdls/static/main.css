@@ -444,7 +444,7 @@ a.scroll-button span {
 }
 
 .carousel-taint {
-  filter: sepia(80%) SATURATE(1.5) CONTRAST(1.2) brightness(0.7);
+  filter: sepia(80%) SATURATE(1.5) CONTRAST(1.2) brightness(0.8) blur(1.2px);
 }
 
 a.person-name,
