@@ -119,14 +119,14 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
   const toolbar = (
     <div className="toolbar">
       &nbsp;<a href="#/events/${getEventId(ev)}"><i className="fa fa-share-alt fa-lg"></i></a>
-      {ev.paper ? <a target="_blank" href="${ev.paper}"><i className="fa fa-file-text-o fa-lg"></i></a> : null}
-      {ev.video ? <a target="_blank" href="${ev.paper}"><i className="fa fa-play-circle fa-lg"></i></a> : null}
-      {ev.slides ? <a target="_blank" href="/static/${ev.slides}"><i className="fa fa-file-powerpoint-o fa-lg"></i></a> : null}
-      {ev.reddit ? <a target="_blank" href="${ev.reddit}"><i className="fa fa-reddit fa-lg"></i></a> : null}
-      {ev.code_official ? <a target="_blank" href="${ev.code_official}"><i className="fa fa-github fa-lg"></i></a> : null}
-      {ev.code_unofficial ? <a target="_blank" href="${ev.code_unofficial}"><i className="fa fa-github fa-lg"></i></a> : null}
-      {ev.dataset1 ? <a target="_blank" href="${ev.dataset1}"><i className="fa fa-database fa-lg"></i></a> : null}
-      {ev.dataset2 ? <a target="_blank" href="${ev.dataset2}"><i className="fa fa-database fa-lg"></i></a> : null}
+      {ev.paper ? <a target="_blank" href={ev.paper}><i className="fa fa-file-text-o fa-lg"></i></a> : null}
+      {ev.video ? <a target="_blank" href={ev.video}><i className="fa fa-play-circle fa-lg"></i></a> : null}
+      {ev.slides ? <a target="_blank" href={`/static/${ev.slides}`}><i className="fa fa-file-powerpoint-o fa-lg"></i></a> : null}
+      {ev.reddit ? <a target="_blank" href={ev.reddit}><i className="fa fa-reddit fa-lg"></i></a> : null}
+      {ev.code_official ? <a target="_blank" href={ev.code_official}><i className="fa fa-github fa-lg"></i></a> : null}
+      {ev.code_unofficial ? <a target="_blank" href={ev.code_unofficial}><i className="fa fa-github fa-lg"></i></a> : null}
+      {ev.dataset1 ? <a target="_blank" href={ev.dataset1}><i className="fa fa-database fa-lg"></i></a> : null}
+      {ev.dataset2 ? <a target="_blank" href={ev.dataset2}><i className="fa fa-database fa-lg"></i></a> : null}
     </div>
   );
 
