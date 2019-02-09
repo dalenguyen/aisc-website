@@ -178,7 +178,7 @@ export default () => {
               [
                 ['Trending Papers', { type: 'fasttrack' }],
                 ['Authors Speaking', { type: 'authors' }],
-                ['Recent Papers', { type: 'main' }],
+                ['Recent Presentations', { type: 'main' }],
                 ['Implementations', { type: 'codereview' }],
                 ['Classic Papers', { type: 'classics' }]
               ].map(([label, filter]) => (
