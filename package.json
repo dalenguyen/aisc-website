@@ -12,7 +12,7 @@
     "blog-build-sitemap": "node scripts/build-sitemap.js blog",
     "tdls-build": "next build tdls && npm run tdls-build-sitemap",
     "a-i-build": "next build a-i && npm run a-i-build-sitemap",
-    "blog-build": "cd blog && next build && cd .. && npm run blog-build-sitemap",
+    "blog-build": "cd blog && npm run build:content && next build && cd .. && npm run blog-build-sitemap",
     "tdls-start": "next start tdls",
     "a-i-start": "next start a-i",
     "tdls-export": "npm run tdls-build && next export tdls && cp tdls/root-static/* tdls/out/",
