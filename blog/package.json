@@ -4,7 +4,6 @@
   "homepage": "http://blog.a-i.science",
   "twitter": "tdls_to",
   "scripts": {
-    "start": "node server.js",
     "build": "next build",
     "build:content": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json",
     "build:content:watch": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json --watch",
