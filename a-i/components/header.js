@@ -57,7 +57,7 @@ export default () => (
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="">
+              <Link href="//blog.a-i.science">
                 <a className="nav-link">Blog</a>
               </Link>
             </li>

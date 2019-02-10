@@ -58,7 +58,6 @@ export const EventModalWrapper = ({ children }) => {
   }
 
   const status = eventStatus(ev);
-console.log(status);
   return (
     <EventModalContext.Provider
       value={openEventModal}
@@ -163,8 +162,8 @@ console.log(status);
               <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
               {
                 status!=='expired' && (
-                  <Link>
-                    <a href="/code-of-conduct" className="btn btn-secondary">Code of Conduct</a>
+                  <Link href="/code-of-conduct">
+                    <a className="btn btn-secondary">Code of Conduct</a>
                   </Link>
                 )
               }

@@ -77,7 +77,6 @@ async function findNextUpcomingEvent() {
   } else {
     const candidate = futureWithStreams[0];
     const status = eventStatus(candidate);
-    console.log(status)
     if (status !== 'countdown') {
       return null;
     } else {
