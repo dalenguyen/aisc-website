@@ -18,43 +18,51 @@ export default () => (
       .footer a {
         color: white;
       }
+      .footer h5 {
+        text-decoration: underline;
+        text-underline-position: under;
+      }
       @media (max-width: 576px) {
         .footer {
           text-align: center;   
         }
       }
     `}</style>
-    <footer className="footer navbar-expand-lg navbar-dark container">
+    <footer className="footer navbar-expand-lg navbar-dark">
+      <div className="container">
 
-      <div className="row">
-        <div className="col-6 col-sm-3">
-          <h5>Initiatives</h5>
-          <Initiatives />
+        <div className="row">
+          <div className="col-6 col-sm-3">
+            <h5>Initiatives</h5>
+            <Initiatives />
+          </div>
+          <div className="col-6 col-sm-3">
+            <h5>Get Engaged</h5>
+            <GetEngaged />
+          </div>
+          <div className="col-6 col-sm-3">
+            <h5>Follow Us</h5>
+            <FollowUs />
+          </div>
+          <div className="col-6 col-sm-3">
+            <h5>Useful Links</h5>
+            <UsefulLinksSection />
+          </div>
         </div>
-        <div className="col-6 col-sm-3">
-          <h5>Get Engaged</h5>
-          <GetEngaged />
-        </div>
-        <div className="col-6 col-sm-3">
-          <h5>Follow Us</h5>
-          <FollowUs />
-        </div>
-        <div className="col-6 col-sm-3">
-          <h5>Useful Links</h5>
-          <UsefulLinksSection />
-        </div>
-      </div>
-      <div className="copyright row">
-        &copy; 2018-2019&nbsp;
+        <div className="copyright">
+          &copy; 2018-2019&nbsp;
           <a href="//a-i.science">
-          Aggregate Intellect Inc.
+            Aggregate Intellect Inc.
           </a>
+        </div>
+        <ul className="list-unstyled">
+          <li>
+            <Link href="/code-of-conduct">
+              <a>Code of Conduct</a>
+            </Link>
+          </li>
+        </ul>
       </div>
-      <ul className="list-unstyled row">
-        <Link href="/code-of-conduct">
-          <a>Code of Conduct</a>
-        </Link>
-      </ul>
     </footer>
   </Fragment>
 );
