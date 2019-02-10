@@ -1,16 +1,18 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { getEventId, sleep, getEventsAndGroupings, pad } from '../utils/event';
+import { getEventId, sleep, getEventsAndGroupings, pad, eventStatus } from '../utils/event';
 
 export const Countdown = ({ expiresAt }) => {
   const [{h, m, s} , setClockArms] = useState({ h: null, m: null, s: null });
 
   const tick = async () => {
-    while (true) {
-      const [h, m, s] = timeFromNow(expiresAt);
-      setClockArms({
-        h, m, s
-      });
-      await sleep(1000);
+    if(expiresAt) {
+      while (true) {
+        const [h, m, s] = timeFromNow(expiresAt);
+        setClockArms({
+          h, m, s
+        });
+        await sleep(1000);
+      }
     }
   };
 
@@ -18,7 +20,7 @@ export const Countdown = ({ expiresAt }) => {
     tick();
   }, [expiresAt])
 
-  return (
+  return expiresAt && (
     <Fragment>
       {pad(h)}:{pad(m)}:{pad(s)}
     </Fragment>
@@ -74,13 +76,16 @@ async function findNextUpcomingEvent() {
     return null;
   } else {
     const candidate = futureWithStreams[0];
-    if (candidate.date.getTime() - new Date().getTime() > 48 * 60 * 60 * 1000) {
+    const status = eventStatus(candidate);
+    console.log(status)
+    if (status !== 'countdown') {
       return null;
     } else {
       return candidate;
     }
   }
 }
+
 
 function timeFromNow(date) {
   const diffInMillSec = date.getTime() - new Date().getTime();
