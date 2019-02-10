@@ -1,9 +1,10 @@
 require('dotenv').config();
 const webpack = require('webpack')
+const withTypescript = require('@zeit/next-typescript')
 
 const withSass = require('@zeit/next-sass')
 const BLOG_SUMMARY_JSON = require('./blog/content/summary.json')
-module.exports = withSass({
+module.exports = withTypescript(withSass({
 
   webpack: (config) => {
     config.module.rules.push(
@@ -18,4 +19,4 @@ module.exports = withSass({
 
     return config
   }
-})
+}))

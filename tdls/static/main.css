@@ -10,7 +10,6 @@ We recommend moving this block and the preceding CSS link to the HEAD of your HT
 
 header .social-buttons {
   display: inline;
-  margin-bottom: 0;
 }
 
 .social-buttons > li {
