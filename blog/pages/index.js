@@ -7,7 +7,7 @@ import { makeUrl, filterPosts } from '../src/utils/content'
 import CONFIG from '../content/index.json'
 import SUMMARY_JSON from '../content/summary.json'
 
-function Index(props) {
+function Index({}) {
   return (
     <div>
       <Page
@@ -25,8 +25,8 @@ function Index(props) {
   )
 }
 
-function Body(props) {
-  const postList = filterPosts(props.summaryJson)
+function Body({ summaryJson }) {
+  const postList = filterPosts(summaryJson)
   return (
     <div className="center mw6 pa3 pa4-ns">
       {postList.map((article, i) => {
