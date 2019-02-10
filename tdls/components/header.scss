@@ -26,9 +26,9 @@
     display: block;
     z-index: 2;
     font-size: 1em;
-    left: 50%;
-    transform: translateX(-50%);
     line-height: 1;
+    width: 100%;
+    text-align: center;
     a {
       text-shadow: 2px 2px 30px #bbb;
     }

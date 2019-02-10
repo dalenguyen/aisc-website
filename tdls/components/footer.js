@@ -19,38 +19,36 @@ export default () => (
         color: white;
       }
     `}</style>
-    <footer className="footer navbar-expand-lg navbar-dark">
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-3">
-            <h5>Initiatives</h5>
-            <Initiatives />
-          </div>
-          <div className="col-sm-3">
-            <h5>Get Engaged</h5>
-            <GetEngaged />
-          </div>
-          <div className="col-sm-3">
-            <h5>Follow Us</h5>
-            <FollowUs />
-          </div>
-          <div className="col-sm-3">
-            <h5>Useful Links</h5>
-            <UsefulLinksSection />
-          </div>
+    <footer className="footer navbar navbar-expand-lg navbar-dark container">
+      <div className="row">
+        <div className="col-6 col-sm-3">
+          <h5>Initiatives</h5>
+          <Initiatives />
         </div>
-        <div className="copyright">
-          &copy; 2018-2019&nbsp;
-          <a href="//a-i.science">
-            Aggregate Intellect Inc.
-          </a>
+        <div className="col-6 col-sm-3">
+          <h5>Get Engaged</h5>
+          <GetEngaged />
         </div>
-        <ul className="list-unstyled">
-          <Link href="/code-of-conduct">
-            <a>Code of Conduct</a>
-          </Link>
-        </ul>
+        <div className="col-6 col-sm-3">
+          <h5>Follow Us</h5>
+          <FollowUs />
+        </div>
+        <div className="col-6 col-sm-3">
+          <h5>Useful Links</h5>
+          <UsefulLinksSection />
+        </div>
       </div>
+      <div className="copyright">
+        &copy; 2018-2019&nbsp;
+          <a href="//a-i.science">
+          Aggregate Intellect Inc.
+          </a>
+      </div>
+      <ul className="list-unstyled">
+        <Link href="/code-of-conduct">
+          <a>Code of Conduct</a>
+        </Link>
+      </ul>
     </footer>
   </Fragment>
 );
