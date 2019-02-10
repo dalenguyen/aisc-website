@@ -18,8 +18,14 @@ export default () => (
       .footer a {
         color: white;
       }
+      @media (max-width: 576px) {
+        .footer {
+          text-align: center;   
+        }
+      }
     `}</style>
-    <footer className="footer navbar navbar-expand-lg navbar-dark container">
+    <footer className="footer navbar-expand-lg navbar-dark container">
+
       <div className="row">
         <div className="col-6 col-sm-3">
           <h5>Initiatives</h5>
@@ -38,13 +44,13 @@ export default () => (
           <UsefulLinksSection />
         </div>
       </div>
-      <div className="copyright">
+      <div className="copyright row">
         &copy; 2018-2019&nbsp;
           <a href="//a-i.science">
           Aggregate Intellect Inc.
           </a>
       </div>
-      <ul className="list-unstyled">
+      <ul className="list-unstyled row">
         <Link href="/code-of-conduct">
           <a>Code of Conduct</a>
         </Link>
