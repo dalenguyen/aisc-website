@@ -4,12 +4,6 @@ import Link from 'next/link';
 export default () => (
   <Fragment>
     <style jsx>{`
-    @media (max-width: 430px) {
-      .navbar {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-    }
 
     .main-navbar .nav-item a {
       color: black;
@@ -25,6 +19,13 @@ export default () => (
       box-shadow: 0px 13px 18px -12px rgba(171, 183, 186, 1);
       padding-left: 3rem;
       padding-right: 3rem;
+    }
+
+    @media (max-width: 430px) {
+      .navbar {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
     }
 
   `}</style>
