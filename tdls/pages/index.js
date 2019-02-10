@@ -62,117 +62,49 @@ export default () => {
             (openEventModal) => <EventRoutingHandler openEventModal={openEventModal} />
           }
         </EventModalContext.Consumer>
-        <main role="main">
-          <style jsx>{`
+        <section id="welcome">
+          <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
+            <ol className="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
 
-              #welcome {
-                position: relative;
-              }
-              #welcome .carousel-caption {
-                font-style: italic;
-                letter-spacing: 0.12em;
-                border-radius: 10px;
-              }
-
-              #welcome .scroll-button {
-                position: absolute;
-                bottom: 0;
-                z-index: 1;
-                left: 50%;
-                transform: translateX(-50%);
-              }
-
-              #welcome .carousel-caption {
-                font-style: italic;
-                letter-spacing: 0.12em;
-                border-radius: 10px;
-              }
-              .tdls-intro {
-                text-shadow: 0 0 5vh #000;
-                position: absolute;
-                bottom: 15vw;
-                z-index: 1;
-                text-align: center;
-                left: 0;
-                right: 0;
-                color: #fff;
-              }
-
-              .tdls-intro .title {
-                /* font-family: serif; */
-                font-size: 4vw;
-                font-weight: bold;
-                font-style: italic;
-                /* border-top-style: solid;
-                border-top-width: 7px; */
-                /* padding-bottom: 30px; */
-                /* border-bottom-style: solid; */
-                /* border-bottom-width: 2px; */
-                text-align: center;
-              }
-
-              .tdls-intro .abstract,
-              .tdls-intro .authors {
-                max-width: 650px;
-                margin-top: 60px;
-                margin-left: auto;
-                margin-right: auto;
-              }
-
-              a {
-                color: #5a5a5a;
-              }
-
-              .collapse-button .fa:before {   
-                content: "\f139";
-              }
-              
-              .collapse-button.collapsed .fa:before {
-                content: "\f13a";
-              }
-          `}</style>
-          <section id="welcome">
-            <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
-              <ol className="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-              </ol>
-
-              <div className="carousel-inner">
-                <div className="carousel-item active">
-                  <img className="d-block w-100 carousel-taint" src="/static/images/slide_01.jpeg" alt="First slide" />
-                  <div className="carousel-caption d-none d-md-block bg-dark">
-                    <h4>welcoming & supportive community</h4>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <img className="d-block w-100 carousel-taint" src="/static/images/slide_02.jpeg" alt="Second slide" />
-                  <div className="carousel-caption d-none d-md-block bg-dark">
-                    <h4>intellectually curious individuals</h4>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <img className="d-block w-100 carousel-taint" src="/static/images/slide_03.jpeg" alt="Third slide" />
-                  <div className="carousel-caption d-none d-md-block bg-dark">
-                    <h4>engaging technical discussions</h4>
-                  </div>
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img className="d-block w-100 carousel-taint" src="/static/images/slide_01.jpeg" alt="First slide" />
+                <div className="carousel-caption d-none d-md-block bg-dark">
+                  <h4>welcoming & supportive community</h4>
                 </div>
               </div>
-              <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="sr-only">Previous</span>
-              </a>
-              <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="sr-only">Next</span>
-              </a>
+              <div className="carousel-item">
+                <img className="d-block w-100 carousel-taint" src="/static/images/slide_02.jpeg" alt="Second slide" />
+                <div className="carousel-caption d-none d-md-block bg-dark">
+                  <h4>intellectually curious individuals</h4>
+                </div>
+              </div>
+              <div className="carousel-item">
+                <img className="d-block w-100 carousel-taint" src="/static/images/slide_03.jpeg" alt="Third slide" />
+                <div className="carousel-caption d-none d-md-block bg-dark">
+                  <h4>engaging technical discussions</h4>
+                </div>
+              </div>
             </div>
-            <a className="scroll-button" href="#events"><span></span></a>
-            <div className="container tdls-intro">
-              <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
-            </div>
-          </section>
+            <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="sr-only">Previous</span>
+            </a>
+            <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="sr-only">Next</span>
+            </a>
+          </div>
+          <a className="scroll-button" href="#main"><span></span></a>
+          <div className="container tdls-intro">
+            <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
+          </div>
+        </section>
+        <main role="main" id="main">
           <section id="content" className="container-fluid">
             {
               [
