@@ -1,14 +1,14 @@
 ---
-siteTitle: "Next Blog"
-description: "A blog built using next and processmd"
+siteTitle: "Blog A.I."
+description: "Documing A.I. progress"
 stylesheets:
   - "https://unpkg.com/tachyons@4.7.4/css/tachyons.min.css"
 topLinks:
-  - text: "Blog"
-    href: "/"
-  - text: "Github"
-    href: "https://github.com/tscanlin/"
+  - text: "TDLS"
+    href: "https://tdls.a-i.science"
+  - text: "Aggregate Intellect"
+    href: "https://a-i.science"
 backgroundClass: "bg-dark-gray"
-copyright: "Tim Scanlin"
+copyright: "Aggregate Intellect, Inc."
 siteId: ""
 ---

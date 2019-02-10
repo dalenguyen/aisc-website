@@ -2,6 +2,7 @@ const { createServer } = require('http')
 const { parse } = require('url')
 const { join } = require('path')
 const next = require('next')
+const path = require('path')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -14,7 +15,7 @@ const rootStaticFiles = [
 ]
 
 // Build path map for aliases.
-const SUMMARY_JSON = require('./content/summary.json')
+const SUMMARY_JSON = require(path.join(__dirname, './content/summary.json'))
 const pathMap = {}
 SUMMARY_JSON.fileMap && Object.keys(SUMMARY_JSON.fileMap)
   .forEach((file) => {
@@ -49,8 +50,8 @@ app.prepare()
       handle(req, res, parsedUrl)
     }
   })
-  .listen(3000, (err) => {
+  .listen(3200, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log('> Blog Ready on http://localhost:3200')
   })
 })
