@@ -2,10 +2,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { getEventId, sleep, getEventsAndGroupings, pad, eventStatus } from '../utils/event';
 
 export const Countdown = ({ expiresAt }) => {
-  const [{h, m, s} , setClockArms] = useState({ h: null, m: null, s: null });
+  const [{ h, m, s }, setClockArms] = useState({ h: -1, m: -1, s: -1 });
 
   const tick = async () => {
-    if(expiresAt) {
+    if (expiresAt) {
       while (true) {
         const [h, m, s] = timeFromNow(expiresAt);
         setClockArms({
