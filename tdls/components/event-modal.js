@@ -8,6 +8,8 @@ import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
 import { pad, eventStatus } from '../utils/event';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 
 import {
   READABLE_EVENT_TYPE, getEventId, isTentative,
@@ -158,7 +160,10 @@ export const EventModalWrapper = ({ children }) => {
               </dl>
             </Modal.Body>
             <Modal.Footer>
-              <Button id="copy-link" variant="info" onClick={copyLink}>Copy link</Button>
+            <CopyToClipboard text={window.location.href}
+              onCopy={() => null}>
+                <Button id="copy-link" variant="info" onClick={copyLink}>Copy link</Button>
+            </CopyToClipboard>
               <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
               {
                 status!=='expired' && (
