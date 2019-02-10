@@ -2,14 +2,14 @@ import venues from '../data/venue';
 
 const venuesByName = fromEntries(venues.map(v => [v.name, v]));
 
-export async function venueToLink(name) {
+export function venueToLink(name) {
   const v = venuesByName[name];
   if (!v) {
     return name;
   } else {
     return (
       <a className="venue-name" href={v.url} target="_blank">
-        {name}&nbsp;<i className="fa fa-external-link"></i>
+        {v.name}&nbsp;<i className="fa fa-external-link"></i>
       </a>
     );
   }
