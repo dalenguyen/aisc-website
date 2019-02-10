@@ -118,7 +118,7 @@ export const EventModalWrapper = ({ children }) => {
                 )}
                 {[
                   [
-                    ev.video, status!=='expired' ? 'Recording' : 'Live Stream', 
+                    ev.video, status ==='expired' ? 'Recording' : 'Live Stream', 
                     (url) => status ==='expired' ? ytThumbModal(url) : (
                       status === 'countdown' ? (
                         <Fragment>
@@ -164,6 +164,7 @@ export const EventModalWrapper = ({ children }) => {
               onCopy={() => null}>
                 <Button id="copy-link" variant="info" onClick={copyLink}>Copy link</Button>
             </CopyToClipboard>
+
               <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
               {
                 status!=='expired' && (
