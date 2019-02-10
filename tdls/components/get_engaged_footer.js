@@ -14,7 +14,7 @@ export default () => (
         ["For Organizations", "/get-engaged#for-organizations"],
       ].map(([name, link]) => (
         <li key={name}>
-          <a href={link} target="_blank">
+          <a href={link}>
             <p className="card-title">{name}</p>
           </a>
         </li>
