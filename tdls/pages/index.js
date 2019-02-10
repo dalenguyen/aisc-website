@@ -11,8 +11,8 @@ import ThemesAndSuch from '../components/themes-and-such';
 import { UpcomingEvents } from '../components/event-related';
 import EventCarousel from '../components/event-carousel';
 import { EventModalWrapper, EventModalContext } from '../components/event-modal';
-import GetEngagedSection from '../components/get-engaged-section';
 
+import "./index.scss";
 
 const EventRoutingHandler = ({ openEventModal }) => {
   function registerRoutes() {
@@ -173,7 +173,7 @@ export default () => {
               <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
             </div>
           </section>
-          <section id="content" className="container">
+          <section id="content" className="container-fluid">
             {
               [
                 ['Trending Papers', { type: 'fasttrack' }],
