@@ -4,9 +4,10 @@
   "description": "Source code for TDLS website.",
   "main": "main.js",
   "scripts": {
-    "tdls": "next tdls -p 3000",
-    "a-i": "next a-i -p 3100",
-    "blog": "concurrently \"next blog -p 3200\" \"cd blog && npm run build:content:watch\"",
+    "tdls": "concurrently \"next tdls -p 3000\" \"npm run dev-sync-blog\"",
+    "a-i": "concurrently \"next blog -p 3100\" \"npm run dev-sync-blog\"",
+    "blog": "concurrently \"next blog -p 3200\" \"dnpm run ev-sync-blog\"",
+    "dev-sync-blog": "cd blog && npm run build:content:watch",
     "tdls-build-sitemap": "node scripts/build-sitemap.js tdls",
     "a-i-build-sitemap": "node scripts/build-sitemap.js a-i",
     "blog-build-sitemap": "node scripts/build-sitemap.js blog",
