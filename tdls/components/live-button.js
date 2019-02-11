@@ -2,15 +2,21 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { getEventId, sleep, getEventsAndGroupings, pad, eventStatus } from '../utils/event';
 
 export const Countdown = ({ expiresAt }) => {
-  const [{ h, m, s }, setClockArms] = useState({ h: -1, m: -1, s: -1 });
+  const [_h = 0, _m = 0, _s = 0] = timeFromNow(expiresAt);  
+  const [{ h, m, s }, setClockArms] = useState({ h: _h, m: _m, s: _s });
+
+  const renderTime = () => {
+    const [h, m, s] = timeFromNow(expiresAt);
+    setClockArms({
+      h, m, s
+    });
+  }
+
 
   const tick = async () => {
     if (expiresAt) {
       while (true) {
-        const [h, m, s] = timeFromNow(expiresAt);
-        setClockArms({
-          h, m, s
-        });
+        renderTime();
         await sleep(1000);
       }
     }
@@ -94,6 +100,9 @@ function findNextUpcomingEvent(allEvents) {
 
 
 function timeFromNow(date) {
+  if(!date) {
+    return [0, 0, 0];
+  }
   const diffInMillSec = date.getTime() - new Date().getTime();
   const h = Math.floor(diffInMillSec / (1000 * 60 * 60));
   const m = Math.floor((diffInMillSec - h * (1000 * 60 * 60)) / (1000 * 60));
