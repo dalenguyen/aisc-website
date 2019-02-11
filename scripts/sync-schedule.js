@@ -79,7 +79,7 @@ function rawRowToRow(rawHeader, rawRow) {
   const type = rawRow[rawHeader.indexOf('Stream')];
   const subjects = (rawRow[rawHeader.indexOf('Subject Matter Area')] || '').split(',').map(s => s.trim()).filter(s => s);
 
-  const dateAtMidnight = moment((rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, '').replace(/\-/g, ' '), "America/Chicago").toDate();
+  const dateAtMidnight = moment.tz((rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, '').replace(/\-/g, ' '), "America/Chicago").toDate();
   const dateAtSixThirty = new Date(dateAtMidnight.getTime() + (18 * 60 + 30) * 60 * 1000);
 
   return {
