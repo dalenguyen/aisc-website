@@ -16,6 +16,15 @@ nvm is highly recommended.
 npm run tdls
 ```
 
+```bash
+npm run a-i
+```
+
+```bash
+npm run blog
+```
+
+
 And then navigate to `http://localhost:3000`
 
 Note: only `3000` may work due to domain restrictions on Google Key. Similarly, only `localhost` may work, instead of `127.0.0.1` or `0.0.0.0`.

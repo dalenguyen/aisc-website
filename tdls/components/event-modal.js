@@ -7,12 +7,15 @@ import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
-import { pad } from '../utils/event';
+import { pad, eventStatus } from '../utils/event';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 
 import {
   READABLE_EVENT_TYPE, getEventId, isTentative,
   nameToLink, getEventsAndGroupings, getLinkedInProfiles
 } from '../utils/event';
+import { Countdown } from './live-button';
 
 export const EventModalContext = React.createContext();
 
@@ -56,8 +59,7 @@ export const EventModalWrapper = ({ children }) => {
     );
   }
 
-  const expired = eventExpired(ev);
-
+  const status = eventStatus(ev);
   return (
     <EventModalContext.Provider
       value={openEventModal}
@@ -77,9 +79,12 @@ export const EventModalWrapper = ({ children }) => {
                 <dd className="col-sm-8">
                   {WEEKDAYS[ev.date.getDay()]}&nbsp;
               {dashedDate(ev.date)}&nbsp;{time(ev.date)}
-                  {expired && ' (This is a past event.)'}
+                  {{
+                    'live': ' (this event is live!)',
+                    'expired': ' (This is a past event.)'
+                  }[status]}
                 </dd>
-                {!expired ? (
+                {status!== 'expired' ? (
                   <Fragment>
                     <dt className="col-sm-4">Venue:</dt>
                     <dd className="col-sm-8">
@@ -112,7 +117,17 @@ export const EventModalWrapper = ({ children }) => {
                   </Fragment>
                 )}
                 {[
-                  [ev.video, expired ? 'Recording' : 'Live Stream', expired ? ytThumbModal : ytThumbLink],
+                  [
+                    ev.video, status ==='expired' ? 'Recording' : 'Live Stream', 
+                    (url) => status ==='expired' ? ytThumbModal(url) : (
+                      status === 'countdown' ? (
+                        <Fragment>
+                          {ytThumbLink(url)}
+                          &nbsp;(live in <strong><Countdown expiresAt={ev.date} /></strong>)
+                        </Fragment>
+                      ) : ytThumbLink(url)
+                    )
+                  ],
                   [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
                   [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')(`/static/${link}`)],
                   [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
@@ -128,7 +143,7 @@ export const EventModalWrapper = ({ children }) => {
                       <dd className="col-sm-8">{linkFn(content)} <i className="fa fa-external-link"></i></dd>
                     </Fragment>
                   ))}
-                {!expired && (
+                {status !== 'expired' && (
                   <Fragment>
                     <dt className="col-sm-4">Agenda:</dt>
                     <dd className="col-sm-8">
@@ -145,12 +160,16 @@ export const EventModalWrapper = ({ children }) => {
               </dl>
             </Modal.Body>
             <Modal.Footer>
-              <Button id="copy-link" variant="info" onClick={copyLink}>Copy link</Button>
+            <CopyToClipboard text={window.location.href}
+              onCopy={() => null}>
+                <Button id="copy-link" variant="info" onClick={copyLink}>Copy link</Button>
+            </CopyToClipboard>
+
               <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
               {
-                !expired && (
-                  <Link>
-                    <a href="/code-of-conduct" className="btn btn-secondary">Code of Conduct</a>
+                status!=='expired' && (
+                  <Link href="/code-of-conduct">
+                    <a className="btn btn-secondary">Code of Conduct</a>
                   </Link>
                 )
               }
@@ -223,8 +242,4 @@ async function copyToClipboard(text) {
   // }
 }
 
-
-function eventExpired(ev) {
-  return ev && new Date(ev.date.getTime() + 60 * 60 * 1000 * 3) < new Date();
-}
 

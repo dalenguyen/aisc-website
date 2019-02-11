@@ -22,6 +22,29 @@ export function nameToLink(name, link) {
   }
 }
 
+export function eventStatus(ev) {
+  if(!ev) {
+    return null;
+  }
+  const now = new Date().getTime();
+  const duration = 2.5 * 60 * 60 * 1000;
+  const countdownPeriod = 40 * 60 * 60 * 1000;
+
+  const evStartTime = ev.date.getTime();
+
+  if(now > evStartTime + duration) {
+    return 'expired';
+  } else if (now > evStartTime) {
+    return 'live';
+  } else if (now > evStartTime - countdownPeriod) {
+    return 'countdown';
+  } else {
+    return 'too_early';
+  }
+}
+
+
+
 async function getRawEventData() {
   const SHEET_ID = '1WghUEANwzE1f8fD_sdTvM9BEmr1C9bZjPlFSIJX9iLE';
   const KEY = 'AIzaSyAUMihCUtNS35espxycitPYrTE_78W93Ps';

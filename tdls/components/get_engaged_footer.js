@@ -10,11 +10,11 @@ export default () => (
     `}</style>
     <ul className="useful-links list-unstyled">
       {[
-        ["Contribute", "/get-engaged/#get-engaged-contribute"],
-        ["For Organizations", "/get-engaged-organization"],
+        ["Contribute", "/get-engaged#contribute"],
+        ["For Organizations", "/get-engaged#for-organizations"],
       ].map(([name, link]) => (
         <li key={name}>
-          <a href={link} target="_blank">
+          <a href={link}>
             <p className="card-title">{name}</p>
           </a>
         </li>

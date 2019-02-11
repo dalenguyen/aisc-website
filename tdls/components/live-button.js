@@ -1,30 +1,45 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
-import { getEventId, sleep, getEventsAndGroupings, pad } from '../utils/event';
+import { getEventId, sleep, getEventsAndGroupings, pad, eventStatus } from '../utils/event';
+
+export const Countdown = ({ expiresAt }) => {
+  const [{h, m, s} , setClockArms] = useState({ h: null, m: null, s: null });
+
+  const tick = async () => {
+    if(expiresAt) {
+      while (true) {
+        const [h, m, s] = timeFromNow(expiresAt);
+        setClockArms({
+          h, m, s
+        });
+        await sleep(1000);
+      }
+    }
+  };
+
+  useEffect(() => {
+    tick();
+  }, [expiresAt])
+
+  return expiresAt && (
+    <Fragment>
+      {pad(h)}:{pad(m)}:{pad(s)}
+    </Fragment>
+  )
+}
 
 export default () => {
-  const [{ upcomingEvent, h, m, s }, setUpcomingEventData] = useState(
-    { upcomingEvent: null, h: null, m: null, s: null });
+  const [{ upcomingEvent }, setUpcomingEventData] = useState(
+    { upcomingEvent: null });
   const fetchAndSetUpcomingEvent = async () => {
     const upcomingEvent = await findNextUpcomingEvent();
     setUpcomingEventData({
       upcomingEvent
     });
-
-    if (upcomingEvent) {
-      while (true) {
-        const [h, m, s] = timeFromNow(upcomingEvent.date);
-        setUpcomingEventData({
-          upcomingEvent, h, m, s
-        });
-        await sleep(1000);
-      }
-    }
   }
 
   useEffect(() => {
     fetchAndSetUpcomingEvent();
-  }, []);
+  }, [upcomingEvent]);
 
   return (
     upcomingEvent && (
@@ -45,13 +60,14 @@ export default () => {
       `}</style>
         <a className="live-button btn btn-danger btn-sm" href={`/#/events/${getEventId(upcomingEvent)}`}>
           <i className="fa fa-play-circle"></i>
-          &nbsp;Live in {pad(h)}:{pad(m)}:{pad(s)}
+          &nbsp;Live in <Countdown expiresAt={upcomingEvent.date} />
         </a>
 
       </Fragment>
     )
   );
 };
+
 
 async function findNextUpcomingEvent() {
   const { futureEvents } = await getEventsAndGroupings();
@@ -60,13 +76,15 @@ async function findNextUpcomingEvent() {
     return null;
   } else {
     const candidate = futureWithStreams[0];
-    if (candidate.date.getTime() - new Date().getTime() > 48 * 60 * 60 * 1000) {
+    const status = eventStatus(candidate);
+    if (status !== 'countdown') {
       return null;
     } else {
       return candidate;
     }
   }
 }
+
 
 function timeFromNow(date) {
   const diffInMillSec = date.getTime() - new Date().getTime();

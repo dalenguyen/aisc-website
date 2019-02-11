@@ -18,23 +18,33 @@ export default () => (
       .footer a {
         color: white;
       }
+      .footer h5 {
+        text-decoration: underline;
+        text-underline-position: under;
+      }
+      @media (max-width: 576px) {
+        .footer {
+          text-align: center;   
+        }
+      }
     `}</style>
     <footer className="footer navbar-expand-lg navbar-dark">
       <div className="container">
+
         <div className="row">
-          <div className="col-sm-3">
+          <div className="col-6 col-sm-3">
             <h5>Initiatives</h5>
             <Initiatives />
           </div>
-          <div className="col-sm-3">
+          <div className="col-6 col-sm-3">
             <h5>Get Engaged</h5>
             <GetEngaged />
           </div>
-          <div className="col-sm-3">
+          <div className="col-6 col-sm-3">
             <h5>Follow Us</h5>
             <FollowUs />
           </div>
-          <div className="col-sm-3">
+          <div className="col-6 col-sm-3">
             <h5>Useful Links</h5>
             <UsefulLinksSection />
           </div>
@@ -46,9 +56,11 @@ export default () => (
           </a>
         </div>
         <ul className="list-unstyled">
-          <Link href="/code-of-conduct">
-            <a>Code of Conduct</a>
-          </Link>
+          <li>
+            <Link href="/code-of-conduct">
+              <a>Code of Conduct</a>
+            </Link>
+          </li>
         </ul>
       </div>
     </footer>

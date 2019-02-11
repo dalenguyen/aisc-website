@@ -10,7 +10,6 @@ We recommend moving this block and the preceding CSS link to the HEAD of your HT
 
 header .social-buttons {
   display: inline;
-  margin-bottom: 0;
 }
 
 .social-buttons > li {
@@ -444,7 +443,7 @@ a.scroll-button span {
 }
 
 .carousel-taint {
-  filter: sepia(80%);
+  filter: sepia(80%) SATURATE(1.5) CONTRAST(1.2) brightness(0.8) blur(0.07vw);
 }
 
 a.person-name,

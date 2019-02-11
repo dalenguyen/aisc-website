@@ -1,0 +1,18 @@
+{
+  "name": "a-i-blog",
+  "main": "index.js",
+  "homepage": "http://blog.a-i.science",
+  "twitter": "tdls_to",
+  "scripts": {
+    "build": "next build",
+    "build:content": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json",
+    "build:content:watch": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json --watch",
+    "build:export": "npm run build && npm run export",
+    "export": "next export && cp -R static/* out/",
+    "deploy": "npm run build:content && npm run build:export && mv out public",
+    "server": "NODE_ENV=production node server.js",
+    "v-patch": "npm version patch && git push --tags && npm publish && git push",
+    "v-minor": "npm version minor && git push --tags && npm publish && git push",
+    "v-major": "npm version major && git push --tags && npm publish && git push"
+  }
+}

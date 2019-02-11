@@ -4,16 +4,25 @@
   "description": "Source code for TDLS website.",
   "main": "main.js",
   "scripts": {
-    "tdls": "next tdls -p 3000",
-    "a-i": "next a-i -p 3100",
+    "tdls": "npm run dev-sync-blog && npm run sync-data && next tdls -p 3000",
+    "a-i": "npm run dev-sync-blog && npm run sync-data && next blog -p 3100",
+    "blog": "concurrently \"next blog -p 3200\" \"dnpm run dev-watch-blog\"",
+    "dev-watch-blog": "cd blog && npm run build:content:watch",
+    "dev-sync-blog": "cd blog && npm run build:content",
+    "sync-contentful": "node scripts/fetch-contentful.js",
+    "sync-schedule": "node scripts/sync-schedule.js",
+    "sync-data": "npm run sync-contentful & npm run sync-schedule",
     "tdls-build-sitemap": "node scripts/build-sitemap.js tdls",
     "a-i-build-sitemap": "node scripts/build-sitemap.js a-i",
-    "tdls-build": "next build tdls && npm run tdls-build-sitemap tdls",
-    "a-i-build": "next build a-i && npm run a-i-build-sitemap a-i",
+    "blog-build-sitemap": "node scripts/build-sitemap.js blog",
+    "tdls-build": "npm run dev-sync-blog && npm run sync-data && next build tdls && npm run tdls-build-sitemap",
+    "a-i-build": "npm run dev-sync-blog && next build a-i && npm run a-i-build-sitemap",
+    "blog-build": "npm run dev-sync-blog && next build && cd .. && npm run blog-build-sitemap",
     "tdls-start": "next start tdls",
     "a-i-start": "next start a-i",
     "tdls-export": "npm run tdls-build && next export tdls && cp tdls/root-static/* tdls/out/",
-    "a-i-export": "npm run a-i-build && next export a-i && cp a-i/root-static/* a-i/out/"
+    "a-i-export": "npm run a-i-build && next export a-i && cp a-i/root-static/* a-i/out/",
+    "blog-export": "npm run blog-build && cd blog && next export && cp root-static/* out/"
   },
   "repository": {
     "type": "git",
@@ -27,20 +36,28 @@
   "homepage": "https://github.com/tdls/tdls.github.io#readme",
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
     "isomorphic-fetch": "^2.2.1",
     "next": "^7.0.2",
     "node-sass": "^4.11.0",
     "raw-loader": "^1.0.0",
-    "react": "^16.8.0-alpha.1",
+    "react": "^16.8.1",
     "react-bootstrap": "^1.0.0-beta.5",
-    "react-dom": "^16.8.0-alpha.1",
+    "react-copy-to-clipboard": "^5.0.1",
+    "react-dom": "^16.8.1",
     "react-markdown": "^4.0.6",
     "react-modal-video": "^1.2.1",
     "react-slick": "^0.23.2",
     "react-youtube": "^7.9.0"
   },
   "devDependencies": {
-    "cross-env": "^5.1.6"
+    "concurrently": "^4.1.0",
+    "contentful": "^7.2.0",
+    "cross-env": "^5.1.6",
+    "dotenv": "^6.2.0",
+    "processmd": "^4.4.2",
+    "standard": "^12.0.1",
+    "styled-jsx": "^3.2.0"
   },
   "optionalDependencies": {
     "fsevents": "*"

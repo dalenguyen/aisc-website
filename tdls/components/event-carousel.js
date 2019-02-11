@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import Slider from "react-slick";
 import { ytThumb } from '../utils/youtube';
+import './event-carousel.scss';
 
 import {
   READABLE_EVENT_TYPE, getEventId,
@@ -32,28 +33,35 @@ export default ({ filter = null, shuffle = false }) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4.1,
-    slidesToScroll: 1,
+    slidesToShow: 6.1,
+    slidesToScroll: 6,
     responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 6.1,
+          slidesToScroll: 6,
+        }
+      },
       {
         breakpoint: 1300,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
+          slidesToShow: 4.1,
+          slidesToScroll: 4,
         }
       },
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToShow: 3.1,
+          slidesToScroll: 3,
         }
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToShow: 2.1,
+          slidesToScroll: 2,
         }
       },
       {
@@ -70,7 +78,7 @@ export default ({ filter = null, shuffle = false }) => {
   };
 
   return (
-    <Slider className="past-event-list" {...settings}>
+    <Slider className="past-event-list event-carousel" {...settings}>
       {(shuffle ? randomShuffle : a => a)(filterEvents(events, filter), 41).map((event, idx) => {
         const leadLink = linkedInDict[event.lead];
         const facLinks = event.facilitators.map(n => linkedInDict[n]);
@@ -119,14 +127,14 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
   const toolbar = (
     <div className="toolbar">
       &nbsp;<a href="#/events/${getEventId(ev)}"><i className="fa fa-share-alt fa-lg"></i></a>
-      {ev.paper ? <a target="_blank" href="${ev.paper}"><i className="fa fa-file-text-o fa-lg"></i></a> : null}
-      {ev.video ? <a target="_blank" href="${ev.paper}"><i className="fa fa-play-circle fa-lg"></i></a> : null}
-      {ev.slides ? <a target="_blank" href="/static/${ev.slides}"><i className="fa fa-file-powerpoint-o fa-lg"></i></a> : null}
-      {ev.reddit ? <a target="_blank" href="${ev.reddit}"><i className="fa fa-reddit fa-lg"></i></a> : null}
-      {ev.code_official ? <a target="_blank" href="${ev.code_official}"><i className="fa fa-github fa-lg"></i></a> : null}
-      {ev.code_unofficial ? <a target="_blank" href="${ev.code_unofficial}"><i className="fa fa-github fa-lg"></i></a> : null}
-      {ev.dataset1 ? <a target="_blank" href="${ev.dataset1}"><i className="fa fa-database fa-lg"></i></a> : null}
-      {ev.dataset2 ? <a target="_blank" href="${ev.dataset2}"><i className="fa fa-database fa-lg"></i></a> : null}
+      {ev.paper ? <a target="_blank" href={ev.paper}><i className="fa fa-file-text-o fa-lg"></i></a> : null}
+      {ev.video ? <a target="_blank" href={ev.video}><i className="fa fa-play-circle fa-lg"></i></a> : null}
+      {ev.slides ? <a target="_blank" href={`/static/${ev.slides}`}><i className="fa fa-file-powerpoint-o fa-lg"></i></a> : null}
+      {ev.reddit ? <a target="_blank" href={ev.reddit}><i className="fa fa-reddit fa-lg"></i></a> : null}
+      {ev.code_official ? <a target="_blank" href={ev.code_official}><i className="fa fa-github fa-lg"></i></a> : null}
+      {ev.code_unofficial ? <a target="_blank" href={ev.code_unofficial}><i className="fa fa-github fa-lg"></i></a> : null}
+      {ev.dataset1 ? <a target="_blank" href={ev.dataset1}><i className="fa fa-database fa-lg"></i></a> : null}
+      {ev.dataset2 ? <a target="_blank" href={ev.dataset2}><i className="fa fa-database fa-lg"></i></a> : null}
     </div>
   );
 
@@ -143,8 +151,8 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
 
       <div className="card-body">
         {cardTitle}
-        {toolbar}
       </div>
+      {toolbar}
     </div>
   );
 }

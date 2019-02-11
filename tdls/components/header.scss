@@ -1,54 +1,56 @@
-@media (max-width: 430px) {
-    .navbar {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-  }
 
-  .main-navbar .nav-item a {
-    color: black;
-    font-weight: 500;
-    letter-spacing: 0.07em;
-  }
+.main-navbar .nav-item a {
+  color: black;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+}
 
-  .main-navbar .dropdown-menu a {
-    color: black;
-  }
+.main-navbar .dropdown-menu a {
+  color: black;
+}
 
-  .navbar {
-    box-shadow: 0px 13px 18px -12px rgba(171, 183, 186, 1);
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+.navbar {
+  box-shadow: 0px 13px 18px -12px rgba(171, 183, 186, 1);
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
 
+.social-buttons.mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
   .social-buttons.mobile {
-      display: none;
-  }
-
-  @media (max-width: 768px) {
-    .social-buttons.mobile {
-      position: fixed;
-      bottom: 0;
-      display: block;
-      z-index: 2;
-      font-size: 1em;
-      left: 50%;
-      transform: translateX(-50%);
-      line-height: 1;
-      a {
-        text-shadow: 2px 2px 30px #bbb;
-      }
+    position: fixed;
+    bottom: 0;
+    display: block;
+    z-index: 2;
+    font-size: 1em;
+    line-height: 1;
+    width: 100%;
+    text-align: center;
+    a {
+      text-shadow: 2px 2px 30px #bbb;
     }
   }
+}
 
-  @media (max-width: 768px) {
-      .social-buttons.desktop {
-          display: none;
-      }
+@media (max-width: 430px) {
+  .navbar {
+    padding-left: 1rem;
+    padding-right: 1.5rem;
   }
+}
 
-  .social-buttons {
-      a {
-          color: #5a5a5a;
-      }
-  }
+@media (max-width: 768px) {
+    .social-buttons.desktop {
+        display: none;
+    }
+}
+
+.social-buttons {
+    a {
+        color: #5a5a5a;
+    }
+}
+
