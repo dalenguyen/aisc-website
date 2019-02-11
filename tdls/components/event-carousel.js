@@ -133,7 +133,7 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
   );
 
   const thumb = (
-    <img className="card-img-top" src={ev.video ? ytThumb(ev.video) : '/static/images/placeholder.png'} alt="Card image cap" />
+    <img className="card-img-top" src={ev.video ? ytThumb(ev.video) : '/static/images/placeholder.jpeg'} alt="Card image cap" />
   );
 
   return (
