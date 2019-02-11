@@ -59,6 +59,8 @@ export const EventModalWrapper = ({ children }) => {
     );
   }
 
+  const date = ev && new Date(ev.date);
+
   const status = eventStatus(ev);
   return (
     <EventModalContext.Provider
@@ -77,8 +79,8 @@ export const EventModalWrapper = ({ children }) => {
               <dl className="row">
                 <dt className="col-sm-4">Time:</dt>
                 <dd className="col-sm-8">
-                  {WEEKDAYS[ev.date.getDay()]}&nbsp;
-              {dashedDate(ev.date)}&nbsp;{time(ev.date)}
+                  {WEEKDAYS[date.getDay()]}&nbsp;
+              {dashedDate(date)}&nbsp;{time(date)}
                   {{
                     'live': ' (this event is live!)',
                     'expired': ' (This is a past event.)'
@@ -123,7 +125,7 @@ export const EventModalWrapper = ({ children }) => {
                       status === 'countdown' ? (
                         <Fragment>
                           {ytThumbLink(url)}
-                          &nbsp;(live in <strong><Countdown expiresAt={ev.date} /></strong>)
+                          &nbsp;(live in <strong><Countdown expiresAt={date} /></strong>)
                         </Fragment>
                       ) : ytThumbLink(url)
                     )

@@ -46,15 +46,16 @@ export const UpcomingEvents = ({ }) => {
 }
 
 const UpcomingEventItem = ({ event: ev, leadLink, facLinks }) => {
-  const date = (
+  const date = new Date(ev.date);
+  const dateBlock = (
     <p>
-      {WEEKDAYS[ev.date.getDay()]},&nbsp;
-{ev.date.getDate()}-{MONTH_NAMES[ev.date.getMonth()]}-{ev.date.getYear() + 1900}
+      {WEEKDAYS[date.getDay()]},&nbsp;
+{date.getDate()}-{MONTH_NAMES[date.getMonth()]}-{date.getYear() + 1900}
     </p>
   );
   return (
     <li className={'list-group-item' + (ev.type ? ' event-' + ev.type : '') + (isTentative(ev) ? ' tentative' : '')}>
-      {date}
+      {dateBlock}
       <h5 className="title">
         <a className="title" href={`/#/events/${getEventId(ev)}`}>
           {ev.type !== 'main' && `[${READABLE_EVENT_TYPE[ev.type].toLowerCase()}] `}

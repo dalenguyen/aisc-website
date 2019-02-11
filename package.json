@@ -10,7 +10,7 @@
     "dev-watch-blog": "cd blog && npm run build:content:watch",
     "dev-sync-blog": "cd blog && npm run build:content",
     "sync-contentful": "node scripts/fetch-contentful.js",
-    "sync-schedule": "node scripts/sync-schedule.js",
+    "sync-schedule": "babel-node scripts/sync-schedule.js",
     "sync-data": "npm run sync-contentful & npm run sync-schedule",
     "tdls-build-sitemap": "node scripts/build-sitemap.js tdls",
     "a-i-build-sitemap": "node scripts/build-sitemap.js a-i",
@@ -51,6 +51,8 @@
     "react-youtube": "^7.9.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
     "concurrently": "^4.1.0",
     "contentful": "^7.2.0",
     "cross-env": "^5.1.6",

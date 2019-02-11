@@ -4,7 +4,6 @@ const path = require('path');
 
 const fetch  = require('isomorphic-unfetch');
 
-
 const { 
     STEER_CO_PATH = 'steerco', 
     GOOGLE_KEY = 'AIzaSyAUMihCUtNS35espxycitPYrTE_78W93Ps' 
@@ -20,7 +19,7 @@ async function fetchAndSaveSchedule() {
     
     fs.writeFileSync(
         path.join(__dirname, '..', 'tdls', 'static', 'data', `events.json`),
-        JSON.stringify(eventsAndGroupings, dateTimeReplacer, 2)
+        JSON.stringify(eventsAndGroupings, null, 2)
     );
     console.log("Events written to disk.");
 
@@ -30,15 +29,6 @@ async function fetchAndSaveSchedule() {
     );
     console.log("Profiles written to disk.");
 }
-
-function dateTimeReplacer(key, val) {
-    if (key === 'date') {
-        return `__Date(${val})`;
-    } else {
-        return val;
-    }
-}
-
 
 async function getRawEventData() {
     const SHEET_ID = '1WghUEANwzE1f8fD_sdTvM9BEmr1C9bZjPlFSIJX9iLE';
@@ -92,7 +82,7 @@ function rawRowToRow(rawHeader, rawRow) {
     const dateAtSixThirty = new Date(dateAtMidnight.getTime() + (18 * 60 + 30) * 60 * 1000);
     return {
       title,
-      date: dateAtSixThirty,
+      date: dateAtSixThirty.getTime(),
       lead,
       venue,
       facilitators,
@@ -121,43 +111,15 @@ function rawRowToRow(rawHeader, rawRow) {
     });
     past = past.sort((e1, e2) => e2.date - e1.date);
     future = future.sort((e1, e2) => e1.date - e2.date);
+    future = future.map(({ venue, ...hiddenEv }) => hiddenEv);
+    console.log(future)
     return [past, future];
   }
   
   function eventExpired(ev) {
-    return ev && ev.date.getTime() < new Date().getTime();
+    return ev && ev.date < new Date().getTime();
   }
   
-  
-  // cache-enabled, guarantees only one fetch
-  function runOnlyOnce(fetcher) {
-    let executeStatus = 'unfetched';
-    let executeP = null;
-    let cachedResult = null;
-  
-    return () => {
-      if (executeStatus === 'fetching') {
-        return executeP;
-      } else if (executeStatus === 'unfetched') {
-        executeStatus = 'fetching';
-        executeP = new Promise(async (resolve) => {
-          cachedResult = await fetcher();
-  
-          executeStatus = 'fetched';
-          executeP = null;
-  
-          resolve(cachedResult);
-  
-        });
-        return executeP;
-      } else // fetched
-      {
-        return new Promise((resolve) => {
-          resolve(cachedResult);
-        });
-      }
-    }
-  }
   
   async function fetchLinkedInProfiles () {
     const data = await getRawLinkedInData();

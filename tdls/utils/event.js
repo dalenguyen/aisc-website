@@ -13,28 +13,58 @@ async function fetchRaw(url) {
     method: 'GET',
     cache: 'default'
   });
-  const rawText = await resp.text();
-  const raw = JSON.parse(rawText, dateTimeReviver);
-  return raw;
+  return await resp.json();
 }
 
-export async function getLinkedInProfiles() {
-  return await fetchRaw('/static/data/profiles.json');
-}
 
-export async function getEventsAndGroupings() {
-  return await fetchRaw('/static/data/events.json');
-}
-
-function dateTimeReviver (key, value) {
-  if (typeof value === 'string') {
-      const a = /^__Date\((.+)\)$/.exec(value);
-      if (a) {
-          return new Date(+a[1]);
-      }
+export const getLinkedInProfiles = runOnlyOnce( async (isServer) => {
+  if(isServer) {
+    return require('../static/data/profiles.json');
+  } else {
+    return await fetchRaw('/static/data/profiles.json');
   }
-  return value;
-}
+});
+
+export const getEventsAndGroupings = runOnlyOnce(async (isServer) => {
+  if(isServer) {
+    const objs = require('../static/data/events.json');
+    return objs;
+  } else {
+    const objs = await fetchRaw('/static/data/events.json');
+    return objs;
+  }
+});
+
+  // cache-enabled, guarantees only one fetch
+  function runOnlyOnce(fetcher) {
+    let executeStatus = 'unfetched';
+    let executeP = null;
+    let cachedResult = null;
+  
+    return function () {
+      const args = arguments;
+      if (executeStatus === 'fetching') {
+        return executeP;
+      } else if (executeStatus === 'unfetched') {
+        executeStatus = 'fetching';
+        executeP = new Promise(async (resolve) => {
+          cachedResult = await fetcher(...args);
+  
+          executeStatus = 'fetched';
+          executeP = null;
+  
+          resolve(cachedResult);
+  
+        });
+        return executeP;
+      } else // fetched
+      {
+        return new Promise((resolve) => {
+          resolve(cachedResult);
+        });
+      }
+    }
+  }
 
 export function nameToLink(name, link) {
   if (!link) {
@@ -57,7 +87,7 @@ export function eventStatus(ev) {
   const duration = 2.5 * 60 * 60 * 1000;
   const countdownPeriod = 40 * 60 * 60 * 1000;
 
-  const evStartTime = ev.date.getTime();
+  const evStartTime = ev.date;
 
   if(now > evStartTime + duration) {
     return 'expired';
@@ -83,7 +113,7 @@ export function toShortDateString(d) {
 export function getEventId(ev) {
   // TODO: this event hashing unique by date, but if we have two events
   // on the same date in the future we are screwed 
-  return "" + toShortDateString(ev.date);
+  return "" + toShortDateString(new Date(ev.date));
 }
 
 export function isTentative(ev) {
