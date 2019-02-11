@@ -12,6 +12,11 @@ header .social-buttons {
   display: inline;
 }
 
+.fa.fa-external-link {
+  vertical-align: super;
+  font-size: smaller;
+}
+
 .social-buttons > li {
   margin-left: 0.2rem;
 }

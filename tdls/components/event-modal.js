@@ -56,8 +56,10 @@ export const EventModalWrapper = ({ children }) => {
   function iconLinkFn(iconClass) {
     return (url) => (
       <Fragment>
-        <a target="_blank" href={url}><i className={`fa fa-lg ${iconClass}`}></i></a>
-        &nbsp;<i className="fa fa-external-link"></i>
+        <a target="_blank" href={url}>
+          <i className={`fa fa-lg ${iconClass}`}></i>
+          &nbsp;<i className="fa fa-external-link"></i>
+        </a>
       </Fragment>
     );
   }
@@ -124,13 +126,21 @@ export const EventModalWrapper = ({ children }) => {
                 {[
                   [
                     ev.video, (
-                    <a href={ev.video} target="_blank">{status === 'expired' ? 'Recording' : 'Live Stream'}</a>
+                      <a href={ev.video} target="_blank">{status === 'expired' ? 'Recording' : 'Live Stream'}</a>
                     ),
                     (url) => status === 'expired' ? ytThumbModal(url) : (
                       status === 'countdown' ? (
                         <Fragment>
                           {ytThumbLink(url)}
-                          &nbsp;<a href={url} target="_blank">(live in <strong><Countdown expiresAt={date} /></strong>)</a>
+                          <div style={{ display: 'inline-block', marginLeft: '1em', lineHeight: '2em' }}>
+                            &nbsp;<a href={url} target="_blank">(live in <strong><Countdown expiresAt={date} /></strong>)</a>
+                            <br />
+                            <a
+                              className="btn btn-danger"
+                              href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                              <i class="fa fa-youtube"></i>&nbsp;Subscribe
+                            </a>
+                          </div>
                         </Fragment>
                       ) : ytThumbLink(url)
                     )
