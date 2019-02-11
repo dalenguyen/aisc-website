@@ -111,8 +111,8 @@ function rawRowToRow(rawHeader, rawRow) {
     });
     past = past.sort((e1, e2) => e2.date - e1.date);
     future = future.sort((e1, e2) => e1.date - e2.date);
+    // hide venue
     future = future.map(({ venue, ...hiddenEv }) => hiddenEv);
-    console.log(future)
     return [past, future];
   }
   

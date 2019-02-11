@@ -49,7 +49,7 @@ export default ({ allEvents }) => {
   }
 
   return (
-    upcomingEvent && (
+    (upcomingEvent || null) && (
       <Fragment>
         <style jsx>{`
         .live-button {
