@@ -16,7 +16,7 @@ export default () => {
     <div>
       <a
         className="btn btn-danger"
-        href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg">
+        href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
         Subscribe to TDLS YouTube Channel
       </a>
     </div>

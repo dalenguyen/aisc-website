@@ -191,7 +191,7 @@ export default () => (
             <h5 className="card-title">Meetup Organizer</h5>
             <p className="card-text">We know lots of great folks who can speak about technical topics; check them out on
     our YouTube channel.</p>
-            <a href="https://www.youtube.com/c/TorontoDeepLearningSeries" target="_blank">
+            <a href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1" target="_blank">
               <i className="fa fa-youtube fa-2x"></i>
             </a>
             <a href="https://twitter.com/intent/tweet?text=@tdls_to%20" target="_blank">
