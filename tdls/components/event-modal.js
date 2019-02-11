@@ -55,7 +55,10 @@ export const EventModalWrapper = ({ children }) => {
 
   function iconLinkFn(iconClass) {
     return (url) => (
-      <a target="_blank" href={url}><i className={`fa fa-lg ${iconClass}`}></i></a>
+      <Fragment>
+        <a target="_blank" href={url}><i className={`fa fa-lg ${iconClass}`}></i></a>
+        &nbsp;<i className="fa fa-external-link"></i>
+      </Fragment>
     );
   }
 
@@ -120,12 +123,14 @@ export const EventModalWrapper = ({ children }) => {
                 )}
                 {[
                   [
-                    ev.video, status === 'expired' ? 'Recording' : 'Live Stream',
+                    ev.video, (
+                    <a href={ev.video} target="_blank">{status === 'expired' ? 'Recording' : 'Live Stream'}</a>
+                    ),
                     (url) => status === 'expired' ? ytThumbModal(url) : (
                       status === 'countdown' ? (
                         <Fragment>
                           {ytThumbLink(url)}
-                          &nbsp;(live in <strong><Countdown expiresAt={date} /></strong>)
+                          &nbsp;<a href={url} target="_blank">(live in <strong><Countdown expiresAt={date} /></strong>)</a>
                         </Fragment>
                       ) : ytThumbLink(url)
                     )
@@ -134,6 +139,7 @@ export const EventModalWrapper = ({ children }) => {
                   [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')(`/static/${link}`)],
                   [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
                   [ev.code_official, 'Official code', iconLinkFn('fa-github')],
+                  [ev.why, 'Motivation', () => ev.why],
                   [ev.code_unofficial, 'Unofficial code', iconLinkFn('fa-github')],
                   [ev.dataset1, 'Unofficial code 1', iconLinkFn('fa-database')],
                   [ev.dataset2, 'Unofficial code 2', iconLinkFn('fa-database')],
@@ -142,7 +148,7 @@ export const EventModalWrapper = ({ children }) => {
                   (
                     <Fragment key={label}>
                       < dt className="col-sm-4">{label}</dt>
-                      <dd className="col-sm-8">{linkFn(content)} <i className="fa fa-external-link"></i></dd>
+                      <dd className="col-sm-8">{linkFn(content)}</dd>
                     </Fragment>
                   ))}
                 {status !== 'expired' && (

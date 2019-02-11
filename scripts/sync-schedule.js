@@ -59,6 +59,7 @@ async function getRawLinkedInData() {
 
 function rawRowToRow(rawHeader, rawRow) {
   const title = rawRow[rawHeader.indexOf('Title')];
+  const why = rawRow[rawHeader.indexOf('Why')];
   const venue = rawRow[rawHeader.indexOf('Venue')];
   const lead = rawRow[rawHeader.indexOf('Lead')];
   const video = rawRow[rawHeader.indexOf('Youtube Link')];
@@ -84,6 +85,7 @@ function rawRowToRow(rawHeader, rawRow) {
 
   return {
     title,
+    why,
     date: dateAtSixThirty.getTime(),
     lead,
     venue,
