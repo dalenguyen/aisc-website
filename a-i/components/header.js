@@ -63,14 +63,14 @@ export default () => (
             </li>
             <li className="nav-item">
               <a className="nav-link"
-                href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg"
+                href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1"
                 target="_blank">YouTube</a>
             </li>
           </ul>
           <ul className="list-inline social-buttons">
             <li className="list-inline-item">
               <a
-                href="https://www.youtube.com/c/TorontoDeepLearningSeries"
+                href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1"
                 target="_blank"
               >
                 <i className="fa fa-youtube fa-2x" />

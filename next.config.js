@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const withTypescript = require('@zeit/next-typescript')
 
 const withSass = require('@zeit/next-sass')
-const BLOG_SUMMARY_JSON = require('./blog/content/summary.json')
+
 module.exports = withTypescript(withSass({
 
   webpack: (config) => {

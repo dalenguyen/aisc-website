@@ -18,7 +18,7 @@ const About = ({ contributors }) => (
       <hr />
       <h2>About TDLS</h2>
       <p>
-        <i> TDLS is a community of intellectually curious individuals centered around technical review and discussion
+        <i> TDLS is a community of intellectually curious individuals centred around technical review and discussion
         of advances in machine learning. </i>
       </p>
       <p>

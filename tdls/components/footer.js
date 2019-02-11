@@ -25,6 +25,7 @@ export default () => (
       @media (max-width: 576px) {
         .footer {
           text-align: center;   
+          padding-bottom: 60px;
         }
       }
     `}</style>
