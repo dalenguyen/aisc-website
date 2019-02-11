@@ -97,7 +97,7 @@ export default () => (
               </a>
             </li>
             <li className="list-inline-item">
-              <a href="mailto:tdls@torontomachinelearning.com" target="_blank">
+              <a href="mailto:events@a-i.science" target="_blank">
                 <i className="fa fa-envelope fa-2x" />
               </a>
             </li>

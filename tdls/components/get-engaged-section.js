@@ -21,7 +21,7 @@ export default () => (
               target="_blank">
               <i className="fa fa-twitter fa-2x"></i>
             </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:I%20am%20interested%20to%20speak%20at%20TDLS" target="_blank">
+            <a href="mailto:events@a-i.science?subject:I%20am%20interested%20to%20speak%20at%20TDLS" target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
           </div>
@@ -41,7 +41,7 @@ export default () => (
               target="_blank">
               <i className="fa fa-twitter fa-2x"></i>
             </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:Change%20suggestion%20for%20TDLS%20website"
+            <a href="mailto:events@a-i.science?subject:Change%20suggestion%20for%20TDLS%20website"
               target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
@@ -58,7 +58,7 @@ export default () => (
             <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20think%20you%20should%20cover%20X" target="_blank">
               <i className="fa fa-twitter fa-2x"></i>
             </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:I%20think%20you%20should%20cover%20X" target="_blank">
+            <a href="mailto:events@a-i.science?subject:I%20think%20you%20should%20cover%20X" target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
           </div>
@@ -79,7 +79,7 @@ export default () => (
             <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20want%20to%20own%20a%20stream" target="_blank">
               <i className="fa fa-twitter fa-2x"></i>
             </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:%20I%20want%20to%20own%20a%20stream" target="_blank">
+            <a href="mailto:events@a-i.science?subject:%20I%20want%20to%20own%20a%20stream" target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
           </div>
@@ -163,7 +163,7 @@ export default () => (
             <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20host%20TDLS" target="_blank">
               <i className="fa fa-twitter fa-2x"></i>
             </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:%20We%20want%20to%20host%20TDLS" target="_blank">
+            <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20host%20TDLS" target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
           </div>
@@ -178,7 +178,7 @@ export default () => (
               target="_blank">
               <i className="fa fa-twitter fa-2x"></i>
             </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
+            <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
               target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
@@ -197,7 +197,7 @@ export default () => (
             <a href="https://twitter.com/intent/tweet?text=@tdls_to%20" target="_blank">
               <i className="fa fa-twitter fa-2x"></i>
             </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:collaboration%20with%20meetups" target="_blank">
+            <a href="mailto:events@a-i.science?subject:collaboration%20with%20meetups" target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
           </div>
@@ -236,7 +236,7 @@ export default () => (
             <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20want%20to%20own%20a%20stream" target="_blank">
               <i className="fa fa-twitter fa-2x"></i>
             </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:%20I%20want%20to%20own%20a%20stream" target="_blank">
+            <a href="mailto:events@a-i.science?subject:%20I%20want%20to%20own%20a%20stream" target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
