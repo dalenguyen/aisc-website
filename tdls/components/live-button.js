@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { getEventId, sleep, getEventsAndGroupings, pad, eventStatus } from '../utils/event';
 
 export const Countdown = ({ expiresAt }) => {
-  const [_h = 0, _m = 0, _s = 0] = timeFromNow(expiresAt);  
+  const [_h = 0, _m = 0, _s = 0] = timeFromNow(expiresAt);
   const [{ h, m, s }, setClockArms] = useState({ h: _h, m: _m, s: _s });
 
   const renderTime = () => {
@@ -35,24 +35,20 @@ export const Countdown = ({ expiresAt }) => {
 
 export default ({ allEvents }) => {
 
-  let upcomingEvent;
+  const [{ upcomingEvent: prefetched }, setUpcomingEventData] = useState({
+    upcomingEvent: null
+  });
 
-  if(allEvents) {
-    upcomingEvent = findNextUpcomingEvent(allEvents);
-  } else {
-    const [{ upcomingEvent_ }, setUpcomingEventData] = useState({ upcomingEvent: null });
-    upcomingEvent = upcomingEvent_;
-
-    const fetchAndSetUpcomingEvent = async () => {
-      const allEvents = await getEventsAndGroupings();
-      upcomingEvent = findNextUpcomingEvent(allEvents);
-      setUpcomingEventData({ upcomingEvent });
-    }
-  
-    useEffect(() => {
-      fetchAndSetUpcomingEvent();
-    }, []);  
+  const fetchAndSetUpcomingEvent = async () => {
+    const allEvents = await getEventsAndGroupings();
+    const e = findNextUpcomingEvent(allEvents);
+    setUpcomingEventData({ upcomingEvent: e });
   }
+
+  useEffect(() => {
+    fetchAndSetUpcomingEvent();
+  }, [allEvents]);
+  const upcomingEvent = prefetched || (allEvents && findNextUpcomingEvent(allEvents));
 
   return (
     (upcomingEvent || null) && (
@@ -83,6 +79,9 @@ export default ({ allEvents }) => {
 
 
 function findNextUpcomingEvent(allEvents) {
+  if (!allEvents) {
+    return null;
+  }
   const { futureEvents } = allEvents;
   const futureWithStreams = futureEvents.filter(f => f.video);
   if (futureWithStreams.length === 0) {
@@ -100,7 +99,7 @@ function findNextUpcomingEvent(allEvents) {
 
 
 function timeFromNow(date) {
-  if(!date) {
+  if (!date) {
     return [0, 0, 0];
   }
   const diffInMillSec = date.getTime() - new Date().getTime();
