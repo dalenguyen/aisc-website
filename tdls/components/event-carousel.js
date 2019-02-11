@@ -31,14 +31,14 @@ export default ({ filter = null, shuffle = false, allEvents }) => {
     slidesToScroll: 6,
     responsive: [
       {
-        breakpoint: 1440,
+        breakpoint: 1560,
         settings: {
           slidesToShow: 6.1,
           slidesToScroll: 6,
         }
       },
       {
-        breakpoint: 1300,
+        breakpoint: 1429,
         settings: {
           slidesToShow: 4.1,
           slidesToScroll: 4,
