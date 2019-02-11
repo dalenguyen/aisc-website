@@ -120,7 +120,7 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
 
   const toolbar = (
     <div className="toolbar">
-      &nbsp;<a href="#/events/${getEventId(ev)}"><i className="fa fa-share-alt fa-lg"></i></a>
+      &nbsp;<a href={`#/events/${getEventId(ev)}`}><i className="fa fa-share-alt fa-lg"></i></a>
       {ev.paper ? <a target="_blank" href={ev.paper}><i className="fa fa-file-text-o fa-lg"></i></a> : null}
       {ev.video ? <a target="_blank" href={ev.video}><i className="fa fa-play-circle fa-lg"></i></a> : null}
       {ev.slides ? <a target="_blank" href={`/static/${ev.slides}`}><i className="fa fa-file-powerpoint-o fa-lg"></i></a> : null}
