@@ -30,6 +30,22 @@ export default () => (
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
           <div className="card-body">
+            <h5 className="card-title">Suggest a Papers</h5>
+            <p className="card-text"> We're all ears. Please send us an email or tweet at us with your favorite paper
+              and
+    we'll put it on our list.</p>
+            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20think%20you%20should%20cover%20X" target="_blank">
+              <i className="fa fa-twitter fa-2x"></i>
+            </a>
+            <a href="mailto:tdls@torontomachinelearning.com?subject:I%20think%20you%20should%20cover%20X" target="_blank">
+              <i className="fa fa-envelope fa-2x"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="col-lg-3 col-md-4 col-sm-6">
+        <div className="card border-primary mb-3">
+          <div className="card-body">
             <h5 className="card-title">Improve this site</h5>
             <p className="card-text">Amazing! We're open source, so feel free to clone our GitHub repo, make changes,
               and
@@ -43,22 +59,6 @@ export default () => (
             </a>
             <a href="mailto:tdls@torontomachinelearning.com?subject:Change%20suggestion%20for%20TDLS%20website"
               target="_blank">
-              <i className="fa fa-envelope fa-2x"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-3 col-md-4 col-sm-6">
-        <div className="card border-primary mb-3">
-          <div className="card-body">
-            <h5 className="card-title">Papers</h5>
-            <p className="card-text"> We're all ears. Please send us an email or tweet at us with your favorite paper
-              and
-    we'll put it on our list.</p>
-            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20think%20you%20should%20cover%20X" target="_blank">
-              <i className="fa fa-twitter fa-2x"></i>
-            </a>
-            <a href="mailto:tdls@torontomachinelearning.com?subject:I%20think%20you%20should%20cover%20X" target="_blank">
               <i className="fa fa-envelope fa-2x"></i>
             </a>
           </div>
