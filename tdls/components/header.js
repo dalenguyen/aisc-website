@@ -2,10 +2,10 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import LiveButton from '../components/live-button';
 import SocialButtons from '../components/social-buttons';
-
 import './header.scss';
 
-export default () => (
+export default ({ allEvents }) => { 
+  return (
   <Fragment>
     <header className="main-navbar">
       <nav
@@ -16,7 +16,7 @@ export default () => (
           <img src="/static/images/tdls_logo.svg" style={{ height: '30px' }} />{' '}
           TDLS
       </a>
-        <LiveButton />
+        <LiveButton allEvents={allEvents} />
         <button
           className="navbar-toggler"
           type="button"
@@ -57,4 +57,4 @@ export default () => (
       <SocialButtons />
     </div>
   </Fragment>
-);
+)};

@@ -2,10 +2,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { getEventId, sleep, getEventsAndGroupings, pad, eventStatus } from '../utils/event';
 
 export const Countdown = ({ expiresAt }) => {
-  const [{h, m, s} , setClockArms] = useState({ h: null, m: null, s: null });
+  const [{ h, m, s }, setClockArms] = useState({ h: -1, m: -1, s: -1 });
 
   const tick = async () => {
-    if(expiresAt) {
+    if (expiresAt) {
       while (true) {
         const [h, m, s] = timeFromNow(expiresAt);
         setClockArms({
@@ -27,19 +27,26 @@ export const Countdown = ({ expiresAt }) => {
   )
 }
 
-export default () => {
-  const [{ upcomingEvent }, setUpcomingEventData] = useState(
-    { upcomingEvent: null });
-  const fetchAndSetUpcomingEvent = async () => {
-    const upcomingEvent = await findNextUpcomingEvent();
-    setUpcomingEventData({
-      upcomingEvent
-    });
-  }
+export default ({ allEvents }) => {
 
-  useEffect(() => {
-    fetchAndSetUpcomingEvent();
-  }, [upcomingEvent]);
+  let upcomingEvent;
+
+  if(allEvents) {
+    upcomingEvent = findNextUpcomingEvent(allEvents);
+  } else {
+    const [{ upcomingEvent_ }, setUpcomingEventData] = useState({ upcomingEvent: null });
+    upcomingEvent = upcomingEvent_;
+
+    const fetchAndSetUpcomingEvent = async () => {
+      const allEvents = await getEventsAndGroupings();
+      upcomingEvent = findNextUpcomingEvent(allEvents);
+      setUpcomingEventData({ upcomingEvent });
+    }
+  
+    useEffect(() => {
+      fetchAndSetUpcomingEvent();
+    }, []);  
+  }
 
   return (
     upcomingEvent && (
@@ -60,7 +67,7 @@ export default () => {
       `}</style>
         <a className="live-button btn btn-danger btn-sm" href={`/#/events/${getEventId(upcomingEvent)}`}>
           <i className="fa fa-play-circle"></i>
-          &nbsp;Live in <Countdown expiresAt={upcomingEvent.date} />
+          &nbsp;Live in <Countdown expiresAt={new Date(upcomingEvent.date)} />
         </a>
 
       </Fragment>
@@ -69,8 +76,8 @@ export default () => {
 };
 
 
-async function findNextUpcomingEvent() {
-  const { futureEvents } = await getEventsAndGroupings();
+function findNextUpcomingEvent(allEvents) {
+  const { futureEvents } = allEvents;
   const futureWithStreams = futureEvents.filter(f => f.video);
   if (futureWithStreams.length === 0) {
     return null;

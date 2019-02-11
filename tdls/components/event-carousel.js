@@ -5,19 +5,14 @@ import './event-carousel.scss';
 
 import {
   READABLE_EVENT_TYPE, getEventId,
-  getEventsAndGroupings, getLinkedInProfiles,
+  getLinkedInProfiles,
   toShortDateString
 } from '../utils/event';
 
 
-export default ({ filter = null, shuffle = false }) => {
-  const [{ events }, setEventsData] = useState({ events: [] });
+export default ({ filter = null, shuffle = false, allEvents }) => {
+  const { pastEvents: events } = allEvents;
   const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
-
-  const fetchAndSetPastEvent = async () => {
-    const { pastEvents } = await getEventsAndGroupings();
-    setEventsData({ events: pastEvents });
-  }
 
   const fetchAndSetProfile = async () => {
     const linkedInDict = await getLinkedInProfiles();
@@ -25,9 +20,8 @@ export default ({ filter = null, shuffle = false }) => {
   }
 
   useEffect(() => {
-    fetchAndSetPastEvent();
     fetchAndSetProfile();
-  }, []);
+  }, [])
 
   const settings = {
     dots: false,

@@ -12,6 +12,8 @@ import { UpcomingEvents } from '../components/event-related';
 import EventCarousel from '../components/event-carousel';
 import { EventModalWrapper, EventModalContext } from '../components/event-modal';
 
+import {getEventsAndGroupings} from '../utils/event';
+
 import "./index.scss";
 
 const EventRoutingHandler = ({ openEventModal }) => {
@@ -43,7 +45,7 @@ const EventRoutingHandler = ({ openEventModal }) => {
   return null;
 }
 
-export default () => {
+const Index = ({ allEvents }) => {
   return (
     <Fragment>
       <Head>
@@ -55,7 +57,7 @@ export default () => {
         <link href="/static/smooth-scroll.css" rel="stylesheet" />
 
       </Head>
-      <Header />
+      <Header allEvents={ allEvents } />
       <EventModalWrapper>
         <EventModalContext.Consumer>
           {
@@ -117,7 +119,7 @@ export default () => {
                 <Fragment key={label}>
                   <div style={{ marginTop: '10px' }}>
                     <h4><span className="badge badge-primary badge-info">{label}</span></h4>
-                    <EventCarousel filter={filter} shuffle={false} />
+                    <EventCarousel filter={filter} shuffle={false} allEvents={allEvents} />
                   </div>
                 </Fragment>
               ))
@@ -320,3 +322,10 @@ export default () => {
     </Fragment>
   );
 }
+
+Index.getInitialProps = async ({ req }) => {
+  const allEvents = await getEventsAndGroupings(!!req);
+  return { allEvents };
+}
+
+export default Index;

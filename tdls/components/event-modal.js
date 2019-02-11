@@ -8,7 +8,7 @@ import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
 import { pad, eventStatus } from '../utils/event';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 import {
@@ -50,7 +50,7 @@ export const EventModalWrapper = ({ children }) => {
 
   const closeEventModal = () => {
     setModalState({ isOpen: false, modalEventId: null });
-    history.pushState(null, null, '#/events');
+    history.pushState(null, null, '#/main');
   }
 
   function iconLinkFn(iconClass) {
@@ -58,6 +58,8 @@ export const EventModalWrapper = ({ children }) => {
       <a target="_blank" href={url}><i className={`fa fa-lg ${iconClass}`}></i></a>
     );
   }
+
+  const date = ev && new Date(ev.date);
 
   const status = eventStatus(ev);
   return (
@@ -77,14 +79,14 @@ export const EventModalWrapper = ({ children }) => {
               <dl className="row">
                 <dt className="col-sm-4">Time:</dt>
                 <dd className="col-sm-8">
-                  {WEEKDAYS[ev.date.getDay()]}&nbsp;
-              {dashedDate(ev.date)}&nbsp;{time(ev.date)}
+                  {WEEKDAYS[date.getDay()]}&nbsp;
+              {dashedDate(date)}&nbsp;{time(date)}
                   {{
                     'live': ' (this event is live!)',
                     'expired': ' (This is a past event.)'
                   }[status]}
                 </dd>
-                {status!== 'expired' ? (
+                {status !== 'expired' ? (
                   <Fragment>
                     <dt className="col-sm-4">Venue:</dt>
                     <dd className="col-sm-8">
@@ -118,12 +120,12 @@ export const EventModalWrapper = ({ children }) => {
                 )}
                 {[
                   [
-                    ev.video, status ==='expired' ? 'Recording' : 'Live Stream', 
-                    (url) => status ==='expired' ? ytThumbModal(url) : (
+                    ev.video, status === 'expired' ? 'Recording' : 'Live Stream',
+                    (url) => status === 'expired' ? ytThumbModal(url) : (
                       status === 'countdown' ? (
                         <Fragment>
                           {ytThumbLink(url)}
-                          &nbsp;(live in <strong><Countdown expiresAt={ev.date} /></strong>)
+                          &nbsp;(live in <strong><Countdown expiresAt={date} /></strong>)
                         </Fragment>
                       ) : ytThumbLink(url)
                     )
@@ -160,14 +162,14 @@ export const EventModalWrapper = ({ children }) => {
               </dl>
             </Modal.Body>
             <Modal.Footer>
-            <CopyToClipboard text={window.location.href}
-              onCopy={() => null}>
+              <CopyToClipboard text={window.location.href}
+                onCopy={() => null}>
                 <Button id="copy-link" variant="info" onClick={copyLink}>Copy link</Button>
-            </CopyToClipboard>
+              </CopyToClipboard>
 
               <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
               {
-                status!=='expired' && (
+                status !== 'expired' && (
                   <Link href="/code-of-conduct">
                     <a className="btn btn-secondary">Code of Conduct</a>
                   </Link>
