@@ -6,7 +6,7 @@
   "scripts": {
     "tdls": "npm run dev-sync-blog && npm run sync-data && next tdls -p 3000",
     "a-i": "npm run dev-sync-blog && npm run sync-data && next blog -p 3100",
-    "blog": "concurrently \"next blog -p 3200\" \"dnpm run dev-watch-blog\"",
+    "blog": "concurrently \"next blog -p 3200\" \"npm run dev-watch-blog\"",
     "dev-watch-blog": "cd blog && npm run build:content:watch",
     "dev-sync-blog": "cd blog && npm run build:content",
     "sync-contentful": "node scripts/fetch-contentful.js",
