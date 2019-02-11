@@ -29,6 +29,12 @@ function Index(props) {
           border-bottom-color: currentColor;
         }
 
+        img {
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+        }
+
         code {
           background-color: #EEE;
           line-height: 1;
@@ -40,15 +46,17 @@ function Index(props) {
         }
       `}</style>
       <Page
+        body={Body(pageJson)}
         siteTitle={`${CONFIG.siteTitle} - ${pageJson.title}`}
         heroTitle={CONFIG.siteTitle}
         description={CONFIG.description}
         stylesheets={CONFIG.stylesheets}
         topLinks={CONFIG.topLinks}
         backgroundClass={CONFIG.backgroundClass}
-        body={Body(pageJson)}
         copyright={CONFIG.copyright}
         siteId={CONFIG.siteId}
+        author={CONFIG.author}
+        editor={CONFIG.editor}
       />
     </div>
   )
@@ -56,10 +64,11 @@ function Index(props) {
 
 function Body(props) {
   return (
-    <div className="content center mw6 pa3 pa4-ns">
+    <div className="content center mw7 pa3 pa4-ns">
       <h1 className="mt0 lh-title">{props.title}</h1>
+      <p>Written by <b>{props.author}</b> | Edited by <b>{props.editor}</b></p>
       <div dangerouslySetInnerHTML={{ __html: props.bodyHtml }}></div>
-    </div>
+    </div >
   )
 }
 
