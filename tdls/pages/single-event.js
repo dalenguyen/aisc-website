@@ -108,7 +108,7 @@ const SingleEvent = ({ event: ev }) => {
                     <ResponsiveEmbedEmpty aspectRatio="16by9">
                       <div className="empty-info">
                         <p className="lead">
-                          No recording or live stream video yet.
+                          No recording or live stream video available yet.
                         </p>
                         <p className="lead">
                           If this is a future event, please check back a few days before the session starts.
