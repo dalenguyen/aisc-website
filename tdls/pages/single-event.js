@@ -75,10 +75,18 @@ const SingleEvent = ({ event: ev }) => {
       </Fragment>
     );
 
+    const desc = `
+    lead: ${ev.lead}, facilitators: ${ev.facilitators.join(', ')}
+    Venue: ${ev.venue}
+    Motivation
+    ${ev.why}
+    `
+
     return (
       <Fragment>
         <Head>
           <title>{ev.title} | Toronto Deep Learning Series (#TDLS)</title>
+          <meta name="description" content={desc} />
           <ThemesAndSuch />
         </Head>
         <Header before={
@@ -111,7 +119,7 @@ const SingleEvent = ({ event: ev }) => {
               }
               <div className="title-info">
                 <h1 className="title inline">
-                  <Link href="/#main" >
+                  <Link href="/events" >
                     <a ><i className="fa fa-arrow-circle-left"></i>
                     </a></Link> {ev.title}
                 </h1>
@@ -126,7 +134,7 @@ const SingleEvent = ({ event: ev }) => {
             </div>
             <div className="col-12 col-md-3">
               <section className="info-box">
-                <h6>Presenter Panel</h6>
+                <h5>Presenter Panel</h5>
                 <dl className="row">
                   {ev.lead.indexOf('?') < 0 && (
                     <Fragment>
@@ -169,7 +177,7 @@ const SingleEvent = ({ event: ev }) => {
                 <Link href="/get-engaged">
                   <a className="btn btn-primary">Get Engaged</a>
                 </Link>&nbsp;
-                <Link href="/#main" >
+                <Link href="/events" >
                   <a className="btn btn-secondary" >&larr; Back to events
                 </a>
                 </Link>
