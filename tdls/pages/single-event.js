@@ -97,6 +97,7 @@ const SingleEvent = ({ event: ev }) => {
                 </h1>
                 <a
                   className="btn btn-danger pull-right"
+                  target="_blank"
                   href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
                   <i className="fa fa-youtube"></i>&nbsp;Subscribe
                 </a>
