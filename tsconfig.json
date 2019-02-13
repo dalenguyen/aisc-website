@@ -17,6 +17,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
+    "noImplicitAny": true,
     "target": "esnext"
   }
 }

@@ -54,9 +54,7 @@ const Index = ({ allEvents }) => {
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
         <link rel="canonical" href="./index.html" />
         <ThemesAndSuch />
-        <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
         <link href="/static/smooth-scroll.css" rel="stylesheet" />
-
       </Head>
       <Header allEvents={allEvents} />
       <section id="welcome">

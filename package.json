@@ -55,6 +55,8 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.2.2",
+    "@types/next": "^8.0.0",
+    "@types/react": "^16.8.2",
     "babel-preset-env": "^1.7.0",
     "concurrently": "^4.1.0",
     "contentful": "^7.2.0",
@@ -62,7 +64,8 @@
     "dotenv": "^6.2.0",
     "processmd": "^4.4.2",
     "standard": "^12.0.1",
-    "styled-jsx": "^3.2.0"
+    "styled-jsx": "^3.2.0",
+    "typescript": "^3.3.3"
   },
   "optionalDependencies": {
     "fsevents": "*"

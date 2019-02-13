@@ -1,18 +1,15 @@
 import { Fragment } from 'react';
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import Link from 'next/link';
 
 import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
-import { UpcomingEvents } from '../components/event-related';
 import EventCarousel from '../components/event-carousel';
 
 import { getEventsAndGroupings } from '../utils/event-fetch';
-import Router from 'next/router'
 import './events.scss';
 
 const Index = ({ allEvents }) => {
@@ -23,16 +20,13 @@ const Index = ({ allEvents }) => {
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
         <link rel="canonical" href="./index.html" />
         <ThemesAndSuch />
-        <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-        <link href="/static/smooth-scroll.css" rel="stylesheet" />
-
       </Head>
       <Header allEvents={allEvents} />
       <main role="main" id="main">
         <form className="event-filter-bar form-inline">
-          <label className="sr-only" for="inlineFormInputName2">Name</label>
+          <label className="sr-only" htmlFor="inlineFormInputName2">Name</label>
           <input type="text" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe" />
-          <label className="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+          <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">Username</label>
           <div className="input-group mb-2 mr-sm-2">
             <div className="input-group-prepend">
               <div className="input-group-text">@</div>
@@ -41,7 +35,7 @@ const Index = ({ allEvents }) => {
           </div>
           <div className="form-check mb-2 mr-sm-2">
             <input className="form-check-input" type="checkbox" id="inlineFormCheck" />
-            <label className="form-check-label" for="inlineFormCheck">
+            <label className="form-check-label" htmlFor="inlineFormCheck">
               Remember me
             </label>
           </div>

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
-import LiveButton from '../components/live-button';
-import SocialButtons from '../components/social-buttons';
+import LiveButton from './live-button';
+import SocialButtons from './social-buttons';
 import './header.scss';
 
 export default ({ allEvents, before }) => {
