@@ -77,7 +77,7 @@ const SingleEvent = ({ event: ev }) => {
     return (
       <Fragment>
         <Head>
-          <title>About TDLS</title>
+          <title>{ev.title} | Toronto Deep Learning Series (#TDLS)</title>
           <ThemesAndSuch />
         </Head>
         <Header />
@@ -95,11 +95,6 @@ const SingleEvent = ({ event: ev }) => {
                     <a ><i className="fa fa-arrow-circle-left"></i>
                     </a></Link> {ev.title}
                 </h1>
-                <p>Time: {timeSnippet}</p>
-                <p>
-                  Venue: {venueSnippet}
-                </p>
-
               </div>
             </div>
             <div className="col-12 col-md-3">
@@ -115,6 +110,10 @@ const SingleEvent = ({ event: ev }) => {
                   status !== 'expired' && (
                     <Fragment>
                       {agenda}
+                      <p>Time: {timeSnippet}</p>
+                      <p>
+                        Venue: {venueSnippet}
+                      </p>
 
                       <Link href="/code-of-conduct">
                         <a className="btn btn-secondary">Code of Conduct</a>
@@ -122,6 +121,10 @@ const SingleEvent = ({ event: ev }) => {
                     </Fragment>
                   )
                 }
+                <p>Time: {timeSnippet}</p>
+                <p>
+                  Venue: {venueSnippet}
+                </p>
               </div>
               <div>
                 <Link href="/#main" >
