@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import Slider from "react-slick";
 import Link from 'next/link';
+
 import { ytThumb } from '../utils/youtube';
 import './event-carousel.scss';
 
@@ -13,16 +14,6 @@ import {
 
 export default ({ filter = null, shuffle = false, allEvents }) => {
   const { pastEvents: events } = allEvents;
-  const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
-
-  const fetchAndSetProfile = async () => {
-    const linkedInDict = await getLinkedInProfiles(false);
-    setLinkedInData({ linkedInDict });
-  }
-
-  useEffect(() => {
-    fetchAndSetProfile();
-  }, [])
 
   const settings = {
     dots: false,
@@ -82,10 +73,8 @@ export default ({ filter = null, shuffle = false, allEvents }) => {
   return (
     <Slider className="past-event-list event-carousel" {...settings}>
       {(shuffle ? randomShuffle : a => a)(filterEvents(events, filter), 41).map((event, idx) => {
-        const leadLink = linkedInDict[event.lead];
-        const facLinks = event.facilitators.map(n => linkedInDict[n]);
         return (
-          <EventCard key={idx} {...{ event, leadLink, facLinks }} />
+          <EventCard key={idx} {...{ event }} />
         );
       })}
     </Slider>
@@ -110,7 +99,7 @@ function match(event, filter) {
   });
 }
 
-const EventCard = ({ event: ev, leadLink, facLinks }) => {
+export const EventCard = ({ event: ev }) => {
   const cardTitle = (
     <Fragment>
       <style jsx>{`

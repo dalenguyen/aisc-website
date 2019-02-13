@@ -7,12 +7,16 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
-import EventCarousel from '../components/event-carousel';
-
+import EventList from '../components/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
+import { Event } from '../../common/types';
 import './events.scss';
 
+
 const Index = ({ allEvents }) => {
+  const { pastEvents, futureEvents } = allEvents;
+  const filteredPast: Event = pastEvents;
+  const filteredFuture: Event = futureEvents;
   return (
     <Fragment>
       <Head>
@@ -42,22 +46,10 @@ const Index = ({ allEvents }) => {
           <button type="submit" className="btn btn-primary mb-2">Submit</button>
         </form>
         <section id="content" className="container-fluid">
-          {
-            [
-              ['Trending Papers', { type: 'fasttrack' }],
-              ['Authors Speaking', { type: 'authors' }],
-              ['Recent Presentations', { type: 'main' }],
-              ['Implementations', { type: 'codereview' }],
-              ['Classic Papers', { type: 'classics' }]
-            ].map(([label, filter]) => (
-              <Fragment key={label}>
-                <div style={{ marginTop: '10px' }}>
-                  <h4><span className="badge badge-primary badge-info">{label}</span></h4>
-                  <EventCarousel filter={filter} shuffle={false} allEvents={allEvents} />
-                </div>
-              </Fragment>
-            ))
-          }
+          <h4><span className="badge badge-light">Upcoming</span></h4>
+          <EventList events={filteredFuture} />
+          <h4><span className="badge badge-light">Past</span></h4>
+          <EventList events={filteredPast} />
         </section>
       </main>
       <Footer />
