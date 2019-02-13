@@ -7,14 +7,19 @@ import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
-import { pad, eventStatus } from '../utils/event';
+import { pad, eventStatus } from '../../common/event';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { nameToLink } from './profile';
 
 
 import {
+  getEventsAndGroupings, getLinkedInProfiles
+} from '../utils/event-fetch';
+import {
   READABLE_EVENT_TYPE, getEventId, isTentative,
-  nameToLink, getEventsAndGroupings, getLinkedInProfiles
-} from '../utils/event';
+} from '../../common/event';
+
+
 import { Countdown } from './live-button';
 
 export const EventModalContext = React.createContext();

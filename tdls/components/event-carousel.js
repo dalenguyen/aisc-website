@@ -1,14 +1,15 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import Slider from "react-slick";
+import Link from 'next/link';
 import { ytThumb } from '../utils/youtube';
 import './event-carousel.scss';
 
 import {
-  READABLE_EVENT_TYPE, getEventId,
   getLinkedInProfiles,
-  toShortDateString
-} from '../utils/event';
-
+} from '../utils/event-fetch';
+import {
+  READABLE_EVENT_TYPE, getEventId, toShortDateString
+} from '../../common/event';
 
 export default ({ filter = null, shuffle = false, allEvents }) => {
   const { pastEvents: events } = allEvents;
@@ -111,9 +112,11 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
         display: block;
       }
     `}</style>
-      <a className="title card-title" href={`/#/events/${getEventId(ev)}`}>
-        {ev.title.toLowerCase()}
-      </a>
+      <Link href={`/#/events/${getEventId(ev)}`}>
+        <a className="title card-title">
+          {ev.title.toLowerCase()}
+        </a>
+      </Link>
     </Fragment>
   )
 
@@ -139,10 +142,11 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
   return (
 
     <div className={"event card " + (ev.type ? ' event-' + ev.type : '')}>
-      <a href={`/#/events/${getEventId(ev)}`}>
-        {thumb}
-      </a>
-
+      <Link href={`/events/${getEventId(ev)}`}>
+        <a>
+          {thumb}
+        </a>
+      </Link>
       <div className="card-body">
         {cardTitle}
       </div>

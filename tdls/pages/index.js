@@ -12,7 +12,8 @@ import { UpcomingEvents } from '../components/event-related';
 import EventCarousel from '../components/event-carousel';
 import { EventModalWrapper, EventModalContext } from '../components/event-modal';
 
-import {getEventsAndGroupings} from '../utils/event';
+import { getEventsAndGroupings } from '../utils/event-fetch';
+import Router from 'next/router'
 
 import "./index.scss";
 
@@ -31,7 +32,9 @@ const EventRoutingHandler = ({ openEventModal }) => {
 
       if (hash.startsWith('/events/')) {
         const eventId = hash.substring('/events/'.length);
-        openEventModal(eventId);
+        // openEventModal(eventId);
+        Router.push(`/events/${eventId}`);
+
       }
     }
   }
@@ -57,7 +60,7 @@ const Index = ({ allEvents }) => {
         <link href="/static/smooth-scroll.css" rel="stylesheet" />
 
       </Head>
-      <Header allEvents={ allEvents } />
+      <Header allEvents={allEvents} />
       <EventModalWrapper>
         <EventModalContext.Consumer>
           {

@@ -1,5 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { getEventId, sleep, getEventsAndGroupings, pad, eventStatus } from '../utils/event';
+import { getEventsAndGroupings } from '../utils/event-fetch';
+import { pad, eventStatus, getEventId} from '../../common/event';
+
+import { sleep } from '../../common/utils';
 
 export const Countdown = ({ expiresAt }) => {
   const [_h = 0, _m = 0, _s = 0] = timeFromNow(expiresAt);
@@ -67,7 +70,7 @@ export default ({ allEvents }) => {
           }
         }
       `}</style>
-        <a className="live-button btn btn-danger btn-sm" href={`/#/events/${getEventId(upcomingEvent)}`}>
+        <a className="live-button btn btn-danger btn-sm" href={`/#!/events/${getEventId(upcomingEvent)}`}>
           <i className="fa fa-play-circle"></i>
           &nbsp;Live in <Countdown expiresAt={new Date(upcomingEvent.date)} />
         </a>

@@ -1,12 +1,18 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import Slider from "react-slick";
+import Link from 'next/link';
 
 import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 
 import {
+  getEventsAndGroupings, getLinkedInProfiles
+} from '../utils/event-fetch';
+import {
   READABLE_EVENT_TYPE, getEventId, isTentative,
-  nameToLink, getEventsAndGroupings, getLinkedInProfiles,
-} from '../utils/event';
+} from '../../common/event';
+
+
+import { nameToLink } from './profile';
 
 export const UpcomingEvents = ({ }) => {
   const [{ events }, setEventsData] = useState({ events: [] });
@@ -57,10 +63,12 @@ const UpcomingEventItem = ({ event: ev, leadLink, facLinks }) => {
     <li className={'list-group-item' + (ev.type ? ' event-' + ev.type : '') + (isTentative(ev) ? ' tentative' : '')}>
       {dateBlock}
       <h5 className="title">
-        <a className="title" href={`/#/events/${getEventId(ev)}`}>
-          {ev.type !== 'main' && `[${READABLE_EVENT_TYPE[ev.type].toLowerCase()}] `}
-          {ev.title.toLowerCase()}
-        </a>
+        <Link href={`/events/${getEventId(ev)}`}>
+          <a className="title">
+            {ev.type !== 'main' && `[${READABLE_EVENT_TYPE[ev.type].toLowerCase()}] `}
+            {ev.title.toLowerCase()}
+          </a>
+        </Link>
         &nbsp;{ev.paper && <a target="_blank" href={ev.paper}>
           &nbsp;<i className="fa fa-file-text-o"></i></a>}
         &nbsp;{ev.code_official && <a target="_blank" href={ev.code_official}>
