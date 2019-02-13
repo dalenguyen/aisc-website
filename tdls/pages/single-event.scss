@@ -1,3 +1,21 @@
 .single-event {
   margin-top: 1rem; 
+  
+  .title-info {
+    margin-bottom: 1rem;
+    h1 {
+      &.inline {
+        display: inline;
+        margin-right: 0.4em;
+      }
+      a {
+        color: #5a5a5a;
+      }
+    }  
+  }
+
+  .info-box {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }

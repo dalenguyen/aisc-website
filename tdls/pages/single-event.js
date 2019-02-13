@@ -89,44 +89,66 @@ const SingleEvent = ({ event: ev }) => {
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-              <div>
-                <h1 className="title">
+              <div className="title-info">
+                <h1 className="title inline">
                   <Link href="/#main" >
                     <a ><i className="fa fa-arrow-circle-left"></i>
                     </a></Link> {ev.title}
                 </h1>
-              </div>
-            </div>
-            <div className="col-12 col-md-3">
-              <div>
                 <a
-                  className="btn btn-danger"
+                  className="btn btn-danger pull-right"
                   href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
                   <i className="fa fa-youtube"></i>&nbsp;Subscribe
                 </a>
-                <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
-                {
+              </div>
+              <p><strong>Time:</strong> {timeSnippet}</p>
+            </div>
+            <div className="col-12 col-md-3">
+              <section className="info-box">
 
+                <h6>Presenter Panel</h6>
+                <dl className="row">
+                  {ev.lead.indexOf('?') < 0 && (
+                    <Fragment>
+                      <dt className="col-sm-3">Lead:</dt>
+                      <dd className="col-sm-9"><strong>{nameToLink(ev.lead, linkedInDict[ev.lead])}</strong></dd>
+                    </Fragment>
+                  )}
+                  {ev.facilitators.length !== 0 && (
+                    <Fragment>
+                      <dt className="col-sm-3">Facilitators: </dt>
+                      <dd className="col-sm-9">{ev.facilitators.map((f, i) => (
+                        <Fragment key={i}>
+                          <strong key={i}>{nameToLink(f, linkedInDict[f])}</strong>&nbsp;
+                    </Fragment>
+                      ))}</dd>
+                    </Fragment>
+                  )}
+                </dl>
+                {
+                  ev.why && (
+                    <Fragment>
+                      <h6>Motivation</h6>
+                      {ev.why}
+                    </Fragment>
+                  )
+                }
+                {
                   status !== 'expired' && (
                     <Fragment>
                       {agenda}
-                      <p>Time: {timeSnippet}</p>
-                      <p>
-                        Venue: {venueSnippet}
-                      </p>
-
                       <Link href="/code-of-conduct">
                         <a className="btn btn-secondary">Code of Conduct</a>
                       </Link>
                     </Fragment>
                   )
                 }
-                <p>Time: {timeSnippet}</p>
-                <p>
-                  Venue: {venueSnippet}
-                </p>
-              </div>
+
+              </section>
               <div>
+                <Link href="/get-engaged">
+                  <a className="btn btn-primary">Get Engaged</a>
+                </Link>&nbsp;
                 <Link href="/#main" >
                   <a className="btn btn-secondary" >&larr; Back to events
                 </a>
@@ -140,30 +162,11 @@ const SingleEvent = ({ event: ev }) => {
           </header>
           <main className={isTentative(ev) ? 'tentative' : ''}>
             <dl className="row">
-
-
-              {ev.lead.indexOf('?') < 0 && (
-                <Fragment>
-                  <dt className="col-sm-4">Discussion lead:</dt>
-                  <dd className="col-sm-8"><strong>{nameToLink(ev.lead, linkedInDict[ev.lead])}</strong></dd>
-                </Fragment>
-              )}
-              {ev.facilitators.length !== 0 && (
-                <Fragment>
-                  <dt className="col-sm-4">Discussion facilitators: </dt>
-                  <dd className="col-sm-8">{ev.facilitators.map((f, i) => (
-                    <Fragment key={i}>
-                      <strong key={i}>{nameToLink(f, linkedInDict[f])}</strong>&nbsp;
-                    </Fragment>
-                  ))}</dd>
-                </Fragment>
-              )}
               {[
                 [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
                 [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')(`/static/${link}`)],
                 [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
                 [ev.code_official, 'Official code', iconLinkFn('fa-github')],
-                [ev.why, 'Motivation', () => ev.why],
                 [ev.code_unofficial, 'Unofficial code', iconLinkFn('fa-github')],
                 [ev.dataset1, 'Unofficial code 1', iconLinkFn('fa-database')],
                 [ev.dataset2, 'Unofficial code 2', iconLinkFn('fa-database')],
