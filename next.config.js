@@ -33,8 +33,9 @@ module.exports = withTypescript(withSass({
       }
     }
 
-    return Object.assign({}, {
-      defaultPathMap,
-    }, eventPaths) // aliases
+    return {
+      ...defaultPathMap,
+      ...eventPaths
+    };
   }
 }))
