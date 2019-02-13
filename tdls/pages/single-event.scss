@@ -1,6 +1,6 @@
 .single-event {
   margin-top: 1rem; 
-  
+
   .title-info {
     margin-bottom: 1rem;
     h1 {
@@ -17,5 +17,22 @@
   .info-box {
     margin-top: 1rem;
     margin-bottom: 1rem;
+  }
+
+
+  .empty-info {
+    user-select: none;
+    background-color: #eee;
+    display: flex;           /* establish flex container */
+    flex-direction: column;  /* make main axis vertical */
+    justify-content: center; /* center items vertically, in this case */
+    align-items: center;     /* center items horizontally, in this case */
+  }
+
+  .subscribe-youtube {
+    margin-top: 1em;
+    .fa {
+      font-size: 1.3em;
+    }
   }
 }

@@ -22,6 +22,7 @@ import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
 import ResponsiveEmbed from 'react-responsive-embed';
+import ResponsiveEmbedEmpty from 'react-bootstrap/ResponsiveEmbed';
 import './single-event.scss';
 
 const SingleEvent = ({ event: ev }) => {
@@ -84,11 +85,25 @@ const SingleEvent = ({ event: ev }) => {
         <section className="single-event container-fluid">
           <div className="row">
             <div className="col-12 col-md-9">
-              <ResponsiveEmbed
-                src={`https://www.youtube.com/embed/${getYouTubeId(ev.video)}`}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              {
+                ev.video ? (
+                  <ResponsiveEmbed
+                    src={`https://www.youtube.com/embed/${getYouTubeId(ev.video)}`}
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />) : (
+                    <ResponsiveEmbedEmpty aspectRatio="16by9">
+                      <div className="empty-info">
+                        <p className="lead">
+                          No recording or live stream video yet.
+                        </p>
+                        <p className="lead">
+                          If this is a future event, please check back a few days before the session starts.
+                        </p>
+                      </div>
+                    </ResponsiveEmbedEmpty>
+                  )
+              }
               <div className="title-info">
                 <h1 className="title inline">
                   <Link href="/#main" >
@@ -96,7 +111,7 @@ const SingleEvent = ({ event: ev }) => {
                     </a></Link> {ev.title}
                 </h1>
                 <a
-                  className="btn btn-danger pull-right"
+                  className="btn btn-danger subscribe-youtube pull-right"
                   target="_blank"
                   href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
                   <i className="fa fa-youtube"></i>&nbsp;Subscribe
