@@ -119,7 +119,7 @@ const EventCard = ({ event: ev, leadLink, facLinks }) => {
         display: block;
       }
     `}</style>
-      <Link href={`/#/events/${getEventId(ev)}`}>
+      <Link href={`/events/${getEventId(ev)}`}>
         <a className="title card-title">
           {ev.title.toLowerCase()}
         </a>
