@@ -70,11 +70,12 @@ export default ({ allEvents }) => {
           }
         }
       `}</style>
-        <a className="live-button btn btn-danger btn-sm" href={`/#!/events/${getEventId(upcomingEvent)}`}>
-          <i className="fa fa-play-circle"></i>
-          &nbsp;Live in <Countdown expiresAt={new Date(upcomingEvent.date)} />
-        </a>
-
+        <Link href={`events/${getEventId(upcomingEvent)}`}>
+          <a className="live-button btn btn-danger btn-sm">
+            <i className="fa fa-play-circle"></i>
+            &nbsp;Live in <Countdown expiresAt={new Date(upcomingEvent.date)} />
+          </a>
+        </Link>
       </Fragment>
     )
   );
