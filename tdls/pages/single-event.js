@@ -81,7 +81,12 @@ const SingleEvent = ({ event: ev }) => {
           <title>{ev.title} | Toronto Deep Learning Series (#TDLS)</title>
           <ThemesAndSuch />
         </Head>
-        <Header />
+        <Header before={
+          <Link href="/events">
+            <a ><i className="top-go-back-link fa fa-arrow-circle-left"></i>
+            </a>
+          </Link>
+        } />
         <section className="single-event container-fluid">
           <div className="row">
             <div className="col-12 col-md-9">
@@ -121,7 +126,6 @@ const SingleEvent = ({ event: ev }) => {
             </div>
             <div className="col-12 col-md-3">
               <section className="info-box">
-
                 <h6>Presenter Panel</h6>
                 <dl className="row">
                   {ev.lead.indexOf('?') < 0 && (
