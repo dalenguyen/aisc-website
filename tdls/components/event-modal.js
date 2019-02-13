@@ -143,7 +143,7 @@ export const EventModalWrapper = ({ children }) => {
                             <a
                               className="btn btn-danger"
                               href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
-                              <i class="fa fa-youtube"></i>&nbsp;Subscribe
+                              <i className="fa fa-youtube"></i>&nbsp;Subscribe
                             </a>
                           </div>
                         </Fragment>

@@ -39,7 +39,14 @@ export default ({ filter = null, shuffle = false, allEvents }) => {
         }
       },
       {
-        breakpoint: 1429,
+        breakpoint: 1490,
+        settings: {
+          slidesToShow: 5.1,
+          slidesToScroll: 5,
+        }
+      },
+      {
+        breakpoint: 1380,
         settings: {
           slidesToShow: 4.1,
           slidesToScroll: 4,

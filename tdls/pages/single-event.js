@@ -8,11 +8,11 @@ import Footer from '../components/footer'
 import Head from 'next/head'
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
-import { getEventById } from '../utils/event-fetch';
+import { getEventById, getLinkedInProfiles } from '../utils/event-fetch';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { nameToLink } from '../components/profile';
 import {
-  pad, eventStatus,
+  pad, eventStatus, getEventId,
   isTentative, READABLE_EVENT_TYPE
 } from '../../common/event';
 import { Button } from 'react-bootstrap';
@@ -21,6 +21,8 @@ import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
+import ResponsiveEmbed from 'react-responsive-embed';
+import './single-event.scss';
 
 const SingleEvent = ({ event: ev }) => {
   if (!ev) {
@@ -35,6 +37,43 @@ const SingleEvent = ({ event: ev }) => {
     const status = eventStatus(ev);
 
     const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
+
+    const fetchAndSetProfile = async () => {
+      const linkedInDict = await getLinkedInProfiles(false);
+      setLinkedInData({ linkedInDict });
+    }
+
+    useEffect(() => {
+      fetchAndSetProfile();
+    }, [getEventId(ev)]);
+
+    const timeSnippet = (
+      <Fragment>
+        {WEEKDAYS[date.getDay()]}&nbsp;
+                {dashedDate(date)}&nbsp;{time(date)}
+        {{
+          'live': ' (this event is live!)',
+          'expired': ' (This is a past event.)'
+        }[status]}
+      </Fragment>
+    );
+    const venueSnippet = (
+      status !== 'expired' ?
+        "(TDLS members: please refer to Slack or your calendar invite for location)" : venueToLink(ev.venue)
+    )
+
+    const agenda = (
+      <Fragment>
+        <h4 >Agenda</h4>
+        <ul className="list-unstyled">
+          <li>5:30-6:15,   arrivals and socializing</li>
+          <li>6:15-6:30    intros and announcements</li>
+          <li>6:30-7:15,   algorithm review</li>
+          <li>7:15-8:00,   results and discussions</li>
+        </ul>
+      </Fragment>
+    );
+
     return (
       <Fragment>
         <Head>
@@ -42,37 +81,64 @@ const SingleEvent = ({ event: ev }) => {
           <ThemesAndSuch />
         </Head>
         <Header />
+        <section className="single-event container-fluid">
+          <div className="row">
+            <div className="col-12 col-md-9">
+              <ResponsiveEmbed
+                src={`https://www.youtube.com/embed/${getYouTubeId(ev.video)}`}
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+              <div>
+                <h1 className="title">
+                  <Link href="/#main" >
+                    <a ><i className="fa fa-arrow-circle-left"></i>
+                    </a></Link> {ev.title}
+                </h1>
+                <p>Time: {timeSnippet}</p>
+                <p>
+                  Venue: {venueSnippet}
+                </p>
+
+              </div>
+            </div>
+            <div className="col-12 col-md-3">
+              <div>
+                <a
+                  className="btn btn-danger"
+                  href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                  <i className="fa fa-youtube"></i>&nbsp;Subscribe
+                </a>
+                <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
+                {
+
+                  status !== 'expired' && (
+                    <Fragment>
+                      {agenda}
+
+                      <Link href="/code-of-conduct">
+                        <a className="btn btn-secondary">Code of Conduct</a>
+                      </Link>
+                    </Fragment>
+                  )
+                }
+              </div>
+              <div>
+                <Link href="/#main" >
+                  <a className="btn btn-secondary" >&larr; Back to events
+                </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
         <section>
           <header>
-            <h1 className="title">{ev.title}</h1>
           </header>
           <main className={isTentative(ev) ? 'tentative' : ''}>
             <dl className="row">
-              <dt className="col-sm-4">Time:</dt>
-              <dd className="col-sm-8">
-                {WEEKDAYS[date.getDay()]}&nbsp;
-                {dashedDate(date)}&nbsp;{time(date)}
-                {{
-                  'live': ' (this event is live!)',
-                  'expired': ' (This is a past event.)'
-                }[status]}
-              </dd>
-              {status !== 'expired' ? (
-                <Fragment>
-                  <dt className="col-sm-4">Venue:</dt>
-                  <dd className="col-sm-8">
-                    (TDLS members: please refer to Slack or your calendar invite for location)
-                    </dd>
-                </Fragment>
-              ) : (
-                  <Fragment>
-                    <dt className="col-sm-4">Venue:</dt>
-                    <dd className="col-sm-8">
-                      {venueToLink(ev.venue)}
-                    </dd>
-                  </Fragment>
-                )
-              }
+
+
               {ev.lead.indexOf('?') < 0 && (
                 <Fragment>
                   <dt className="col-sm-4">Discussion lead:</dt>
@@ -90,27 +156,6 @@ const SingleEvent = ({ event: ev }) => {
                 </Fragment>
               )}
               {[
-                [
-                  ev.video, (
-                    <a href={ev.video} target="_blank">{status === 'expired' ? 'Recording' : 'Live Stream'}</a>
-                  ),
-                  (url) => status === 'expired' ? ytThumbModal(url) : (
-                    status === 'countdown' ? (
-                      <Fragment>
-                        {ytThumbLink(url)}
-                        <div style={{ display: 'inline-block', marginLeft: '1em', lineHeight: '2em' }}>
-                          &nbsp;<a href={url} target="_blank">(live in <strong><Countdown expiresAt={date} /></strong>)</a>
-                          <br />
-                          <a
-                            className="btn btn-danger"
-                            href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
-                            <i class="fa fa-youtube"></i>&nbsp;Subscribe
-                              </a>
-                        </div>
-                      </Fragment>
-                    ) : ytThumbLink(url)
-                  )
-                ],
                 [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
                 [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')(`/static/${link}`)],
                 [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
@@ -127,39 +172,17 @@ const SingleEvent = ({ event: ev }) => {
                     <dd className="col-sm-8">{linkFn(content)}</dd>
                   </Fragment>
                 ))}
-              {status !== 'expired' && (
-                <Fragment>
-                  <dt className="col-sm-4">Agenda:</dt>
-                  <dd className="col-sm-8">
-                    <ul className="list-unstyled">
-                      <li>5:30-6:15,   arrivals and socializing</li>
-                      <li>6:15-6:30    intros and announcements</li>
-                      <li>6:30-7:15,   algorithm review</li>
-                      <li>7:15-8:00,   results and discussions</li>
-                    </ul>
-                  </dd>
-                </Fragment>
-              )}
+
               <dt className="col-sm-4">Category:</dt> <dd className="col-sm-8">{READABLE_EVENT_TYPE[ev.type]}</dd>
             </dl>
           </main>
           <footer>
 
-            <a href="/get-engaged" className="btn btn-primary">Get Engaged</a>
-            {
-              status !== 'expired' && (
-                <Link href="/code-of-conduct">
-                  <a className="btn btn-secondary">Code of Conduct</a>
-                </Link>
-              )
-            }
-            <a className="btn btn-secondary"
-              href="/#main" >&larr; Go back</a>
           </footer>
         </section>
         <Footer />
         <SharedBodyScripts />
-      </Fragment>
+      </Fragment >
     )
   }
 
