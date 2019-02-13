@@ -19,7 +19,6 @@ export default ({ event: ev }) => {
     </Fragment>
   )
 
-
   const toolbar = (
     <div className="toolbar">
       &nbsp;<a href={`#/events/${getEventId(ev)}`}><i className="fa fa-share-alt fa-lg"></i></a>

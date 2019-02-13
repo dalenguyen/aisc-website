@@ -1,9 +1,17 @@
 .event.card {
   height: 18rem;
+  margin: 1%;
+  margin-bottom: 3%;
 
+  a {
+    color: var(--main-color);
+  }
   .title {
     margin-bottom: 5px;
     display: block;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1em;
   }
 
   position: relative;
@@ -12,9 +20,25 @@
     position: absolute;
     right: 1%;
     bottom: 2%;
+    text-align: right;
+    a {
+      margin-right: 10px;
+      
+    }
   }
 
   .card-body {
     padding: 0.6rem;
   }
+
+  @media (max-width: 800px) {
+    .toolbar {
+      text-align: left;
+      .fa {
+        font-size: 1.7em;
+        letter-spacing: 0.2em;
+      }
+    }
+  }
 }
+

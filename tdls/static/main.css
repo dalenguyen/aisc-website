@@ -215,21 +215,9 @@ a.scroll-button span {
   color: var(--authors-color);
 }
 
-.past-event-list .event-main,
-.past-event-list .event-main a {
-  color: var(--main-color);
-}
-
-.past-event-list .card {
-  margin: 1%;
-}
 
 .past-event-list > .tentative {
   background: var(--tentative-background);
-}
-
-.past-event-list .title {
-  font-weight: bold;
 }
 
 .tdls-intro .abstract {
@@ -280,11 +268,6 @@ a.scroll-button span {
 .past-event-list .event-authors,
 .past-event-list .event-authors a {
   color: var(--main-color);
-}
-
-.past-event-list .title {
-  font-style: italic;
-  font-size: 1em;
 }
 
 .modal-dialog .modal-header {
@@ -362,13 +345,6 @@ a.scroll-button span {
   left: 0;
 } */
 
-.past-event-list .toolbar {
-  text-align: right;
-}
-
-.past-event-list .toolbar a {
-  margin-right: 10px;
-}
 
 #past-event-list_length {
   display: inline-block;
@@ -529,13 +505,5 @@ section h3 {
 @media (max-width: 800px) {
   .title {
     font-size: 1.2em;
-  }
-  .past-event-list .toolbar .fa {
-    font-size: 1.7em;
-    letter-spacing: 0.2em;
-  }
-
-  .past-event-list .toolbar {
-    text-align: left;
   }
 }

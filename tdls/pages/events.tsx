@@ -42,25 +42,32 @@ const EventFilters = ({ onChange }) => {
   );
 }
 
+function cap(arr: any[], limit: number) {
+  return arr.slice(0, limit);
+}
+
 const Events = ({ allEvents }) => {
   const { pastEvents, futureEvents } = allEvents;
 
   const [{ filteredPast, filteredFuture }, setEventState] = useState({
-    filteredPast: pastEvents, filteredFuture: futureEvents
+    filteredPast: cap(pastEvents, 18), filteredFuture: cap(futureEvents, 5)
   });
 
   const filterEvents = ({ searchText }) => {
+    let filteredPast, filteredFuture;
     if (searchText && searchText.length > 0) {
-      setEventState({
-        filteredPast: pastEvents.filter(ev => match(ev, { searchText })),
-        filteredFuture: futureEvents.filter(ev => match(ev, { searchText }))
-      })
+      filteredPast = pastEvents.filter(ev => match(ev, { searchText }));
+      filteredFuture = futureEvents.filter(ev => match(ev, { searchText }));
     } else {
-      setEventState({
-        filteredPast: pastEvents,
-        filteredFuture: futureEvents
-      })
+      filteredPast = pastEvents;
+      filteredFuture = futureEvents;
     }
+
+    filteredPast = cap(filteredPast, 18);
+    filteredFuture = cap(filteredFuture, 5);
+    setEventState({
+      filteredFuture, filteredPast
+    });
   }
 
   return (
@@ -75,9 +82,13 @@ const Events = ({ allEvents }) => {
       <main role="main" id="main">
         <EventFilters onChange={filterEvents} />
         <section className="container-fluid">
-          <h4><span className="badge badge-light">Upcoming</span></h4>
+          {filteredFuture.length > 0 && (
+            <h4><span className="badge badge-primary">Upcoming</span></h4>
+          )}
           <EventList events={filteredFuture} />
-          <h4><span className="badge badge-light">Past</span></h4>
+          {filteredPast.length > 0 && (
+            <h4><span className="badge badge-secondary">Past</span></h4>
+          )}
           <EventList events={filteredPast} />
         </section>
       </main>
