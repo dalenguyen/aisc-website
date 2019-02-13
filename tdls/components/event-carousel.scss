@@ -2,17 +2,7 @@
   .slick-slide {
     >div {
       .event.card {
-        height: 300px;
-        position: relative;
-        .toolbar {
-          position: absolute;
-          right: 1%;
-          bottom: 2%;
-        }
-
-        .card-body {
-          padding: 0.6rem;
-        }
+        height: 18rem;
       }
     }
   }

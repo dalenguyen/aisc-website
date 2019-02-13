@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { EventCard } from './event-carousel';
+import EventCard from './event-card';
 import './event-list.scss';
 
 import {
