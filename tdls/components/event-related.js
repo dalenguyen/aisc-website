@@ -19,13 +19,13 @@ export const UpcomingEvents = ({ }) => {
   const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
 
   const fetchAndSetFutureEvent = async () => {
-    const { futureEvents } = await getEventsAndGroupings();
+    const { futureEvents } = await getEventsAndGroupings(false);
 
     setEventsData({ events: futureEvents });
   }
 
   const fetchAndSetProfile = async () => {
-    const linkedInDict = await getLinkedInProfiles();
+    const linkedInDict = await getLinkedInProfiles(false);
     setLinkedInData({ linkedInDict });
   }
 

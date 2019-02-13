@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-unfetch';
-
+import { getEventId } from '../../common/event';
 
 async function fetchRaw(url) {
   const resp = await fetch(url, {
@@ -11,6 +11,9 @@ async function fetchRaw(url) {
 
 
 export const getLinkedInProfiles = runOnlyOnce(async (isServer) => {
+  if (typeof isServer !== 'boolean') {
+    throw new Error('isServer flag must be set to true of false');
+  }
   if (isServer) {
     return require('../static/data/profiles.json');
   } else {
@@ -19,6 +22,9 @@ export const getLinkedInProfiles = runOnlyOnce(async (isServer) => {
 });
 
 export const getEventsAndGroupings = runOnlyOnce(async (isServer) => {
+  if (typeof isServer !== 'boolean') {
+    throw new Error('isServer flag must be set to true of false');
+  }
   if (isServer) {
     const objs = require('../static/data/events.json');
     return objs;
@@ -27,6 +33,14 @@ export const getEventsAndGroupings = runOnlyOnce(async (isServer) => {
     return objs;
   }
 });
+
+export const getEventById = async (isServer, eventId) => {
+  const { pastEvents, futureEvents } = await getEventsAndGroupings(isServer);
+  return (
+    pastEvents.find(ev => getEventId(ev) === eventId) ||
+    futureEvents.find(ev => getEventId(ev) === eventId)
+  );
+}
 
 // cache-enabled, guarantees only one fetch
 function runOnlyOnce(fetcher) {

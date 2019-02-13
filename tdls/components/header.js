@@ -32,7 +32,7 @@ export default ({ allEvents }) => {
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item dropdown">
-              <Link href="/#events">
+              <Link href="/#main">
                 <a className="nav-link">Events</a>
               </Link>
             </li>

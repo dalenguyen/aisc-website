@@ -32,13 +32,13 @@ export const EventModalWrapper = ({ children }) => {
   const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
 
   const fetchAndSetEvent = async (eventId) => {
-    const { pastEvents, futureEvents } = await getEventsAndGroupings();
+    const { pastEvents, futureEvents } = await getEventsAndGroupings(false);
     const event = futureEvents.find(ev => getEventId(ev) === eventId) || pastEvents.find(ev => getEventId(ev) === eventId);
     setEventsData({ event });
   }
 
   const fetchAndSetProfile = async () => {
-    const linkedInDict = await getLinkedInProfiles();
+    const linkedInDict = await getLinkedInProfiles(false);
     setLinkedInData({ linkedInDict });
   }
 

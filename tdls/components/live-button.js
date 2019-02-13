@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { getEventsAndGroupings } from '../utils/event-fetch';
-import { pad, eventStatus, getEventId} from '../../common/event';
+import { pad, eventStatus, getEventId } from '../../common/event';
 
 import { sleep } from '../../common/utils';
 
@@ -43,7 +43,7 @@ export default ({ allEvents }) => {
   });
 
   const fetchAndSetUpcomingEvent = async () => {
-    const allEvents = await getEventsAndGroupings();
+    const allEvents = await getEventsAndGroupings(false);
     const e = findNextUpcomingEvent(allEvents);
     setUpcomingEventData({ upcomingEvent: e });
   }

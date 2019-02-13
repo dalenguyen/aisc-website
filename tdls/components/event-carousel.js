@@ -16,7 +16,7 @@ export default ({ filter = null, shuffle = false, allEvents }) => {
   const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
 
   const fetchAndSetProfile = async () => {
-    const linkedInDict = await getLinkedInProfiles();
+    const linkedInDict = await getLinkedInProfiles(false);
     setLinkedInData({ linkedInDict });
   }
 
