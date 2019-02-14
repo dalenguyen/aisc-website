@@ -85,11 +85,11 @@ const Events = ({ allEvents }) => {
           {filteredFuture.length > 0 && (
             <h4><span className="badge badge-primary">Upcoming</span></h4>
           )}
-          <EventList events={filteredFuture} />
+          <EventList events={filteredFuture} toolbar={false} />
           {filteredPast.length > 0 && (
             <h4><span className="badge badge-secondary">Past</span></h4>
           )}
-          <EventList events={filteredPast} />
+          <EventList events={filteredPast} toolbar={false} />
         </section>
       </main>
       <Footer />

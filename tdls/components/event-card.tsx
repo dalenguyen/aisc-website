@@ -8,7 +8,7 @@ import {
   READABLE_EVENT_TYPE, getEventId, toShortDateString
 } from '../../common/event';
 
-export default ({ event: ev }) => {
+export default ({ event: ev, toolbar = true }) => {
   const cardTitle = (
     <Fragment>
       <Link href={`/events/${getEventId(ev)}`}>
@@ -19,7 +19,7 @@ export default ({ event: ev }) => {
     </Fragment>
   )
 
-  const toolbar = (
+  const toolbarElem = (
     <div className="toolbar">
       &nbsp;<a href={`#/events/${getEventId(ev)}`}><i className="fa fa-share-alt fa-lg"></i></a>
       {ev.paper ? <a target="_blank" href={ev.paper}><i className="fa fa-file-text-o fa-lg"></i></a> : null}
@@ -48,7 +48,7 @@ export default ({ event: ev }) => {
       <div className="card-body">
         {cardTitle}
       </div>
-      {toolbar}
+      {toolbar && toolbarElem}
     </div>
   );
 }
