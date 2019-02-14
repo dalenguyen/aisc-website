@@ -56,6 +56,7 @@ const Index = ({ allEvents }) => {
         <ThemesAndSuch />
         <link href="/static/smooth-scroll.css" rel="stylesheet" />
       </Head>
+      <EventRoutingHandler />
       <Header allEvents={allEvents} />
       <section id="welcome">
         <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
