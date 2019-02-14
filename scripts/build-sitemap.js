@@ -38,7 +38,9 @@ const pagePaths = diskPages.map((page) => {
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${ extraPaths.map(p => [`${SITE_ROOT}${p}`]).concat(pagePaths).map(
+${ pagePaths.concat(
+  extraPaths.map(p => [`${SITE_ROOT}${p}`])
+).map(
   ([p, lastMod]) => {
     let xml = '';
     xml += '<url>'
