@@ -31,14 +31,14 @@ const pagePaths = diskPages.map((page) => {
 
   page = page.replace(path.join(__dirname, '..', siteName, 'pages'), '')
   page = page.replace(/.js$/, '')
-  page = `${SITE_ROOT}${page}`
+  page = `${SITE_ROOT}${page}`;
   return [page, lastMod];
 });
 
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${ extraPaths.map(p => [p]).concat(pagePaths).map(
+${ extraPaths.map(p => [`${SITE_ROOT}${p}`]).concat(pagePaths).map(
   ([p, lastMod]) => {
     let xml = '';
     xml += '<url>'
