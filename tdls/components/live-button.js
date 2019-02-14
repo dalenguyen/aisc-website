@@ -15,7 +15,6 @@ export const Countdown = ({ expiresAt }) => {
     });
   }
 
-
   const tick = async () => {
     if (expiresAt) {
       while (true) {

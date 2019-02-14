@@ -22,7 +22,6 @@ import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
 import ResponsiveEmbed from 'react-responsive-embed';
-import ResponsiveEmbedEmpty from 'react-bootstrap/ResponsiveEmbed';
 
 import './single-event.scss';
 
@@ -132,36 +131,60 @@ const SingleEvent = ({ event: ev }) => {
                 </a>
               </div>
               <p><strong>Time:</strong> {timeSnippet}</p>
+              <p><strong>
+                Category:
+                </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
             </div>
             <div className="col-12 col-md-3">
               <section className="info-box">
                 <h5>Presenter Panel</h5>
-                <dl className="row">
+                <ul>
                   {ev.lead.indexOf('?') < 0 && (
-                    <Fragment>
-                      <dt className="col-sm-3">Lead:</dt>
-                      <dd className="col-sm-9"><strong>{nameToLink(ev.lead, linkedInDict[ev.lead])}</strong></dd>
-                    </Fragment>
+                    <li>
+                      Lead:&nbsp;
+                        <strong>
+                        {nameToLink(ev.lead, linkedInDict[ev.lead])}
+                      </strong>
+                    </li>
                   )}
                   {ev.facilitators.length !== 0 && (
-                    <Fragment>
-                      <dt className="col-sm-3">Facilitators: </dt>
-                      <dd className="col-sm-9">{ev.facilitators.map((f, i) => (
-                        <Fragment key={i}>
-                          <strong key={i}>{nameToLink(f, linkedInDict[f])}</strong>&nbsp;
-                    </Fragment>
-                      ))}</dd>
-                    </Fragment>
+                    <li>
+                      Facilitators:&nbsp;
+                      {ev.facilitators.map((f, i) => (
+                        <strong key={i}>{nameToLink(f, linkedInDict[f])}</strong>
+                      )).reduce((prev, curr) => (
+                        <Fragment>
+                          {prev}, {curr}
+                        </Fragment>
+                      ))}
+                    </li>
                   )}
-                </dl>
+                </ul>
                 {
                   ev.why && (
                     <Fragment>
-                      <h6>Motivation</h6>
+                      <h5>Motivation</h5>
                       {ev.why}
                     </Fragment>
                   )
                 }
+                <ul className="list-unstyled artifact-list">
+                  {[
+                    [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
+                    [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')('Slides', `/static/${link}`)],
+                    [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
+                    [ev.code_official, 'Official code', iconLinkFn('fa-github')],
+                    [ev.code_unofficial, 'Unofficial code', iconLinkFn('fa-github')],
+                    [ev.dataset1, 'Unofficial code 1', iconLinkFn('fa-database')],
+                    [ev.dataset2, 'Unofficial code 2', iconLinkFn('fa-database')],
+
+                  ].map(([content, label, linkFn]) => content &&
+                    (
+                      <li key={label}>
+                        {linkFn(label, content)}
+                      </li>
+                    ))}
+                </ul>
                 {
                   status !== 'expired' && (
                     <Fragment>
@@ -186,35 +209,6 @@ const SingleEvent = ({ event: ev }) => {
             </div>
           </div>
         </section>
-        <section>
-          <header>
-          </header>
-          <main className={isTentative(ev) ? 'tentative' : ''}>
-            <dl className="row">
-              {[
-                [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
-                [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')(`/static/${link}`)],
-                [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
-                [ev.code_official, 'Official code', iconLinkFn('fa-github')],
-                [ev.code_unofficial, 'Unofficial code', iconLinkFn('fa-github')],
-                [ev.dataset1, 'Unofficial code 1', iconLinkFn('fa-database')],
-                [ev.dataset2, 'Unofficial code 2', iconLinkFn('fa-database')],
-
-              ].map(([content, label, linkFn]) => content &&
-                (
-                  <Fragment key={label}>
-                    < dt className="col-sm-4">{label}</dt>
-                    <dd className="col-sm-8">{linkFn(content)}</dd>
-                  </Fragment>
-                ))}
-
-              <dt className="col-sm-4">Category:</dt> <dd className="col-sm-8">{READABLE_EVENT_TYPE[ev.type]}</dd>
-            </dl>
-          </main>
-          <footer>
-
-          </footer>
-        </section>
         <Footer />
         <SharedBodyScripts />
       </Fragment >
@@ -225,9 +219,10 @@ const SingleEvent = ({ event: ev }) => {
 
 
 function iconLinkFn(iconClass) {
-  return (url) => (
+  return (label, url) => (
     <Fragment>
       <a target="_blank" href={url}>
+        <strong >{label}:&nbsp;</strong>
         <i className={`fa fa-lg ${iconClass}`}></i>
         &nbsp;<i className="fa fa-external-link"></i>
       </a>
