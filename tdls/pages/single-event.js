@@ -80,7 +80,7 @@ const SingleEvent = ({ event: ev }) => {
     if (ev.why) {
       desc += `${ev.why} | `;
     }
-    lead += `lead: ${ev.lead}, facilitators: ${ev.facilitators.join(', ')}; `;
+    desc += `lead: ${ev.lead}, facilitators: ${ev.facilitators.join(', ')}; `;
     if (ev.venue) {
       desc += `Venue: ${ev.venue} ;`;
     }
@@ -108,16 +108,14 @@ const SingleEvent = ({ event: ev }) => {
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />) : (
-                    <ResponsiveEmbedEmpty aspectRatio="16by9">
-                      <div className="empty-info">
-                        <p className="lead">
-                          No recording or live stream video available yet.
+                    <div className="empty-info">
+                      <p className="lead">
+                        No recording or live stream video available yet.
                         </p>
-                        <p className="lead">
-                          If this is a future event, please check back a few days before the session starts.
+                      <p className="lead">
+                        If this is a future event, please check back a few days before the session starts.
                         </p>
-                      </div>
-                    </ResponsiveEmbedEmpty>
+                    </div>
                   )
               }
               <div className="title-info">
