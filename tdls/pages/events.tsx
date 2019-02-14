@@ -114,7 +114,7 @@ function textContainsCaseInsensitive(term, text) {
   if (!text) {
     return false;
   }
-  return text.toLowerCase().indexOf(term) >= 0;
+  return text.toLowerCase().indexOf(term.toLowerCase()) >= 0;
 }
 
 Events.getInitialProps = async ({ req }) => {
