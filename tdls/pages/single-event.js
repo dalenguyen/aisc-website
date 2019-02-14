@@ -23,6 +23,7 @@ import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
 import ResponsiveEmbed from 'react-responsive-embed';
 import ResponsiveEmbedEmpty from 'react-bootstrap/ResponsiveEmbed';
+
 import './single-event.scss';
 
 const SingleEvent = ({ event: ev }) => {
@@ -86,7 +87,7 @@ const SingleEvent = ({ event: ev }) => {
     return (
       <Fragment>
         <Head>
-          <title>{ev.title} | Toronto Deep Learning Series (#TDLS)</title>
+          <title>{ev.title} | {READABLE_EVENT_TYPE[ev.type]} | Toronto Deep Learning Series (#TDLS)</title>
           <meta name="description" content={desc} />
           <ThemesAndSuch />
         </Head>
