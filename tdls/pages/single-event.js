@@ -222,8 +222,9 @@ function iconLinkFn(iconClass) {
   return (label, url) => (
     <Fragment>
       <a target="_blank" href={url}>
-        <strong >{label}:&nbsp;</strong>
         <i className={`fa fa-lg ${iconClass}`}></i>
+        &nbsp;&nbsp;
+        <strong>{label}</strong>
         &nbsp;<i className="fa fa-external-link"></i>
       </a>
     </Fragment>
