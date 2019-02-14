@@ -75,12 +75,13 @@ const SingleEvent = ({ event: ev }) => {
       </Fragment>
     );
 
-    const desc = `
-    lead: ${ev.lead}, facilitators: ${ev.facilitators.join(', ')}
-    Venue: ${ev.venue}
-    Motivation
-    ${ev.why}
-    `
+    let desc = `lead: ${ev.lead}, facilitators: ${ev.facilitators.join(', ')}; `;
+    if (ev.venue) {
+      desc += `Venue: ${ev.venue} ;`;
+    }
+    if (ev.why) {
+      desc += `Motivation: ${ev.why}`;
+    }
 
     return (
       <Fragment>
