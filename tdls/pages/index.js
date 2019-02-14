@@ -29,10 +29,8 @@ const EventRoutingHandler = ({ }) => {
     } else {
       const hash = newURL.substring(newURL.indexOf('#') + 1);
 
-      if (hash.startsWith('/events/')) {
-        const eventId = hash.substring('/events/'.length);
-        Router.push(`/events/${eventId}`);
-
+      if (hash.startsWith('/events')) {
+        Router.push(hash);
       }
     }
   }
