@@ -175,8 +175,8 @@ const SingleEvent = ({ event: ev }) => {
                     [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
                     [ev.code_official, 'Official code', iconLinkFn('fa-github')],
                     [ev.code_unofficial, 'Unofficial code', iconLinkFn('fa-github')],
-                    [ev.dataset1, 'Unofficial code 1', iconLinkFn('fa-database')],
-                    [ev.dataset2, 'Unofficial code 2', iconLinkFn('fa-database')],
+                    [ev.dataset1, 'Dataset 1', iconLinkFn('fa-database')],
+                    [ev.dataset2, 'Dataset 2', iconLinkFn('fa-database')],
 
                   ].map(([content, label, linkFn]) => content &&
                     (
