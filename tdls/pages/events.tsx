@@ -1,6 +1,9 @@
-import { Fragment, useState, ChangeEventHandler, ChangeEvent } from 'react';
+import { Fragment, useState, ChangeEvent } from 'react';
 import React from 'react';
-
+import {
+  InputGroup, DropdownButton, Dropdown, FormControl,
+  Form
+} from 'react-bootstrap';
 
 import Head from 'next/head'
 import Header from '../components/header'
@@ -11,34 +14,58 @@ import EventList from '../components/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import './events.scss';
 
-const EventFilters = ({ onChange }) => {
+interface Filter {
+  searchText?: string
+  category: string | 'all'
+  stream?: string
+}
+
+const EventFilters = ({ onChange = () => undefined }: { onChange: (f: Filter) => void }) => {
 
   const [{ searchText }, setSearchText] = useState({ searchText: "" });
+  const [{ category }, setCategory] = useState({ category: "all" });
 
-  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onSearchChange = (e) => {
+    console.log(e)
     const newVal = e.target.value;
     setSearchText({ searchText: newVal });
-    if (onChange) {
-      onChange({ searchText: newVal });
-    }
+    onChange({ searchText: newVal, category });
+  }
+
+  const onCategoryChange = (e) => {
+    const newVal = e.target.value;
+    setCategory({ category: newVal });
+    onChange({ searchText, category: newVal });
   }
 
   return (
-    <form className="event-filter-bar form-inline">
-      <div className="input-group mb-2 mr-sm-2">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="basic-addon1">
-            <i className="fa fa-search"></i>
-          </span>
-        </div>
-        <input
-          type="text" onChange={onSearchChange}
+    <Form inline className="event-filter-bar form-inline">
+      <InputGroup className="mb-2 mr-sm-2" size="lg">
+        <InputGroup.Text
+          as={InputGroup.Prepend}
+        >
+          <i className="fa fa-search"></i>
+        </InputGroup.Text>
+        <FormControl
+          onChange={onSearchChange}
           value={searchText}
-          className="form-control form-control-lg"
-          placeholder="Search events" aria-label="search-events"
+          placeholder="Search events"
+          aria-describedby="basic-addon1"
         />
-      </div>
-    </form>
+        {/* <DropdownButton
+          as={InputGroup.Prepend}
+          variant="outline-secondary"
+          title="By subject"
+          id="input-group-dropdown-1"
+        >
+          <Dropdown.Item value="all">All</Dropdown.Item>
+          <Dropdown.Item href="#">Another action</Dropdown.Item>
+          <Dropdown.Item href="#">Something else here</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item href="#">Separated link</Dropdown.Item>
+        </DropdownButton> */}
+      </InputGroup>
+    </Form>
   );
 }
 
@@ -104,13 +131,14 @@ function match(ev, { searchText }) {
       textContainsCaseInsensitive(searchText, ev.title) ||
       textContainsCaseInsensitive(searchText, ev.why) ||
       textContainsCaseInsensitive(searchText, ev.lead) ||
+      ev.subjects.some(s => textContainsCaseInsensitive(searchText, s)) ||
       textContainsCaseInsensitive(searchText, ev.facilitators.join(' ')) ||
       textContainsCaseInsensitive(searchText, ev.venue)
     );
   }
 }
 
-function textContainsCaseInsensitive(term, text) {
+function textContainsCaseInsensitive(term: string, text: string) {
   if (!text) {
     return false;
   }
