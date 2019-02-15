@@ -5,10 +5,12 @@ import Link from 'next/link';
 import "./event-card.scss";
 
 import {
-  READABLE_EVENT_TYPE, getEventId, toShortDateString
+  getEventId, toShortDateString
 } from '../../common/event';
 
-export default ({ event: ev, toolbar = true }) => {
+export default ({ event: ev, showToolbar = true, showDate = true }) => {
+  const date = new Date(ev.date);
+
   const cardTitle = (
     <Fragment>
       <Link href={`/events/${getEventId(ev)}`}>
@@ -20,7 +22,7 @@ export default ({ event: ev, toolbar = true }) => {
   )
 
   const toolbarElem = (
-    <div className="toolbar">
+    <div className="toolbar align-self-end">
       &nbsp;<a href={`#/events/${getEventId(ev)}`}><i className="fa fa-share-alt fa-lg"></i></a>
       {ev.paper ? <a target="_blank" href={ev.paper}><i className="fa fa-file-text-o fa-lg"></i></a> : null}
       {ev.video ? <a target="_blank" href={ev.video}><i className="fa fa-play-circle fa-lg"></i></a> : null}
@@ -33,13 +35,19 @@ export default ({ event: ev, toolbar = true }) => {
     </div>
   );
 
+  const dateElem = (
+    <div className="date align-self-end">
+      {toShortDateString(date)}
+    </div>
+  );
+
   const thumb = (
     <img className="card-img-top" src={ev.video ? ytThumb(ev.video) : '/static/images/placeholder.jpeg'} alt="Card image cap" />
   );
 
   return (
 
-    <div className={"event card " + (ev.type ? ' event-' + ev.type : '')}>
+    <div className={"d-flex flex-column justify-content-between event card " + (ev.type ? ' event-' + ev.type : '')}>
       <Link href={`/events/${getEventId(ev)}`}>
         <a>
           {thumb}
@@ -48,7 +56,10 @@ export default ({ event: ev, toolbar = true }) => {
       <div className="card-body">
         {cardTitle}
       </div>
-      {toolbar && toolbarElem}
+      <div className="align-self-end card-end">
+        {showToolbar && toolbarElem}
+        {showDate && dateElem}
+      </div>
     </div>
   );
 }

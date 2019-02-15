@@ -13,7 +13,7 @@ export default ({ events, toolbar = true }: { events: Event[], toolbar: boolean 
         {events.map(ev => (
           <div key={getEventId(ev)}
             className="col-12 col-md-6 col-lg-4 col-lg-3 col-xl-2">
-            <EventCard event={ev} toolbar={toolbar} />
+            <EventCard event={ev} showToolbar={toolbar} />
           </div>
         ))}
       </div>

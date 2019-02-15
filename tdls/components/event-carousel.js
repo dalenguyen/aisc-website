@@ -73,7 +73,7 @@ export default ({ filter = null, shuffle = false, allEvents }) => {
     <Slider className="past-event-list event-carousel" {...settings}>
       {(shuffle ? randomShuffle : a => a)(filterEvents(events, filter), 41).map((event, idx) => {
         return (
-          <EventCard key={idx} {...{ event }} />
+          <EventCard key={idx} {...{ event }} showDate={false} />
         );
       })}
     </Slider>
