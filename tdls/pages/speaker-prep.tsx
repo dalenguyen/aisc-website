@@ -73,6 +73,9 @@ const rows = [
 ];
 
 const SpeakerPrep = ({ event }) => {
+  if (!event) {
+    return 'no event specified';
+  }
   const date = new Date(event.date);
 
   return (

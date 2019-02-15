@@ -199,7 +199,7 @@ const Events = ({ allEvents }) => {
         <EventFilters onChange={filterEvents} subjects={subjects} streams={streams} />
         <section className="container-fluid">
           {filteredFuture.length > 0 && (
-            <h4><span className="badge badge-primary">Upcoming</span></h4>
+            <h4><span className="badge badge-warning">Upcoming</span></h4>
           )}
           <EventList events={filteredFuture} toolbar={false} />
           {filteredPast.length > 0 && (

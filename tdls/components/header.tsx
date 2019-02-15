@@ -9,7 +9,7 @@ export default ({ allEvents, before }) => {
     <Fragment>
       <header className="main-navbar">
         <nav
-          className="navbar navbar-expand-md fixed-top navbar-light"
+          className="navbar navbar-expand-md fixed-top navbar-inverse"
           style={{ backgroundColor: 'white' }}
         >
           {before}
