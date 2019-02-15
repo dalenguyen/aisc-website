@@ -10,5 +10,5 @@ export const MONTH_NAMES = [
 
 
 export function toLongDateString(date) {
-  return `${WEEKDAYS[date.getDay()]}, ${date.getDate()}-${MONTH_NAMES[date.getMonth()]}-${date.getYear() + 1900}`;
+  return `${WEEKDAYS[date.getDay()]} ${date.getDate()}-${MONTH_NAMES[date.getMonth()]}-${date.getYear() + 1900}`;
 }

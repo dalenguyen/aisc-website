@@ -13,17 +13,19 @@ export default () => (
     <div className="row">
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Lead or facilitate discussions</h5>
             <p className="card-text">We'd love to have you! Please send us an email or tweet at us with any potential
     topics that you want to cover.</p>
-            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20am%20interested%20to%20speak%20about:%20"
-              target="_blank">
-              <i className="fa fa-twitter fa-2x"></i>
-            </a>
-            <a href="mailto:events@a-i.science?subject:I%20am%20interested%20to%20speak%20at%20TDLS" target="_blank">
-              <i className="fa fa-envelope fa-2x"></i>
-            </a>
+            <div className="mt-auto">
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20am%20interested%20to%20speak%20about:%20"
+                target="_blank">
+                <i className="fa fa-twitter fa-2x"></i>
+              </a>
+              <a href="mailto:events@a-i.science?subject:I%20am%20interested%20to%20speak%20at%20TDLS" target="_blank">
+                <i className="fa fa-envelope fa-2x"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -130,11 +132,13 @@ export default () => (
       </div>
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">YouTube</h5>
             <p className="card-text">To get updates about our videos subscribe to our YouTube channel for a front row
     seat.</p>
-            <YoutubeSubscribeButton />
+            <div className="mt-auto">
+              <YoutubeSubscribeButton />
+            </div>
           </div>
         </div>
       </div>

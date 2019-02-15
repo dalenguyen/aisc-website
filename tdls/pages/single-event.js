@@ -191,7 +191,7 @@ const SingleEvent = ({ event: ev }) => {
                 <ul className="list-unstyled artifact-list">
                   {[
                     [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
-                    [ev.slides, 'Slides', link => iconLinkFn('fa-file-powerpoint-o')('Slides', `/static/${link}`)],
+                    [ev.slides, 'Slides', (lbl, link) => iconLinkFn('fa-file-powerpoint-o')(lbl, `/static/${link}`)],
                     [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
                     [ev.code_official, 'Official code', iconLinkFn('fa-github')],
                     [ev.code_unofficial, 'Unofficial code', iconLinkFn('fa-github')],

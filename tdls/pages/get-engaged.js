@@ -9,7 +9,7 @@ import GetEngagedSection from '../components/get-engaged-section';
 const GetEngaged = ({ }) => (
   <Fragment>
     <Head>
-      <title>Get Engaged</title>
+      <title>Get Engaged | Toronto Deep Learning Series</title>
       <ThemesAndSuch />
     </Head>
     <Header />
