@@ -11,7 +11,7 @@ const [n, _, siteName] = process.argv;
 assert(siteName, 'site name argument is required.');
 
 const SITE_ROOT = process.env.SITE_ROOT || 'https://tdls.a-i.science'
-const SOURCE = process.env.SOURCE || path.join(__dirname, '..', siteName, 'pages', '/**/*.js')
+const SOURCE = process.env.SOURCE || path.join(__dirname, '..', siteName, 'pages', '/**/*.[tj]*')
 const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', siteName, 'root-static', 'sitemap.xml')
 
 let diskPages = glob.sync(SOURCE)
@@ -31,6 +31,8 @@ const pagePaths = diskPages.map((page) => {
 
   page = page.replace(path.join(__dirname, '..', siteName, 'pages'), '')
   page = page.replace(/.js$/, '')
+  page = page.replace(/.ts$/, '')
+  page = page.replace(/.tsx$/, '')
   page = `${SITE_ROOT}${page}`;
   return [page, lastMod];
 });
