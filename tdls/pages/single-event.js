@@ -66,6 +66,7 @@ const SingleEvent = ({ event: ev }) => {
 
     const agenda = (
       <Fragment>
+        <hr />
         <h4 >Agenda</h4>
         <ul className="list-unstyled">
           <li>5:30-6:15,   arrivals and socializing</li>
@@ -73,7 +74,11 @@ const SingleEvent = ({ event: ev }) => {
           <li>6:30-7:15,   algorithm review</li>
           <li>7:15-8:00,   results and discussions</li>
         </ul>
-      </Fragment>
+        <Link href="/code-of-conduct">
+          <a className="btn btn-secondary">Code of Conduct</a>
+        </Link>
+        <hr />
+      </Fragment >
     );
 
     let desc = ``;
@@ -124,12 +129,6 @@ const SingleEvent = ({ event: ev }) => {
                     <a ><i className="fa fa-arrow-circle-left"></i>
                     </a></Link> {ev.title}
                 </h1>
-                <a
-                  className="btn btn-danger subscribe-youtube pull-right"
-                  target="_blank"
-                  href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
-                  <i className="fa fa-youtube"></i>&nbsp;Subscribe
-                </a>
               </div>
               <p><strong>Time:</strong> {timeSnippet}</p>
               <p><strong>
@@ -156,7 +155,8 @@ const SingleEvent = ({ event: ev }) => {
                     </h4>
                   )
                 }
-                <h5>Presenter Panel</h5>
+                <hr />
+                <h4>Presenter Panel</h4>
                 <ul className="list-unstyled">
                   {ev.lead.indexOf('?') < 0 && (
                     <li>
@@ -205,23 +205,23 @@ const SingleEvent = ({ event: ev }) => {
                     ))}
                 </ul>
                 {
-                  status !== 'expired' && (
-                    <Fragment>
-                      {agenda}
-                      <Link href="/code-of-conduct">
-                        <a className="btn btn-secondary">Code of Conduct</a>
-                      </Link>
-                    </Fragment>
-                  )
+                  status !== 'expired' && agenda
                 }
 
               </section>
-              <p>
+              <p className="">
                 <Link href="/get-engaged">
                   <a className="btn btn-primary">Get Engaged</a>
-                </Link>
+                </Link>&nbsp;
+                <a
+                  className="btn btn-danger subscribe-youtube"
+                  target="_blank"
+                  href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                  <i className="fa fa-youtube"></i>&nbsp;Subscribe
+                </a>
               </p>
               <p>
+                <hr />
                 <Link href="/events">
                   <a className="btn btn-secondary" >
                     <i className="fa fa-arrow-circle-left"></i> Back to events
