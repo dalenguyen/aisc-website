@@ -1,8 +1,8 @@
-import { Fragment, useState, ChangeEvent } from 'react';
+import { Fragment, useState, ChangeEvent, useEffect } from 'react';
 import React from 'react';
 import {
   InputGroup, DropdownButton, Dropdown, FormControl,
-  Form
+  Form, Button
 } from 'react-bootstrap';
 
 import Head from 'next/head'
@@ -15,30 +15,42 @@ import { getEventsAndGroupings } from '../utils/event-fetch';
 import './events.scss';
 
 import debounce from 'lodash/debounce';
+import isEmpty from 'lodash/isEmpty';
 
 interface Filter {
   searchText?: string
-  category: string | 'all'
+  subject: string | 'all'
   stream?: string
 }
 
-const EventFilters = ({ onChange = () => undefined }: { onChange: (f: Filter) => void }) => {
+const EMPTY_FILTER = { searchText: "", subject: "all" };
 
-  const [{ searchText }, setSearchText] = useState({ searchText: "" });
-  const [{ category }, setCategory] = useState({ category: "all" });
+const EventFilters = ({
+  onChange = () => undefined, subjects = [] }:
+  { onChange: (f: Filter) => void, subjects: string[] }
+) => {
+  const [currFilter, setFilter] = useState(EMPTY_FILTER);
 
-  const onSearchChange = (e) => {
-    console.log(e)
+  const onSearchChange = (e: any) => {
     const newVal = e.target.value;
-    setSearchText({ searchText: newVal });
-    onChange({ searchText: newVal, category });
+    const newFilter = Object.assign({}, currFilter, { searchText: newVal });
+    setFilter(newFilter);
   }
 
-  const onCategoryChange = (e) => {
-    const newVal = e.target.value;
-    setCategory({ category: newVal });
-    onChange({ searchText, category: newVal });
+  const onSubjectChange = (newVal: string) => {
+    const newFilter = Object.assign({}, currFilter, { subject: newVal });
+    setFilter(newFilter);
   }
+
+  const clearFilter = () => {
+    setFilter(EMPTY_FILTER);
+  }
+
+  useEffect(() => {
+    onChange(currFilter);
+  }, [Object.keys(EMPTY_FILTER)]);
+
+  const { searchText, subject } = currFilter;
 
   return (
     <Form inline className="event-filter-bar form-inline">
@@ -54,21 +66,55 @@ const EventFilters = ({ onChange = () => undefined }: { onChange: (f: Filter) =>
           placeholder="Search events"
           aria-describedby="basic-addon1"
         />
-        {/* <DropdownButton
-          as={InputGroup.Prepend}
-          variant="outline-secondary"
-          title="By subject"
-          id="input-group-dropdown-1"
-        >
-          <Dropdown.Item value="all">All</Dropdown.Item>
-          <Dropdown.Item href="#">Another action</Dropdown.Item>
-          <Dropdown.Item href="#">Something else here</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item href="#">Separated link</Dropdown.Item>
-        </DropdownButton> */}
+
       </InputGroup>
+      <InputGroup className="mb-2 mr-sm-2" >
+        <DropdownButton
+          size="lg"
+          variant="outline-secondary"
+          title={subject === 'all' ? 'By subject' : subject}
+          id="input-group-dropdown-1"
+          value={subject}
+        >
+          <Dropdown.Item
+            value="all"
+            onSelect={() => onSubjectChange('all')}
+          >All</Dropdown.Item>
+          <Dropdown.Divider />
+          {
+            subjects.map(s => (
+              <Dropdown.Item
+                key={s}
+                onSelect={() => onSubjectChange(s)}>{s}</Dropdown.Item>
+            ))
+          }
+        </DropdownButton>
+      </InputGroup>
+
+      {
+        <InputGroup className="mb-2 mr-sm-2">
+          {!filterClean(currFilter) && (
+            <Button
+              variant="outline-secondary"
+              size="lg"
+              onClick={clearFilter}
+            >
+              <i className="fa fa-times"></i>
+            </Button>)}
+        </InputGroup>
+      }
     </Form>
   );
+}
+
+function filterClean(f: Filter) {
+  return !Object.keys(f).some(k => {
+    if (k === 'subject') {
+      return f[k] !== 'all'
+    } else {
+      return !isEmpty(f[k])
+    }
+  });
 }
 
 function cap(arr: any[], limit: number) {
@@ -76,20 +122,22 @@ function cap(arr: any[], limit: number) {
 }
 
 const Events = ({ allEvents }) => {
-  const { pastEvents, futureEvents } = allEvents;
+  const { pastEvents, futureEvents, subjects } = allEvents;
 
   const [{ filteredPast, filteredFuture }, setEventState] = useState({
     filteredPast: cap(pastEvents, 18), filteredFuture: cap(futureEvents, 5)
   });
 
-  const filterEvents = debounce(({ searchText }) => {
-    let filteredPast, filteredFuture;
+  const filterEvents = debounce(({ searchText, subject }: Filter) => {
+    let filteredPast = pastEvents, filteredFuture = futureEvents;
     if (searchText && searchText.length > 0) {
-      filteredPast = pastEvents.filter(ev => match(ev, { searchText }));
-      filteredFuture = futureEvents.filter(ev => match(ev, { searchText }));
-    } else {
-      filteredPast = pastEvents;
-      filteredFuture = futureEvents;
+      filteredPast = filteredPast.filter(ev => match(ev, { searchText }));
+      filteredFuture = filteredFuture.filter(ev => match(ev, { searchText }));
+    }
+
+    if (subject && subject !== 'all') {
+      filteredPast = filteredPast.filter(ev => ev.subjects.some(s => s === subject));
+      filteredFuture = filteredFuture.filter(ev => ev.subjects.some(s => s === subject));
     }
 
     filteredPast = cap(filteredPast, 18);
@@ -109,7 +157,7 @@ const Events = ({ allEvents }) => {
       </Head>
       <Header allEvents={allEvents} />
       <main role="main" id="main">
-        <EventFilters onChange={filterEvents} />
+        <EventFilters onChange={filterEvents} subjects={subjects} />
         <section className="container-fluid">
           {filteredFuture.length > 0 && (
             <h4><span className="badge badge-primary">Upcoming</span></h4>
