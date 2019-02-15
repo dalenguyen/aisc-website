@@ -2,6 +2,7 @@ const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass')
 const webpack = require('webpack');
 
+const INTERNAL_TOKEN = 'aaa';
 module.exports = withTypescript(withSass({
 
   webpack: (config) => {
@@ -19,7 +20,6 @@ module.exports = withTypescript(withSass({
   },
 
   exportPathMap(defaultPathMap) {
-
     const { pastEvents, futureEvents } = require('./static/data/events.json');
     const events = pastEvents.concat(futureEvents);
     const { getEventId } = require('../common/event');
@@ -31,9 +31,18 @@ module.exports = withTypescript(withSass({
       }
     }
 
+    const internalPaths = {};
+    ['speaker-prep'].forEach((secretPath) => {
+      delete defaultPathMap[secretPath];
+      internalPaths[`/in-${INTERNAL_TOKEN}/${secretPath}`] = {
+        page: `/${secretPath}`
+      }
+    });
+
     return {
       ...defaultPathMap,
-      ...eventPaths
+      ...internalPaths,
+      ...eventPaths,
     };
   }
 }))

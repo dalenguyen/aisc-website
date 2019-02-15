@@ -67,7 +67,7 @@ const SingleEvent = ({ event: ev }) => {
     const agenda = (
       <Fragment>
         <hr />
-        <h4 >Agenda</h4>
+        <h5>Agenda</h5>
         <ul className="list-unstyled">
           <li>5:30-6:15,   arrivals and socializing</li>
           <li>6:15-6:30    intros and announcements</li>
@@ -124,7 +124,7 @@ const SingleEvent = ({ event: ev }) => {
                   )
               }
               <div className="title-info">
-                <h1 className="title inline">
+                <h1 className="title">
                   <Link href="/events" >
                     <a ><i className="fa fa-arrow-circle-left"></i>
                     </a></Link> {ev.title}
@@ -156,7 +156,7 @@ const SingleEvent = ({ event: ev }) => {
                   )
                 }
                 <hr />
-                <h4>Presenter Panel</h4>
+                <h5>Presenters</h5>
                 <ul className="list-unstyled">
                   {ev.lead.indexOf('?') < 0 && (
                     <li>
@@ -179,6 +179,7 @@ const SingleEvent = ({ event: ev }) => {
                     </li>
                   )}
                 </ul>
+                <hr />
                 {
                   ev.why && (
                     <Fragment>
@@ -209,6 +210,7 @@ const SingleEvent = ({ event: ev }) => {
                 }
 
               </section>
+              <hr />
               <p className="">
                 <Link href="/get-engaged">
                   <a className="btn btn-primary">Get Engaged</a>
@@ -221,7 +223,6 @@ const SingleEvent = ({ event: ev }) => {
                 </a>
               </p>
               <p>
-                <hr />
                 <Link href="/events">
                   <a className="btn btn-secondary" >
                     <i className="fa fa-arrow-circle-left"></i> Back to events
