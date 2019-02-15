@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import Slider from "react-slick";
 import Link from 'next/link';
+import { toLongDateString } from '../utils/datetime';
 
 import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 
@@ -55,8 +56,7 @@ const UpcomingEventItem = ({ event: ev, leadLink, facLinks }) => {
   const date = new Date(ev.date);
   const dateBlock = (
     <p>
-      {WEEKDAYS[date.getDay()]},&nbsp;
-{date.getDate()}-{MONTH_NAMES[date.getMonth()]}-{date.getYear() + 1900}
+      {toLongDateString(date)}
     </p>
   );
   return (

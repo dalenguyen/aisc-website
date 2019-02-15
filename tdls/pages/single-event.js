@@ -141,7 +141,7 @@ const SingleEvent = ({ event: ev }) => {
                 {
                   (status === 'too_early' || status === 'countdown') && (
                     <h4>
-                      <span className="badge badge-danger">
+                      <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'warning' }[status]}`}>
                         Live in <Countdown expiresAt={date} />
                       </span>
                     </h4>
@@ -157,7 +157,7 @@ const SingleEvent = ({ event: ev }) => {
                   )
                 }
                 <h5>Presenter Panel</h5>
-                <ul>
+                <ul className="list-unstyled">
                   {ev.lead.indexOf('?') < 0 && (
                     <li>
                       Lead:&nbsp;
@@ -216,15 +216,18 @@ const SingleEvent = ({ event: ev }) => {
                 }
 
               </section>
-              <div>
+              <p>
                 <Link href="/get-engaged">
                   <a className="btn btn-primary">Get Engaged</a>
-                </Link>&nbsp;
-                <Link href="/events" >
-                  <a className="btn btn-secondary" >&larr; Back to events
+                </Link>
+              </p>
+              <p>
+                <Link href="/events">
+                  <a className="btn btn-secondary" >
+                    <i className="fa fa-arrow-circle-left"></i> Back to events
                 </a>
                 </Link>
-              </div>
+              </p>
             </div>
           </div>
         </section>

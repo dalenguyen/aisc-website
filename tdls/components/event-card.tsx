@@ -1,12 +1,13 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { ytThumb } from '../utils/youtube';
 
 import Link from 'next/link';
 import "./event-card.scss";
 
 import {
-  getEventId, toShortDateString
+  getEventId
 } from '../../common/event';
+import { toLongDateString } from '../utils/datetime';
 
 export default ({ event: ev, showToolbar = true, showDate = true }) => {
   const date = new Date(ev.date);
@@ -37,7 +38,7 @@ export default ({ event: ev, showToolbar = true, showDate = true }) => {
 
   const dateElem = (
     <div className="date align-self-end">
-      {toShortDateString(date)}
+      {toLongDateString(date)}
     </div>
   );
 
