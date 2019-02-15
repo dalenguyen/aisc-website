@@ -60,7 +60,7 @@ const SingleEvent = ({ event: ev }) => {
       </Fragment>
     );
     const venueSnippet = (
-      <Fragment>Venue: {
+      <Fragment><strong>Venue</strong>: {
         status !== 'expired' ?
           "(TDLS members: please refer to Slack or your calendar invite for location)" : venueToLink(ev.venue)
       }
@@ -215,7 +215,6 @@ const SingleEvent = ({ event: ev }) => {
                 }
               </section>
               <hr />
-
               <p className="">
                 <Link href="/get-engaged">
                   <a className="btn btn-primary">Get Engaged</a>
@@ -320,7 +319,5 @@ SingleEvent.getInitialProps = async ({ query: { id }, req }) => {
   const event = await getEventById(isServer, id);
   return { event };
 }
-
-
 
 export default SingleEvent;
