@@ -132,7 +132,7 @@ const SingleEvent = ({ event: ev }) => {
               </div>
               <p><strong>Time:</strong> {timeSnippet}</p>
               <p><strong>
-                Category:
+                Stream:
                 </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
             </div>
             <div className="col-12 col-md-3">

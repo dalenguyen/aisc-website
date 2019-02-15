@@ -47,7 +47,7 @@ export default () => (
         <div className="card border-primary mb-3">
           <div className="card-body">
             <h5 className="card-title">Improve this site</h5>
-            <p className="card-text">Amazing! We're open source, so feel free to clone our GitHub repo, make changes,
+            <p className="card-text">Amazing! We're open source, so feel free to clone <a target="_blank" href="https://github.com/TDLS/tdls.github.io">our GitHub repo</a>, make changes,
               and
     submit a pull request - or you can email or tweet at us with your suggestions.</p>
             <a href="https://github.com/TDLS/tdls.github.io/blob/master/README.md" target="_blank">

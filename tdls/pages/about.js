@@ -70,7 +70,7 @@ const About = ({ contributors }) => (
       </div>
 
       <h3>Website Contributors</h3>
-      <p>We're open source, so feel free to clone our GitHub repo, make changes, and submit a pull request, and your
+      <p>We're open source, so feel free to clone <a target="_blank" href="https://github.com/TDLS/tdls.github.io">our GitHub repo</a>, make changes, and submit a pull request, and your
       GitHub handle would show up here</p>
       {
         contributors ? <article id="site-contributors">
