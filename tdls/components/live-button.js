@@ -5,13 +5,13 @@ import { pad, eventStatus, getEventId } from '../../common/event';
 import { sleep } from '../../common/utils';
 
 export const Countdown = ({ expiresAt }) => {
-  const [_h = 0, _m = 0, _s = 0] = timeFromNow(expiresAt);
-  const [{ h, m, s }, setClockArms] = useState({ h: _h, m: _m, s: _s });
+  const [_d = 0, _h = 0, _m = 0, _s = 0] = timeFromNow(expiresAt);
+  const [{ d, h, m, s }, setClockArms] = useState({ d: _d, h: _h, m: _m, s: _s });
 
   const renderTime = () => {
-    const [h, m, s] = timeFromNow(expiresAt);
+    const [d, h, m, s] = timeFromNow(expiresAt);
     setClockArms({
-      h, m, s
+      d, h, m, s
     });
   }
 
@@ -30,9 +30,17 @@ export const Countdown = ({ expiresAt }) => {
 
   return expiresAt && (
     <Fragment>
-      {pad(h)}:{pad(m)}:{pad(s)}
+      {d && `${d} ${singularOrPlural(d, 'day')} & `}&nbsp;{pad(h)}:{pad(m)}:{pad(s)}
     </Fragment>
   )
+}
+
+function singularOrPlural(num, unit) {
+  if (num <= 1) {
+    return unit;
+  } else {
+    return unit + 's';
+  }
 }
 
 export default ({ allEvents }) => {
@@ -103,11 +111,15 @@ function findNextUpcomingEvent(allEvents) {
 
 function timeFromNow(date) {
   if (!date) {
-    return [0, 0, 0];
+    return [0, 0, 0, 0];
   }
-  const diffInMillSec = date.getTime() - new Date().getTime();
-  const h = Math.floor(diffInMillSec / (1000 * 60 * 60));
-  const m = Math.floor((diffInMillSec - h * (1000 * 60 * 60)) / (1000 * 60));
-  const s = Math.floor((diffInMillSec - h * (1000 * 60 * 60) - m * (1000 * 60)) / 1000);
-  return [h, m, s];
+  let milLLeft = date.getTime() - new Date().getTime();
+  const d = Math.floor(milLLeft / (1000 * 60 * 60 * 24));
+  milLLeft -= d * (1000 * 60 * 60 * 24);
+  const h = Math.floor(milLLeft / (1000 * 60 * 60));
+  milLLeft -= h * (1000 * 60 * 60);
+  const m = Math.floor(milLLeft / (1000 * 60));
+  milLLeft -= m * (1000 * 60);
+  const s = Math.floor(milLLeft / 1000);
+  return [d, h, m, s];
 }

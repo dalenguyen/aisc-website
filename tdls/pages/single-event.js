@@ -5,6 +5,7 @@ import fetch from 'isomorphic-unfetch'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
+import { Countdown } from '../components/live-button';
 import Head from 'next/head'
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
@@ -137,6 +138,24 @@ const SingleEvent = ({ event: ev }) => {
             </div>
             <div className="col-12 col-md-3">
               <section className="info-box">
+                {
+                  (status === 'too_early' || status === 'countdown') && (
+                    <h4>
+                      <span className="badge badge-danger">
+                        Live in <Countdown expiresAt={date} />
+                      </span>
+                    </h4>
+                  )
+                }
+                {
+                  status === 'live' && (
+                    <h4>
+                      <span className="badge badge-danger">
+                        We are live!
+                      </span>
+                    </h4>
+                  )
+                }
                 <h5>Presenter Panel</h5>
                 <ul>
                   {ev.lead.indexOf('?') < 0 && (

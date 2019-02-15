@@ -4,12 +4,19 @@ main {
 }
 
 #welcome {
+  padding-left: 0;
+  padding-right: 0;
   user-select: none;
   position: relative;
+
+  .carousel-indicators {
+    bottom: 8%;
+  }
   .carousel-caption {
     font-style: italic;
     letter-spacing: 0.12em;
     border-radius: 10px;
+    bottom: 10%;
   }
   .scroll-button {
     position: absolute;

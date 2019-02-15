@@ -59,21 +59,6 @@ h5.inline {
   display: inline-block;
 }
 
-#welcome {
-  padding-left: 0;
-  padding-right: 0;
-  margin-top: 10px;
-  position: relative;
-}
-
-#welcome .carousel-caption {
-  bottom: 10%;
-}
-
-#welcome .carousel-indicators {
-  bottom: 8%;
-}
-
 a.scroll-button {
   padding-top: 60px;
 }
