@@ -40,6 +40,8 @@
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
     "isomorphic-unfetch": "^3.0.0",
+    "jquery": "^3.3.1",
+    "jquery-slim": "^3.0.0",
     "lodash": "^4.17.11",
     "moment-timezone": "^0.5.23",
     "next": "^7.0.2",

@@ -5,8 +5,9 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import Head from 'next/head'
 import ThemesAndSuch from '../components/themes-and-such';
+const content = await require(`../docs/code-of-conduct.md`);
 
-const CodeOfConduct = ({ content }) => (
+const CodeOfConduct = () => (
   <Fragment>
     <Head>
       <title>Code of Conduct</title>
@@ -24,10 +25,5 @@ const CodeOfConduct = ({ content }) => (
     <Footer />
   </Fragment>
 );
-
-CodeOfConduct.getInitialProps = async function () {
-  const content = await require(`../docs/code-of-conduct.md`)
-  return { content }
-}
 
 export default CodeOfConduct;

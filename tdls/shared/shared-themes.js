@@ -1,5 +1,7 @@
 import { Fragment } from 'react';
 import './shared-themes.scss';
+import 'jquery-slim';
+// import 'bootstrap/dist/js/bootstrap';
 
 export default () => (
   <Fragment>

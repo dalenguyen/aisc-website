@@ -8,10 +8,13 @@ import ThemesAndSuch from '../components/themes-and-such';
 import { getEventById } from '../utils/event-fetch';
 import { toLongDateString } from '../utils/datetime';
 import Chart from "react-google-charts";
-import ResponsiveEmbed from 'react-bootstrap/ResponsiveEmbed'
+import ReactMarkdown from 'react-markdown';
+
+// const { prepTalk } = require(`../data/docs.json`);
+const prepTalk = require('../data/prep-talk.md');
 
 
-function daysToMilliseconds(days) {
+function daysToMilliseconds(days: number) {
   return days * 24 * 60 * 60 * 1000;
 }
 const columns = [
@@ -89,18 +92,17 @@ const SpeakerPrep = ({ event }) => {
       <Header allEvents={null} />
       <main role="main" id="main">
         <section className="container">
-          <h1>
-            Preparation
-          </h1>
-          <p>
-            Thanks for offering to present a paper. We appreciate your effort.
-            The key to a success presentation is to <strong>prepare early</strong> and <strong>get feedback often</strong>.
-            We hope that this guide will help you along the way.
-          </p>
+          <ReactMarkdown source={prepTalk} />
           <p className="lead">
             Title: {event.title}<br />
             Presentation date: {toLongDateString(date)}
           </p>
+          <h2>Timeline</h2>
+          <ul>
+
+          </ul>
+          <ul>
+          </ul>
           <article>
             <Chart
               options={{
