@@ -14,6 +14,10 @@ import EventList from '../components/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import './events.scss';
 
+import {
+  READABLE_EVENT_TYPE
+} from '../../common/event';
+
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
 
@@ -23,34 +27,39 @@ interface Filter {
   stream?: string
 }
 
-const EMPTY_FILTER = { searchText: "", subject: "all" };
+const EMPTY_FILTER = { searchText: "", subject: "all", stream: "all" };
 
 const EventFilters = ({
-  onChange = () => undefined, subjects = [] }:
-  { onChange: (f: Filter) => void, subjects: string[] }
+  onChange = () => undefined, subjects = [], streams = [] }:
+  {
+    onChange: (f: Filter) => void, subjects: string[],
+    streams: string[]
+  }
 ) => {
   const [currFilter, setFilter] = useState(EMPTY_FILTER);
 
   const onSearchChange = (e: any) => {
     const newVal = e.target.value;
-    const newFilter = Object.assign({}, currFilter, { searchText: newVal });
-    setFilter(newFilter);
+    setFilter(Object.assign({}, currFilter, { searchText: newVal }));
   }
 
   const onSubjectChange = (newVal: string) => {
-    const newFilter = Object.assign({}, currFilter, { subject: newVal });
-    setFilter(newFilter);
+    setFilter(Object.assign({}, currFilter, { subject: newVal }));
+  }
+  const onStreamChange = (newVal: string) => {
+    setFilter(Object.assign({}, currFilter, { stream: newVal }));
   }
 
   const clearFilter = () => {
     setFilter(EMPTY_FILTER);
   }
 
+  // apply filter to event list
   useEffect(() => {
     onChange(currFilter);
   }, [Object.keys(EMPTY_FILTER)]);
 
-  const { searchText, subject } = currFilter;
+  const { searchText, subject, stream } = currFilter;
 
   return (
     <Form inline className="event-filter-bar form-inline">
@@ -73,7 +82,6 @@ const EventFilters = ({
           size="lg"
           variant="outline-secondary"
           title={subject === 'all' ? 'By subject' : subject}
-          id="input-group-dropdown-1"
           value={subject}
         >
           <Dropdown.Item
@@ -91,18 +99,42 @@ const EventFilters = ({
         </DropdownButton>
       </InputGroup>
 
-      {
+      <InputGroup className="mb-2 mr-sm-2" >
+        <DropdownButton
+          size="lg"
+          variant="outline-secondary"
+          title={stream === 'all' ? 'By stream' : READABLE_EVENT_TYPE[stream]}
+          value={stream}
+        >
+          <Dropdown.Item
+            value="all"
+            onSelect={() => onStreamChange('all')}
+          >All</Dropdown.Item>
+          <Dropdown.Divider />
+          {
+            streams.map(s => (
+              <Dropdown.Item
+                key={s}
+                onSelect={() => onStreamChange(s)}>
+                {READABLE_EVENT_TYPE[s]}
+              </Dropdown.Item>
+            ))
+          }
+        </DropdownButton>
+      </InputGroup>
+
+      {!filterClean(currFilter) && (
         <InputGroup className="mb-2 mr-sm-2">
-          {!filterClean(currFilter) && (
-            <Button
-              variant="outline-secondary"
-              size="lg"
-              onClick={clearFilter}
-            >
-              <i className="fa fa-times"></i>
-            </Button>)}
+
+          <Button
+            variant="outline-success"
+            size="lg"
+            onClick={clearFilter}
+          >
+            <i className="fa fa-times"></i>
+          </Button>
         </InputGroup>
-      }
+      )}
     </Form>
   );
 }
@@ -110,6 +142,8 @@ const EventFilters = ({
 function filterClean(f: Filter) {
   return !Object.keys(f).some(k => {
     if (k === 'subject') {
+      return f[k] !== 'all'
+    } else if (k === 'stream') {
       return f[k] !== 'all'
     } else {
       return !isEmpty(f[k])
@@ -122,13 +156,13 @@ function cap(arr: any[], limit: number) {
 }
 
 const Events = ({ allEvents }) => {
-  const { pastEvents, futureEvents, subjects } = allEvents;
+  const { pastEvents, futureEvents, subjects, streams } = allEvents;
 
   const [{ filteredPast, filteredFuture }, setEventState] = useState({
     filteredPast: cap(pastEvents, 18), filteredFuture: cap(futureEvents, 5)
   });
 
-  const filterEvents = debounce(({ searchText, subject }: Filter) => {
+  const filterEvents = debounce(({ searchText, subject, stream }: Filter) => {
     let filteredPast = pastEvents, filteredFuture = futureEvents;
     if (searchText && searchText.length > 0) {
       filteredPast = filteredPast.filter(ev => match(ev, { searchText }));
@@ -138,6 +172,11 @@ const Events = ({ allEvents }) => {
     if (subject && subject !== 'all') {
       filteredPast = filteredPast.filter(ev => ev.subjects.some(s => s === subject));
       filteredFuture = filteredFuture.filter(ev => ev.subjects.some(s => s === subject));
+    }
+
+    if (stream && stream !== 'all') {
+      filteredPast = filteredPast.filter(ev => ev.type === stream);
+      filteredFuture = filteredFuture.filter(ev => ev.type === stream);
     }
 
     filteredPast = cap(filteredPast, 18);
@@ -157,7 +196,7 @@ const Events = ({ allEvents }) => {
       </Head>
       <Header allEvents={allEvents} />
       <main role="main" id="main">
-        <EventFilters onChange={filterEvents} subjects={subjects} />
+        <EventFilters onChange={filterEvents} subjects={subjects} streams={streams} />
         <section className="container-fluid">
           {filteredFuture.length > 0 && (
             <h4><span className="badge badge-primary">Upcoming</span></h4>
