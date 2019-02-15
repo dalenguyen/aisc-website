@@ -7,7 +7,7 @@ editor: Taraneh Khazaei, Lindsay Brin
 
 --- 
 
-Self-Attention Generative Adversarial Networks (SAGAN; *Zhang et al., 2018*) are convolutional neural networks that use the self-attention paradigm to capture long-range spatial relationships in existing images to better synthesize new images. TDLS recently presented and discussed this paper, led by  Xiyang Chen. The details of the event can be found on the [TDLS website](https://tdls.a-i.science/events/2018-06-11/), and the full presentation can be viewed on [YouTube](https://www.youtube.com/watch?v=FdeHlC4QiqA). Here, we present an overview of the paper and its main contributions.
+Self-Attention Generative Adversarial Networks (SAGAN; [Zhang et al., 2018](https://arxiv.org/pdf/1805.08318.pdf)) are convolutional neural networks that use the self-attention paradigm to capture long-range spatial relationships in existing images to better synthesize new images. TDLS recently presented and discussed this paper, led by  Xiyang Chen. The details of the event can be found on the [TDLS website](https://tdls.a-i.science/events/2018-06-11/), and the full presentation can be viewed on [YouTube](https://www.youtube.com/watch?v=FdeHlC4QiqA). Here, we present an overview of the paper and its main contributions.
 
 ---
 
@@ -25,7 +25,7 @@ Given the limited representation capacity of the convolution operator (i.e., the
 
 This functional gap is where SAGAN comes in. [Zhang et al. (2018)](https://arxiv.org/abs/1805.08318) propose a method wherein the GAN model is equipped with a tool to capture long-range, multi-level relationships in an image. This tool is the self-attention mechanism. Self-attention attempts to relate different portions of the input features to compute another representation of the input suitable for the task at hand. The idea of self-attention has been successfully applied in the areas of reading comprehension ([Cheng et al., 2016](https://arxiv.org/pdf/1601.06733.pdf)), textual entailment ([Parikh et al., 2016](https://arxiv.org/pdf/1606.01933.pdf)), and video processing ([X. Wang et al., 2017](https://arxiv.org/pdf/1711.07971.pdf)). 
 
-Bringing self-attention to the image synthesis domain draws inspiration from “Non-local neural networks” (*X. Wang et al., 2017*) that use self-attention to capture spatial-temporal information in video sequences. Generally speaking, self-attention simply calculates the response at a single position as a weighted sum of the features at all positions. This mechanism allows the network to focus on areas of images that are widely separated yet have structural relevancy.
+Bringing self-attention to the image synthesis domain draws inspiration from “Non-local neural networks” ([X. Wang et al., 2017](https://arxiv.org/pdf/1711.07971.pdf)) that use self-attention to capture spatial-temporal information in video sequences. Generally speaking, self-attention simply calculates the response at a single position as a weighted sum of the features at all positions. This mechanism allows the network to focus on areas of images that are widely separated yet have structural relevancy.
 
 ![](/static/post-assets/sagan/sagan-flow.png)
 ***The proposed self-attention module in Self-Attention Generative Adversarial Networks ([Zhang et al., 2018](https://arxiv.org/abs/1805.08318))***

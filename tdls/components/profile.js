@@ -3,9 +3,7 @@ export function nameToLink(name, link) {
     return name;
   } else {
     return (
-      <a key={name} className="person-name" href={link} target="_blank" style={{
-        whiteSpace: 'nowrap'
-      }}>
+      <a key={name} className="person-name" href={link} target="_blank">
         {name}&nbsp;
         <i className="fa fa-linkedin-square"></i>
       </a>
