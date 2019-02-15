@@ -14,6 +14,8 @@ import EventList from '../components/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import './events.scss';
 
+import debounce from 'lodash/debounce';
+
 interface Filter {
   searchText?: string
   category: string | 'all'
@@ -80,7 +82,7 @@ const Events = ({ allEvents }) => {
     filteredPast: cap(pastEvents, 18), filteredFuture: cap(futureEvents, 5)
   });
 
-  const filterEvents = ({ searchText }) => {
+  const filterEvents = debounce(({ searchText }) => {
     let filteredPast, filteredFuture;
     if (searchText && searchText.length > 0) {
       filteredPast = pastEvents.filter(ev => match(ev, { searchText }));
@@ -95,7 +97,7 @@ const Events = ({ allEvents }) => {
     setEventState({
       filteredFuture, filteredPast
     });
-  }
+  }, 300);
 
   return (
     <Fragment>
