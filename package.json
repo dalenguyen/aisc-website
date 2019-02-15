@@ -47,6 +47,7 @@
     "react-bootstrap": "^1.0.0-beta.5",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.1",
+    "react-google-charts": "^3.0.10",
     "react-markdown": "^4.0.6",
     "react-modal-video": "^1.2.1",
     "react-responsive-embed": "^2.1.0",

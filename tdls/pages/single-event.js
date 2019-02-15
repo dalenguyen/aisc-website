@@ -60,13 +60,15 @@ const SingleEvent = ({ event: ev }) => {
       </Fragment>
     );
     const venueSnippet = (
-      status !== 'expired' ?
-        "(TDLS members: please refer to Slack or your calendar invite for location)" : venueToLink(ev.venue)
+      <Fragment>Venue: {
+        status !== 'expired' ?
+          "(TDLS members: please refer to Slack or your calendar invite for location)" : venueToLink(ev.venue)
+      }
+      </Fragment >
     )
 
     const agenda = (
       <Fragment>
-        <hr />
         <h5>Agenda</h5>
         <ul className="list-unstyled">
           <li>5:30-6:15,   arrivals and socializing</li>
@@ -75,9 +77,8 @@ const SingleEvent = ({ event: ev }) => {
           <li>7:15-8:00,   results and discussions</li>
         </ul>
         <Link href="/code-of-conduct">
-          <a className="btn btn-secondary">Code of Conduct</a>
+          <a className="btn btn-outline-secondary btn-sm">Code of Conduct</a>
         </Link>
-        <hr />
       </Fragment >
     );
 
@@ -205,12 +206,16 @@ const SingleEvent = ({ event: ev }) => {
                       </li>
                     ))}
                 </ul>
+                <hr />
+                {
+                  venueSnippet
+                }
                 {
                   status !== 'expired' && agenda
                 }
-
               </section>
               <hr />
+
               <p className="">
                 <Link href="/get-engaged">
                   <a className="btn btn-primary">Get Engaged</a>
