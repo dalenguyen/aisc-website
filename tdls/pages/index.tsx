@@ -23,7 +23,7 @@ const EventRoutingHandler = ({ }) => {
     }, true);
   }
 
-  async function handleHashChange(newURL) {
+  async function handleHashChange(newURL: string) {
     if (!newURL) {
       return;
     } else {
@@ -44,13 +44,22 @@ const EventRoutingHandler = ({ }) => {
   return null;
 }
 
+type ZoomLevel = 1 | 3 | 5 | 8;
 
-function eventCarousel(label: string, events) {
+function eventCarousel(label: string, events, zoomLevel: ZoomLevel) {
   return (
     <Fragment key={label}>
-      <div style={{ marginTop: '10px' }}>
-        <h4><span className="badge badge-primary badge-info">{label}</span></h4>
-        <EventCarousel shuffle={false} events={events} />
+      <div style={{ marginTop: '1.5rem' }}>
+        <h4>
+          <span className="badge badge-primary badge-info">
+            {label}
+          </span>
+        </h4>
+        <EventCarousel
+          shuffle={false}
+          events={events}
+          zoomLevel={zoomLevel}
+        />
       </div>
     </Fragment>
   );
@@ -62,7 +71,9 @@ const Index = ({ allEvents }) => {
     <Fragment>
       <Head>
         <title>Toronto Deep Learning Series #TDLS</title>
-        <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
+        <meta name="description"
+          content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning."
+        />
         <link rel="canonical" href="./index.html" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />

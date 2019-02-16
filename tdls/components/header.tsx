@@ -27,7 +27,9 @@ export default ({ allEvents, before }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+            <span className="navbar-toggler-icon">
+              <i className="fa fa-navicon"></i>
+            </span>
           </button>
 
           <div className="collapse navbar-collapse" id="navbarCollapse">
