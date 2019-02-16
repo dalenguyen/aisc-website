@@ -1,15 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React from 'react';
 import Slider from "react-slick";
-import Link from 'next/link';
 import EventCard from './event-card';
 import './event-carousel.scss';
-
-import {
-  getLinkedInProfiles,
-} from '../utils/event-fetch';
-import {
-  READABLE_EVENT_TYPE, getEventId, toShortDateString
-} from '../../common/event';
 
 export default ({ shuffle = false, events }) => {
 
@@ -70,13 +62,17 @@ export default ({ shuffle = false, events }) => {
 
   return (
     <Slider className="past-event-list event-carousel" {...settings}>
-      {(shuffle ? randomShuffle : a => a)(events, 41).map((event, idx) => {
+      {(shuffle ? randomShuffle : identity)(events, 41).map((event, idx) => {
         return (
           <EventCard key={idx} {...{ event }} showDate={false} />
         );
       })}
     </Slider>
   );
+}
+
+function identity<T>(a: T): T {
+  return a;
 }
 
 export function filterEvents(events, filter) {
@@ -111,10 +107,10 @@ function SampleNextArrow({ className, style, onClick }) {
   );
 }
 
-function randomShuffle(array, seed) {
+function randomShuffle<T>(array: T[], seed: number): T[] {
   let currentIndex = array.length, temporaryValue, randomIndex;
   seed = seed || 1;
-  let random = function () {
+  const random = () => {
     var x = Math.sin(seed++) * 10000;
     return x - Math.floor(x);
   };

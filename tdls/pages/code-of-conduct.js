@@ -5,7 +5,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import Head from 'next/head'
 import ThemesAndSuch from '../components/themes-and-such';
-const content = await require(`../docs/code-of-conduct.md`);
+const content = require(`../docs/code-of-conduct.md`);
 
 const CodeOfConduct = () => (
   <Fragment>
