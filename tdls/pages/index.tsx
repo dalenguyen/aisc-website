@@ -9,7 +9,7 @@ import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
 import { UpcomingEvents } from '../components/event-related';
-import EventCarousel from '../components/event-carousel';
+import EventCarousel, { filterEvents } from '../components/event-carousel';
 
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import Router from 'next/router'
@@ -44,14 +44,27 @@ const EventRoutingHandler = ({ }) => {
   return null;
 }
 
+
+function eventCarousel(label: string, events) {
+  return (
+    <Fragment key={label}>
+      <div style={{ marginTop: '10px' }}>
+        <h4><span className="badge badge-primary badge-info">{label}</span></h4>
+        <EventCarousel shuffle={false} events={events} />
+      </div>
+    </Fragment>
+  );
+}
+
 const Index = ({ allEvents }) => {
+  const { pastEvents } = allEvents;
   return (
     <Fragment>
       <Head>
         <title>Toronto Deep Learning Series #TDLS</title>
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
         <link rel="canonical" href="./index.html" />
-        <link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         <ThemesAndSuch />
         <link href="/static/smooth-scroll.css" rel="stylesheet" />
@@ -103,27 +116,26 @@ const Index = ({ allEvents }) => {
       <main role="main" id="main">
         <section id="content" className="container-fluid">
           {
-            [
-              ['Trending Papers', { type: 'fasttrack' }],
-              ['Authors Speaking', { type: 'authors' }],
-              ['Recent Presentations', { type: 'main' }],
-              ['Implementations', { type: 'codereview' }],
-              ['Classic Papers', { type: 'classics' }]
-            ].map(([label, filter]) => (
-              <Fragment key={label}>
-                <div style={{ marginTop: '10px' }}>
-                  <h4><span className="badge badge-primary badge-info">{label}</span></h4>
-                  <EventCarousel filter={filter} shuffle={false} allEvents={allEvents} />
-                </div>
-              </Fragment>
-            ))
+            eventCarousel('Trending Papers', filterEvents(pastEvents, { type: 'fasttrack' }))
+          }
+          {
+            eventCarousel('Authors Speaking', filterEvents(pastEvents, { type: 'authors' }))
+          }
+          {
+            eventCarousel('Recent Presentations', filterEvents(pastEvents, { type: 'main' }))
+          }
+          {
+            eventCarousel('Implementations', filterEvents(pastEvents, { type: 'codereview' }))
+          }
+          {
+            eventCarousel('Foundational Papers', filterEvents(pastEvents, { type: 'classics' }))
           }
         </section>
         <section id="events" className="container">
           <hr />
           <h2 className="inline">Events</h2>
           <p>We meet twice a week to review advances in machine learning in various "streams".</p>
-          <div className="modal" tabIndex="-1" role="dialog" id="modal_main_stream">
+          <div className="modal" tabIndex={-1} role="dialog" id="modal_main_stream">
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -144,7 +156,7 @@ const Index = ({ allEvents }) => {
               </div>
             </div>
           </div>
-          <div className="modal" tabIndex="-1" role="dialog" id="modal_classics_stream">
+          <div className="modal" tabIndex={-1} role="dialog" id="modal_classics_stream">
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -167,7 +179,7 @@ const Index = ({ allEvents }) => {
               </div>
             </div>
           </div>
-          <div className="modal" tabIndex="-1" role="dialog" id="modal_fast_stream">
+          <div className="modal" tabIndex={-1} role="dialog" id="modal_fast_stream">
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -195,7 +207,7 @@ const Index = ({ allEvents }) => {
               </div>
             </div>
           </div>
-          <div className="modal" tabIndex="-1" role="dialog" id="modal_codereview_stream">
+          <div className="modal" tabIndex={-1} role="dialog" id="modal_codereview_stream">
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -215,7 +227,7 @@ const Index = ({ allEvents }) => {
               </div>
             </div>
           </div>
-          <div className="modal" tabIndex="-1" role="dialog" id="modal_authors_stream">
+          <div className="modal" tabIndex={-1} role="dialog" id="modal_authors_stream">
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -288,11 +300,6 @@ const Index = ({ allEvents }) => {
             </div>
           </div>
         </section>
-        <style jsx>{`
-            section.about-tdls {
-              text-align: center;
-            }
-          `}</style>
         <section className="container about-tdls">
           <div className="row">
             <div className="col-md-8 offset-md-2">

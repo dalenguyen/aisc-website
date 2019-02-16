@@ -11,8 +11,7 @@ import {
   READABLE_EVENT_TYPE, getEventId, toShortDateString
 } from '../../common/event';
 
-export default ({ filter = null, shuffle = false, allEvents }) => {
-  const { pastEvents: events } = allEvents;
+export default ({ shuffle = false, events }) => {
 
   const settings = {
     dots: false,
@@ -71,7 +70,7 @@ export default ({ filter = null, shuffle = false, allEvents }) => {
 
   return (
     <Slider className="past-event-list event-carousel" {...settings}>
-      {(shuffle ? randomShuffle : a => a)(filterEvents(events, filter), 41).map((event, idx) => {
+      {(shuffle ? randomShuffle : a => a)(events, 41).map((event, idx) => {
         return (
           <EventCard key={idx} {...{ event }} showDate={false} />
         );
@@ -80,7 +79,7 @@ export default ({ filter = null, shuffle = false, allEvents }) => {
   );
 }
 
-function filterEvents(events, filter) {
+export function filterEvents(events, filter) {
   if (!filter) {
     return events;
   }
