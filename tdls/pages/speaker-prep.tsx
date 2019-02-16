@@ -81,6 +81,8 @@ const SpeakerPrep = ({ event }) => {
   }
   const date = new Date(event.date);
 
+  const checkpoints = deriveCheckpoints(event);
+
   return (
     <Fragment>
       <Head>
@@ -99,7 +101,11 @@ const SpeakerPrep = ({ event }) => {
           </p>
           <h2>Timeline</h2>
           <ul>
-
+            {
+              checkpoints.map(ck => (
+                <li>{ck.title}</li>
+              ))
+            }
           </ul>
           <ul>
           </ul>
