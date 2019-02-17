@@ -63,7 +63,7 @@ export default ({
         <a style={{ display: "block", position: 'relative' }}>
           {thumb}
           {showEventStatus && (status === 'too_early' || status === 'countdown') && (
-            <h4 style={{ position: 'absolute', top: 5, left: 5, textAlign: 'right' }}>
+            <h5 style={{ position: 'absolute', top: 5, left: 5, textAlign: 'right' }}>
               <span
                 className="badge badge-danger">
                 {
@@ -77,7 +77,7 @@ export default ({
                   )
                 }
               </span>
-            </h4>
+            </h5>
           )}
         </a>
       </Link>

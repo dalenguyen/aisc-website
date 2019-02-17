@@ -148,44 +148,79 @@ const Index = ({ allEvents }) => {
           {
             eventCarousel('Foundational Papers', filterEvents(pastAndFutureEvents, { type: 'classics' }), 8)
           }
-          <div style={{ marginTop: '1.5rem' }}>
-            {
-              paperGroupLabel('By Subjects')
-            }
-            <div
-              className="d-flex flex-wrap align-content-between"
-              style={{
-                marginTop: '2rem', marginBottom: '2rem',
-              }}
-            >
-              {
-                subjects.map(s => (
-                  <div className="" key={s}
-                    style={{
-                      textAlign: 'center',
-                      marginLeft: "0.5rem",
-                      marginRight: '0.5rem',
-                      marginTop: '1rem'
-                    }}
-                  >
-                    <h4>
-                      <Link href={`/events?subject=${s}`}>
-                        <a className="btn btn-outline-info">
-                          {s}
-                        </a>
-                      </Link>
-                    </h4>
-
-                  </div>
-                ))
-              }
-            </div>
-          </div>
         </section>
+        <hr />
+        <section className="container by-subjects">
+          <h2 className="inline title">By Subjects</h2>
+          <ul
+            className="list-unstyled list-inline"
+            style={{
+              marginTop: '2rem', marginBottom: '2rem',
+            }}
+          >
+            {
+              subjects.map(s => (
+                <li className="list-inline-item" key={s}
+                  style={{
+                    textAlign: 'center',
+                    marginLeft: "0.6rem",
+                    marginRight: '0.6rem',
+                    marginTop: '1rem'
+                  }}
+                >
+                  <h4>
+                    <Link href={`/events?subject=${s}`}>
+                      <a className="btn btn-outline-info">
+                        {s}
+                      </a>
+                    </Link>
+                  </h4>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+        <hr />
         <section id="events" className="container">
-          <hr />
-          <h2 className="inline">Events</h2>
+          <h2 className="title inline">Our Sessions</h2>
           <p>We meet twice a week to review advances in machine learning in various "streams".</p>
+
+          <p>Click on each stream name to
+                know more about them and then explore our upcoming events.</p>
+          <ul className="list-inline legend-list" id="streams">
+            <li className="list-inline-item">
+              <a href="" className="legend-event-main" data-toggle="modal" data-target="#modal_main_stream">
+                <span className="legend main">&nbsp;</span>
+                &nbsp;Main stream<i className="fa fa-question"></i>
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a href="" data-toggle="modal" className="legend-event-classics" data-target="#modal_classics_stream">
+                <span className="legend classics"></span>
+                &nbsp;Foundation Stream<i className="fa fa-question"></i>
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a href="" data-toggle="modal" className="legend-event-fasttrack" data-target="#modal_fast_stream">
+                <span className="legend fasttrack"></span>
+                &nbsp;Fast Track Stream<i className="fa fa-question"></i>
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a href="" data-toggle="modal" className="legend-event-codereview" data-target="#modal_codereview_stream">
+                <span className="legend codereview"></span>
+                &nbsp;Code Review Stream<i className="fa fa-question"></i>
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a href="" data-toggle="modal" className="legend-event-authors" data-target="#modal_authors_stream">
+                <span className="legend authors"></span>
+                &nbsp;Authors Stream<i className="fa fa-question"></i>
+              </a>
+            </li>
+          </ul>
+
+
           <div className="modal" tabIndex={-1} role="dialog" id="modal_main_stream">
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
@@ -211,18 +246,20 @@ const Index = ({ allEvents }) => {
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title">Classics Stream</h5>
+                  <h5 className="modal-title">Foundation Stream</h5>
                   <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div className="modal-body">
                   <p>
-                    This stream is for concept defining papers. These papers are typically older than those in the Main
-                    Stream.
+                    This stream is for concept defining papers. These papers are typically
+                    older and historically more influencial than those in the Main Stream.
             </p>
-                  <p>For inspiration, check out our <a href="https://docs.google.com/spreadsheets/d/1PTaFyE2AsgTd0p7A5aHvEw0lLzw-9OXJC8Wa1Bg10ug"
-                    target="_blank">classic paper list <i className="fa fa-external-link"></i></a>.</p>
+                  <p>For inspiration, check out our <a
+                    className="btn btn-info"
+                    href="https://docs.google.com/spreadsheets/d/1PTaFyE2AsgTd0p7A5aHvEw0lLzw-9OXJC8Wa1Bg10ug"
+                    target="_blank">foundational paper list <i className="fa fa-external-link"></i></a>.</p>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -298,70 +335,26 @@ const Index = ({ allEvents }) => {
               </div>
             </div>
           </div>
-
-          <a className="collapse-button collapsed" data-toggle="collapse"
-            href="#collapseExample"
-            aria-expanded="false"
-            aria-controls="collapseExample">
-            <h3>Upcoming Sessions <i className="fa"></i></h3>
-          </a>
-          <div className="collapse" id="collapseExample">
-            <div className="card card-body">
-              <p>Click on each stream name to
-                know more about them and then explore our upcoming events.</p>
-              <ul className="list-inline legend-list" id="streams">
-                <li className="list-inline-item">
-                  <a href="" className="legend-event-main" data-toggle="modal" data-target="#modal_main_stream">
-                    <span className="legend main">&nbsp;</span>
-                    &nbsp;Main stream<i className="fa fa-question"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="" data-toggle="modal" className="legend-event-classics" data-target="#modal_classics_stream">
-                    <span className="legend classics"></span>
-                    &nbsp;Classics Stream<i className="fa fa-question"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="" data-toggle="modal" className="legend-event-fasttrack" data-target="#modal_fast_stream">
-                    <span className="legend fasttrack"></span>
-                    &nbsp;Fast Track Stream<i className="fa fa-question"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="" data-toggle="modal" className="legend-event-codereview" data-target="#modal_codereview_stream">
-                    <span className="legend codereview"></span>
-                    &nbsp;Code Review Stream<i className="fa fa-question"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="" data-toggle="modal" className="legend-event-authors" data-target="#modal_authors_stream">
-                    <span className="legend authors"></span>
-                    &nbsp;Authors Stream<i className="fa fa-question"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <span className="legend tentative"></span>&nbsp;
-                    <span className="legend-event-tentative">Tentative Sessions</span>
-                </li>
-              </ul>
-              <article id="upcoming-events">
-                <UpcomingEvents />
-              </article>
-            </div>
-          </div>
+          <Link href="/events">
+            <h4 className="all-upcoming">
+              <a href="" className="btn btn-outline-danger">
+                All upcoming sessions <i className="fa fa-angle-double-right"></i>
+              </a>
+            </h4>
+          </Link>
         </section>
+        <hr />
         <section className="container about-tdls">
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <h2>About TDLS</h2>
+              <h2 class="title">About TDLS</h2>
               <p className="lead">
                 TDLS is a community of intellectually curious individuals, centered around technical
                 review and discussion of advances in machine learning.
             </p>
               <p>
                 <Link href="/about">
-                  <a className="btn btn-outline-secondary">Learn more...</a>
+                  <a className="btn btn-secondary btn-lg">Learn more...</a>
                 </Link>
               </p>
             </div>

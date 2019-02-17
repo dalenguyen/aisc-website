@@ -212,7 +212,7 @@ const Events = (props: { allEvents: any, filter: Filter }) => {
           streams={streams} />
         <section className="container-fluid">
           {filteredFuture.length > 0 && (
-            <h4><span className="badge badge-danger">Upcoming</span></h4>
+            <h4 id="upcoming"><span className="badge badge-danger">Upcoming</span></h4>
           )}
           <EventList
             events={filteredFuture} toolbar={false}

@@ -62,13 +62,31 @@ main {
 }
 
 section.about-tdls {
+  margin-top: 4rem;
   text-align: center;
+  .lead {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 }
 
-.collapse-button .fa:before {   
-  content: "\f139";
+section#events {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  .all-upcoming {
+    margin-top: 4rem;
+  }
 }
 
-.collapse-button.collapsed .fa:before {
-  content: "\f13a";
+section {
+  .title {
+    margin-bottom: 2rem;
+  }
+}
+
+section.by-subjects {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
