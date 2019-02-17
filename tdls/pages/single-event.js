@@ -162,7 +162,7 @@ const SingleEvent = ({ event: ev }) => {
                     </h4>
                   )
                 }
-                <a className="live-chat btn btn-primary"
+                <a className="live-chat btn btn-primary btn-lg"
                   data-toggle="collapse"
                   href="#live-chat-area"
                   role="button"
