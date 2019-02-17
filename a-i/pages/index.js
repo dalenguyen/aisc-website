@@ -11,7 +11,7 @@ export default () => (
     <Head>
       <title>Aggregate Intellect</title>
       <meta name="description"
-        content="Redefining scientific discovery" />
+        content="Reinventing the way scientific discovery is done and consumed." />
       <AIThemes />
     </Head>
     <Header />
