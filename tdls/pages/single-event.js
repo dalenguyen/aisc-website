@@ -45,6 +45,8 @@ const SingleEvent = ({ event: ev }) => {
       setLinkedInData({ linkedInDict });
     }
 
+    const embedDomain = typeof window === 'undefined' ? 'tdls.a-i.science' : window.location.host.split(":")[0];
+
     useEffect(() => {
       fetchAndSetProfile();
     }, [getEventId(ev)]);
@@ -160,6 +162,21 @@ const SingleEvent = ({ event: ev }) => {
                     </h4>
                   )
                 }
+                <a className="live-chat btn btn-primary"
+                  data-toggle="collapse"
+                  href="#live-chat-area"
+                  role="button"
+                  aria-expanded="false" aria-controls="live-chat-area">
+                  Live Chat&nbsp;<i className="fa"></i>
+                </a>
+                <iframe
+                  className={status === 'live' ? '' : 'collapse'}
+                  id="live-chat-area"
+                  width="100%"
+                  frameBorder={0}
+                  height="450px"
+                  src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
+                </iframe>
                 <hr />
                 <h5>Presenters</h5>
                 <ul className="list-unstyled">
