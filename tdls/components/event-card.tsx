@@ -22,7 +22,9 @@ export default ({
   const cardTitle = (
     <Fragment>
       <Link href={`/events/${getEventId(ev)}`}>
-        <a className="title card-title">
+        <a className="title card-title" style={{
+          textAlign: 'center'
+        }}>
           {ev.title.toLowerCase()}
         </a>
       </Link>
@@ -64,7 +66,7 @@ export default ({
       <div className="card-body"
         style={{ height: `${10}rem` }}
       >
-        <FitText compressor={1.4} minFontSize={18}>
+        <FitText compressor={1.4} minFontSize={19}>
           {cardTitle}
         </FitText>
       </div>
