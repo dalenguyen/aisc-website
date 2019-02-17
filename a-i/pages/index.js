@@ -11,7 +11,7 @@ export default () => (
     <Head>
       <title>Aggregate Intellect</title>
       <meta name="description"
-        content="Reinventing the way scientific discovery is done and consumed." />
+        content="Reinventing the way scientific discovery is done and consumed" />
       <AIThemes />
     </Head>
     <Header />
@@ -20,10 +20,10 @@ export default () => (
         margin-top: 100px;
       }
       h1.intro {
-        font-size: 8vw;
+        font-size: 7vw;
       } 
       p.intro.lead {
-        font-size: 4vw;
+        font-size: 4.5vw;
       }
     `}
     </style>
@@ -31,7 +31,7 @@ export default () => (
       <Jumbotron className="intro text-center">
         <h1 className="intro">aggregate intellect</h1>
         <p className="intro lead">
-          Redefining Scientific Discovery
+          Reinventing the way scientific discovery is done and consumed.
         </p>
         <p>
           Coming soon.
