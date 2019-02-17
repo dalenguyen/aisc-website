@@ -14,8 +14,10 @@ export default ({ allEvents, before }) => {
         >
           {before}
           <a href="/" className="navbar-brand">
-            <img src="/static/images/tdls_logo.svg" style={{ height: '30px' }} />{' '}
-            TDLS
+            <img src="/static/images/tdls_logo.svg"
+              style={{ height: '40px', width: 'auto' }} />
+            &nbsp;
+          TDLS
       </a>
           <LiveButton allEvents={allEvents} />
           <button

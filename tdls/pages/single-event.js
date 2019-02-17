@@ -45,7 +45,7 @@ const SingleEvent = ({ event: ev }) => {
       setLinkedInData({ linkedInDict });
     }
 
-    const embedDomain = typeof window === 'undefined' ? 'tdls.a-i.science' : window.location.host.split(":")[0];
+    const embedDomain = typeof window === 'undefined' ? 'localhost' : window.location.host.split(":")[0];
 
     useEffect(() => {
       fetchAndSetProfile();
@@ -108,7 +108,7 @@ const SingleEvent = ({ event: ev }) => {
         } />
         <section className="single-event container-fluid">
           <div className="row">
-            <div className="col-12 col-md-9">
+            <div className="col-12 col-lg-9">
               {
                 ev.video ? (
                   <ResponsiveEmbed
@@ -138,8 +138,8 @@ const SingleEvent = ({ event: ev }) => {
                 Stream:
                 </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
             </div>
-            <div className="col-12 col-md-3">
-              <section className="info-box">
+            <div className="col-12 col-lg-3">
+              <section className="live-chat">
                 {
                   status !== 'expired' && (
                     <a className={`live-chat btn btn-primary btn-lg ${status === 'live' ? '' : 'collapsed'}`}
@@ -151,32 +151,6 @@ const SingleEvent = ({ event: ev }) => {
                     </a>
                   )
                 }
-                <div className="pull-right" style={{
-                  display: "inline-block"
-                }}>
-                  {
-                    (status === 'too_early' || status === 'countdown') && (
-                      <a
-                        target="_blank"
-                        href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
-                        <h5>
-                          <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
-                            Live in <Countdown expiresAt={date} />
-                          </span>
-                        </h5>
-                      </a>
-                    )
-                  }
-                  {
-                    status === 'live' && (
-                      <h4>
-                        <span className="badge badge-danger">
-                          We are live!
-                      </span>
-                      </h4>
-                    )
-                  }
-                </div>
                 {
                   status !== 'expired' && (
                     <iframe
@@ -189,7 +163,35 @@ const SingleEvent = ({ event: ev }) => {
                     </iframe>
                   )
                 }
-                <hr />
+              </section>
+              <hr />
+
+              <section className="live-info">
+                {
+                  (status === 'too_early' || status === 'countdown') && (
+                    <a
+                      target="_blank"
+                      href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                      <h5>
+                        <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
+                          Live in <Countdown expiresAt={date} />
+                        </span>
+                      </h5>
+                    </a>
+                  )
+                }
+                {
+                  status === 'live' && (
+                    <h4>
+                      <span className="badge badge-danger">
+                        We are live!
+                      </span>
+                    </h4>
+                  )
+                }
+              </section>
+              <hr />
+              <section className="info-box">
                 <h5>Presenters</h5>
                 <ul className="list-unstyled">
                   {ev.lead.indexOf('?') < 0 && (
