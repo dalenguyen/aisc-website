@@ -141,42 +141,54 @@ const SingleEvent = ({ event: ev }) => {
             <div className="col-12 col-md-3">
               <section className="info-box">
                 {
-                  (status === 'too_early' || status === 'countdown') && (
-                    <a
-                      target="_blank"
-                      href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
-                      <h5>
-                        <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
-                          Live in <Countdown expiresAt={date} />
-                        </span>
-                      </h5>
+                  status !== 'expired' && (
+                    <a className="live-chat btn btn-primary btn-lg"
+                      data-toggle="collapse"
+                      href="#live-chat-area"
+                      role="button"
+                      aria-expanded="false" aria-controls="live-chat-area">
+                      <i className="fa fa-comments"></i>&nbsp;Live Chat&nbsp;&nbsp;<i className="fa indicator"></i>
                     </a>
                   )
                 }
-                {
-                  status === 'live' && (
-                    <h4>
-                      <span className="badge badge-danger">
-                        We are live!
+                <div className="pull-right" style={{
+                  display: "inline-block"
+                }}>
+                  {
+                    (status === 'too_early' || status === 'countdown') && (
+                      <a
+                        target="_blank"
+                        href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                        <h5>
+                          <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
+                            Live in <Countdown expiresAt={date} />
+                          </span>
+                        </h5>
+                      </a>
+                    )
+                  }
+                  {
+                    status === 'live' && (
+                      <h4>
+                        <span className="badge badge-danger">
+                          We are live!
                       </span>
-                    </h4>
+                      </h4>
+                    )
+                  }
+                </div>
+                {
+                  status !== 'expired' && (
+                    <iframe
+                      className={status === 'live' ? '' : 'collapse'}
+                      id="live-chat-area"
+                      width="100%"
+                      frameBorder={0}
+                      height="500px"
+                      src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
+                    </iframe>
                   )
                 }
-                <a className="live-chat btn btn-primary btn-lg"
-                  data-toggle="collapse"
-                  href="#live-chat-area"
-                  role="button"
-                  aria-expanded="false" aria-controls="live-chat-area">
-                  <i className="fa fa-comments"></i>&nbsp;Live Chat&nbsp;&nbsp;<i className="fa indicator"></i>
-                </a>
-                <iframe
-                  className={status === 'live' ? '' : 'collapse'}
-                  id="live-chat-area"
-                  width="100%"
-                  frameBorder={0}
-                  height="500px"
-                  src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
-                </iframe>
                 <hr />
                 <h5>Presenters</h5>
                 <ul className="list-unstyled">
