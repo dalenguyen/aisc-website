@@ -10,6 +10,7 @@ import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
 import { UpcomingEvents } from '../components/event-related';
 import EventCarousel, { filterEvents } from '../components/event-carousel';
+import { ZoomLevel } from '../components/event-carousel';
 
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import Router from 'next/router'
@@ -44,7 +45,6 @@ const EventRoutingHandler = ({ }) => {
   return null;
 }
 
-type ZoomLevel = 1 | 3 | 5 | 8;
 
 function eventCarousel(label: string, events, zoomLevel: ZoomLevel) {
   return (
@@ -127,19 +127,19 @@ const Index = ({ allEvents }) => {
       <main role="main" id="main">
         <section id="content" className="container-fluid">
           {
-            eventCarousel('Trending Papers', filterEvents(pastEvents, { type: 'fasttrack' }))
+            eventCarousel('Trending Papers', filterEvents(pastEvents, { type: 'fasttrack' }), 3)
           }
           {
-            eventCarousel('Authors Speaking', filterEvents(pastEvents, { type: 'authors' }))
+            eventCarousel('Authors Speaking', filterEvents(pastEvents, { type: 'authors' }), 4)
           }
           {
-            eventCarousel('Recent Presentations', filterEvents(pastEvents, { type: 'main' }))
+            eventCarousel('Recent Presentations', filterEvents(pastEvents, { type: 'main' }), 8)
           }
           {
-            eventCarousel('Implementations', filterEvents(pastEvents, { type: 'codereview' }))
+            eventCarousel('Implementations', filterEvents(pastEvents, { type: 'codereview' }), 8)
           }
           {
-            eventCarousel('Foundational Papers', filterEvents(pastEvents, { type: 'classics' }))
+            eventCarousel('Foundational Papers', filterEvents(pastEvents, { type: 'classics' }), 8)
           }
         </section>
         <section id="events" className="container">
@@ -321,7 +321,7 @@ const Index = ({ allEvents }) => {
             </p>
               <p>
                 <Link href="/about">
-                  <a className="btn">Learn more...</a>
+                  <a className="btn btn-outline-secondary">Learn more...</a>
                 </Link>
               </p>
             </div>

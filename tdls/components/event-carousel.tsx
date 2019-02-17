@@ -2,62 +2,32 @@ import React from 'react';
 import Slider from "react-slick";
 import EventCard from './event-card';
 import './event-carousel.scss';
+import range from 'lodash/range';
 
-export default ({ shuffle = false, events }) => {
+export type ZoomLevel = 1 | 3 | 4 | 6 | 8;
+
+export default ({ shuffle = false, events, zoomLevel }: {
+  shuffle: boolean, events: any[], zoomLevel: ZoomLevel
+}) => {
+
+  // linearly interpolate zoom size
+  const responsive = range(1, zoomLevel).map(l => ({
+    breakpoint: 1280 / 8 * l + 400,
+    settings: {
+      slidesToShow: l * 1.02,
+      slidesToScroll: l,
+    }
+  }));
 
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
-    slidesToShow: 6.1,
-    slidesToScroll: 6,
-    responsive: [
-      {
-        breakpoint: 1560,
-        settings: {
-          slidesToShow: 6.1,
-          slidesToScroll: 6,
-        }
-      },
-      {
-        breakpoint: 1490,
-        settings: {
-          slidesToShow: 5.1,
-          slidesToScroll: 5,
-        }
-      },
-      {
-        breakpoint: 1380,
-        settings: {
-          slidesToShow: 4.1,
-          slidesToScroll: 4,
-        }
-      },
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 3.1,
-          slidesToScroll: 3,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2.1,
-          slidesToScroll: 2,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1.1,
-          slidesToScroll: 1
-        }
-      }
-    ],
+    slidesToShow: zoomLevel + 0.1,
+    slidesToScroll: zoomLevel,
+    responsive,
     variableHeight: false,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SampleNextArrow />
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SampleNextArrow />
   };
 
   return (
