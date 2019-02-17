@@ -174,7 +174,7 @@ const SingleEvent = ({ event: ev }) => {
                   id="live-chat-area"
                   width="100%"
                   frameBorder={0}
-                  height="450px"
+                  height="500px"
                   src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
                 </iframe>
                 <hr />
