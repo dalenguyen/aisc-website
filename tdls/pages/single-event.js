@@ -140,11 +140,15 @@ const SingleEvent = ({ event: ev }) => {
               <section className="info-box">
                 {
                   (status === 'too_early' || status === 'countdown') && (
-                    <h4>
-                      <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
-                        Live in <Countdown expiresAt={date} />
-                      </span>
-                    </h4>
+                    <a
+                      target="_blank"
+                      href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                      <h4>
+                        <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
+                          Live in <Countdown expiresAt={date} />
+                        </span>
+                      </h4>
+                    </a>
                   )
                 }
                 {
