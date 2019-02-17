@@ -143,11 +143,11 @@ const SingleEvent = ({ event: ev }) => {
                     <a
                       target="_blank"
                       href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
-                      <h4>
+                      <h5>
                         <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
                           Live in <Countdown expiresAt={date} />
                         </span>
-                      </h4>
+                      </h5>
                     </a>
                   )
                 }
@@ -219,16 +219,16 @@ const SingleEvent = ({ event: ev }) => {
                 }
               </section>
               <hr />
-              <p className="">
-                <Link href="/get-engaged">
-                  <a className="btn btn-primary">Get Engaged</a>
-                </Link>&nbsp;
+              <p className="lead">
                 <a
-                  className="btn btn-danger subscribe-youtube"
+                  className="btn btn-danger subscribe-youtube btn-lg"
                   target="_blank"
                   href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
                   <i className="fa fa-youtube"></i>&nbsp;Subscribe
-                </a>
+                </a>&nbsp;
+                <Link href="/get-engaged">
+                  <a className="btn btn-primary btn-lg">Get Engaged</a>
+                </Link>&nbsp;
               </p>
               <p>
                 <Link href="/events">
