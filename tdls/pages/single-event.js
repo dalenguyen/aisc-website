@@ -167,7 +167,7 @@ const SingleEvent = ({ event: ev }) => {
                   href="#live-chat-area"
                   role="button"
                   aria-expanded="false" aria-controls="live-chat-area">
-                  Live Chat&nbsp;<i className="fa"></i>
+                  <i className="fa fa-comments"></i>&nbsp;Live Chat&nbsp;&nbsp;<i className="fa indicator"></i>
                 </a>
                 <iframe
                   className={status === 'live' ? '' : 'collapse'}
