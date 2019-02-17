@@ -1,22 +1,24 @@
 import React, { Fragment } from 'react';
 import { ytThumb } from '../utils/youtube';
 import FitText from 'react-fittext';
+import { Countdown } from '../components/live-button';
 
 import Link from 'next/link';
 import "./event-card.scss";
 
 import {
-  getEventId
+  getEventId, eventStatus
 } from '../../common/event';
 import { toLongDateString } from '../utils/datetime';
 import { ZoomLevel } from './event-carousel';
 
 export default ({
-  event: ev, showToolbar = true, showDate = true, zoomLevel }: {
+  event: ev, showToolbar = true, showDate = true, zoomLevel, showEventStatus = true }: {
     event: any, showToolbar: boolean, showDate: boolean,
-    zoomLevel: ZoomLevel
+    zoomLevel: ZoomLevel, showEventStatus: boolean
   }) => {
   const date = new Date(ev.date);
+  const status = eventStatus(ev);
 
 
   const cardTitle = (
@@ -56,11 +58,27 @@ export default ({
   );
 
   return (
-
     <div className={"d-flex flex-column justify-content-between event card " + (ev.type ? ' event-' + ev.type : '')}>
       <Link href={`/events/${getEventId(ev)}`}>
-        <a>
+        <a style={{ display: "block", position: 'relative' }}>
           {thumb}
+          {showEventStatus && (status === 'too_early' || status === 'countdown') && (
+            <h4 style={{ position: 'absolute', top: 5, left: 5, textAlign: 'right' }}>
+              <span
+                className="badge badge-danger">
+                {
+                  status === 'too_early' && "Upcoming"
+                }
+                {
+                  status === 'countdown' && (
+                    <Fragment>
+                      Live in <br /><Countdown expiresAt={date} />
+                    </Fragment>
+                  )
+                }
+              </span>
+            </h4>
+          )}
         </a>
       </Link>
       <div className="card-body d-flex flex-column justify-content-center"

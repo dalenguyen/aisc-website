@@ -20,7 +20,7 @@ function eventStatus(ev) {
   }
   const now = new Date().getTime();
   const duration = 2.5 * 60 * 60 * 1000;
-  const countdownPeriod = 40 * 60 * 60 * 1000;
+  const countdownPeriod = 24 * 60 * 60 * 1000;
 
   const evStartTime = ev.date;
 

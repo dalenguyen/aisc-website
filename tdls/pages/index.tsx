@@ -71,7 +71,9 @@ function eventCarousel(label: string, events, zoomLevel: ZoomLevel) {
 }
 
 const Index = ({ allEvents }) => {
-  const { pastEvents, subjects } = allEvents;
+  const { pastEvents, futureEvents, subjects } = allEvents;
+  const pastAndFutureEvents = futureEvents.concat(pastEvents);
+
   return (
     <Fragment>
       <Head>
@@ -132,19 +134,19 @@ const Index = ({ allEvents }) => {
       <main role="main" id="main">
         <section id="content" className="container-fluid">
           {
-            eventCarousel('Trending Papers', filterEvents(pastEvents, { type: 'fasttrack' }), 3)
+            eventCarousel('Trending Papers', filterEvents(pastAndFutureEvents, { type: 'fasttrack' }), 3)
           }
           {
-            eventCarousel('Authors Speaking', filterEvents(pastEvents, { type: 'authors' }), 4)
+            eventCarousel('Authors Speaking', filterEvents(pastAndFutureEvents, { type: 'authors' }), 4)
           }
           {
             eventCarousel('Recent Presentations', filterEvents(pastEvents, { type: 'main' }), 8)
           }
           {
-            eventCarousel('Implementations', filterEvents(pastEvents, { type: 'codereview' }), 8)
+            eventCarousel('Implementations', filterEvents(pastAndFutureEvents, { type: 'codereview' }), 8)
           }
           {
-            eventCarousel('Foundational Papers', filterEvents(pastEvents, { type: 'classics' }), 8)
+            eventCarousel('Foundational Papers', filterEvents(pastAndFutureEvents, { type: 'classics' }), 8)
           }
           <div style={{ marginTop: '1.5rem' }}>
             {

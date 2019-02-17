@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import { pad, eventStatus, getEventId } from '../../common/event';
-
+import Link from 'next/link';
 import { sleep } from '../../common/utils';
 
 export const Countdown = ({ expiresAt }) => {

@@ -195,30 +195,6 @@ const Events = (props: { allEvents: any, filter: Filter }) => {
     });
   }, 300), [filter]);
 
-  // const filterEvents = debounce(({ searchText, subject, stream }: Filter) => {
-  //   let filteredPast = pastEvents, filteredFuture = futureEvents;
-  //   if (searchText && searchText.length > 0) {
-  //     filteredPast = filteredPast.filter(ev => match(ev, { searchText }));
-  //     filteredFuture = filteredFuture.filter(ev => match(ev, { searchText }));
-  //   }
-
-  //   if (subject && subject !== 'all') {
-  //     filteredPast = filteredPast.filter(ev => ev.subjects.some(s => s === subject));
-  //     filteredFuture = filteredFuture.filter(ev => ev.subjects.some(s => s === subject));
-  //   }
-
-  //   if (stream && stream !== 'all') {
-  //     filteredPast = filteredPast.filter(ev => ev.type === stream);
-  //     filteredFuture = filteredFuture.filter(ev => ev.type === stream);
-  //   }
-
-  //   filteredPast = cap(filteredPast, 18);
-  //   filteredFuture = cap(filteredFuture, 5);
-  //   setEventState({
-  //     filteredFuture, filteredPast
-  //   });
-  // }, 300);
-
   return (
     <Fragment>
       <Head>
@@ -238,7 +214,10 @@ const Events = (props: { allEvents: any, filter: Filter }) => {
           {filteredFuture.length > 0 && (
             <h4><span className="badge badge-warning">Upcoming</span></h4>
           )}
-          <EventList events={filteredFuture} toolbar={false} />
+          <EventList
+            events={filteredFuture} toolbar={false}
+            showEventStatus={false}
+          />
           {filteredPast.length > 0 && (
             <h4><span className="badge badge-secondary">Past</span></h4>
           )}
