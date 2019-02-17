@@ -1,4 +1,5 @@
 import YoutubeSubscribeButton from "./youtube-subscribe-button";
+import './get-engaged-section.scss';
 
 export default () => (
   <section className="container" id="get-engaged">
@@ -31,58 +32,67 @@ export default () => (
       </div>
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Suggest a Papers</h5>
             <p className="card-text"> We're all ears. Please send us an email or tweet at us with your favorite paper
               and
     we'll put it on our list.</p>
-            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20think%20you%20should%20cover%20X" target="_blank">
-              <i className="fa fa-twitter fa-2x"></i>
-            </a>
-            <a href="mailto:events@a-i.science?subject:Change%20suggestion%20for%20TDLS%20website">
-              <i className="fa fa-envelope fa-2x"></i>
-            </a>
+            <div className="mt-auto">
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20think%20you%20should%20cover%20X" target="_blank">
+                <i className="fa fa-twitter fa-2x"></i>
+              </a>
+              <a href="mailto:events@a-i.science?subject:Change%20suggestion%20for%20TDLS%20website">
+                <i className="fa fa-envelope fa-2x"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Improve this site</h5>
-            <p className="card-text">Amazing! We're open source, so feel free to clone <a target="_blank" href="https://github.com/TDLS/tdls.github.io">our GitHub repo</a>, make changes,
-              and
+            <p className="card-text">Amazing! We're open source, so feel free to clone
+            <a target="_blank"
+                href="https://github.com/TDLS/tdls.github.io">our GitHub repo</a>, make changes,
+and
     submit a pull request - or you can email or tweet at us with your suggestions.</p>
-            <a href="https://github.com/TDLS/tdls.github.io/blob/master/README.md" target="_blank">
-              <i className="fa fa-github fa-2x"></i>
-            </a>
-            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20Change%20suggestion%20for%20TDLS%20website:%20"
-              target="_blank">
-              <i className="fa fa-twitter fa-2x"></i>
-            </a>
-            <a href="mailto:events@a-i.science?subject:I%20think%20you%20should%20cover%20X">
-              <i className="fa fa-envelope fa-2x"></i>
-            </a>
+            <div className="mt-auto">
+
+              <a href="https://github.com/TDLS/tdls.github.io/blob/master/README.md" target="_blank">
+                <i className="fa fa-github fa-2x"></i>
+              </a>
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20Change%20suggestion%20for%20TDLS%20website:%20"
+                target="_blank">
+                <i className="fa fa-twitter fa-2x"></i>
+              </a>
+              <a href="mailto:events@a-i.science?subject:I%20think%20you%20should%20cover%20X">
+                <i className="fa fa-envelope fa-2x"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Own a new stream</h5>
             <p className="card-text">Awesome! Please check out the details link below to learn more about what it
               takes
     to own a stream, and write to us with your ideas.</p>
-            <p>
-              <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modal_own_stream">
-                Details
-    </button>
-            </p>
-            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20want%20to%20own%20a%20stream" target="_blank">
-              <i className="fa fa-twitter fa-2x"></i>
-            </a>
-            <a href="mailto:events@a-i.science?subject:%20I%20want%20to%20own%20a%20stream" target="_blank">
-              <i className="fa fa-envelope fa-2x"></i>
-            </a>
+            <div className="mt-auto">
+              <p>
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modal_own_stream">
+                  Details
+                </button>
+              </p>
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20want%20to%20own%20a%20stream" target="_blank">
+                <i className="fa fa-twitter fa-2x"></i>
+              </a>
+              <a href="mailto:events@a-i.science?subject:%20I%20want%20to%20own%20a%20stream" target="_blank">
+                <i className="fa fa-envelope fa-2x"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -92,9 +102,9 @@ export default () => (
     <div className="row">
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Subscribe to Learn More about TDLS</h5>
-            <div id="mc_embed_signup">
+            <div id="mc_embed_signup" className="mt-auto">
               <form action="https://science.us20.list-manage.com/subscribe/post?u=c7831af29c0c46bd5ec4c04c7&amp;id=9e6c32b697"
                 method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate"
                 target="_blank" noValidate>
@@ -144,13 +154,15 @@ export default () => (
       </div>
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Reddit</h5>
             <p className="card-text">We post our summaries, thoughts, and conclusions on Reddit. Please follow us on
     Reddit, and be sure to share your thoughts with us!</p>
-            <a href="https://www.reddit.com/user/tdls_to" target="_blank">
-              <i className="fa fa-reddit fa-2x"></i>
-            </a>
+            <div className="mt-auto">
+              <a href="https://www.reddit.com/user/tdls_to" target="_blank">
+                <i className="fa fa-reddit fa-2x"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -160,49 +172,56 @@ export default () => (
     <div className="row">
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Companies</h5>
             <p className="card-text">If you want to host us, please send us an email or tweet at us</p>
-            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20host%20TDLS" target="_blank">
-              <i className="fa fa-twitter fa-2x"></i>
-            </a>
-            <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20host%20TDLS" target="_blank">
-              <i className="fa fa-envelope fa-2x"></i>
-            </a>
+            <div className="mt-auto">
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20host%20TDLS" target="_blank">
+                <i className="fa fa-twitter fa-2x"></i>
+              </a>
+              <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20host%20TDLS" target="_blank">
+                <i className="fa fa-envelope fa-2x"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Student Groups at Universities</h5>
             <p className="card-text">If you want to co-host an event with us, please send us an email or tweet at us</p>
-            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
-              target="_blank">
-              <i className="fa fa-twitter fa-2x"></i>
-            </a>
-            <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
-              target="_blank">
-              <i className="fa fa-envelope fa-2x"></i>
-            </a>
+            <div className="mt-auto">
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
+                target="_blank">
+                <i className="fa fa-twitter fa-2x"></i>
+              </a>
+              <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
+                target="_blank">
+                <i className="fa fa-envelope fa-2x"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
-          <div className="card-body">
+          <div className="card-body d-flex flex-column">
             <h5 className="card-title">Meetup Organizer</h5>
             <p className="card-text">We know lots of great folks who can speak about technical topics; check them out on
     our YouTube channel.</p>
-            <a href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1" target="_blank">
-              <i className="fa fa-youtube fa-2x"></i>
-            </a>
-            <a href="https://twitter.com/intent/tweet?text=@tdls_to%20" target="_blank">
-              <i className="fa fa-twitter fa-2x"></i>
-            </a>
-            <a href="mailto:events@a-i.science?subject:collaboration%20with%20meetups" target="_blank">
-              <i className="fa fa-envelope fa-2x"></i>
-            </a>
+            <div className="mt-auto">
+
+              <a href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1" target="_blank">
+                <i className="fa fa-youtube fa-2x"></i>
+              </a>
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20" target="_blank">
+                <i className="fa fa-twitter fa-2x"></i>
+              </a>
+              <a href="mailto:events@a-i.science?subject:collaboration%20with%20meetups" target="_blank">
+                <i className="fa fa-envelope fa-2x"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div >
