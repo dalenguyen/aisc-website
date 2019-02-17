@@ -142,7 +142,7 @@ const SingleEvent = ({ event: ev }) => {
               <section className="info-box">
                 {
                   status !== 'expired' && (
-                    <a className="live-chat btn btn-primary btn-lg"
+                    <a className={`live-chat btn btn-primary btn-lg ${status === 'live' ? '' : 'collapsed'}`}
                       data-toggle="collapse"
                       href="#live-chat-area"
                       role="button"
