@@ -45,16 +45,21 @@ const EventRoutingHandler = ({ }) => {
   return null;
 }
 
+function paperGroupLabel(label: string) {
+  return (
+    <h4>
+      <span className="badge badge-primary badge-info">
+        {label}
+      </span>
+    </h4>
+  );
+}
 
 function eventCarousel(label: string, events, zoomLevel: ZoomLevel) {
   return (
     <Fragment key={label}>
       <div style={{ marginTop: '1.5rem' }}>
-        <h4>
-          <span className="badge badge-primary badge-info">
-            {label}
-          </span>
-        </h4>
+        {paperGroupLabel(label)}
         <EventCarousel
           shuffle={false}
           events={events}
@@ -66,7 +71,7 @@ function eventCarousel(label: string, events, zoomLevel: ZoomLevel) {
 }
 
 const Index = ({ allEvents }) => {
-  const { pastEvents } = allEvents;
+  const { pastEvents, subjects } = allEvents;
   return (
     <Fragment>
       <Head>
@@ -141,6 +146,39 @@ const Index = ({ allEvents }) => {
           {
             eventCarousel('Foundational Papers', filterEvents(pastEvents, { type: 'classics' }), 8)
           }
+          <div style={{ marginTop: '1.5rem' }}>
+            {
+              paperGroupLabel('By Subjects')
+            }
+            <div
+              className="d-flex flex-wrap align-content-between"
+              style={{
+                marginTop: '2rem', marginBottom: '2rem',
+              }}
+            >
+              {
+                subjects.map(s => (
+                  <div className="" key={s}
+                    style={{
+                      textAlign: 'center',
+                      marginLeft: "0.5rem",
+                      marginRight: '0.5rem',
+                      marginTop: '1rem'
+                    }}
+                  >
+                    <h4>
+                      <Link href={`/events?subject=${s}`}>
+                        <a className="btn btn-outline-info">
+                          {s}
+                        </a>
+                      </Link>
+                    </h4>
+
+                  </div>
+                ))
+              }
+            </div>
+          </div>
         </section>
         <section id="events" className="container">
           <hr />
@@ -330,7 +368,7 @@ const Index = ({ allEvents }) => {
       </main>
       <Footer />
       <SharedBodyScripts />
-    </Fragment>
+    </Fragment >
   );
 }
 

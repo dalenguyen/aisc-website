@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { ytThumb } from '../utils/youtube';
-import FitText from '@kennethormandy/react-fittext'
+import FitText from 'react-fittext';
 
 import Link from 'next/link';
 import "./event-card.scss";
@@ -23,7 +23,7 @@ export default ({
     <Fragment>
       <Link href={`/events/${getEventId(ev)}`}>
         <a className="title card-title" style={{
-          textAlign: 'center'
+          textAlign: 'center',
         }}>
           {ev.title.toLowerCase()}
         </a>
@@ -63,7 +63,7 @@ export default ({
           {thumb}
         </a>
       </Link>
-      <div className="card-body"
+      <div className="card-body d-flex flex-column justify-content-center"
         style={{ height: `${10}rem` }}
       >
         <FitText compressor={1.4} minFontSize={19}>
@@ -74,6 +74,6 @@ export default ({
         {showToolbar && toolbarElem}
         {showDate && dateElem}
       </div>
-    </div>
+    </div >
   );
 }

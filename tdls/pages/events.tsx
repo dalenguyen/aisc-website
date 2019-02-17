@@ -30,13 +30,18 @@ interface Filter {
 const EMPTY_FILTER = { searchText: "", subject: "all", stream: "all" };
 
 const EventFilters = ({
-  onChange = () => undefined, subjects = [], streams = [] }:
-  {
+  subject = 'all', searchText = '', stream = 'all',
+  onChange = () => undefined,
+  subjects = [],
+  streams = [] }:
+  ({
     onChange: (f: Filter) => void, subjects: string[],
     streams: string[]
-  }
+  } & Filter)
 ) => {
-  const [currFilter, setFilter] = useState(EMPTY_FILTER);
+  const [currFilter, setFilter] = useState({
+    subject, searchText, stream
+  });
 
   const onSearchChange = (e: any) => {
     const newVal = e.target.value;
@@ -59,7 +64,6 @@ const EventFilters = ({
     onChange(currFilter);
   }, [Object.keys(EMPTY_FILTER)]);
 
-  const { searchText, subject, stream } = currFilter;
 
   return (
     <Form inline className="event-filter-bar form-inline">
@@ -80,7 +84,7 @@ const EventFilters = ({
       <InputGroup className="mb-2 mr-sm-2" >
         <DropdownButton
           size="lg"
-          variant="outline-secondary"
+          variant={subject === 'all' ? 'outline-secondary' : 'success'}
           title={subject === 'all' ? 'By subject' : subject}
           value={subject}
         >
@@ -102,7 +106,7 @@ const EventFilters = ({
       <InputGroup className="mb-2 mr-sm-2" >
         <DropdownButton
           size="lg"
-          variant="outline-secondary"
+          variant={stream === 'all' ? 'outline-secondary' : 'success'}
           title={stream === 'all' ? 'By stream' : READABLE_EVENT_TYPE[stream]}
           value={stream}
         >
@@ -155,14 +159,18 @@ function cap(arr: any[], limit: number) {
   return arr.slice(0, limit);
 }
 
-const Events = ({ allEvents }) => {
+const Events = (props: { allEvents: any, filter: Filter }) => {
+  const { allEvents } = props;
   const { pastEvents, futureEvents, subjects, streams } = allEvents;
 
   const [{ filteredPast, filteredFuture }, setEventState] = useState({
     filteredPast: cap(pastEvents, 18), filteredFuture: cap(futureEvents, 5)
   });
 
-  const filterEvents = debounce(({ searchText, subject, stream }: Filter) => {
+  const [{ filter }, setEventFilter] = useState({ filter: props.filter });
+
+  useEffect(() => {
+    const { searchText, subject, stream } = filter;
     let filteredPast = pastEvents, filteredFuture = futureEvents;
     if (searchText && searchText.length > 0) {
       filteredPast = filteredPast.filter(ev => match(ev, { searchText }));
@@ -184,7 +192,31 @@ const Events = ({ allEvents }) => {
     setEventState({
       filteredFuture, filteredPast
     });
-  }, 300);
+  }, [filter]);
+
+  // const filterEvents = debounce(({ searchText, subject, stream }: Filter) => {
+  //   let filteredPast = pastEvents, filteredFuture = futureEvents;
+  //   if (searchText && searchText.length > 0) {
+  //     filteredPast = filteredPast.filter(ev => match(ev, { searchText }));
+  //     filteredFuture = filteredFuture.filter(ev => match(ev, { searchText }));
+  //   }
+
+  //   if (subject && subject !== 'all') {
+  //     filteredPast = filteredPast.filter(ev => ev.subjects.some(s => s === subject));
+  //     filteredFuture = filteredFuture.filter(ev => ev.subjects.some(s => s === subject));
+  //   }
+
+  //   if (stream && stream !== 'all') {
+  //     filteredPast = filteredPast.filter(ev => ev.type === stream);
+  //     filteredFuture = filteredFuture.filter(ev => ev.type === stream);
+  //   }
+
+  //   filteredPast = cap(filteredPast, 18);
+  //   filteredFuture = cap(filteredFuture, 5);
+  //   setEventState({
+  //     filteredFuture, filteredPast
+  //   });
+  // }, 300);
 
   return (
     <Fragment>
@@ -196,7 +228,11 @@ const Events = ({ allEvents }) => {
       </Head>
       <Header allEvents={allEvents} />
       <main role="main" id="main">
-        <EventFilters onChange={filterEvents} subjects={subjects} streams={streams} />
+        <EventFilters
+          {...filter}
+          onChange={(filter) => setEventFilter({ filter })}
+          subjects={subjects}
+          streams={streams} />
         <section className="container-fluid">
           {filteredFuture.length > 0 && (
             <h4><span className="badge badge-warning">Upcoming</span></h4>
@@ -234,9 +270,14 @@ function textContainsCaseInsensitive(term: string, text: string) {
   return text.toLowerCase().indexOf(term.toLowerCase()) >= 0;
 }
 
-Events.getInitialProps = async ({ req }) => {
+Events.getInitialProps = async ({ req, query }) => {
+  const filter = pluck(query, ['subject']);
   const allEvents = await getEventsAndGroupings(!!req);
-  return { allEvents };
+  return { allEvents, filter };
+}
+
+function pluck(o: { [k: string]: any }, props: string[]) {
+  return Object.assign({}, ...props.map(prop => ({ [prop]: o[prop] })));
 }
 
 export default Events;

@@ -11,11 +11,6 @@ function Header(props) {
       {props.stylesheets && props.stylesheets.length > 0 && props.stylesheets.map((stylesheet, i) => {
         return <link key={i} rel="stylesheet" href={stylesheet} />
       })}
-      <style>{`
-          body {
-            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-          }
-      `}</style>
     </Head>
   )
 }
