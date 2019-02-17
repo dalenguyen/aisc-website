@@ -11,8 +11,7 @@ import Chart from "react-google-charts";
 import ReactMarkdown from 'react-markdown';
 
 // const { prepTalk } = require(`../data/docs.json`);
-const prepTalk = require('../data/prep-talk.md');
-
+const prepTalk = require('../data/writeup/prep-talk.md');
 
 function daysToMilliseconds(days: number) {
   return days * 24 * 60 * 60 * 1000;

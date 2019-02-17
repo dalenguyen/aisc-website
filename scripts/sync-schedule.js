@@ -10,12 +10,14 @@ const {
   GOOGLE_KEY = 'AIzaSyAUMihCUtNS35espxycitPYrTE_78W93Ps'
 } = process.env;
 
-fetchAndSaveSchedule();
 
+fetchAndSaveSchedule();
 
 async function fetchAndSaveSchedule() {
   const [eventsAndGroupings, linkedInProfiles] = await Promise.all(
-    [fetchEventsAndGroupings(), fetchLinkedInProfiles()]
+    [
+      fetchEventsAndGroupings(), fetchLinkedInProfiles()
+    ]
   );
 
   fs.writeFileSync(
