@@ -45,6 +45,7 @@ const EventFilters = ({
 
   const onSearchChange = (e: any) => {
     const newVal = e.target.value;
+
     setFilter(Object.assign({}, currFilter, { searchText: newVal }));
   }
 
@@ -169,7 +170,7 @@ const Events = (props: { allEvents: any, filter: Filter }) => {
 
   const [{ filter }, setEventFilter] = useState({ filter: props.filter });
 
-  useEffect(() => {
+  useEffect(debounce(() => {
     const { searchText, subject, stream } = filter;
     let filteredPast = pastEvents, filteredFuture = futureEvents;
     if (searchText && searchText.length > 0) {
@@ -192,7 +193,7 @@ const Events = (props: { allEvents: any, filter: Filter }) => {
     setEventState({
       filteredFuture, filteredPast
     });
-  }, [filter]);
+  }, 300), [filter]);
 
   // const filterEvents = debounce(({ searchText, subject, stream }: Filter) => {
   //   let filteredPast = pastEvents, filteredFuture = futureEvents;

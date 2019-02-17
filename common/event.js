@@ -1,6 +1,6 @@
 
 const READABLE_EVENT_TYPE = {
-  'classics': 'Classics',
+  'classics': 'Foundational Papers',
   'fasttrack': 'Trending Papers',
   'main': 'Main Stream',
   'authors': 'Authors Speaking',
