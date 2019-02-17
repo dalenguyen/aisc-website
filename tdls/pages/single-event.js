@@ -45,7 +45,7 @@ const SingleEvent = ({ event: ev }) => {
       setLinkedInData({ linkedInDict });
     }
 
-    const embedDomain = typeof window === 'undefined' ? 'localhost' : window.location.host.split(":")[0];
+    const embedDomain = typeof window === 'undefined' ? 'tdls.a-i.science' : window.location.host.split(":")[0];
 
     useEffect(() => {
       fetchAndSetProfile();
