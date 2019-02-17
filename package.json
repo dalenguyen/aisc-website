@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/tdls/tdls.github.io#readme",
   "dependencies": {
+    "@kennethormandy/react-fittext": "^0.6.0",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "bootstrap": "^4.3.1",

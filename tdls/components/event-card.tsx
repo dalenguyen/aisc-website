@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { ytThumb } from '../utils/youtube';
+import FitText from '@kennethormandy/react-fittext'
 
 import Link from 'next/link';
 import "./event-card.scss";
@@ -8,9 +9,15 @@ import {
   getEventId
 } from '../../common/event';
 import { toLongDateString } from '../utils/datetime';
+import { ZoomLevel } from './event-carousel';
 
-export default ({ event: ev, showToolbar = true, showDate = true }) => {
+export default ({
+  event: ev, showToolbar = true, showDate = true, zoomLevel }: {
+    event: any, showToolbar: boolean, showDate: boolean,
+    zoomLevel: ZoomLevel
+  }) => {
   const date = new Date(ev.date);
+
 
   const cardTitle = (
     <Fragment>
@@ -54,8 +61,12 @@ export default ({ event: ev, showToolbar = true, showDate = true }) => {
           {thumb}
         </a>
       </Link>
-      <div className="card-body">
-        {cardTitle}
+      <div className="card-body"
+        style={{ height: `${10}rem` }}
+      >
+        <FitText compressor={1.4} minFontSize={18}>
+          {cardTitle}
+        </FitText>
       </div>
       <div className="align-self-end card-end">
         {showToolbar && toolbarElem}

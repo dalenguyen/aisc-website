@@ -12,7 +12,7 @@ export default ({ shuffle = false, events, zoomLevel }: {
 
   // linearly interpolate zoom size
   const responsive = range(1, zoomLevel).map(l => ({
-    breakpoint: 1280 / 8 * l + 400,
+    breakpoint: 1360 / 8 * l + 400,
     settings: {
       slidesToShow: l * 1.02,
       slidesToScroll: l,
@@ -34,7 +34,12 @@ export default ({ shuffle = false, events, zoomLevel }: {
     <Slider className="past-event-list event-carousel" {...settings}>
       {(shuffle ? randomShuffle : identity)(events, 41).map((event, idx) => {
         return (
-          <EventCard key={idx} {...{ event }} showDate={false} />
+          <EventCard
+            key={idx}
+            {...{ event, zoomLevel }}
+            showDate={true}
+            showToolbar={false}
+          />
         );
       })}
     </Slider>
@@ -45,7 +50,7 @@ function identity<T>(a: T): T {
   return a;
 }
 
-export function filterEvents(events, filter) {
+export function filterEvents(events: any[], filter) {
   if (!filter) {
     return events;
   }
