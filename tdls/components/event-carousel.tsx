@@ -12,7 +12,7 @@ export default ({ shuffle = false, events, zoomLevel }: {
 
   // linearly interpolate zoom size
   const responsive = range(1, zoomLevel).map(l => ({
-    breakpoint: 1360 / 8 * l + 400,
+    breakpoint: 1440 / 8 * l + 400,
     settings: {
       slidesToShow: l * 1.02,
       slidesToScroll: l,

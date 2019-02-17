@@ -84,7 +84,7 @@ export default ({
       <div className="card-body d-flex flex-column justify-content-center"
         style={{ height: `${10}rem` }}
       >
-        <FitText compressor={1.5} minFontSize={19}>
+        <FitText compressor={1.6} minFontSize={20}>
           {cardTitle}
         </FitText>
       </div>

@@ -16,7 +16,7 @@ export default () => (
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Lead or facilitate discussions</h5>
-            <p className="card-text">We'd love to have you! Please send us an email or tweet at us with any potential
+            <p className="card-text mb-auto mt-auto">We'd love to have you! Please send us an email or tweet at us with any potential
     topics that you want to cover.</p>
             <div className="mt-auto">
               <a href="https://twitter.com/intent/tweet?text=@tdls_to%20I%20am%20interested%20to%20speak%20about:%20"
@@ -34,7 +34,7 @@ export default () => (
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Suggest a Papers</h5>
-            <p className="card-text"> We're all ears. Please send us an email or tweet at us with your favorite paper
+            <p className="card-text mb-auto mt-auto"> We're all ears. Please send us an email or tweet at us with your favorite paper
               and
     we'll put it on our list.</p>
             <div className="mt-auto">
@@ -52,7 +52,7 @@ export default () => (
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Improve this site</h5>
-            <p className="card-text">Amazing! We're open source, so feel free to clone
+            <p className="card-text mb-auto mt-auto">Amazing! We're open source, so feel free to clone
             <a target="_blank"
                 href="https://github.com/TDLS/tdls.github.io">our GitHub repo</a>, make changes,
 and
@@ -77,7 +77,7 @@ and
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Own a new stream</h5>
-            <p className="card-text">Awesome! Please check out the details link below to learn more about what it
+            <p className="card-text mb-auto mt-auto">Awesome! Please check out the details link below to learn more about what it
               takes
     to own a stream, and write to us with your ideas.</p>
             <div className="mt-auto">
@@ -144,8 +144,7 @@ and
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">YouTube</h5>
-            <p className="card-text">To get updates about our videos subscribe to our YouTube channel for a front row
-    seat.</p>
+            <p className="card-text mb-auto mt-auto">To get updates about our videos subscribe to our YouTube channel for a front row seat.</p>
             <div className="mt-auto">
               <YoutubeSubscribeButton />
             </div>
@@ -156,7 +155,7 @@ and
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Reddit</h5>
-            <p className="card-text">We post our summaries, thoughts, and conclusions on Reddit. Please follow us on
+            <p className="card-text mb-auto mt-auto">We post our summaries, thoughts, and conclusions on Reddit. Please follow us on
     Reddit, and be sure to share your thoughts with us!</p>
             <div className="mt-auto">
               <a href="https://www.reddit.com/user/tdls_to" target="_blank">
@@ -174,7 +173,7 @@ and
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Companies</h5>
-            <p className="card-text">If you want to host us, please send us an email or tweet at us</p>
+            <p className="card-text mb-auto mt-auto">If you want to host us, please send us an email or tweet at us</p>
             <div className="mt-auto">
               <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20host%20TDLS" target="_blank">
                 <i className="fa fa-twitter fa-2x"></i>
@@ -190,7 +189,7 @@ and
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Student Groups at Universities</h5>
-            <p className="card-text">If you want to co-host an event with us, please send us an email or tweet at us</p>
+            <p className="card-text mb-auto mt-auto">If you want to co-host an event with us, please send us an email or tweet at us</p>
             <div className="mt-auto">
               <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
                 target="_blank">
@@ -208,7 +207,7 @@ and
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Meetup Organizer</h5>
-            <p className="card-text">We know lots of great folks who can speak about technical topics; check them out on
+            <p className="card-text mb-auto mt-auto">We know lots of great folks who can speak about technical topics; check them out on
     our YouTube channel.</p>
             <div className="mt-auto">
 

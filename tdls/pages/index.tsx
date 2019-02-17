@@ -163,9 +163,9 @@ const Index = ({ allEvents }) => {
                 <li className="list-inline-item" key={s}
                   style={{
                     textAlign: 'center',
-                    marginLeft: "0.6rem",
-                    marginRight: '0.6rem',
-                    marginTop: '1rem'
+                    marginLeft: "0.6vw",
+                    marginRight: '0.6vw',
+                    marginTop: '1vw'
                   }}
                 >
                   <h4>
