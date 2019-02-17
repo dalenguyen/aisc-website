@@ -141,7 +141,7 @@ const SingleEvent = ({ event: ev }) => {
                 {
                   (status === 'too_early' || status === 'countdown') && (
                     <h4>
-                      <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'warning' }[status]}`}>
+                      <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
                         Live in <Countdown expiresAt={date} />
                       </span>
                     </h4>
