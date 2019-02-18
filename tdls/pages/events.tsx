@@ -200,7 +200,6 @@ const Events = (props: { allEvents: any, filter: Filter }) => {
       <Head>
         <title>Events | Toronto Deep Learning Series #TDLS</title>
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
-        <link rel="canonical" href="./index.html" />
         <ThemesAndSuch />
       </Head>
       <Header allEvents={allEvents} />

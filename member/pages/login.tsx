@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import Header from '../components/header';
 import firebase from 'firebase/app';
+import Head from 'next/head';
+import Meta from '../components/meta';
 
 
 export default () => {
@@ -14,6 +16,9 @@ export default () => {
 
   return (
     <Fragment>
+      <Head>
+        <Meta />
+      </Head>
       <Header />
       <div className="container">
         {/* <!-- Outer Row --> */}

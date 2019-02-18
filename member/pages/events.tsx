@@ -1,18 +1,13 @@
 import { Fragment, useEffect } from "react";
 import Header from '../components/header';
-
+import Meta from '../components/meta';
 import Head from 'next/head'
 
 export default () => {
   return (
     <Fragment>
       <Head>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-
+        <Meta />
         <title>TDLS Members</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
