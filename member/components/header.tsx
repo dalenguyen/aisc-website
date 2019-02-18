@@ -12,8 +12,9 @@ export default () => {
       storageBucket: "central-splice-231701.appspot.com",
       messagingSenderId: "885891444833"
     };
-    firebase.initializeApp(config);
-
+    if (firebase.apps.length === 0) {
+      firebase.initializeApp(config);
+    }
   }, []);
 
   return null;
