@@ -1,8 +1,17 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
 import Header from '../components/header';
+import firebase from 'firebase/app';
+
 
 export default () => {
+  const loginWithGoogle = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    const result = await firebase.auth().signInWithPopup(provider);
+    console.log(result);
+  }
+
   return (
     <Fragment>
       <Header />
@@ -21,9 +30,13 @@ export default () => {
                         <h1 className="h4 text-gray-900 mb-4">Welcome Member!</h1>
                       </div>
                       <form className="user">
-                        <a href="index.html" className="btn btn-google btn-user btn-block">
+                        <button
+                          type="button"
+                          role="button"
+                          onClick={loginWithGoogle}
+                          className="btn btn-google btn-user btn-block">
                           <i className="fab fa-google fa-fw"></i> Login with Google
-                       </a>
+                       </button>
                       </form>
                     </div>
                   </div>
