@@ -347,7 +347,7 @@ const Index = ({ allEvents }) => {
         <section className="container about-tdls">
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <h2 class="title">About TDLS</h2>
+              <h2 className="title">About TDLS</h2>
               <p className="lead">
                 TDLS is a community of intellectually curious individuals, centered around technical
                 review and discussion of advances in machine learning.

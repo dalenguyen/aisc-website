@@ -1,6 +1,7 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import Header from '../components/header';
+
 import Head from 'next/head'
-import './scss/sb-admin-2.scss';
 
 export default () => {
   return (
@@ -19,6 +20,7 @@ export default () => {
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet" />
       </Head>
+      <Header />
 
       {/* <!-- Page Wrapper --> */}
       <div id="wrapper">
@@ -66,12 +68,17 @@ export default () => {
                 <div className="topbar-divider d-none d-sm-block"></div>
                 {/* <!-- Nav Item - User Information --> */}
                 <li className="nav-item dropdown no-arrow">
-                  <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a className="nav-link dropdown-toggle"
+                    href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     <span className="mr-2 d-none d-lg-inline text-gray-600 small">Me</span>
-                    <img className="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
+                    <img className="img-profile rounded-circle"
+                      src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
                   </a>
                   {/* <!-- Dropdown - User Information --> */}
-                  <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    aria-labelledby="userDropdown">
                     <a className="dropdown-item" href="#">
                       <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                       Profile

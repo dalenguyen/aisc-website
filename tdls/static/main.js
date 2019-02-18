@@ -82,11 +82,11 @@ async function assembleEvents(usefulLinksElem, smaLinksElem) {
   // const { subjects, streams } = await getEventsAndGroupings();
   // const subjectFilterElem = document.querySelector('#subject-filter-area');
   // subjectFilterElem.innerHTML = `
-  //   <div class="horizontal-elem">
+  //   <div className="horizontal-elem">
   //   By subject: 
   //   </div>
-  //   <div class="horizontal-elem">
-  //     <select id="subject-filter" class="selectpicker" multiple data-max-options="3">
+  //   <div className="horizontal-elem">
+  //     <select id="subject-filter" className="selectpicker" multiple data-max-options="3">
   //       ${ subjects.map(s => `
   //         <option value="${spacedToDashed(s)}">${s}</option>
   //       `).join('')}
@@ -105,11 +105,11 @@ async function assembleEvents(usefulLinksElem, smaLinksElem) {
 
   // const streamFilterElem = document.querySelector('#stream-filter-area');
   // streamFilterElem.innerHTML = `
-  //   <div class="horizontal-elem">
+  //   <div className="horizontal-elem">
   //   By stream: 
   //   </div>
-  //   <div class="horizontal-elem">
-  //     <select id="stream-filter" class="selectpicker">
+  //   <div className="horizontal-elem">
+  //     <select id="stream-filter" className="selectpicker">
   //         <option value="all">[All]</option>
   //       ${ streams.map(s => `
   //         <option>${s}</option>
@@ -133,7 +133,7 @@ async function assembleEvents(usefulLinksElem, smaLinksElem) {
   //   ${SMA.map(([g, areas]) => `
   //   <dt>${g}</dt>
   //   <dd>
-  //     <ul class="list-unstyled">
+  //     <ul className="list-unstyled">
   //     ${areas.map(([title, desc]) => `
   //     <li>
   //       ${subjects.indexOf(title) < 0 ? title : `<a href="/#/subjects/${spacedToDashed(title)}">${title}</a>`}
