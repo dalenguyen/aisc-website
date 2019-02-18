@@ -140,7 +140,7 @@ const Index = ({ allEvents }) => {
             eventCarousel('Authors Speaking', filterEvents(pastAndFutureEvents, { type: 'authors' }), 4)
           }
           {
-            eventCarousel('Recent Presentations', filterEvents(pastEvents, { type: 'main' }), 8)
+            eventCarousel('Recent Presentations', futureEvents.slice(0, 2).concat(pastEvents.slice(0, 20)), 8)
           }
           {
             eventCarousel('Implementations', filterEvents(pastAndFutureEvents, { type: 'codereview' }), 8)
