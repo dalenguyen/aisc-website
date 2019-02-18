@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Head from 'next/head'
 
-import './scss/sb-admin-2.scss';
+import '../scss/sb-admin-2.scss';
 
 export default () => {
 
