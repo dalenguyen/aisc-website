@@ -1,7 +1,8 @@
 const SUMMARY_JSON = require('./content/summary.json')
+const withSass = require('@zeit/next-sass')
 
-module.exports = {
-  exportPathMap: function() {
+module.exports = withSass({
+  exportPathMap: function () {
     const posts = {}
     const paths = {}
     SUMMARY_JSON.fileMap && Object.keys(SUMMARY_JSON.fileMap)
@@ -33,4 +34,4 @@ module.exports = {
       '/': { page: '/' }
     }, posts, paths) // aliases
   }
-}
+})

@@ -4,6 +4,7 @@ import Header from './Header'
 import Hero from './Hero'
 import Footer from './Footer'
 import Tracking from './Tracking'
+import './main.scss';
 
 function Page(props) {
   return (
