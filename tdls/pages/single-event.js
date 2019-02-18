@@ -54,7 +54,7 @@ const SingleEvent = ({ event: ev }) => {
     const timeSnippet = (
       <Fragment>
         {WEEKDAYS[date.getDay()]}&nbsp;
-                {dashedDate(date)}&nbsp;{time(date)}
+                {dashedDate(date)}
         {{
           'live': ' (this event is live!)',
           'expired': ' (This is a past event.)'
@@ -133,7 +133,6 @@ const SingleEvent = ({ event: ev }) => {
                     </a></Link> {ev.title}
                 </h1>
               </div>
-              <p><strong>Time:</strong> {timeSnippet}</p>
               <p><strong>
                 Stream:
                 </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
@@ -242,9 +241,10 @@ const SingleEvent = ({ event: ev }) => {
                     ))}
                 </ul>
                 <hr />
-                {
+                <p><strong>Time:</strong> {timeSnippet}</p>
+                <p>{
                   venueSnippet
-                }
+                }</p>
                 {
                   status !== 'expired' && agenda
                 }
