@@ -27,8 +27,6 @@ import { mobileCheck } from '../../common/utils';
 
 import './single-event.scss';
 
-const isMobile = mobileCheck()
-
 const SingleEvent = ({ event: ev }) => {
   if (!ev) {
     return (
@@ -42,6 +40,13 @@ const SingleEvent = ({ event: ev }) => {
     const status = eventStatus(ev);
 
     const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
+
+    const [{ isMobile }, setIsMobile] = useState({ isMobile: true });
+
+    useEffect(() => {
+      const isMobile = mobileCheck();
+      setIsMobile({ isMobile });
+    }, []);
 
     const fetchAndSetProfile = async () => {
       const linkedInDict = await getLinkedInProfiles(false);
@@ -95,8 +100,9 @@ const SingleEvent = ({ event: ev }) => {
               (
                 <a className="live-chat btn btn-primary btn-lg"
                   href={ev.video} target="_blank">
-                  <i className="fa fa-external-link"></i>
+                  <i className="fa fa-youtube"></i>&nbsp;
                   &nbsp;Live Chat&nbsp;&nbsp;
+                  <i className="fa fa-external-link-square"></i>
                 </a>
               ) :
               (
