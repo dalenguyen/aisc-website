@@ -30,7 +30,9 @@ interface Filter {
 const EMPTY_FILTER = { searchText: "", subject: "all", stream: "all" };
 
 const EventFilters = ({
-  subject = 'all', searchText = '', stream = 'all',
+  subject: _subject = 'all',
+  searchText: _searchText = '',
+  stream: _stream = 'all',
   onChange = () => undefined,
   subjects = [],
   streams = [] }:
@@ -40,8 +42,10 @@ const EventFilters = ({
   } & Filter)
 ) => {
   const [currFilter, setFilter] = useState({
-    subject, searchText, stream
+    subject: _subject, searchText: _searchText, stream: _stream
   });
+
+  const { searchText, subject, stream } = currFilter;
 
   const onSearchChange = (e: any) => {
     const newVal = e.target.value;
@@ -63,8 +67,7 @@ const EventFilters = ({
   // apply filter to event list
   useEffect(() => {
     onChange(currFilter);
-  }, [Object.keys(EMPTY_FILTER)]);
-
+  }, [searchText, subject, stream]);
 
   return (
     <Form inline className="event-filter-bar form-inline">
