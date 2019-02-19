@@ -30,7 +30,7 @@ export const Countdown = ({ expiresAt }) => {
 
   return expiresAt && (
     <Fragment>
-      {d && `${d} ${singularOrPlural(d, 'day')} & `}{pad(h)}:{pad(m)}:{pad(s)}
+      {(d || null) && `${d} ${singularOrPlural(d, 'day')} & `}{pad(h)}:{pad(m)}:{pad(s)}
     </Fragment>
   )
 }

@@ -37,7 +37,7 @@ function eventStatus(ev) {
 
 function pad(num) {
   // pad single digit number with zero
-  return num < 10 ? '0' + num : num;
+  return num < 10 ? '0' + num : '' + num;
 }
 
 function toShortDateString(d) {
