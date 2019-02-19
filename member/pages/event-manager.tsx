@@ -96,38 +96,21 @@ export default () => {
               </ul>
 
             </nav>
-            {/* <!-- End of Topbar --> */}
-            {/* <!-- Begin Page Content --> */}
             <div className="container-fluid">
-              {/* <!-- Content Row --> */}
               <div className="row">
-                {/* <!-- Area Chart --> */}
-                <div className="col-xl-8 col-lg-7">
+                <div className="col-12">
                   <div className="card shadow mb-4">
-                    {/* <!-- Card Header - Dropdown --> */}
                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                       <h6 className="m-0 font-weight-bold text-primary">Events</h6>
+                    </div>
+                    <div className="card-body">
 
                     </div>
-                    {/* <!-- Card Body --> */}
-                    <div className="card-body">
-                      <div className="chart-area">
-                        sadsa
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-lg-5">
-                  <div className="card shadow mb-4">
                   </div>
                 </div>
               </div>
             </div>
-            {/* <!-- /.container-fluid --> */}
           </div>
-          {/* <!-- End of Main Content --> */}
-
-          {/* <!-- Footer --> */}
           <footer className="sticky-footer bg-white">
             <div className="container my-auto">
               <div className="copyright text-center my-auto">

@@ -10,8 +10,10 @@ export default () => {
   const loginWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    const result = await firebase.auth().signInWithPopup(provider);
-    console.log(result);
+    const { user } = await firebase.auth().signInWithPopup(provider);
+    if (user && !user.isAnonymous) {
+      const { email } = user;
+    }
   }
 
   return (

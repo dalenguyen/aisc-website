@@ -1,0 +1,8 @@
+{
+  "hosting": {
+    "public": "member/public"
+  },
+  "functions": {
+    "source": "member/functions"
+  }
+}
