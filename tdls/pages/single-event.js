@@ -23,8 +23,11 @@ import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
 import ResponsiveEmbed from 'react-responsive-embed';
+import { mobileCheck } from '../../common/utils';
 
 import './single-event.scss';
+
+const isMobile = mobileCheck()
 
 const SingleEvent = ({ event: ev }) => {
   if (!ev) {
@@ -84,6 +87,48 @@ const SingleEvent = ({ event: ev }) => {
       </Fragment >
     );
 
+    const liveChat = (
+      <section className="live-chat">
+        {
+          status !== 'expired' && (
+            isMobile ?
+              (
+                <a className="live-chat btn btn-primary btn-lg"
+                  href={ev.video} target="_blank">
+                  <i className="fa fa-external-link"></i>
+                  &nbsp;Live Chat&nbsp;&nbsp;
+                </a>
+              ) :
+              (
+                <Fragment>
+                  <a className={`live-chat btn btn-primary btn-lg ${status === 'live' ? '' : 'collapsed'}`}
+                    data-toggle="collapse"
+                    href="#live-chat-area"
+                    role="button"
+                    aria-expanded="false" aria-controls="live-chat-area">
+                    <i className="fa fa-comments"></i>&nbsp;Live Chat&nbsp;&nbsp;<i className="fa indicator"></i>
+                  </a>
+                  {
+                    status !== 'expired' && (
+                      <iframe
+                        className={status === 'live' ? '' : 'collapse'}
+                        id="live-chat-area"
+                        width="100%"
+                        frameBorder={0}
+                        height="500px"
+                        src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
+                      </iframe>
+                    )
+                  }
+                </Fragment>
+              )
+
+          )
+        }
+
+      </section>
+    )
+
     let desc = ``;
     if (ev.why) {
       desc += `${ev.why} | `;
@@ -138,31 +183,7 @@ const SingleEvent = ({ event: ev }) => {
                 </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
             </div>
             <div className="col-12 col-lg-3">
-              <section className="live-chat">
-                {
-                  status !== 'expired' && (
-                    <a className={`live-chat btn btn-primary btn-lg ${status === 'live' ? '' : 'collapsed'}`}
-                      data-toggle="collapse"
-                      href="#live-chat-area"
-                      role="button"
-                      aria-expanded="false" aria-controls="live-chat-area">
-                      <i className="fa fa-comments"></i>&nbsp;Live Chat&nbsp;&nbsp;<i className="fa indicator"></i>
-                    </a>
-                  )
-                }
-                {
-                  status !== 'expired' && (
-                    <iframe
-                      className={status === 'live' ? '' : 'collapse'}
-                      id="live-chat-area"
-                      width="100%"
-                      frameBorder={0}
-                      height="500px"
-                      src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
-                    </iframe>
-                  )
-                }
-              </section>
+              {liveChat}
               <hr />
 
               <section className="live-info">

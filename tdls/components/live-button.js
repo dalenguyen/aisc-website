@@ -77,7 +77,7 @@ export default ({ allEvents }) => {
           }
         }
       `}</style>
-        <Link href={`events/${getEventId(upcomingEvent)}`}>
+        <Link href={`/events/${getEventId(upcomingEvent)}`}>
           <a className="live-button btn btn-danger btn-sm">
             <i className="fa fa-play-circle"></i>
             &nbsp;Live in <Countdown expiresAt={new Date(upcomingEvent.date)} />
