@@ -59,33 +59,31 @@ export default ({ allEvents }) => {
     fetchAndSetUpcomingEvent();
   }, [allEvents]);
   const upcomingEvent = prefetched || (allEvents && findNextUpcomingEvent(allEvents));
-
-  return (
-    (upcomingEvent || null) && (
+  if (!upcomingEvent) {
+    return null;
+  } else {
+    const status = eventStatus(upcomingEvent);
+    return (
       <Fragment>
-        <style jsx>{`
-        .live-button {
-          animation: glow 1s ease-in-out infinite alternate;
-          /* box-shadow: 0 0 20px red; */
-        }
-        @-webkit-keyframes glow {
-          from {
-            box-shadow: 0 0 20px #fff;
-          }
-          to {
-            box-shadow: 0 0 20px red;
-          }
-        }
-      `}</style>
         <Link href={`/events/${getEventId(upcomingEvent)}`}>
           <a className="live-button btn btn-danger btn-sm">
             <i className="fa fa-play-circle"></i>
-            &nbsp;Live in <Countdown expiresAt={new Date(upcomingEvent.date)} />
+            {status === 'countdown' && (
+              <Fragment>
+                &nbsp;Live in <Countdown expiresAt={new Date(upcomingEvent.date)} />
+              </Fragment>
+            )}
+            {status === 'live' && (
+              <Fragment>
+                &nbsp;We are live!
+              </Fragment>
+            )}
           </a>
         </Link>
       </Fragment>
-    )
-  );
+    );
+  }
+
 };
 
 
@@ -100,7 +98,7 @@ function findNextUpcomingEvent(allEvents) {
   } else {
     const candidate = futureWithStreams[0];
     const status = eventStatus(candidate);
-    if (status !== 'countdown') {
+    if (status !== 'countdown' && status !== 'live') {
       return null;
     } else {
       return candidate;
