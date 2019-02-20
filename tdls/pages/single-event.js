@@ -92,7 +92,7 @@ const SingleEvent = ({ event: ev }) => {
       </Fragment >
     );
 
-    const liveChat = (
+    const liveChat = (ev.video || null) && (
       <section className="live-chat">
         {
           status !== 'expired' && (

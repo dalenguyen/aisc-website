@@ -4,7 +4,7 @@ import LiveButton from './live-button';
 import SocialButtons from './social-buttons';
 import './header.scss';
 
-export default ({ allEvents, before }) => {
+export default ({ allEvents, before = null }) => {
   return (
     <Fragment>
       <header className="main-navbar">

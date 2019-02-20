@@ -13,9 +13,14 @@ import { toLongDateString } from '../utils/datetime';
 import { ZoomLevel } from './event-carousel';
 
 export default ({
-  event: ev, showToolbar = true, showDate = true, zoomLevel, showEventStatus = true }: {
-    event: any, showToolbar: boolean, showDate: boolean,
-    zoomLevel: ZoomLevel, showEventStatus: boolean
+  event: ev,
+  showToolbar = true,
+  showDate = true,
+  showEventStatus = true }: {
+    event: any,
+    showToolbar?: boolean,
+    showDate?: boolean,
+    showEventStatus?: boolean
   }) => {
   const date = new Date(ev.date);
   const status = eventStatus(ev);

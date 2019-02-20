@@ -6,8 +6,14 @@ import {
   getEventId
 } from '../../common/event';
 
-export default ({ events, toolbar = true, showEventStatus = true }:
-  { events: Event[], toolbar: boolean, showEventStatus: boolean }) => {
+export default ({
+  events, showToolbar = true,
+  showEventStatus = true }:
+  {
+    events: Event[],
+    showToolbar?: boolean,
+    showEventStatus?: boolean
+  }) => {
   return (
     <article className="container-fluid">
       <div className="row">
@@ -15,7 +21,7 @@ export default ({ events, toolbar = true, showEventStatus = true }:
           <div key={getEventId(ev)}
             className="col-12 col-md-6 col-lg-4 col-lg-3 col-xl-2">
             <EventCard event={ev}
-              showToolbar={toolbar}
+              showToolbar={showToolbar}
               showEventStatus={showEventStatus}
             />
           </div>

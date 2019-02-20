@@ -1,4 +1,4 @@
-import { Fragment, useState, ChangeEvent, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import React from 'react';
 import {
   InputGroup, DropdownButton, Dropdown, FormControl,
@@ -30,9 +30,9 @@ interface Filter {
 const EMPTY_FILTER = { searchText: "", subject: "all", stream: "all" };
 
 const EventFilters = ({
-  subject: _subject = 'all',
-  searchText: _searchText = '',
-  stream: _stream = 'all',
+  subject: initSubject = 'all',
+  searchText: initSearchText = '',
+  stream: initStream = 'all',
   onChange = () => undefined,
   subjects = [],
   streams = [] }:
@@ -42,7 +42,9 @@ const EventFilters = ({
   } & Filter)
 ) => {
   const [currFilter, setFilter] = useState({
-    subject: _subject, searchText: _searchText, stream: _stream
+    subject: initSubject,
+    searchText: initSearchText,
+    stream: initStream
   });
 
   const { searchText, subject, stream } = currFilter;
@@ -87,6 +89,7 @@ const EventFilters = ({
       </InputGroup>
       <InputGroup className="mb-2 mr-sm-2" >
         <DropdownButton
+          id="subject-filter"
           size="lg"
           variant={subject === 'all' ? 'outline-secondary' : 'success'}
           title={subject === 'all' ? 'By subject' : subject}
@@ -109,6 +112,7 @@ const EventFilters = ({
 
       <InputGroup className="mb-2 mr-sm-2" >
         <DropdownButton
+          id="stream-filter"
           size="lg"
           variant={stream === 'all' ? 'outline-secondary' : 'success'}
           title={stream === 'all' ? 'By stream' : READABLE_EVENT_TYPE[stream]}
@@ -219,13 +223,13 @@ const Events = (props: { allEvents: any, filter: Filter }) => {
                 Upcoming</span></h4>
           )}
           <EventList
-            events={filteredFuture} toolbar={false}
+            events={filteredFuture} showToolbar={false}
             showEventStatus={true}
           />
           {filteredPast.length > 0 && (
             <h4><span className="badge badge-pill badge-secondary">Past</span></h4>
           )}
-          <EventList events={filteredPast} toolbar={false} />
+          <EventList events={filteredPast} showToolbar={false} />
         </section>
       </main>
       <Footer />
