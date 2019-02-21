@@ -101,46 +101,48 @@ const SingleEvent = ({ event: ev }) => {
     );
 
     const liveChat = (ev.video || null) && (
-      <section className="live-chat">
-        {
-          status !== 'expired' && (
-            isMobile ?
-              (
-                <a className="live-chat btn btn-primary btn-lg"
-                  href={ev.video} target="_blank">
-                  <i className="fa fa-youtube"></i>&nbsp;
-                  &nbsp;Live Chat&nbsp;&nbsp;
+      <Fragment>
+        <section className="live-chat">
+          {
+            status !== 'expired' && (
+              isMobile ?
+                (
+                  <a className="live-chat btn btn-primary btn-lg"
+                    href={ev.video} target="_blank">
+                    <i className="fa fa-youtube"></i>&nbsp;
+                    &nbsp;Live Chat&nbsp;&nbsp;
                   <i className="fa fa-external-link-square"></i>
-                </a>
-              ) :
-              (
-                <Fragment>
-                  <a className={`live-chat btn btn-primary btn-lg ${status === 'live' ? '' : 'collapsed'}`}
-                    data-toggle="collapse"
-                    href="#live-chat-area"
-                    role="button"
-                    aria-expanded="false" aria-controls="live-chat-area">
-                    <i className="fa fa-comments"></i>&nbsp;Live Chat&nbsp;&nbsp;<i className="fa indicator"></i>
                   </a>
-                  {
-                    status !== 'expired' && (
-                      <iframe
-                        className={status === 'live' ? '' : 'collapse'}
-                        id="live-chat-area"
-                        width="100%"
-                        frameBorder={0}
-                        height="500px"
-                        src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
-                      </iframe>
-                    )
-                  }
-                </Fragment>
-              )
+                ) :
+                (
+                  <Fragment>
+                    <a className={`live-chat btn btn-primary btn-lg ${status === 'live' ? '' : 'collapsed'}`}
+                      data-toggle="collapse"
+                      href="#live-chat-area"
+                      role="button"
+                      aria-expanded="false" aria-controls="live-chat-area">
+                      <i className="fa fa-comments"></i>&nbsp;Live Chat&nbsp;&nbsp;<i className="fa indicator"></i>
+                    </a>
+                    {
+                      status !== 'expired' && (
+                        <iframe
+                          className={status === 'live' ? '' : 'collapse'}
+                          id="live-chat-area"
+                          width="100%"
+                          frameBorder={0}
+                          height="500px"
+                          src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
+                        </iframe>
+                      )
+                    }
+                  </Fragment>
+                )
 
-          )
-        }
-
-      </section>
+            )
+          }
+        </section>
+        <hr />
+      </Fragment>
     )
 
     let desc = ``;
@@ -192,13 +194,22 @@ const SingleEvent = ({ event: ev }) => {
                     </a></Link> {ev.title}
                 </h1>
               </div>
+
+              {
+                ev.why && (
+                  <Fragment>
+                    <h5>Motivation</h5>
+                    {ev.why}
+                  </Fragment>
+                )
+              }
+
               <p><strong>
                 Stream:
                 </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
             </div>
             <div className="col-12 col-lg-4">
               {liveChat}
-              <hr />
 
               <section className="live-info">
                 {
@@ -250,14 +261,6 @@ const SingleEvent = ({ event: ev }) => {
                   )}
                 </ul>
                 <hr />
-                {
-                  ev.why && (
-                    <Fragment>
-                      <h5>Motivation</h5>
-                      {ev.why}
-                    </Fragment>
-                  )
-                }
                 <ul className="list-unstyled artifact-list">
                   {[
                     [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],

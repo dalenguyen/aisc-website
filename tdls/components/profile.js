@@ -5,8 +5,20 @@ export function nameToLink(name, link) {
     return (
       <a key={name} className="person-name" href={link} target="_blank">
         {name}&nbsp;
-        <i className="fa fa-linkedin-square"></i>
+        {icon(link)}
       </a>
+    );
+  }
+}
+
+function icon(link) {
+  if (link.startsWith("https://www.linkedin.com/")) {
+    return (
+      <i className="fa fa-linkedin-square"></i>
+    )
+  } else {
+    return (
+      <i className="fa fa-external-link"></i>
     );
   }
 }
