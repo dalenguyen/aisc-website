@@ -76,7 +76,7 @@ const Index = ({ allEvents }) => {
   return (
     <Fragment>
       <Head>
-        <title>Toronto Deep Learning Series #TDLS</title>
+        <title>Toronto Deep Learning Series</title>
         <meta name="description"
           content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning."
         />

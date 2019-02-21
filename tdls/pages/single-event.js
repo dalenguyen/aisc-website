@@ -167,7 +167,7 @@ const SingleEvent = ({ event: ev }) => {
         } />
         <section className="single-event container-fluid">
           <div className="row">
-            <div className="col-12 col-lg-9">
+            <div className="col-12 col-lg-8">
               {
                 ev.video ? (
                   <ResponsiveEmbed
@@ -196,7 +196,7 @@ const SingleEvent = ({ event: ev }) => {
                 Stream:
                 </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
             </div>
-            <div className="col-12 col-lg-3">
+            <div className="col-12 col-lg-4">
               {liveChat}
               <hr />
 
