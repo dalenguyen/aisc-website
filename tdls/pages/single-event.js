@@ -86,9 +86,17 @@ const SingleEvent = ({ event: ev }) => {
           <li>6:30-7:15,   algorithm review</li>
           <li>7:15-8:00,   results and discussions</li>
         </ul>
+        <h5>Filming and Photography</h5>
+        <p>
+          Please note that there will be photography and livestreaming at this event.
+        </p>
+        <p>
+          If you do not wish to be shown on the live stream or in photographs, please come talk to us ahead of the session.
+        </p>
         <Link href="/code-of-conduct">
           <a className="btn btn-outline-secondary btn-sm">Code of Conduct</a>
         </Link>
+
       </Fragment >
     );
 
