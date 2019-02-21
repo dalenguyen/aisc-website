@@ -8,7 +8,6 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
-import { UpcomingEvents } from '../components/event-related';
 import EventCarousel, { filterEvents } from '../components/event-carousel';
 import { ZoomLevel } from '../components/event-carousel';
 
@@ -81,7 +80,6 @@ const Index = ({ allEvents }) => {
         <meta name="description"
           content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning."
         />
-        <link rel="canonical" href="./index.html" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
         <ThemesAndSuch />
