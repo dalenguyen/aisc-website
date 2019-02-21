@@ -9,6 +9,7 @@ import { getEventById } from '../utils/event-fetch';
 import { toLongDateString } from '../utils/datetime';
 import Chart from "react-google-charts";
 import ReactMarkdown from 'react-markdown';
+import { Form, Badge, ListGroup } from 'react-bootstrap';
 
 // const { prepTalk } = require(`../data/docs.json`);
 const prepTalk = require('../data/writeup/prep-talk.md');
@@ -97,11 +98,26 @@ const SpeakerPrep = ({ event }) => {
             Presentation date: {toLongDateString(date)}
           </p>
           <h2>Timeline</h2>
-          <ul>
+          <ListGroup style={{ fontSize: "1.4em" }}>
+            <ListGroup.Item><Form.Check label={`Send presentation draft 1`}></Form.Check></ListGroup.Item>
+            <ListGroup.Item>
+              Talk to facilitators
+            <ul>
+                <li><Form.Check checked label={<Fragment>John <Badge variant="warning">Due Mar 3</Badge></Fragment>} /></li>
+                <li><Form.Check label={<Fragment>Jane <Badge variant="warning">Due Mar 3</Badge></Fragment>} /></li>
+              </ul>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Form.Check label={`Send presentation draft 2`}></Form.Check>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Form.Check label={`(Optional) Communicate with Authors`}></Form.Check>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Form.Check label={`(Optional) dry-run with facilitators & moderator`}></Form.Check>
+            </ListGroup.Item>
+          </ListGroup>
 
-          </ul>
-          <ul>
-          </ul>
           <article>
             <Chart
               options={{
