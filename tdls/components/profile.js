@@ -12,7 +12,7 @@ export function nameToLink(name, link) {
 }
 
 function icon(link) {
-  if (link.startsWith("https://www.linkedin.com/")) {
+  if (/^https:\/\/(.+)\.linkedin\.com\/*/g.test(link)) {
     return (
       <i className="fa fa-linkedin-square"></i>
     )
