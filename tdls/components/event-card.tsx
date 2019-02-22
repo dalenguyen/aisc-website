@@ -53,7 +53,17 @@ export default ({
   );
 
   const dateElem = (
-    <div className="date align-self-end">
+    <div
+      className="date align-self-end"
+      style={{
+        position: 'absolute',
+        bottom: 5, right: 5,
+        textAlign: 'right',
+        color: "white",
+        fontWeight: 'bold',
+        textShadow: '0 0 5px #000, 0 0 15px #000, 0 0 20px #fff'
+      }}
+    >
       {toLongDateString(date)}
     </div>
   );
@@ -84,10 +94,15 @@ export default ({
               </span>
             </h5>
           )}
+          {showDate && dateElem}
         </a>
       </Link>
       <div className="card-body d-flex flex-column justify-content-center"
-        style={{ height: `${10}rem` }}
+        style={{
+          height: `${9}rem`,
+          marginLeft: '0.5em',
+          marginRight: '0.5em',
+        }}
       >
         <FitText compressor={1.6} minFontSize={20}>
           {cardTitle}
@@ -95,7 +110,6 @@ export default ({
       </div>
       <div className="align-self-end card-end">
         {showToolbar && toolbarElem}
-        {showDate && dateElem}
       </div>
     </div >
   );
