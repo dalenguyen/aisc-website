@@ -1,7 +1,10 @@
 import { Fragment, useEffect } from "react";
 import Header from '../components/header';
 import Meta from '../components/meta';
+import TopBar from '../components/top-bar';
+import SideBar from '../components/side-bar';
 import Head from 'next/head'
+
 
 export default () => {
   return (
@@ -9,92 +12,18 @@ export default () => {
       <Head>
         <Meta />
         <title>TDLS Members</title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-          crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet" />
       </Head>
       <Header />
 
-      {/* <!-- Page Wrapper --> */}
       <div id="wrapper">
-        {/* <!-- Sidebar --> */}
-        <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-          {/* <!-- Sidebar - Brand --> */}
-          <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-            <div className="sidebar-brand-icon rotate-n-15">
-              <i className="fas fa-laugh-wink"></i>
-            </div>
-            <div className="sidebar-brand-text mx-3">TDLS Members</div>
-          </a>
-
-          {/* <!-- Divider --> */}
-          <hr className="sidebar-divider my-0" />
-
-          {/* <!-- Nav Item - Dashboard --> */}
-          <li className="nav-item active">
-            <a className="nav-link" href="index.html">
-              <i className="fas fa-fw fa-tachometer-alt"></i>
-              <span>Member Home</span></a>
-          </li>
-
-          {/* <!-- Divider --> */}
-          <hr className="sidebar-divider" />
-        </ul>
-
-        {/* <!-- End of Sidebar --> */}
-        {/* <!-- Content Wrapper --> */}
-        <div id="content-wrapper" className="d-flex flex-column">
-
-          {/* <!-- Main Content --> */}
+        <SideBar />
+        <main id="content-wrapper" className="d-flex flex-column">
           <div id="content">
-
-            {/* <!-- Topbar --> */}
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-              {/* <!-- Sidebar Toggle (Topbar) --> */}
               <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
                 <i className="fa fa-bars"></i>
               </button>
-
-              {/* <!-- Topbar Navbar --> */}
-              <ul className="navbar-nav ml-auto">
-                <div className="topbar-divider d-none d-sm-block"></div>
-                {/* <!-- Nav Item - User Information --> */}
-                <li className="nav-item dropdown no-arrow">
-                  <a className="nav-link dropdown-toggle"
-                    href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <span className="mr-2 d-none d-lg-inline text-gray-600 small">Me</span>
-                    <img className="img-profile rounded-circle"
-                      src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
-                  </a>
-                  {/* <!-- Dropdown - User Information --> */}
-                  <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="userDropdown">
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Profile
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Settings
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Activity Log
-                    </a>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                      <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Logout
-                    </a>
-                  </div>
-                </li>
-              </ul>
-
+              <TopBar />
             </nav>
             <div className="container-fluid">
               <div className="row">
@@ -104,6 +33,7 @@ export default () => {
                       <h6 className="m-0 font-weight-bold text-primary">Events</h6>
                     </div>
                     <div className="card-body">
+                      <h4>Upcoming Events</h4>
 
                     </div>
                   </div>
@@ -118,8 +48,7 @@ export default () => {
               </div>
             </div>
           </footer>
-
-        </div>
+        </main>
 
       </div>
 
