@@ -46,14 +46,11 @@ async function fetchAndSaveWriteups() {
 
 }
 
-
-
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
 }
-
 
 async function fetchAndSaveContent() {
   await Promise.all(types.map(t => fetchAndSaveType(client, t)));
