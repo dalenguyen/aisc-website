@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "tdls": "npm run dev-sync-blog && npm run sync-data && next tdls -p 3000",
-    "member": "npm run member-fb-serve",
+    "member": "concurrently \"next member -p 3500\" \"npm run member-fb\"",
     "a-i": "npm run dev-sync-blog && npm run sync-data && next a-i -p 3100",
     "blog": "concurrently \"next blog -p 3200\" \"npm run dev-watch-blog\"",
     "dev-watch-blog": "cd blog && npm run build:content:watch",
