@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./lib",
+    "outDir": "./functions-lib",
     "rootDir": "./functions",
   },
   "include": [
