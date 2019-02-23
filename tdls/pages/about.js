@@ -50,7 +50,7 @@ const About = ({ contributors }) => (
         {[
           ['Amir Feizpour', 'Founder and Head of Operations', '/static/images/amir.jpeg', 'https://www.linkedin.com/in/amirfzpr/'],
           ['Ehsan Amjadian', 'Head of Research', '/static/images/ehsan.jpeg', 'https://www.linkedin.com/in/ehsanamjadian/'],
-          ['Felipe Pérez', '"Classics" Stream Lead', '/static/images/felipe.jpeg', 'https://www.linkedin.com/in/felipe-perez-/'],
+          ['Felipe Pérez', '"Foundational" Stream Lead', '/static/images/felipe.jpeg', 'https://www.linkedin.com/in/felipe-perez-/'],
           ['Gordon Gibson', '“Fast Track” Stream Lead', '/static/images/gordon.jpeg', 'https://www.linkedin.com/in/gordon-gibson-874b3130/'],
           ['Lindsay Brin', 'Chief Phrasing Officer and Inclusivity Lead', '/static/images/lindsay.jpeg', 'https://www.linkedin.com/in/lindsaydbrin/'],
           ['Serena McDonnell', '"Main" Stream Lead', '/static/images/serena.jpeg', 'https://www.linkedin.com/in/serenamcdonnell/'],
