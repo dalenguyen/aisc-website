@@ -15,7 +15,7 @@
     "member-fb-serve": "cross-env GOOGLE_APPLICATION_CREDENTIALS=`pwd`/keys/fb-service.json firebase serve --only functions --port=3600",
     "member-fb": "npm run member-fb-build && concurrently \"npm run member-fb-watch\" \"npm run member-fb-serve\"",
     "sync-contentful": "node scripts/fetch-contentful.js",
-    "sync-schedule": "babel-node scripts/sync-schedule.js",
+    "sync-schedule": "ts-node scripts/sync-schedule.ts",
     "sync-data": "npm run sync-contentful & npm run sync-schedule",
     "tdls-build-sitemap": "cross-env SITE_ROOT=https://tdls.a-i.science node scripts/build-sitemap.js tdls",
     "a-i-build-sitemap": "cross-env SITE_ROOT=https://a-i.science node scripts/build-sitemap.js a-i",
@@ -42,6 +42,7 @@
   },
   "homepage": "https://github.com/tdls/tdls.github.io#readme",
   "dependencies": {
+    "@types/moment-timezone": "^0.5.10",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "bootstrap": "^4.3.1",
@@ -85,6 +86,7 @@
     "processmd": "^4.4.2",
     "standard": "^12.0.1",
     "styled-jsx": "^3.2.0",
+    "ts-node": "^8.0.2",
     "typescript": "^3.3.3"
   },
   "optionalDependencies": {

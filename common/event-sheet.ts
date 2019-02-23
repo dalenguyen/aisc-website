@@ -1,37 +1,15 @@
+import { PublicEvent, MemberEvent } from './types';
 require('dotenv').config();
-const fs = require('fs');
-const path = require('path');
-const moment = require('moment-timezone');
 
+const moment = require('moment-timezone');
 const fetch = require('isomorphic-unfetch');
 
+
 const {
-  STEER_CO_PATH = 'steerco',
-  GOOGLE_KEY = 'AIzaSyAUMihCUtNS35espxycitPYrTE_78W93Ps'
+  // STEER_CO_PATH = 'steerco',
+  GOOGLE_KEY
 } = process.env;
 
-
-fetchAndSaveSchedule();
-
-async function fetchAndSaveSchedule() {
-  const [eventsAndGroupings, linkedInProfiles] = await Promise.all(
-    [
-      fetchEventsAndGroupings(), fetchLinkedInProfiles()
-    ]
-  );
-
-  fs.writeFileSync(
-    path.join(__dirname, '..', 'tdls', 'static', 'data', `events.json`),
-    JSON.stringify(eventsAndGroupings, null, 2)
-  );
-  console.log("Events written to disk.");
-
-  fs.writeFileSync(
-    path.join(__dirname, '..', 'tdls', 'static', 'data', `profiles.json`),
-    JSON.stringify(linkedInProfiles, null, 2)
-  );
-  console.log("Profiles written to disk.");
-}
 
 async function getRawEventData() {
   const SHEET_ID = '1WghUEANwzE1f8fD_sdTvM9BEmr1C9bZjPlFSIJX9iLE';
@@ -46,6 +24,79 @@ async function getRawEventData() {
   return raw;
 }
 
+
+function splitEvents(events: MemberEvent[]): PublicEvent[][] {
+  // split into the past and future
+  let past: PublicEvent[] = [];
+  let future: MemberEvent[] = [];
+  events.forEach(e => {
+    if (!eventExpired(e)) { future.push(e); }
+    else { past.push(e); }
+  });
+  past = past.sort((e1, e2) => e2.date - e1.date);
+  future = future.sort((e1, e2) => e1.date - e2.date);
+  // hide venue
+  const futurePublic: PublicEvent[] = future.map(({ venue, ...hiddenEv }) => hiddenEv);
+  return [past, futurePublic];
+}
+
+
+function eventExpired(ev: PublicEvent) {
+  return ev && ev.date < new Date().getTime();
+}
+
+
+export async function fetchEventsAndGroupings() {
+  const data = await getRawEventData();
+  const [rawHeader, ...rawRows]:
+    [string[], ...{ [k: string]: string }[]] = data.values;
+
+  // convert raw JSON rows to our own event data type
+  const events = rawRows.map(
+    rawR => rawRowToRow(rawHeader, rawR)).filter(
+      //only care about rows that have both title and lead
+      e => e.title && e.lead
+    );
+  const [pastEvents, futureEvents] = splitEvents(events);
+
+  const subjects = pastEvents.reduce((subjects, ev) => {
+    const newSubjects = [];
+    for (let sub of ev.subjects) {
+      if (subjects.indexOf(sub) < 0) {
+        newSubjects.push(sub);
+      }
+    }
+    return subjects.concat(newSubjects);
+  }, [] as string[]);
+
+  const streams = pastEvents.reduce((streams, ev) => {
+    const newStreams = [];
+    if (streams.indexOf(ev.type) < 0) {
+      newStreams.push(ev.type);
+    }
+    return streams.concat(newStreams);
+  }, [] as string[]);
+
+
+  return { pastEvents, futureEvents, subjects, streams };
+}
+
+
+export async function fetchLinkedInProfiles() {
+  const data = await getRawLinkedInData();
+  const linkedInProfileByName: { [k: string]: string } = {};
+  const [rawHeader, ...rawRows] = data.values;
+  rawRows.forEach((r: { [k: string]: string }) => {
+    const name = r[rawHeader.indexOf('Name')];
+    const link = r[rawHeader.indexOf('LinkedIn')];
+    if (link) {
+      linkedInProfileByName[name.trim()] = link.trim();
+    }
+  });
+  return linkedInProfileByName;
+};
+
+
 async function getRawLinkedInData() {
   const SHEET_ID = '1WghUEANwzE1f8fD_sdTvM9BEmr1C9bZjPlFSIJX9iLE';
   const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Profiles?key=${GOOGLE_KEY}`;
@@ -59,7 +110,8 @@ async function getRawLinkedInData() {
   return raw;
 }
 
-function rawRowToRow(rawHeader, rawRow) {
+
+function rawRowToRow(rawHeader: string[], rawRow: { [k: string]: string }) {
   const title = rawRow[rawHeader.indexOf('Title')];
   const why = rawRow[rawHeader.indexOf('Why')];
   const venue = rawRow[rawHeader.indexOf('Venue')];
@@ -107,69 +159,3 @@ function rawRowToRow(rawHeader, rawRow) {
 }
 
 
-function splitEvents(events) {
-  // split into the past and future
-  let past = [];
-  let future = [];
-  events.forEach(e => {
-    if (!eventExpired(e)) { future.push(e); }
-    else { past.push(e); }
-  });
-  past = past.sort((e1, e2) => e2.date - e1.date);
-  future = future.sort((e1, e2) => e1.date - e2.date);
-  // hide venue
-  future = future.map(({ venue, ...hiddenEv }) => hiddenEv);
-  return [past, future];
-}
-
-function eventExpired(ev) {
-  return ev && ev.date < new Date().getTime();
-}
-
-
-async function fetchLinkedInProfiles() {
-  const data = await getRawLinkedInData();
-  const linkedInProfileByName = {};
-  const [rawHeader, ...rawRows] = data.values;
-  rawRows.forEach(r => {
-    const name = r[rawHeader.indexOf('Name')];
-    const link = r[rawHeader.indexOf('LinkedIn')];
-    if (link) {
-      linkedInProfileByName[name.trim()] = link.trim();
-    }
-  });
-  return linkedInProfileByName;
-};
-
-async function fetchEventsAndGroupings() {
-  const data = await getRawEventData();
-  const [rawHeader, ...rawRows] = data.values;
-
-  // convert raw JSON rows to our own event data type
-  const events = rawRows.map(
-    rawR => rawRowToRow(rawHeader, rawR)).filter(
-      //only care about rows that have both title and lead
-      e => e.title && e.lead
-    );
-  const [pastEvents, futureEvents] = splitEvents(events);
-
-  const subjects = pastEvents.reduce((subjects, ev) => {
-    const newSubjects = [];
-    for (let sub of ev.subjects) {
-      if (subjects.indexOf(sub) < 0) {
-        newSubjects.push(sub);
-      }
-    }
-    return subjects.concat(newSubjects);
-  }, []);
-
-  const streams = pastEvents.reduce((streams, ev) => {
-    const newStreams = [];
-    if (streams.indexOf(ev.type) < 0) {
-      newStreams.push(ev.type);
-    }
-    return streams.concat(newStreams);
-  }, []);
-
-  return { pastEvents, futureEvents, subjects, streams };
-}
