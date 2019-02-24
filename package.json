@@ -83,6 +83,7 @@
     "contentful": "^7.2.0",
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
+    "firebase-tools": "^6.4.0",
     "processmd": "^4.4.2",
     "standard": "^12.0.1",
     "styled-jsx": "^3.2.0",
