@@ -1,7 +1,6 @@
-const { fetchEventsAndGroupings, fetchLinkedInProfiles } = require('../common/event-sheet');
-
-const fs = require('fs');
-const path = require('path');
+import { fetchEventsAndGroupings, fetchLinkedInProfiles } from '../common/event-sheet';
+import * as fs from 'fs';
+import * as path from 'path';
 
 
 fetchAndSaveSchedule();

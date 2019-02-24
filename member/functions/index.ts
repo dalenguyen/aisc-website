@@ -1,3 +1,1 @@
-import { initializeAuth } from './auth';
-
-exports.initializeAuth = initializeAuth;
+export { initializeAuth } from './auth';

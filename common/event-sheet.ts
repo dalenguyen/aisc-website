@@ -1,9 +1,7 @@
 import { PublicEvent, MemberEvent } from './types';
 require('dotenv').config();
-
-const moment = require('moment-timezone');
+import * as moment from 'moment-timezone';
 const fetch = require('isomorphic-unfetch');
-
 
 const {
   // STEER_CO_PATH = 'steerco',

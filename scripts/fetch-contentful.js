@@ -34,8 +34,6 @@ async function fetchAndSaveWriteups() {
 
   ensureDir(dir);
   entries.forEach(e => {
-    console.log(e.content)
-
     fs.writeFileSync(
       path.join(dir, `${e.id}.md`),
       e.content
