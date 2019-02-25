@@ -24,7 +24,7 @@ import { PublicEvent } from '../../common/types';
 
 import './single-event.scss';
 
-const SingleEvent = ({ event: ev }: { event: PublicEvent }) => {
+const SingleEvent = ({ event: ev, isMember }: { event: PublicEvent, isMember: boolean }) => {
   if (!ev) {
     return (
       <div>
@@ -59,7 +59,8 @@ const SingleEvent = ({ event: ev }: { event: PublicEvent }) => {
     const timeSnippet = (
       <Fragment>
         {WEEKDAYS[date.getDay()]}&nbsp;
-                {dashedDate(date)}
+        {dashedDate(date)}
+        {!isMember && ` ${time(date)}`}
         {{
           'live': ' (this event is live!)',
           'expired': ' (This is a past event.)'
@@ -99,6 +100,9 @@ const SingleEvent = ({ event: ev }: { event: PublicEvent }) => {
 
     const liveChat = (ev.video || null) && (
       <Fragment>
+        {!isMember && (status === 'too_early' || status === 'countdown') && (
+          <p>This is an online streaming event.</p>
+        )}
         <section className="live-chat">
           {
             status !== 'expired' && (
@@ -130,7 +134,6 @@ const SingleEvent = ({ event: ev }: { event: PublicEvent }) => {
                     </iframe>
                   </Fragment>
                 )
-
             )
           }
         </section>
@@ -195,7 +198,7 @@ const SingleEvent = ({ event: ev }: { event: PublicEvent }) => {
               }
 
               <p><strong>
-                Stream:
+                Category:
                 </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
             </div>
             <div className="col-12 col-lg-4">
@@ -204,15 +207,17 @@ const SingleEvent = ({ event: ev }: { event: PublicEvent }) => {
               <section className="live-info">
                 {
                   (status === 'too_early' || status === 'countdown') && (
-                    <a
-                      target="_blank"
-                      href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
-                      <h5>
-                        <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
-                          Live in <Countdown expiresAt={date} />
-                        </span>
-                      </h5>
-                    </a>
+                    <Fragment>
+                      <a
+                        target="_blank"
+                        href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                        <h5>
+                          <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
+                            Live in <Countdown expiresAt={date} />
+                          </span>
+                        </h5>
+                      </a>
+                    </Fragment>
                   )
                 }
                 {
@@ -269,11 +274,15 @@ const SingleEvent = ({ event: ev }: { event: PublicEvent }) => {
                 </ul>
                 <hr />
                 <p><strong>Time:</strong> {timeSnippet}</p>
-                <p>{
-                  venueSnippet
-                }</p>
                 {
-                  status !== 'expired' && agenda
+                  isMember && (
+                    <p>
+                      {venueSnippet}
+                    </p>
+                  )
+                }
+                {
+                  isMember && status !== 'expired' && agenda
                 }
               </section>
               <hr />
