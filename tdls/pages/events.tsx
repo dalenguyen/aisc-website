@@ -12,6 +12,7 @@ import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
 import EventList from '../components/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
+import { getQueryStringValue } from '../../common/utils';
 import './events.scss';
 
 import {
@@ -70,6 +71,13 @@ const EventFilters = ({
   useEffect(() => {
     onChange(currFilter);
   }, [searchText, subject, stream]);
+
+  useEffect(() => {
+    const subjectFromURL = getQueryStringValue('subject');
+    if (subjectFromURL) {
+      setFilter(Object.assign({}, currFilter, { subject: subjectFromURL }));
+    }
+  })
 
   return (
     <Form inline className="event-filter-bar form-inline">

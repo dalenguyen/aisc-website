@@ -5,7 +5,6 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import { Countdown } from '../components/live-button';
 import Head from 'next/head'
-import { withRouter } from 'next/router';
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
 import { getEventById, getLinkedInProfiles } from '../utils/event-fetch';
@@ -14,7 +13,7 @@ import {
   pad, eventStatus, getEventId,
   READABLE_EVENT_TYPE
 } from '../../common/event';
-import { ModalVideoContext, YouTubeModalWrapper } from '../components/youtube-modal';
+import { ModalVideoContext, } from '../components/youtube-modal';
 import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 import { venueToLink } from '../utils/venue';
 import { ytThumb, getYouTubeId } from '../utils/youtube';
@@ -23,6 +22,7 @@ import ResponsiveEmbed from 'react-responsive-embed';
 import { mobileCheck } from '../../common/utils';
 import { PublicEvent } from '../../common/types';
 import { SEOTitle } from '../../common/event';
+import { getQueryStringValue } from '../../common/utils';
 
 import './single-event.scss';
 
@@ -333,10 +333,6 @@ const SingleEvent = ({
   }
 
 };
-
-function getQueryStringValue(key: string) {
-  return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
-}
 
 function iconLinkFn(iconClass: string) {
   return (label: string, url: string) => (
