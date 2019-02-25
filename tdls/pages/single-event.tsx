@@ -5,6 +5,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import { Countdown } from '../components/live-button';
 import Head from 'next/head'
+import dynamic from 'next/dynamic';
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
 import { getEventById, getLinkedInProfiles } from '../utils/event-fetch';
@@ -34,7 +35,7 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
     );
   } else {
 
-    const [{ isMember }] = useState({ isMember: initIsMember });
+    const [{ isMember }, setIsMember] = useState({ isMember: initIsMember });
 
     const date = ev && new Date(ev.date);
     const status = eventStatus(ev);
@@ -61,7 +62,9 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
     }, [getEventId(ev)]);
 
     useEffect(() => {
-    }, [isMember]);
+      // force rerender
+      setIsMember({ isMember });
+    }, []);
 
     const timeSnippet = (
       <Fragment>
