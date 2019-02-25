@@ -16,7 +16,7 @@ function getEventId(ev) {
 
 function eventStatus(ev) {
   if (!ev) {
-    return null;
+    throw new Error("Event is undefined.");
   }
   const now = new Date().getTime();
   const duration = 2.5 * 60 * 60 * 1000;

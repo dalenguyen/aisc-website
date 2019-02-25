@@ -1,10 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, Component } from 'react';
 import Link from 'next/link';
 import LiveButton from './live-button';
 import SocialButtons from './social-buttons';
 import './header.scss';
 
-export default ({ allEvents, before = null }) => {
+export default ({ allEvents, before = null }: { allEvents: any[], before: Component | null }) => {
   return (
     <Fragment>
       <header className="main-navbar">

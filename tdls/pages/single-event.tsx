@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect, Fragment } from 'react';
 
-import fetch from 'isomorphic-unfetch'
-
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { Countdown } from '../components/live-button';
@@ -10,13 +8,11 @@ import Head from 'next/head'
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
 import { getEventById, getLinkedInProfiles } from '../utils/event-fetch';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { nameToLink } from '../components/profile';
 import {
   pad, eventStatus, getEventId,
-  isTentative, READABLE_EVENT_TYPE
+  READABLE_EVENT_TYPE
 } from '../../common/event';
-import { Button } from 'react-bootstrap';
 import { ModalVideoContext, YouTubeModalWrapper } from '../components/youtube-modal';
 import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 import { venueToLink } from '../utils/venue';
@@ -24,10 +20,11 @@ import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
 import ResponsiveEmbed from 'react-responsive-embed';
 import { mobileCheck } from '../../common/utils';
+import { PublicEvent } from '../../common/types';
 
 import './single-event.scss';
 
-const SingleEvent = ({ event: ev }) => {
+const SingleEvent = ({ event: ev }: { event: PublicEvent }) => {
   if (!ev) {
     return (
       <div>
@@ -123,18 +120,14 @@ const SingleEvent = ({ event: ev }) => {
                       aria-expanded="false" aria-controls="live-chat-area">
                       <i className="fa fa-comments"></i>&nbsp;Live Chat&nbsp;&nbsp;<i className="fa indicator"></i>
                     </a>
-                    {
-                      status !== 'expired' && (
-                        <iframe
-                          className={status === 'live' ? '' : 'collapse'}
-                          id="live-chat-area"
-                          width="100%"
-                          frameBorder={0}
-                          height="500px"
-                          src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
-                        </iframe>
-                      )
-                    }
+                    <iframe
+                      className={status === 'live' ? '' : 'collapse'}
+                      id="live-chat-area"
+                      width="100%"
+                      frameBorder={0}
+                      height="500px"
+                      src={`https://www.youtube.com/live_chat?v=${getYouTubeId(ev.video)}&embed_domain=${embedDomain}`}>
+                    </iframe>
                   </Fragment>
                 )
 
@@ -150,9 +143,6 @@ const SingleEvent = ({ event: ev }) => {
       desc += `${ev.why} | `;
     }
     desc += `lead: ${ev.lead}, facilitators: ${ev.facilitators.join(', ')}; `;
-    if (ev.venue) {
-      desc += `Venue: ${ev.venue} ;`;
-    }
 
     return (
       <Fragment>
@@ -262,16 +252,15 @@ const SingleEvent = ({ event: ev }) => {
                 </ul>
                 <hr />
                 <ul className="list-unstyled artifact-list">
-                  {[
+                  {([
                     [ev.paper, 'Paper', iconLinkFn('fa-file-text-o')],
-                    [ev.slides, 'Slides', (lbl, link) => iconLinkFn('fa-file-powerpoint-o')(lbl, `/static/${link}`)],
+                    [ev.slides, 'Slides', (lbl: string, link: string) => iconLinkFn('fa-file-powerpoint-o')(lbl, `/static/${link}`)],
                     [ev.reddit, 'Reddit post', iconLinkFn('fa-reddit')],
                     [ev.code_official, 'Official code', iconLinkFn('fa-github')],
                     [ev.code_unofficial, 'Unofficial code', iconLinkFn('fa-github')],
                     [ev.dataset1, 'Dataset 1', iconLinkFn('fa-database')],
                     [ev.dataset2, 'Dataset 2', iconLinkFn('fa-database')],
-
-                  ].map(([content, label, linkFn]) => content &&
+                  ] as [string, string, Function][]).map(([content, label, linkFn]) => content &&
                     (
                       <li key={label}>
                         {linkFn(label, content)}
@@ -318,8 +307,8 @@ const SingleEvent = ({ event: ev }) => {
 };
 
 
-function iconLinkFn(iconClass) {
-  return (label, url) => (
+function iconLinkFn(iconClass: string) {
+  return (label: string, url: string) => (
     <Fragment>
       <a target="_blank" href={url}>
         <i className={`fa fa-lg ${iconClass}`}></i>
@@ -331,18 +320,18 @@ function iconLinkFn(iconClass) {
   );
 }
 
-function dashedDate(date) {
+function dashedDate(date: Date) {
   return `${date.getDate()}-${MONTH_NAMES[date.getMonth()]}-${date.getYear() + 1900}`;
 }
 
-function time(date) {
+function time(date: Date) {
   return `${pad(date.getHours())}:${pad(date.getMinutes())}`
 }
 
-function ytThumbModal(url) {
+function ytThumbModal(url: string) {
   return (
     <ModalVideoContext.Consumer>
-      {(openYoutube) => (
+      {(openYoutube: Function) => (
         <a type="button" onClick={() => openYoutube(getYouTubeId(url))}>
           {ytThumbPic(url)}
         </a>
@@ -351,7 +340,7 @@ function ytThumbModal(url) {
   )
 }
 
-function ytThumbPic(url) {
+function ytThumbPic(url: string) {
   return (
     <Fragment>
       <style jsx>{`
@@ -387,10 +376,14 @@ function profileCard([name, title, photo, linkedIn]) {
   );
 }
 
-SingleEvent.getInitialProps = async ({ query: { id }, req }) => {
+SingleEvent.getInitialProps = async (
+  { query: { id, member: isMember = false }, req }: {
+    query: { id: string, member?: boolean }, req: any
+  }
+) => {
   const isServer = !!req;
   const event = await getEventById(isServer, id);
-  return { event };
+  return { event, isMember };
 }
 
 export default SingleEvent;
