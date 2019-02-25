@@ -34,7 +34,7 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
     );
   } else {
 
-    const [isMember] = useState({ isMember: initIsMember });
+    const [{ isMember }] = useState({ isMember: initIsMember });
 
     const date = ev && new Date(ev.date);
     const status = eventStatus(ev);
@@ -48,9 +48,6 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
       setIsMobile({ isMobile });
     }, []);
 
-    useEffect(() => {
-
-    }, [isMember]);
 
     const fetchAndSetProfile = async () => {
       const linkedInDict = await getLinkedInProfiles(false);
@@ -62,6 +59,9 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
     useEffect(() => {
       fetchAndSetProfile();
     }, [getEventId(ev)]);
+
+    useEffect(() => {
+    }, [isMember]);
 
     const timeSnippet = (
       <Fragment>
@@ -153,7 +153,6 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
       desc += `${ev.why} | `;
     }
     desc += `lead: ${ev.lead}, facilitators: ${ev.facilitators.join(', ')}; `;
-
     return (
       <Fragment>
         <Head>
