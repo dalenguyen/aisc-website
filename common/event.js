@@ -35,6 +35,10 @@ function eventStatus(ev) {
   }
 }
 
+function SEOTitle(ev) {
+  return `${ev.acronym && `[${ev.acronym}] `}${ev.title}`;
+}
+
 function pad(num) {
   // pad single digit number with zero
   return num < 10 ? '0' + num : '' + num;
@@ -54,5 +58,5 @@ function isTentative(ev) {
 module.exports = {
   READABLE_EVENT_TYPE, eventStatus, pad,
   toShortDateString, isTentative,
-  getEventId
+  getEventId, SEOTitle
 };

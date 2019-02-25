@@ -5,12 +5,11 @@ import { Countdown } from '../components/live-button';
 import { PublicEvent } from '../../common/types';
 import Link from 'next/link';
 import "./event-card.scss";
-
+import { SEOTitle } from '../../common/event';
 import {
   getEventId, eventStatus
 } from '../../common/event';
 import { toLongDateString } from '../utils/datetime';
-import { ZoomLevel } from './event-carousel';
 
 export default ({
   event: ev,
@@ -32,7 +31,7 @@ export default ({
         <a className="title card-title" style={{
           textAlign: 'center',
         }}>
-          {ev.acronym && `[${ev.acronym}] `}{ev.title.toLowerCase()}
+          {SEOTitle(ev)}
         </a>
       </Link>
     </Fragment>

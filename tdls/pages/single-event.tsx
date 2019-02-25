@@ -21,6 +21,7 @@ import Link from 'next/link';
 import ResponsiveEmbed from 'react-responsive-embed';
 import { mobileCheck } from '../../common/utils';
 import { PublicEvent } from '../../common/types';
+import { SEOTitle } from '../../common/event';
 
 import './single-event.scss';
 
@@ -156,7 +157,7 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
     return (
       <Fragment>
         <Head>
-          <title>{ev.title} | {READABLE_EVENT_TYPE[ev.type]} | Toronto Deep Learning Series (#TDLS)</title>
+          <title>{SEOTitle(ev)} | {READABLE_EVENT_TYPE[ev.type]} | Toronto Deep Learning Series (#TDLS)</title>
           <meta name="description" content={desc} />
           <ThemesAndSuch />
         </Head>
@@ -190,7 +191,7 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
                 <h1 className="title">
                   <Link href="/events" >
                     <a ><i className="fa fa-arrow-circle-left"></i>
-                    </a></Link> {ev.title}
+                    </a></Link> {SEOTitle(ev)}
                 </h1>
               </div>
 
