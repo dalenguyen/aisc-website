@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, useReducer } from 'react';
 
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -35,7 +35,8 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
     );
   } else {
 
-    const [{ isMember }, setIsMember] = useState({ isMember: initIsMember });
+    const [{ isMember }] = useState({ isMember: initIsMember });
+    const [_, forceUpdate] = useReducer(x => x + 1, 0);
 
     const date = ev && new Date(ev.date);
     const status = eventStatus(ev);
@@ -63,7 +64,7 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
 
     useEffect(() => {
       // force rerender
-      setIsMember({ isMember });
+      forceUpdate({});
     }, []);
 
     const timeSnippet = (
