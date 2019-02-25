@@ -14,6 +14,7 @@ export interface PublicEvent {
   code_unofficial?: string;
   dataset1?: string;
   dataset2?: string;
+  acronym?: string;
 }
 
 export type MemberEvent = PublicEvent & {

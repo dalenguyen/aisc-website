@@ -24,7 +24,7 @@ import { PublicEvent } from '../../common/types';
 
 import './single-event.scss';
 
-const SingleEvent = ({ event: ev, isMember }: { event: PublicEvent, isMember: boolean }) => {
+const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent, isMember: boolean }) => {
   if (!ev) {
     return (
       <div>
@@ -32,6 +32,8 @@ const SingleEvent = ({ event: ev, isMember }: { event: PublicEvent, isMember: bo
       </div>
     );
   } else {
+
+    const [isMember] = useState({ isMember: initIsMember });
 
     const date = ev && new Date(ev.date);
     const status = eventStatus(ev);
@@ -44,6 +46,10 @@ const SingleEvent = ({ event: ev, isMember }: { event: PublicEvent, isMember: bo
       const isMobile = mobileCheck();
       setIsMobile({ isMobile });
     }, []);
+
+    useEffect(() => {
+
+    }, [isMember]);
 
     const fetchAndSetProfile = async () => {
       const linkedInDict = await getLinkedInProfiles(false);

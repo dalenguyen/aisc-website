@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { ytThumb } from '../utils/youtube';
 import FitText from 'react-fittext';
 import { Countdown } from '../components/live-button';
-
+import { PublicEvent } from '../../common/types';
 import Link from 'next/link';
 import "./event-card.scss";
 
@@ -17,7 +17,7 @@ export default ({
   showToolbar = true,
   showDate = true,
   showEventStatus = true }: {
-    event: any,
+    event: PublicEvent,
     showToolbar?: boolean,
     showDate?: boolean,
     showEventStatus?: boolean
@@ -32,7 +32,7 @@ export default ({
         <a className="title card-title" style={{
           textAlign: 'center',
         }}>
-          {ev.title.toLowerCase()}
+          {ev.acronym && `[${ev.acronym}] `}{ev.title.toLowerCase()}
         </a>
       </Link>
     </Fragment>

@@ -3,6 +3,7 @@ require('dotenv').config();
 import * as moment from 'moment-timezone';
 const fetch = require('isomorphic-unfetch');
 
+
 const {
   // STEER_CO_PATH = 'steerco',
   GOOGLE_KEY
@@ -109,8 +110,9 @@ async function getRawLinkedInData() {
 }
 
 
-function rawRowToRow(rawHeader: string[], rawRow: { [k: string]: string }) {
+function rawRowToRow(rawHeader: string[], rawRow: { [k: string]: string }): MemberEvent {
   const title = rawRow[rawHeader.indexOf('Title')];
+  const acronym = rawRow[rawHeader.indexOf('Memorable Acronym')];
   const why = rawRow[rawHeader.indexOf('Why')];
   const venue = rawRow[rawHeader.indexOf('Venue')];
   const lead = rawRow[rawHeader.indexOf('Lead')];
@@ -142,7 +144,6 @@ function rawRowToRow(rawHeader: string[], rawRow: { [k: string]: string }) {
     lead,
     venue,
     facilitators,
-    subjectMatterArea: rawRow[rawHeader.indexOf('Subject Matter Area')],
     video,
     type,
     paper,
@@ -152,7 +153,8 @@ function rawRowToRow(rawHeader: string[], rawRow: { [k: string]: string }) {
     dataset2,
     code_unofficial,
     code_official,
-    reddit
+    reddit,
+    acronym
   }
 }
 
