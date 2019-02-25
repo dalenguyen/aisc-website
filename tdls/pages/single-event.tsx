@@ -1,11 +1,11 @@
 
-import React, { useState, useEffect, Fragment, useReducer } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { Countdown } from '../components/live-button';
 import Head from 'next/head'
-import dynamic from 'next/dynamic';
+import { withRouter } from 'next/router';
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
 import { getEventById, getLinkedInProfiles } from '../utils/event-fetch';
@@ -26,7 +26,17 @@ import { SEOTitle } from '../../common/event';
 
 import './single-event.scss';
 
-const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent, isMember: boolean }) => {
+const SingleEvent = ({
+  event: ev,
+  isMember: initIsMember = false,
+}
+  :
+  {
+    event: PublicEvent,
+    isMember: boolean,
+    router: { query: { member?: boolean } }
+  }) => {
+
   if (!ev) {
     return (
       <div>
@@ -35,8 +45,7 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
     );
   } else {
 
-    const [{ isMember }] = useState({ isMember: initIsMember });
-    const [_, forceUpdate] = useReducer(x => x + 1, 0);
+    const [{ isMember }, updateIsMember] = useState({ isMember: initIsMember });
 
     const date = ev && new Date(ev.date);
     const status = eventStatus(ev);
@@ -64,9 +73,9 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
 
     useEffect(() => {
       // force rerender
-      forceUpdate({});
-    }, []);
-
+      const routerIsMember = !!getQueryStringValue("member");
+      updateIsMember({ isMember: routerIsMember });
+    }, [initIsMember]);
     const timeSnippet = (
       <Fragment>
         {WEEKDAYS[date.getDay()]}&nbsp;
@@ -325,6 +334,9 @@ const SingleEvent = ({ event: ev, isMember: initIsMember }: { event: PublicEvent
 
 };
 
+function getQueryStringValue(key: string) {
+  return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+}
 
 function iconLinkFn(iconClass: string) {
   return (label: string, url: string) => (
@@ -396,7 +408,7 @@ function profileCard([name, title, photo, linkedIn]) {
 }
 
 SingleEvent.getInitialProps = async (
-  { query: { id, member: isMember = false }, req }: {
+  { query: { id, member: isMember }, req }: {
     query: { id: string, member?: boolean }, req: any
   }
 ) => {
