@@ -75,7 +75,7 @@ const SingleEvent = ({
       // force rerender
       const routerIsMember = !!getQueryStringValue("member");
       updateIsMember({ isMember: routerIsMember });
-    }, [initIsMember]);
+    }, []);
     const timeSnippet = (
       <Fragment>
         {WEEKDAYS[date.getDay()]}&nbsp;

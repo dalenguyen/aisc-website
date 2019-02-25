@@ -77,7 +77,7 @@ const EventFilters = ({
     if (subjectFromURL) {
       setFilter(Object.assign({}, currFilter, { subject: subjectFromURL }));
     }
-  })
+  }, []);
 
   return (
     <Form inline className="event-filter-bar form-inline">
