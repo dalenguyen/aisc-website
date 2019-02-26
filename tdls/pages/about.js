@@ -16,7 +16,7 @@ const About = ({ contributors }) => (
     <Header />
     <section className="container" id="about_us">
       <hr />
-      <h2>About TDLS</h2>
+      <h2 className="mb-4">About TDLS</h2>
       <p>
         <i>TDLS is a community of intellectually curious individuals centred around technical review and discussion
         of advances in machine learning. </i>

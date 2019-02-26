@@ -14,15 +14,19 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
           style={{ backgroundColor: 'white' }}
         >
           {before}
+
           <Link href="/">
             <a className="navbar-brand">
-              <img src="/static/images/tdls_logo.svg"
-                style={{ height: '40px', width: 'auto' }} />
+              {
+                !before && (
+                  <img src="/static/images/tdls_logo.svg"
+                    style={{ height: '40px', width: 'auto' }} />
+                )
+              }
               &nbsp;
               TDLS
-            </a>
+              </a>
           </Link>
-
           <LiveButton allEvents={allEvents} />
           <button
             className="navbar-toggler"

@@ -1,5 +1,5 @@
 export default () => (
-    <ul className="list-inline">
+    <ul className="list-inline mt-0 mb-0">
         <li className="list-inline-item">
             <div
                 className="g-ytsubscribe"
@@ -39,7 +39,7 @@ export default () => (
         </li>
         <li className="list-inline-item">
             <a href="mailto:events@a-i.science">
-            <i className="fa fa-envelope fa-2x" />
+                <i className="fa fa-envelope fa-2x" />
             </a>
         </li>
     </ul>

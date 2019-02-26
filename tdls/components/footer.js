@@ -34,19 +34,19 @@ export default () => (
 
         <div className="row">
           <div className="col-6 col-sm-3">
-            <h5>Initiatives</h5>
+            <h5 className="mb-3">Initiatives</h5>
             <Initiatives />
           </div>
           <div className="col-6 col-sm-3">
-            <h5>Get Engaged</h5>
+            <h5 className="mb-3">Get Engaged</h5>
             <GetEngaged />
           </div>
           <div className="col-6 col-sm-3">
-            <h5>Follow Us</h5>
+            <h5 className="mb-3">Follow Us</h5>
             <FollowUs />
           </div>
           <div className="col-6 col-sm-3">
-            <h5>Useful Links</h5>
+            <h5 className="mb-3">Useful Links</h5>
             <UsefulLinksSection />
           </div>
         </div>

@@ -204,7 +204,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
         </section>
         <hr />
         <section id="events" className="container">
-          <h2 className="title inline">Our Sessions</h2>
+          <h2 className="title inline mb-4">Our Sessions</h2>
           <p>We meet twice a week to review advances in machine learning in various "streams".</p>
 
           <p>Click on each stream name to
