@@ -16,6 +16,7 @@ import { getEventsAndGroupings } from '../utils/event-fetch';
 import Router from 'next/router'
 
 import "./index.scss";
+import { EventType, PublicEvent, AllEvents } from '../../common/types';
 
 const EventRoutingHandler = ({ }) => {
   function registerRoutes() {
@@ -60,7 +61,7 @@ function paperGroupLabel(label: string) {
   );
 }
 
-function eventCarousel(label: string, events, zoomLevel: ZoomLevel) {
+function eventCarousel(label: string, events: PublicEvent[], zoomLevel: ZoomLevel) {
   return (
     <Fragment key={label}>
       <div style={{ marginTop: '1.5rem' }}>
@@ -75,7 +76,7 @@ function eventCarousel(label: string, events, zoomLevel: ZoomLevel) {
   );
 }
 
-const Index = ({ allEvents }) => {
+const Index = ({ allEvents }: { allEvents: AllEvents }) => {
   const { pastEvents, futureEvents, subjects } = allEvents;
   const pastAndFutureEvents = futureEvents.concat(pastEvents);
 
@@ -138,19 +139,30 @@ const Index = ({ allEvents }) => {
       <main role="main" id="main">
         <section id="content" className="container-fluid">
           {
-            eventCarousel('Trending Papers', filterEvents(pastAndFutureEvents, { type: 'fasttrack' }), 3)
+            eventCarousel('Trending Papers', filterEvents(pastAndFutureEvents, { type: 'Trending Paper' }), 3)
           }
           {
-            eventCarousel('Authors Speaking', filterEvents(pastAndFutureEvents, { type: 'authors' }), 4)
+            eventCarousel(
+              'Authors Speaking',
+              filterEvents(pastAndFutureEvents, { type: 'Author Speaking' }), 4
+            )
           }
           {
-            eventCarousel('Recent Presentations', futureEvents.slice(0, 2).concat(pastEvents.slice(0, 20)), 8)
+            eventCarousel(
+              'Recent Presentations',
+              futureEvents.slice(0, 2).concat(pastEvents.slice(0, 20)), 8)
           }
           {
-            eventCarousel('Implementations', filterEvents(pastAndFutureEvents, { type: 'codereview' }), 8)
+            eventCarousel(
+              'Implementations',
+              filterEvents(pastAndFutureEvents, { type: 'Code Review' }), 8
+            )
           }
           {
-            eventCarousel('Foundational Papers', filterEvents(pastAndFutureEvents, { type: 'classics' }), 8)
+            eventCarousel(
+              'Foundational Papers',
+              filterEvents(pastAndFutureEvents, { type: 'Foundational' }), 8
+            )
           }
         </section>
         <hr />

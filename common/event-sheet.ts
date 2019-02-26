@@ -42,7 +42,6 @@ function splitEvents(events: MemberEvent[]): PublicEvent[][] {
 
 function eventExpired(ev: PublicEvent) {
   const status = eventStatus(ev);
-  console.log(status);
   return status === 'expired';
 }
 

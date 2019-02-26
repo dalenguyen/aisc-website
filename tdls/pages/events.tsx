@@ -18,12 +18,12 @@ import './events.scss';
 
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
-import { AllEvents, PublicEvent, MemberEvent } from '../../common/types';
+import { AllEvents, PublicEvent, MemberEvent, EventType } from '../../common/types';
 
 interface Filter {
   searchText?: string
   subject: string | 'all'
-  stream?: string
+  stream?: EventType | 'all'
 }
 
 const EMPTY_FILTER = { searchText: "", subject: "all", stream: "all" };
@@ -244,7 +244,7 @@ const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
   );
 }
 
-function match(ev: MemberEvent | PublicEvent, { searchText }: {searchText:}) {
+function match(ev: MemberEvent | PublicEvent, { searchText }: { searchText:}) {
   if (searchText && searchText.length > 0) {
     return (
       textContainsCaseInsensitive(searchText, ev.title) ||
@@ -252,7 +252,7 @@ function match(ev: MemberEvent | PublicEvent, { searchText }: {searchText:}) {
       textContainsCaseInsensitive(searchText, ev.lead) ||
       ev.subjects.some(s => textContainsCaseInsensitive(searchText, s)) ||
       textContainsCaseInsensitive(searchText, ev.facilitators.join(' ')) ||
-      textContainsCaseInsensitive(searchText, ev.venue)
+      textContainsCaseInsensitive(searchText, (ev as MemberEvent).venue)
     );
   }
 }

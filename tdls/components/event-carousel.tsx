@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import EventCard from './event-card';
 import './event-carousel.scss';
 import range from 'lodash/range';
+import { EventType, PublicEvent } from '../../common/types';
+import { storage } from 'firebase';
 
 export type ZoomLevel = 1 | 3 | 4 | 6 | 8;
 
@@ -50,16 +52,21 @@ function identity<T>(a: T): T {
   return a;
 }
 
-export function filterEvents(events: any[], filter) {
+interface Filter {
+  type?: EventType,
+  subject?: string;
+}
+
+export function filterEvents(events: any[], filter: Filter) {
   if (!filter) {
     return events;
   }
   return events.filter(e => match(e, filter));
 }
 
-function match(event, filter) {
+function match(event: PublicEvent, filter: Filter) {
   return Object.keys(filter).every(k => {
-    const val = event[k];
+    const val: string | string[] = event[k];
     if (Array.isArray(val)) {
       return val.some(v => v === filter[k]);
     } else {
@@ -68,19 +75,19 @@ function match(event, filter) {
   });
 }
 
-function SampleNextArrow({ className, style, onClick }) {
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "block",
-        color: "black",
-      }}
-      onClick={onClick}
-    />
-  );
-}
+// function SampleNextArrow({ className, style, onClick }) {
+//   return (
+//     <div
+//       className={className}
+//       style={{
+//         ...style,
+//         display: "block",
+//         color: "black",
+//       }}
+//       onClick={onClick}
+//     />
+//   );
+// }
 
 function randomShuffle<T>(array: T[], seed: number): T[] {
   let currentIndex = array.length, temporaryValue, randomIndex;
