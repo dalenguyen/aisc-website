@@ -304,20 +304,20 @@ const SingleEvent = ({
                 }
               </section>
               <hr />
-              <p className="lead">
+              <p className="">
                 <a
-                  className="btn btn-danger subscribe-youtube btn-lg"
+                  className="btn btn-danger subscribe-youtube"
                   target="_blank"
                   href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
                   <i className="fa fa-youtube"></i>&nbsp;Subscribe
                 </a>&nbsp;
                 <Link href="/get-engaged">
-                  <a className="btn btn-primary btn-lg">Get Engaged</a>
+                  <a className="btn btn-primary">Get Engaged</a>
                 </Link>&nbsp;
               </p>
               <p>
                 <Link href="/events">
-                  <a className="btn btn-secondary" >
+                  <a className="btn btn-secondary">
                     <i className="fa fa-arrow-circle-left"></i> Back to events
                 </a>
                 </Link>
