@@ -1,12 +1,4 @@
 
-const READABLE_EVENT_TYPE = {
-  'classics': 'Foundational Paper',
-  'fasttrack': 'Trending Paper',
-  'main': 'Main Stream',
-  'authors': 'Authors Speaking',
-  'codereview': 'Code Review'
-}
-
 function getEventId(ev) {
   // TODO: this event hashing unique by date, but if we have two events
   // on the same date in the future we are screwed 
@@ -56,7 +48,7 @@ function isTentative(ev) {
 }
 
 module.exports = {
-  READABLE_EVENT_TYPE, eventStatus, pad,
+  eventStatus, pad,
   toShortDateString, isTentative,
   getEventId, SEOTitle
 };

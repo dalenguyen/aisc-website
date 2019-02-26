@@ -15,12 +15,10 @@ import { getEventsAndGroupings } from '../utils/event-fetch';
 import { getQueryStringValue } from '../../common/utils';
 import './events.scss';
 
-import {
-  READABLE_EVENT_TYPE
-} from '../../common/event';
 
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
+import { AllEvents, PublicEvent, MemberEvent } from '../../common/types';
 
 interface Filter {
   searchText?: string
@@ -123,7 +121,7 @@ const EventFilters = ({
           id="stream-filter"
           size="lg"
           variant={stream === 'all' ? 'outline-secondary' : 'success'}
-          title={stream === 'all' ? 'By stream' : READABLE_EVENT_TYPE[stream]}
+          title={stream === 'all' ? 'By stream' : stream}
           value={stream}
         >
           <Dropdown.Item
@@ -136,7 +134,7 @@ const EventFilters = ({
               <Dropdown.Item
                 key={s}
                 onSelect={() => onStreamChange(s)}>
-                {READABLE_EVENT_TYPE[s]}
+                {s}
               </Dropdown.Item>
             ))
           }
@@ -171,11 +169,11 @@ function filterClean(f: Filter) {
   });
 }
 
-function cap(arr: any[], limit: number) {
+function cap<T>(arr: T[], limit: number) {
   return arr.slice(0, limit);
 }
 
-const Events = (props: { allEvents: any, filter: Filter }) => {
+const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
   const { allEvents } = props;
   const { pastEvents, futureEvents, subjects, streams } = allEvents;
 
@@ -246,7 +244,7 @@ const Events = (props: { allEvents: any, filter: Filter }) => {
   );
 }
 
-function match(ev, { searchText }) {
+function match(ev: MemberEvent | PublicEvent, { searchText }: {searchText:}) {
   if (searchText && searchText.length > 0) {
     return (
       textContainsCaseInsensitive(searchText, ev.title) ||
@@ -259,7 +257,7 @@ function match(ev, { searchText }) {
   }
 }
 
-function textContainsCaseInsensitive(term: string, text: string) {
+function textContainsCaseInsensitive(term: string, text?: string) {
   if (!text) {
     return false;
   }

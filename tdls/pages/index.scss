@@ -17,7 +17,14 @@ main {
     letter-spacing: 0.12em;
     border-radius: 10px;
     bottom: 10%;
+    opacity: 0.7;
+    background-color: #000 !important;
   }
+
+  .carousel-taint {
+    filter: sepia(80%) SATURATE(1.6) CONTRAST(1.2) brightness(0.8) blur(0.05vw);
+  }
+
   .scroll-button {
     position: absolute;
     bottom: 0;

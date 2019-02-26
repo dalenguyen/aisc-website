@@ -3,8 +3,9 @@ import Link from 'next/link';
 import LiveButton from './live-button';
 import SocialButtons from './social-buttons';
 import './header.scss';
+import { AllEvents } from '../../common/types';
 
-export default ({ allEvents, before = null }: { allEvents: any[], before: Component | null }) => {
+export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: Component | null }) => {
   return (
     <Fragment>
       <header className="main-navbar">

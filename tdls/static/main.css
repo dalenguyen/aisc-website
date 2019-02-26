@@ -401,15 +401,6 @@ a.scroll-button span {
   margin-top: 1em;
 }
 
-.carousel-caption {
-  opacity: 0.7;
-  background-color: #000 !important;
-}
-
-.carousel-taint {
-  filter: sepia(80%) SATURATE(1.5) CONTRAST(1.2) brightness(0.8) blur(0.07vw);
-}
-
 a.person-name,
 a.venue-name {
   color: #5a5a5a;

@@ -11,7 +11,6 @@ import { getEventById, getLinkedInProfiles } from '../utils/event-fetch';
 import { nameToLink } from '../components/profile';
 import {
   pad, eventStatus, getEventId,
-  READABLE_EVENT_TYPE
 } from '../../common/event';
 import { ModalVideoContext, } from '../components/youtube-modal';
 import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
@@ -169,7 +168,7 @@ const SingleEvent = ({
     return (
       <Fragment>
         <Head>
-          <title>{SEOTitle(ev)} | {READABLE_EVENT_TYPE[ev.type]} | Toronto Deep Learning Series (#TDLS)</title>
+          <title>{SEOTitle(ev)} | {ev.type} | Toronto Deep Learning Series (#TDLS)</title>
           <meta name="description" content={desc} />
           <ThemesAndSuch />
         </Head>
@@ -218,7 +217,7 @@ const SingleEvent = ({
 
               <p><strong>
                 Category:
-                </strong> {READABLE_EVENT_TYPE[ev.type]}</p>
+                </strong> {ev.type}</p>
             </div>
             <div className="col-12 col-lg-4">
               {liveChat}
@@ -370,11 +369,6 @@ function ytThumbModal(url: string) {
 function ytThumbPic(url: string) {
   return (
     <Fragment>
-      <style jsx>{`
-      .youtube-thumb-outer {
-        display: inline-block;
-      }
-      `}</style>
       <div className="youtube-thumb-outer">
         <img src={ytThumb(url)} />
         <div className="overlay">

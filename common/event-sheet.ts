@@ -1,4 +1,4 @@
-import { PublicEvent, MemberEvent } from './types';
+import { PublicEvent, MemberEvent, EventType } from './types';
 require('dotenv').config();
 import * as moment from 'moment-timezone';
 const fetch = require('isomorphic-unfetch');
@@ -133,7 +133,7 @@ function rawRowToRow(rawHeader: string[], rawRow: { [k: string]: string }): Memb
   const code_official = rawRow[rawHeader.indexOf('Official Github Link')];
   const code_unofficial = rawRow[rawHeader.indexOf('Unofficial Github Link')];
   const reddit = rawRow[rawHeader.indexOf('Reddit Link')];
-  const type = rawRow[rawHeader.indexOf('Stream')];
+  const type = rawRow[rawHeader.indexOf('Stream')] as EventType;
   const subjects = (rawRow[rawHeader.indexOf('Subject Matter Area')] || '').split(',').map(s => s.trim()).filter(s => s);
 
   const dateAtMidnight = moment.tz((rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, '').replace(/\-/g, ' '), "UTC").toDate();

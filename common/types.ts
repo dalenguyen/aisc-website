@@ -4,7 +4,7 @@ export interface PublicEvent {
   title: string;
   lead: string;
   facilitators: string[];
-  type: string;
+  type: EventType;
   video?: string;
   why?: string;
   paper?: string;
@@ -19,4 +19,13 @@ export interface PublicEvent {
 
 export type MemberEvent = PublicEvent & {
   venue: string;
+}
+
+export type EventType = 'Main Stream' | 'Foundational' | 'Trending Paper' | 'Author Speaking' | 'Code Review';
+
+export interface AllEvents {
+  subjects: string[],
+  streams: string[],
+  pastEvents: MemberEvent[],
+  futureEvents: PublicEvent[]
 }
