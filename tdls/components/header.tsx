@@ -42,7 +42,9 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
             <ul className="navbar-nav mr-auto">
               <li className="nav-item dropdown">
                 <Link href="/events">
-                  <a className="nav-link">Events</a>
+                  <a className="nav-link">
+                    Events <i className="fa fa-search"></i>
+                  </a>
                 </Link>
               </li>
               <li className="nav-item">

@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState, useEffect, useRef, MutableRefObject } from 'react';
 import React from 'react';
 import {
   InputGroup, DropdownButton, Dropdown, FormControl,
@@ -77,6 +77,14 @@ const EventFilters = ({
     }
   }, []);
 
+  const searchElem = useRef<HTMLInputElement>();
+
+  useEffect(() => {
+    if (searchElem.current) {
+      searchElem.current.focus();
+    }
+  }, [])
+
   return (
     <Form inline className="event-filter-bar form-inline">
       <InputGroup className="mb-2 mr-sm-2" size="lg">
@@ -88,6 +96,7 @@ const EventFilters = ({
         <FormControl
           onChange={onSearchChange}
           value={searchText}
+          ref={searchElem}
           placeholder="Search events"
           aria-describedby="basic-addon1"
         />
@@ -244,7 +253,7 @@ const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
   );
 }
 
-function match(ev: MemberEvent | PublicEvent, { searchText }: { searchText:}) {
+function match(ev: MemberEvent | PublicEvent, { searchText }: { searchText: string }) {
   if (searchText && searchText.length > 0) {
     return (
       textContainsCaseInsensitive(searchText, ev.title) ||
