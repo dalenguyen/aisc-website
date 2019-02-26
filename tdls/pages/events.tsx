@@ -248,6 +248,7 @@ function match(ev: MemberEvent | PublicEvent, { searchText }: { searchText:}) {
   if (searchText && searchText.length > 0) {
     return (
       textContainsCaseInsensitive(searchText, ev.title) ||
+      textContainsCaseInsensitive(searchText, ev.acronym) ||
       textContainsCaseInsensitive(searchText, ev.why) ||
       textContainsCaseInsensitive(searchText, ev.lead) ||
       ev.subjects.some(s => textContainsCaseInsensitive(searchText, s)) ||
