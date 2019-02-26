@@ -10,6 +10,7 @@ import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
 import EventCarousel, { filterEvents } from '../components/event-carousel';
 import { ZoomLevel } from '../components/event-carousel';
+import configureProgressBar from '../utils/routing';
 
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import Router from 'next/router'
@@ -41,6 +42,11 @@ const EventRoutingHandler = ({ }) => {
       handleHashChange(window.location.href);
     }
   }, []);
+
+  useEffect(() => {
+    configureProgressBar();
+  }, []);
+
   return null;
 }
 

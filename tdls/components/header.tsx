@@ -13,12 +13,15 @@ export default ({ allEvents, before = null }: { allEvents: any[], before: Compon
           style={{ backgroundColor: 'white' }}
         >
           {before}
-          <a href="/" className="navbar-brand">
-            <img src="/static/images/tdls_logo.svg"
-              style={{ height: '40px', width: 'auto' }} />
-            &nbsp;
-          TDLS
-      </a>
+          <Link href="/">
+            <a className="navbar-brand">
+              <img src="/static/images/tdls_logo.svg"
+                style={{ height: '40px', width: 'auto' }} />
+              &nbsp;
+              TDLS
+            </a>
+          </Link>
+
           <LiveButton allEvents={allEvents} />
           <button
             className="navbar-toggler"

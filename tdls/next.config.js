@@ -1,9 +1,10 @@
 const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass')
+const withCSS = require('@zeit/next-css')
 const webpack = require('webpack');
 
 const INTERNAL_TOKEN = 'aaa';
-module.exports = withTypescript(withSass({
+module.exports = withTypescript(withCSS(withSass({
 
   webpack: (config) => {
     config.module.rules.push(
@@ -45,4 +46,4 @@ module.exports = withTypescript(withSass({
       ...eventPaths,
     };
   }
-}))
+})))

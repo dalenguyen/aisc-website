@@ -267,7 +267,6 @@ function textContainsCaseInsensitive(term: string, text: string) {
 }
 
 Events.getInitialProps = async ({ req, query }) => {
-  console.log(query);
   const filter = pluck(query, ['subject']);
   const allEvents = await getEventsAndGroupings(!!req);
   return { allEvents, filter };
