@@ -91,8 +91,9 @@ function findNextUpcomingEvent(allEvents) {
   if (!allEvents) {
     return null;
   }
-  const { futureEvents } = allEvents;
-  const futureWithStreams = futureEvents.filter(f => f.video);
+  const { pastEvents, futureEvents } = allEvents;
+  const futureWithStreams = pastEvents.concat(futureEvents).filter(
+    f => f.video).filter(ev => eventStatus(ev) !== 'expired');
   if (futureWithStreams.length === 0) {
     return null;
   } else {

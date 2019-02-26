@@ -2,7 +2,7 @@ import { PublicEvent, MemberEvent } from './types';
 require('dotenv').config();
 import * as moment from 'moment-timezone';
 const fetch = require('isomorphic-unfetch');
-
+import { eventStatus } from '../common/event';
 
 const {
   // STEER_CO_PATH = 'steerco',
@@ -41,7 +41,9 @@ function splitEvents(events: MemberEvent[]): PublicEvent[][] {
 
 
 function eventExpired(ev: PublicEvent) {
-  return ev && ev.date < new Date().getTime();
+  const status = eventStatus(ev);
+  console.log(status);
+  return status === 'expired';
 }
 
 
