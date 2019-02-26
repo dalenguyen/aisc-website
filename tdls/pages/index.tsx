@@ -149,8 +149,14 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
           }
           {
             eventCarousel(
+              'Up Next',
+              futureEvents.slice(0, 5), 5)
+          }
+
+          {
+            eventCarousel(
               'Recent Presentations',
-              futureEvents.slice(0, 2).concat(pastEvents.slice(0, 20)), 8)
+              pastEvents.slice(0, 20), 8)
           }
           {
             eventCarousel(

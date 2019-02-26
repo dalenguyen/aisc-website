@@ -76,23 +76,26 @@ export default ({
       <Link href={`/events/${getEventId(ev)}`}>
         <a style={{ display: "block", position: 'relative' }}>
           {thumb}
-          {showEventStatus && (status === 'too_early' || status === 'countdown') && (
-            <h5 style={{ position: 'absolute', top: 5, left: 5, textAlign: 'right' }}>
-              <span
-                className="badge badge-danger">
-                {
-                  status === 'too_early' && "Upcoming"
-                }
-                {
-                  status === 'countdown' && (
-                    <Fragment>
-                      Live in <br /><Countdown expiresAt={date} />
-                    </Fragment>
-                  )
-                }
-              </span>
-            </h5>
-          )}
+          {showEventStatus && (
+            status === 'too_early' || status === 'countdown' || status === 'live'
+          ) && (
+              <h5 style={{ position: 'absolute', top: 5, left: 5, textAlign: 'right' }}>
+                <span
+                  className="badge badge-danger">
+                  {
+                    status === 'too_early' && "Upcoming"
+                  }
+                  {status === 'live' && "Live"}
+                  {
+                    status === 'countdown' && (
+                      <Fragment>
+                        Live in <br /><Countdown expiresAt={date} />
+                      </Fragment>
+                    )
+                  }
+                </span>
+              </h5>
+            )}
           {showDate && dateElem}
         </a>
       </Link>
