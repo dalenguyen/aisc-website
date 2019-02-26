@@ -19,7 +19,7 @@ function eventStatus(ev) {
     throw new Error("Event is undefined.");
   }
   const now = new Date().getTime();
-  const duration = 2.5 * 60 * 60 * 1000;
+  const duration = 1.5 * 60 * 60 * 1000;
   const countdownPeriod = 24 * 60 * 60 * 1000;
 
   const evStartTime = ev.date;
