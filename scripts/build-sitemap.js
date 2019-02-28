@@ -40,12 +40,12 @@ const pagePaths = diskPages.map((page) => {
   return [page, lastMod];
 });
 
-
+const allPaths = pagePaths.concat(
+  extraPaths.map(p => [`${SITE_ROOT}${p}`])
+);
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${ pagePaths.concat(
-  extraPaths.map(p => [`${SITE_ROOT}${p}`])
-).map(
+${ allPaths.map(
   ([p, lastMod]) => {
     let xml = '';
     xml += '<url>'
@@ -63,4 +63,4 @@ ${ pagePaths.concat(
 
 fs.writeFileSync(DESTINATION, xml)
 
-console.log(`Wrote sitemap for ${diskPages.length} pages to ${DESTINATION}`)
+console.log(`Wrote sitemap for ${allPaths.length} pages to ${DESTINATION}`)

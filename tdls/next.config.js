@@ -4,7 +4,7 @@ const withCSS = require('@zeit/next-css')
 const webpack = require('webpack');
 
 const INTERNAL_TOKEN = 'aaa';
-
+const INTERNAL_PATHS = ['speaker-prep'];
 
 function genPublicPaths(defaultPathMap) {
   const { pastEvents, futureEvents } = require('./static/data/events.json');
@@ -17,8 +17,15 @@ function genPublicPaths(defaultPathMap) {
       page: '/single-event', query: { id }
     }
   }
+
+  const cleansedDefaultPathMap = Object.assign({}, defaultPathMap);
+
+  INTERNAL_PATHS.forEach((secretPath) => {
+    delete cleansedDefaultPathMap[secretPath];
+  });
+
   return {
-    ...defaultPathMap,
+    ...cleansedDefaultPathMap,
     ...eventPaths
   };
 }
@@ -43,8 +50,7 @@ module.exports = withTypescript(withCSS(withSass({
     const publicPaths = genPublicPaths(defaultPathMap);
 
     const internalPaths = {};
-    ['speaker-prep'].forEach((secretPath) => {
-      delete defaultPathMap[secretPath];
+    INTERNAL_PATHS.forEach((secretPath) => {
       internalPaths[`/in-${INTERNAL_TOKEN}/${secretPath}`] = {
         page: `/${secretPath}`
       }
@@ -55,6 +61,5 @@ module.exports = withTypescript(withCSS(withSass({
       ...internalPaths,
     };
   },
-
   genPublicPaths
 })))
