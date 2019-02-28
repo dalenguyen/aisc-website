@@ -36,9 +36,19 @@ const pagePaths = diskPages.map((page) => {
   page = page.replace(/.js$/, '')
   page = page.replace(/.ts$/, '')
   page = page.replace(/.tsx$/, '')
+
+  if (page === '/index') {
+    page = '/';
+  }
+
   page = `${SITE_ROOT}${page}`;
   return [page, lastMod];
 });
+
+if (pagePaths['/index'] && !pagePaths['/']) {
+  pagePaths['/'] = pagePaths['/index'];
+  delete pagePaths['/index'];
+}
 
 const allPaths = pagePaths.concat(
   extraPaths.map(p => [`${SITE_ROOT}${p}`])
