@@ -398,7 +398,8 @@ SingleEvent.getInitialProps = async (
   const isServer = !!req;
   const event: PublicEvent = await getEventById(isServer, id);
   const linkedInDict = await getLinkedInProfiles(isServer);
-  const relevantLinkedInProfiles = [event.lead, ...event.facilitators].reduce(
+
+  const relevantLinkedInProfiles = (event ? [event.lead, ...event.facilitators] : []).reduce(
     (acc, n) => Object.assign(acc, {
       [n]: linkedInDict[n]
     }), {});

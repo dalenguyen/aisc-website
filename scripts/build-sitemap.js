@@ -16,8 +16,11 @@ const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', siteNa
 
 let diskPages = glob.sync(SOURCE)
 
-const { exportPathMap } = require(path.join(__dirname, '..', siteName, 'next.config'));
+const { exportPathMap, genPublicPaths } = require(path.join(__dirname, '..', siteName, 'next.config'));
 let extraPaths;
+if (genPublicPaths) {
+  extraPaths = Object.keys(genPublicPaths({}));
+}
 if (exportPathMap) {
   extraPaths = Object.keys(exportPathMap({}));
 } else {
