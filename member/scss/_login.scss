@@ -28,13 +28,11 @@ form.user {
   }
 
   .form-control-user {
-    font-size: 0.8rem;
     border-radius: 10rem;
     padding: 1.5rem 1rem;
   }
 
   .btn-user {
-    font-size: 0.8rem;
     border-radius: 10rem;
     padding: 0.75rem 1rem;
   }
@@ -47,4 +45,8 @@ form.user {
 
 .btn-facebook {
   @include button-variant($brand-facebook, $white);
+}
+
+.btn-github {
+  @include button-variant($brand-github, $white);
 }

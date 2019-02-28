@@ -9,7 +9,14 @@ import Meta from '../components/meta';
 export default () => {
   const loginWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    const { user } = await firebase.auth().signInWithPopup(provider);
+    if (user && !user.isAnonymous) {
+      const { email } = user;
+    }
+  }
+
+  const loginWithGitHub = async () => {
+    const provider = new firebase.auth.GithubAuthProvider();
     const { user } = await firebase.auth().signInWithPopup(provider);
     if (user && !user.isAnonymous) {
       const { email } = user;
@@ -44,6 +51,14 @@ export default () => {
                           onClick={loginWithGoogle}
                           className="btn btn-google btn-user btn-block">
                           <i className="fab fa-google fa-fw"></i> Login with Google
+                       </button>
+
+                        <button
+                          type="button"
+                          role="button"
+                          onClick={loginWithGitHub}
+                          className="btn btn-github btn-user btn-block">
+                          <i className="fab fa-github fa-fw"></i> Login with GitHub
                        </button>
                       </form>
                     </div>
