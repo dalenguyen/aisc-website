@@ -15,6 +15,8 @@ We will respect confidentiality requests for the purpose of protecting victims o
 
 **Participants asked to stop any behavior in violation of this code of conduct are expected to comply immediately.** If a participant engages in harassing behavior, organizers may take any action they deem appropriate, up to and including expulsion from all TDLS spaces and identification of the participant as a harasser to other TDLS members or the general public.
 
+_Fine print:_ In order to protect volunteers from abuse and burnout, we reserve the right to reject any report we believe to have been made in bad faith. Reports intended to silence legitimate criticism may be deleted without response.
+
 ## Zero tolerance for harassment
 
 TDLS is a welcoming and respectful environment and we are dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of participants in any form.
@@ -56,8 +58,6 @@ Examples of unacceptable behavior follows:
 *   You use the platform to show off your knowledge about things that are completely unrelated to the topic at hand and therefore derail the conversation
 *   You behave with ego and act dismissively rather than trying to understand the other person’s point of view
 
-_File print:_ In order to protect volunteers from abuse and burnout, we reserve the right to reject any report we believe to have been made in bad faith. Reports intended to silence legitimate criticism may be deleted without response.
-
 ## Accepting new members
 
 ### Principles
@@ -82,3 +82,5 @@ Given the current size and composition of our community, this would not necessar
 *  You are responsible to inform the new members of our rules, format and code of conduct before they join by pointing them to the right part of the website
 *  If people you refer violate our code of conduct, they might face consequences as outlined in **Consequences** section 
 *  You should make sure not to refer members that are only interested in activities that are not the main focus of this group; for example an individual who is a member with the sole purpose of recruitment activities.
+
+*Citation:* this code of conduct is partly adapted with modifications from: https://www.meetup.com/ExploreTech-Toronto/pages/20514122/Code_of_Conduct/
