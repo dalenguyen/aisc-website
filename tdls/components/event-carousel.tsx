@@ -6,7 +6,7 @@ import range from 'lodash/range';
 import { EventType, PublicEvent } from '../../common/types';
 import { storage } from 'firebase';
 
-export type ZoomLevel = 1 | 3 | 4 | 6 | 8;
+export type ZoomLevel = 1 | 3 | 4 | 5 | 6 | 8;
 
 export default ({ shuffle = false, events, zoomLevel }: {
   shuffle: boolean, events: any[], zoomLevel: ZoomLevel

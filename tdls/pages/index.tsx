@@ -16,7 +16,7 @@ import { getEventsAndGroupings } from '../utils/event-fetch';
 import Router from 'next/router'
 
 import "./index.scss";
-import { EventType, PublicEvent, AllEvents } from '../../common/types';
+import { PublicEvent, AllEvents } from '../../common/types';
 
 const EventRoutingHandler = ({ }) => {
   function registerRoutes() {
@@ -83,7 +83,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
   return (
     <Fragment>
       <Head>
-        <title>Toronto Deep Learning Series</title>
+        <title>Toronto Deep Learning Series TDLS</title>
         <meta name="description"
           content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning."
         />
@@ -106,7 +106,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
             <div className="carousel-item active">
               <img className="d-block w-100 carousel-taint" src="/static/images/slide_01.jpeg" alt="First slide" />
               <div className="carousel-caption d-none d-md-block bg-dark">
-                <h4>welcoming & supportive community</h4>
+                <h4>welcoming &amp; supportive community</h4>
               </div>
             </div>
             <div className="carousel-item">

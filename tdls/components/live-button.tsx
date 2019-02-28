@@ -3,8 +3,9 @@ import { getEventsAndGroupings } from '../utils/event-fetch';
 import { pad, eventStatus, getEventId } from '../../common/event';
 import Link from 'next/link';
 import { sleep } from '../../common/utils';
+import { AllEvents, PublicEvent } from '../../common/types';
 
-export const Countdown = ({ expiresAt }) => {
+export const Countdown = ({ expiresAt }: { expiresAt: Date }) => {
   const [_d = 0, _h = 0, _m = 0, _s = 0] = timeFromNow(expiresAt);
   const [{ d, h, m, s }, setClockArms] = useState({ d: _d, h: _h, m: _m, s: _s });
 
@@ -35,7 +36,7 @@ export const Countdown = ({ expiresAt }) => {
   )
 }
 
-function singularOrPlural(num, unit) {
+function singularOrPlural(num: number, unit: string) {
   if (num <= 1) {
     return unit;
   } else {
@@ -43,9 +44,9 @@ function singularOrPlural(num, unit) {
   }
 }
 
-export default ({ allEvents }) => {
+export default ({ allEvents }: { allEvents: AllEvents }) => {
 
-  const [{ upcomingEvent: prefetched }, setUpcomingEventData] = useState({
+  const [{ upcomingEvent: prefetched }, setUpcomingEventData] = useState<{ upcomingEvent: PublicEvent | null }>({
     upcomingEvent: null
   });
 
@@ -87,12 +88,12 @@ export default ({ allEvents }) => {
 };
 
 
-function findNextUpcomingEvent(allEvents) {
+function findNextUpcomingEvent(allEvents: AllEvents) {
   if (!allEvents) {
     return null;
   }
   const { pastEvents, futureEvents } = allEvents;
-  const futureWithStreams = pastEvents.concat(futureEvents).filter(
+  const futureWithStreams = (pastEvents as PublicEvent[]).concat(futureEvents).filter(
     f => f.video).filter(ev => eventStatus(ev) !== 'expired');
   if (futureWithStreams.length === 0) {
     return null;
@@ -108,7 +109,7 @@ function findNextUpcomingEvent(allEvents) {
 }
 
 
-function timeFromNow(date) {
+function timeFromNow(date: Date) {
   if (!date) {
     return [0, 0, 0, 0];
   }
