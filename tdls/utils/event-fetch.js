@@ -17,6 +17,7 @@ export const getLinkedInProfiles = runOnlyOnce(async (isServer) => {
   if (isServer) {
     return require('../static/data/profiles.json');
   } else {
+
     return await fetchRaw('/static/data/profiles.json');
   }
 });

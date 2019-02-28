@@ -19,7 +19,7 @@ import { ytThumb, getYouTubeId } from '../utils/youtube';
 import Link from 'next/link';
 import ResponsiveEmbed from 'react-responsive-embed';
 import { mobileCheck } from '../../common/utils';
-import { PublicEvent } from '../../common/types';
+import { PublicEvent, MemberEvent } from '../../common/types';
 import { SEOTitle } from '../../common/event';
 import { getQueryStringValue } from '../../common/utils';
 
@@ -28,12 +28,14 @@ import './single-event.scss';
 const SingleEvent = ({
   event: ev,
   isMember: initIsMember = false,
+  linkedInDict,
 }
   :
   {
-    event: PublicEvent,
+    event: PublicEvent | MemberEvent,
     isMember: boolean,
-    router: { query: { member?: boolean } }
+    router: { query: { member?: boolean } },
+    linkedInDict: { [n: string]: string }
   }) => {
 
   if (!ev) {
@@ -49,7 +51,6 @@ const SingleEvent = ({
     const date = ev && new Date(ev.date);
     const status = eventStatus(ev);
 
-    const [{ linkedInDict }, setLinkedInData] = useState({ linkedInDict: {} });
 
     const [{ isMobile }, setIsMobile] = useState({ isMobile: true });
 
@@ -59,16 +60,8 @@ const SingleEvent = ({
     }, []);
 
 
-    const fetchAndSetProfile = async () => {
-      const linkedInDict = await getLinkedInProfiles(false);
-      setLinkedInData({ linkedInDict });
-    }
 
     const embedDomain = typeof window === 'undefined' ? 'tdls.a-i.science' : window.location.host.split(":")[0];
-
-    useEffect(() => {
-      fetchAndSetProfile();
-    }, [getEventId(ev)]);
 
     useEffect(() => {
       // force rerender
@@ -89,7 +82,7 @@ const SingleEvent = ({
     const venueSnippet = (
       <Fragment><strong>Venue</strong>: {
         status !== 'expired' ?
-          "(TDLS members: please refer to Slack or your calendar invite for location)" : venueToLink(ev.venue)
+          "(TDLS members: please refer to Slack or your calendar invite for location)" : venueToLink((ev as MemberEvent).venue)
       }
       </Fragment >
     )
@@ -403,8 +396,14 @@ SingleEvent.getInitialProps = async (
   }
 ) => {
   const isServer = !!req;
-  const event = await getEventById(isServer, id);
-  return { event, isMember };
+  const event: PublicEvent = await getEventById(isServer, id);
+  const linkedInDict = await getLinkedInProfiles(isServer);
+  const relevantLinkedInProfiles = [event.lead, ...event.facilitators].reduce(
+    (acc, n) => Object.assign(acc, {
+      [n]: linkedInDict[n]
+    }), {});
+
+  return { event, isMember, linkedInDict: relevantLinkedInProfiles };
 }
 
 export default SingleEvent;

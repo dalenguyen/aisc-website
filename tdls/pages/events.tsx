@@ -280,6 +280,7 @@ Events.getInitialProps = async ({ req, query }) => {
   return { allEvents, filter };
 }
 
+
 function pluck(o: { [k: string]: any }, props: string[]) {
   return Object.assign({}, ...props.map(prop => ({ [prop]: o[prop] })));
 }
