@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import React, { useEffect } from 'react';
 
 import Link from 'next/link';
@@ -9,8 +9,11 @@ import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
 import EventCarousel, { filterEvents } from '../components/event-carousel';
+import { ShowcaseEventCard } from '../components/event-card';
 import { ZoomLevel } from '../components/event-carousel';
 import configureProgressBar from '../utils/routing';
+import { findNextUpcomingEvent } from '../components/live-button';
+import { isImminent } from '../../common/event';
 
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import Router from 'next/router'
@@ -64,7 +67,7 @@ function paperGroupLabel(label: string) {
 function eventCarousel(label: string, events: PublicEvent[], zoomLevel: ZoomLevel) {
   return (
     <Fragment key={label}>
-      <div style={{ marginTop: '1.5rem' }}>
+      <div className="mt-3">
         {paperGroupLabel(label)}
         <EventCarousel
           shuffle={false}
@@ -79,6 +82,12 @@ function eventCarousel(label: string, events: PublicEvent[], zoomLevel: ZoomLeve
 const Index = ({ allEvents }: { allEvents: AllEvents }) => {
   const { pastEvents, futureEvents, subjects } = allEvents;
   const pastAndFutureEvents = futureEvents.concat(pastEvents);
+  const countdownEvent = useMemo(() => {
+    const e = findNextUpcomingEvent(allEvents);
+    if (e && isImminent(e)) {
+      return e;
+    }
+  }, [allEvents]);
 
   return (
     <Fragment>
@@ -139,6 +148,17 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
       <main role="main" id="main">
         <section id="content" className="container-fluid">
           {
+
+            countdownEvent && (
+              <div className="mt-3">
+                {paperGroupLabel("Next Up")}
+                <ShowcaseEventCard
+                  event={countdownEvent}
+                />
+              </div>
+            )
+          }
+          {
             eventCarousel('Trending Papers', filterEvents(pastAndFutureEvents, { type: 'Trending Paper' }), 3)
           }
           {
@@ -149,7 +169,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
           }
           {
             eventCarousel(
-              'Up Next',
+              'Upcoming Events',
               futureEvents.slice(0, 5), 5)
           }
 

@@ -4,19 +4,17 @@ import EventCard from './event-card';
 import './event-carousel.scss';
 import range from 'lodash/range';
 import { EventType, PublicEvent } from '../../common/types';
-import { storage } from 'firebase';
 
 export type ZoomLevel = 1 | 3 | 4 | 5 | 6 | 8;
 
 export default ({ shuffle = false, events, zoomLevel }: {
   shuffle: boolean, events: any[], zoomLevel: ZoomLevel
 }) => {
-
   // linearly interpolate zoom size
   const responsive = range(1, zoomLevel).map(l => ({
     breakpoint: 1440 / 8 * l + 400,
     settings: {
-      slidesToShow: l * 1.02,
+      slidesToShow: l === 1 ? l : l * 1.02,
       slidesToScroll: l,
     }
   }));

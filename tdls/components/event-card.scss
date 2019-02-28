@@ -1,12 +1,20 @@
-.event.card {
+  
+.card-img-top {
+  object-fit: cover;
+}
+
+.event {
   margin: 1%;
   margin-bottom: 3%;
   line-height: 1.2;
 
+  &.showcase {
+    border:  1px solid #ddd;
+  }
+
   a {
     color: var(--main-color);
   }
-
 
   .card-end {
     text-align: right;
@@ -24,9 +32,11 @@
     }
   }
 
-  .card-body {
-    margin: 0.1vw;
-    padding: 0;
+  .info {
+    &.vertical {
+      margin: 0.1vw;
+      padding: 0;
+    }
 
     .title {
       margin: 0vw;

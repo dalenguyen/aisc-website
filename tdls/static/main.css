@@ -317,10 +317,6 @@ a.scroll-button span {
   left: 0;
 }
 
-.card-img-top {
-    height: 9.5rem;
-    object-fit: cover;
-}
 /* 
 #past-event-list .youtube-thumb::after {
   position: absolute;

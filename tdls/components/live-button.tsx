@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { getEventsAndGroupings } from '../utils/event-fetch';
-import { pad, eventStatus, getEventId } from '../../common/event';
+import { pad, eventStatus, getEventId, isImminent } from '../../common/event';
 import Link from 'next/link';
 import { sleep } from '../../common/utils';
 import { AllEvents, PublicEvent } from '../../common/types';
@@ -53,16 +53,17 @@ export default ({ allEvents }: { allEvents: AllEvents }) => {
   const fetchAndSetUpcomingEvent = async () => {
     const allEvents = await getEventsAndGroupings(false);
     const e = findNextUpcomingEvent(allEvents);
-    setUpcomingEventData({ upcomingEvent: e });
+    if (e && isImminent(e)) {
+      setUpcomingEventData({ upcomingEvent: e });
+    }
   }
 
   useEffect(() => {
     fetchAndSetUpcomingEvent();
   }, [allEvents]);
+
   const upcomingEvent = prefetched || (allEvents && findNextUpcomingEvent(allEvents));
-  if (!upcomingEvent) {
-    return null;
-  } else {
+  if (upcomingEvent && isImminent(upcomingEvent)) {
     const status = eventStatus(upcomingEvent);
     return (
       <Fragment>
@@ -83,12 +84,14 @@ export default ({ allEvents }: { allEvents: AllEvents }) => {
         </Link>
       </Fragment>
     );
+  } else {
+    return null;
   }
 
 };
 
 
-function findNextUpcomingEvent(allEvents: AllEvents) {
+export function findNextUpcomingEvent(allEvents: AllEvents) {
   if (!allEvents) {
     return null;
   }
@@ -99,12 +102,7 @@ function findNextUpcomingEvent(allEvents: AllEvents) {
     return null;
   } else {
     const candidate = futureWithStreams[0];
-    const status = eventStatus(candidate);
-    if (status !== 'countdown' && status !== 'live') {
-      return null;
-    } else {
-      return candidate;
-    }
+    return candidate;
   }
 }
 

@@ -5,18 +5,21 @@
   background: url('https://www.thispersondoesnotexist.com/image');
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .bg-register-image {
   background: url('https://source.unsplash.com/Mv9hjnEUHR4/600x800');
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .bg-password-image {
   background: url('https://source.unsplash.com/oWTW-jNGl9I/600x800');
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 form.user {

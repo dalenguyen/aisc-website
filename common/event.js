@@ -6,6 +6,12 @@ function getEventId(ev) {
 }
 
 
+function isImminent(e) {
+  const status = eventStatus(e);
+  return status === 'countdown' || status === 'live';
+}
+
+
 function eventStatus(ev) {
   if (!ev) {
     throw new Error("Event is undefined.");
@@ -50,5 +56,5 @@ function isTentative(ev) {
 module.exports = {
   eventStatus, pad,
   toShortDateString, isTentative,
-  getEventId, SEOTitle
+  getEventId, SEOTitle, isImminent
 };
