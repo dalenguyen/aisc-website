@@ -153,6 +153,7 @@ export default ({
 
 export const ShowcaseEventCard = ({ event: ev }: { event: PublicEvent }) => {
   const date = new Date(ev.date);
+  const status = eventStatus(ev);
   return (
     <div className="event showcase container-fluid mt-1 mb-4 ml-0 mr-0">
       <div className="row">
@@ -160,7 +161,15 @@ export const ShowcaseEventCard = ({ event: ev }: { event: PublicEvent }) => {
           <div className="lead mt-1">
             {isImminent(ev) && (
               <span className="badge badge-danger mr-3 mb-2 mt-2">
-                Live in <Countdown expiresAt={date} />
+                {
+                  status === 'live' && "We are live!"
+                }{
+                  status === 'countdown' && (
+                    <Fragment>
+                      Live in <Countdown expiresAt={date} />
+                    </Fragment>
+                  )
+                }
               </span>
             )}
             <div style={{ display: "inline-block" }} className="mb-2 mt-2">
