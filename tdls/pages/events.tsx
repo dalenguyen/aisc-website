@@ -100,12 +100,12 @@ const EventFilters = ({
           placeholder="Search events"
           aria-describedby="basic-addon1"
         />
-
       </InputGroup>
       <InputGroup className="mb-2 mr-sm-2" >
         <DropdownButton
           id="subject-filter"
           size="lg"
+          className="ml-1 mr-1"
           variant={subject === 'all' ? 'outline-secondary' : 'success'}
           title={subject === 'all' ? 'By subject' : subject}
           value={subject}
@@ -123,12 +123,10 @@ const EventFilters = ({
             ))
           }
         </DropdownButton>
-      </InputGroup>
-
-      <InputGroup className="mb-2 mr-sm-2" >
         <DropdownButton
           id="stream-filter"
           size="lg"
+          className="ml-1 mr-1"
           variant={stream === 'all' ? 'outline-secondary' : 'success'}
           title={stream === 'all' ? 'By stream' : stream}
           value={stream}
@@ -148,20 +146,19 @@ const EventFilters = ({
             ))
           }
         </DropdownButton>
-      </InputGroup>
-
-      {!filterClean(currFilter) && (
-        <InputGroup className="mb-2 mr-sm-2">
-
+        {!filterClean(currFilter) && (
           <Button
+            className="ml-1 mr-1"
             variant="outline-success"
             size="lg"
             onClick={clearFilter}
           >
             <i className="fa fa-times"></i>
           </Button>
-        </InputGroup>
-      )}
+        )}
+      </InputGroup>
+
+
     </Form>
   );
 }
