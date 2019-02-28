@@ -223,7 +223,7 @@ const SingleEvent = ({
                         target="_blank"
                         href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
                         <h5>
-                          <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'danger' }[status]}`}>
+                          <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'outline-danger' }[status]}`}>
                             Live in <Countdown expiresAt={date} />
                           </span>
                         </h5>

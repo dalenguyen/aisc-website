@@ -5,7 +5,7 @@
 // // Variables ===================================================================
 
 $font-family-serif:  Georgia, Cambria, "Times New Roman", Times, serif !default;
-$font-family-sans-serif: 'Roboto', 'Open Sans', 'Arial';
+$font-family-sans-serif: 'Titillium Web', 'Open Sans', 'Arial';
 
 
 body {
@@ -279,6 +279,7 @@ table,
 .badge-outline-danger {
   background-color: $white;
   color: $danger;
+  font-weight: bold;
   border: 1px solid $danger;
 }
 

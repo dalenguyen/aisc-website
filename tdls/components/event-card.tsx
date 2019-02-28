@@ -26,7 +26,7 @@ const StatusBadge = ({ event: ev }: { event: PublicEvent }) => {
             textAlign: 'right'
           }}>
             <span
-              className="badge badge-danger">
+              className={classnames("badge", status === 'too_early' ? 'badge-outline-danger' : 'badge-danger')}>
               {
                 status === 'too_early' && "Upcoming"
               }
@@ -156,23 +156,25 @@ export const ShowcaseEventCard = ({ event: ev }: { event: PublicEvent }) => {
   return (
     <div className="event showcase container-fluid mt-1 mb-4 ml-0 mr-0">
       <div className="row">
-        <div className="col-xs-12 col-sm-6 info">
-          <p className="lead mt-3">
+        <div className="col-xs-12 col-sm-6 info d-flex flex-column">
+          <div className="lead mt-1">
             {isImminent(ev) && (
-              <span className="badge badge-danger mr-3">
+              <span className="badge badge-danger mr-3 mb-2 mt-2">
                 Live in <Countdown expiresAt={date} />
               </span>
             )}
-            {toLongDateString(date)}
-          </p>
-          <div className="d-flex flex-column justify-content-center">
+            <div style={{ display: "inline-block" }} className="mb-2 mt-2">
+              {toLongDateString(date)}
+            </div>
+          </div>
+          <div className="d-flex flex-grow-1 flex-column justify-content-center mt-2 mb-4">
             <FitText compressor={1.6} minFontSize={20}>
               <CardTitle event={ev} />
             </FitText>
           </div>
 
         </div>
-        <div className="col-xs-12 col-sm-6">
+        <div className="col-xs-12 col-sm-6 p-0">
           <Link href={`/events/${getEventId(ev)}`}>
             <a>
               <Thumb event={ev} height={"14rem"} />

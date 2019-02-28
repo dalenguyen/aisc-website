@@ -151,7 +151,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
 
             countdownEvent && (
               <div className="mt-3">
-                {paperGroupLabel("Next Up")}
+                {paperGroupLabel("Up Next")}
                 <ShowcaseEventCard
                   event={countdownEvent}
                 />
