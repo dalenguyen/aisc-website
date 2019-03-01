@@ -10,7 +10,7 @@ import SharedBodyScripts from '../components/shared-body-scripts'
 import { getEventById, getLinkedInProfiles } from '../utils/event-fetch';
 import { nameToLink } from '../components/profile';
 import {
-  pad, eventStatus, getEventId,
+  pad, eventStatus,
 } from '../../common/event';
 import { ModalVideoContext, } from '../components/youtube-modal';
 import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
@@ -35,7 +35,7 @@ const SingleEvent = ({
     event: PublicEvent | MemberEvent,
     isMember: boolean,
     router: { query: { member?: boolean } },
-    linkedInDict: { [n: string]: string }
+    linkedInDict: { [n: string]: string },
   }) => {
 
   if (!ev) {
@@ -59,8 +59,6 @@ const SingleEvent = ({
       setIsMobile({ isMobile });
     }, []);
 
-
-
     const embedDomain = typeof window === 'undefined' ? 'tdls.a-i.science' : window.location.host.split(":")[0];
 
     useEffect(() => {
@@ -68,6 +66,15 @@ const SingleEvent = ({
       const routerIsMember = !!getQueryStringValue("member");
       updateIsMember({ isMember: routerIsMember });
     }, []);
+
+
+    useEffect(() => {
+      (window as any).lever = () => {
+        console.log('lever placed');
+        pageTransitionReadyToEnter();
+      }
+    }, [])
+
     const timeSnippet = (
       <Fragment>
         {WEEKDAYS[date.getDay()]}&nbsp;
@@ -177,7 +184,7 @@ const SingleEvent = ({
               {
                 ev.video ? (
                   <ResponsiveEmbed
-                    src={`https://www.youtube.com/embed/${getYouTubeId(ev.video)}`}
+                    src={`https://www.youtube.com/embed/${getYouTubeId(ev.video)}?enablejsapi=1`}
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />) : (
