@@ -1,14 +1,22 @@
 import { fetchEventsAndGroupings, fetchLinkedInProfiles } from '../common/event-sheet';
 import * as fs from 'fs';
 import * as path from 'path';
+require('dotenv').config();
 
+const {
+  GOOGLE_KEY
+} = process.env;
 
-fetchAndSaveSchedule();
+if (!GOOGLE_KEY) {
+  throw new Error('GOOGLE_KEY must be specified as an environment variable');
+} else {
+  fetchAndSaveSchedule(GOOGLE_KEY);
+}
 
-async function fetchAndSaveSchedule() {
+async function fetchAndSaveSchedule(googleKey: string) {
   const [eventsAndGroupings, linkedInProfiles] = await Promise.all(
     [
-      fetchEventsAndGroupings(), fetchLinkedInProfiles()
+      fetchEventsAndGroupings(googleKey), fetchLinkedInProfiles(googleKey)
     ]
   );
 

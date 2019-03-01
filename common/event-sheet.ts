@@ -1,19 +1,12 @@
 import { PublicEvent, MemberEvent, EventType } from './types';
-require('dotenv').config();
 import * as moment from 'moment-timezone';
 const fetch = require('isomorphic-unfetch');
 import { eventStatus } from '../common/event';
 
-const {
-  // STEER_CO_PATH = 'steerco',
-  GOOGLE_KEY
-} = process.env;
 
-
-async function getRawEventData() {
+async function getRawEventData(googleKey: string) {
   const SHEET_ID = '1WghUEANwzE1f8fD_sdTvM9BEmr1C9bZjPlFSIJX9iLE';
-  const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Schedule?key=${GOOGLE_KEY}`;
-
+  const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Schedule?key=${googleKey}`;
   // get raw sheet data in JSON
   const resp = await fetch(SHEET_VALUE_URL, {
     method: 'GET',
@@ -46,11 +39,10 @@ function eventExpired(ev: PublicEvent) {
 }
 
 
-export async function fetchEventsAndGroupings() {
-  const data = await getRawEventData();
+export async function fetchEventsAndGroupings(googleKey: string) {
+  const data = await getRawEventData(googleKey);
   const [rawHeader, ...rawRows]:
     [string[], ...{ [k: string]: string }[]] = data.values;
-
   // convert raw JSON rows to our own event data type
   const events = rawRows.map(
     rawR => rawRowToRow(rawHeader, rawR)).filter(
@@ -58,7 +50,6 @@ export async function fetchEventsAndGroupings() {
       e => e.title && e.lead
     );
   const [pastEvents, futureEvents] = splitEvents(events);
-
   const subjects = pastEvents.reduce((subjects, ev) => {
     const newSubjects = [];
     for (let sub of ev.subjects) {
@@ -82,8 +73,8 @@ export async function fetchEventsAndGroupings() {
 }
 
 
-export async function fetchLinkedInProfiles() {
-  const data = await getRawLinkedInData();
+export async function fetchLinkedInProfiles(googleKey: string) {
+  const data = await getRawLinkedInData(googleKey);
   const linkedInProfileByName: { [k: string]: string } = {};
   const [rawHeader, ...rawRows] = data.values;
   rawRows.forEach((r: { [k: string]: string }) => {
@@ -97,9 +88,9 @@ export async function fetchLinkedInProfiles() {
 };
 
 
-async function getRawLinkedInData() {
+async function getRawLinkedInData(googleKey: string) {
   const SHEET_ID = '1WghUEANwzE1f8fD_sdTvM9BEmr1C9bZjPlFSIJX9iLE';
-  const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Profiles?key=${GOOGLE_KEY}`;
+  const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Profiles?key=${googleKey}`;
 
   // get raw sheet data in JSON
   const resp = await fetch(SHEET_VALUE_URL, {
