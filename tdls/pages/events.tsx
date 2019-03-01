@@ -12,7 +12,7 @@ import SharedBodyScripts from '../components/shared-body-scripts'
 import ThemesAndSuch from '../components/themes-and-such';
 import EventList from '../components/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
-import { getQueryStringValue } from '../../common/utils';
+import { getQueryStringValue, mobileCheck } from '../../common/utils';
 import './events.scss';
 
 
@@ -21,12 +21,12 @@ import isEmpty from 'lodash/isEmpty';
 import { AllEvents, PublicEvent, MemberEvent, EventType } from '../../common/types';
 
 interface Filter {
-  searchText?: string
+  searchText: string | ""
   subject: string | 'all'
-  stream?: EventType | 'all'
+  stream: EventType | 'all'
 }
 
-const EMPTY_FILTER = { searchText: "", subject: "all", stream: "all" };
+const EMPTY_FILTER: Filter = { searchText: "", subject: "all", stream: "all" };
 
 const EventFilters = ({
   subject: initSubject = 'all',
@@ -77,10 +77,11 @@ const EventFilters = ({
     }
   }, []);
 
-  const searchElem = useRef<HTMLInputElement>();
+  const searchElem = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (searchElem.current) {
+    const isMobile = mobileCheck();
+    if (!isMobile && searchElem.current) {
       searchElem.current.focus();
     }
   }, [])
