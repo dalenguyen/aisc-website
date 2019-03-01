@@ -6,7 +6,6 @@ import './_app.scss';
 
 interface P { }
 
-
 class MyApp extends App<{}, {}> {
   static async getInitialProps({ Component, ctx }: P) {
     let pageProps = {}

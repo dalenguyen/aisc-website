@@ -2,8 +2,6 @@ import { Fragment, useEffect } from "react";
 import firebase from 'firebase/app';
 import 'firebase/auth'
 
-import '../scss/sb-admin-2.scss';
-
 export default () => {
   useEffect(() => {
     const config = {

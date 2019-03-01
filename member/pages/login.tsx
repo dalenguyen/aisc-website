@@ -52,7 +52,6 @@ export default () => {
                           className="btn btn-google btn-user btn-block">
                           <i className="fab fa-google fa-fw"></i> Login with Google
                        </button>
-
                         <button
                           type="button"
                           role="button"

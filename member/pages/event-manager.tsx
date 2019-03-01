@@ -5,9 +5,7 @@ import TopBar from '../components/top-bar';
 import SideBar from '../components/side-bar';
 import Head from 'next/head'
 
-
 export default () => {
-
   return (
     <Fragment>
       <Head>
@@ -35,7 +33,6 @@ export default () => {
                     </div>
                     <div className="card-body">
                       <h4>Upcoming Events</h4>
-
                     </div>
                   </div>
                 </div>

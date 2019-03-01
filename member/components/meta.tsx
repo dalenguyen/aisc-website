@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import '../scss/sb-admin-2.scss';
 
 export default () => {
   return (
