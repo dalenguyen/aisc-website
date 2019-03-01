@@ -84,9 +84,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
   const pastAndFutureEvents = futureEvents.concat(pastEvents);
   const countdownEvent = useMemo(() => {
     const e = findNextUpcomingEvent(allEvents);
-    if (e && isImminent(e)) {
-      return e;
-    }
+    return e;
   }, [allEvents]);
 
   return (
@@ -148,7 +146,6 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
       <main role="main" id="main">
         <section id="content" className="container-fluid">
           {
-
             countdownEvent && (
               <div className="mt-3">
                 {paperGroupLabel("Up Next")}
