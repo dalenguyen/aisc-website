@@ -181,7 +181,6 @@ export const ShowcaseEventCard = ({ event: ev }: { event: PublicEvent }) => {
               <CardTitle event={ev} />
             </FitText>
           </div>
-
         </div>
         <div className="col-xs-12 col-sm-6 p-0">
           <Link href={`/events/${getEventId(ev)}`}>
