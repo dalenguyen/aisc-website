@@ -159,19 +159,27 @@ export const ShowcaseEventCard = ({ event: ev }: { event: PublicEvent }) => {
       <div className="row">
         <div className="col-xs-12 col-sm-6 info d-flex flex-column">
           <div className="lead mt-1">
-            {isImminent(ev) && (
+            {isImminent(ev) ? (
               <span className="badge badge-danger mr-3 mb-2 mt-2">
                 {
                   status === 'live' && "We are live!"
                 }{
-                  status === 'countdown' && (
+                  (status === 'countdown') && (
                     <Fragment>
                       Live in <Countdown expiresAt={date} />
                     </Fragment>
                   )
                 }
               </span>
-            )}
+            ) : (
+                <span className="badge badge-outline-danger mr-3 mb-2 mt-2">
+                  {status === 'too_early' && (
+                    <Fragment>
+                      Live in <Countdown expiresAt={date} />
+                    </Fragment>
+                  )}
+                </span>
+              )}
             <div style={{ display: "inline-block" }} className="mb-2 mt-2">
               {toLongDateString(date)}
             </div>
