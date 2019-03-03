@@ -205,26 +205,49 @@ const SingleEvent = ({
                     </a></Link> {SEOTitle(ev)}
                 </h1>
               </div>
-
-              {
-                ev.why && (
-                  <Fragment>
-                    <h5>Motivation</h5>
-                    {ev.why}
-                  </Fragment>
-                )
-              }
-
-              <p>
-                <strong>
-                  Category:
-                </strong>
-                &nbsp;
+              <section className="info-below ml-3">
+                {
+                  ev.why && (
+                    <Fragment>
+                      <h5>Motivation</h5>
+                      {ev.why}
+                    </Fragment>
+                  )
+                }
+                <p>
+                  <h5 className="mt-3">Subjects: </h5>
+                  <ul
+                    className="list-unstyled list-inline display-inline"
+                  >
+                    {
+                      ev.subjects.map(s => (
+                        <li className="list-inline-item mr-2" key={s}
+                          style={{
+                            textAlign: 'center',
+                          }}
+                        >
+                          <Link href={`/events?subject=${s}`}>
+                            <a className="btn btn-outline-secondary">
+                              {s}
+                            </a>
+                          </Link>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </p>
+                <p>
+                  <h5 className="mt-3">
+                    Stream:
+                </h5>
+                  &nbsp;
                 <Link href={`/events?stream=${ev.type}`}>
-                  <a>{ev.type}</a>
-                </Link>
-              </p>
+                    <a className="btn btn-info">{ev.type}</a>
+                  </Link>
+                </p>
+              </section>
             </div>
+
             <div className="col-12 col-lg-4">
               {liveChat}
 
@@ -321,6 +344,7 @@ const SingleEvent = ({
                   <a className="btn btn-primary">Get Engaged</a>
                 </Link>&nbsp;
               </p>
+
               <p>
                 <Link href="/events">
                   <a className="btn btn-secondary">
