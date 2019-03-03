@@ -12,9 +12,9 @@ export default () => (
       {[
         ["TDLS", "https://tdls.a-i.science/"],
         ["Blog", "https://blog.a-i.science/"],
-        ["Live Papers", "#"],
-        ["Spotlight", "#"],
-        ["Podcast", "#"]
+        // ["Live Papers", "#"],
+        // ["Spotlight", "#"],
+        // ["Podcast", "#"]
       ].map(([name, link]) => (
         <li key={name}>
           <a href={link}>
