@@ -26,7 +26,9 @@ interface Filter {
   stream: EventType | 'all'
 }
 
-const EMPTY_FILTER: Filter = { searchText: "", subject: "all", stream: "all" };
+const EMPTY_FILTER: Filter = {
+  searchText: "", subject: "all", stream: "all"
+};
 
 const EventFilters = ({
   subject: initSubject = 'all',
@@ -273,7 +275,7 @@ function textContainsCaseInsensitive(term: string, text?: string) {
 }
 
 Events.getInitialProps = async ({ req, query }) => {
-  const filter = pluck(query, ['subject']);
+  const filter = pluck(query, ['subject', 'stream']);
   const allEvents = await getEventsAndGroupings(!!req);
   return { allEvents, filter };
 }

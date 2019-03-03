@@ -211,7 +211,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
                 >
                   <h4>
                     <Link href={`/events?subject=${s}`}>
-                      <a className="btn btn-outline-info">
+                      <a className="btn btn-outline-secondary">
                         {s}
                       </a>
                     </Link>

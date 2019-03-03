@@ -215,9 +215,15 @@ const SingleEvent = ({
                 )
               }
 
-              <p><strong>
-                Category:
-                </strong> {ev.type}</p>
+              <p>
+                <strong>
+                  Category:
+                </strong>
+                &nbsp;
+                <Link href={`/events?stream=${ev.type}`}>
+                  <a>{ev.type}</a>
+                </Link>
+              </p>
             </div>
             <div className="col-12 col-lg-4">
               {liveChat}

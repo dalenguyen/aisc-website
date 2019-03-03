@@ -193,7 +193,7 @@ export const ShowcaseEventCard = ({ event: ev }: { event: PublicEvent }) => {
         <div className="col-xs-12 col-sm-6 p-0">
           <Link href={`/events/${getEventId(ev)}`}>
             <a>
-              <Thumb event={ev} height={"14rem"} />
+              <Thumb event={ev} height={"16rem"} />
             </a>
           </Link>
         </div>
