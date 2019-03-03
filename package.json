@@ -28,6 +28,7 @@
     "tdls-start": "next start tdls",
     "a-i-start": "next start a-i",
     "tdls-export": "npm run tdls-build && next export tdls && cp tdls/root-static/* tdls/out/",
+    "member-fb-deploy": "cross-env GOOGLE_APPLICATION_CREDENTIALS=`pwd`/keys/fb-service.json firebase deploy",
     "member-export": "npm run member-build && next export member",
     "a-i-export": "npm run a-i-build && next export a-i && cp a-i/root-static/* a-i/out/",
     "blog-export": "npm run blog-build && cd blog && next export && cp root-static/* out/"
