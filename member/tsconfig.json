@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "./functions-lib",
-    "rootDir": "../",
+    "rootDir": "./functions",
     "allowJs": true,
   },
   "include": [
     "./functions/**/*",
-    "../common/*"
   ]
 }

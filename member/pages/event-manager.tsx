@@ -4,8 +4,24 @@ import Meta from '../components/meta';
 import TopBar from '../components/top-bar';
 import SideBar from '../components/side-bar';
 import Head from 'next/head'
+import firebase from 'firebase/app';
+import 'firebase/functions'
+
 
 export default () => {
+
+  useEffect(() => {
+    const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
+    firebase.functions().useFunctionsEmulator('http://localhost:3600');
+
+    const fetchEvents = async () => {
+      const a = await fetchEventsFb();
+      console.log(a);
+    }
+
+    fetchEvents();
+  }, []);
+
   return (
     <Fragment>
       <Head>
@@ -29,10 +45,12 @@ export default () => {
                 <div className="col-12">
                   <div className="card shadow mb-4">
                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 className="m-0 font-weight-bold text-primary">Events</h6>
+                      <h6 className="m-0 font-weight-bold text-primary">
+                        Upcoming Events
+                      </h6>
                     </div>
                     <div className="card-body">
-                      <h4>Upcoming Events</h4>
+
                     </div>
                   </div>
                 </div>

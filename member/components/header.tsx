@@ -4,6 +4,7 @@ import 'firebase/auth'
 
 export default () => {
   useEffect(() => {
+    console.log('zzz')
     const config = {
       apiKey: "AIzaSyBtiVuEp_B46gEiI-O3aGjt_5Rx_CCwnfQ",
       authDomain: "central-splice-231701.firebaseapp.com",
