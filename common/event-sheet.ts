@@ -17,9 +17,9 @@ async function getRawEventData(googleKey: string) {
 }
 
 
-function splitEvents(events: MemberEvent[]): PublicEvent[][] {
+function splitEvents(events: MemberEvent[]): MemberEvent[][] {
   // split into the past and future
-  let past: PublicEvent[] = [];
+  let past: MemberEvent[] = [];
   let future: MemberEvent[] = [];
   events.forEach(e => {
     if (!eventExpired(e)) { future.push(e); }
@@ -27,11 +27,13 @@ function splitEvents(events: MemberEvent[]): PublicEvent[][] {
   });
   past = past.sort((e1, e2) => e2.date - e1.date);
   future = future.sort((e1, e2) => e1.date - e2.date);
-  // hide venue
-  const futurePublic: PublicEvent[] = future.map(({ venue, ...hiddenEv }) => hiddenEv);
-  return [past, futurePublic];
+  return [past, future];
 }
 
+function hideVenue({ venue, ...publicEv }: MemberEvent) {
+  // hide venue
+  return publicEv;
+}
 
 function eventExpired(ev: PublicEvent) {
   const status = eventStatus(ev);
@@ -39,7 +41,7 @@ function eventExpired(ev: PublicEvent) {
 }
 
 
-export async function fetchEventsAndGroupings(googleKey: string) {
+export async function fetchEventsAndGroupings(googleKey: string, hideFutureVenue: boolean = true) {
   const data = await getRawEventData(googleKey);
   const [rawHeader, ...rawRows]:
     [string[], ...{ [k: string]: string }[]] = data.values;
@@ -49,7 +51,13 @@ export async function fetchEventsAndGroupings(googleKey: string) {
       //only care about rows that have both title and lead
       e => e.title && e.lead
     );
-  const [pastEvents, futureEvents] = splitEvents(events);
+  const [pastEvents, futureEventsWithVenue] = splitEvents(events);
+  let futureEvents: PublicEvent[];
+  if (hideFutureVenue) {
+    futureEvents = futureEventsWithVenue.map(hideVenue);
+  } else {
+    futureEvents = futureEventsWithVenue;
+  }
   const subjects = pastEvents.reduce((subjects, ev) => {
     const newSubjects = [];
     for (let sub of ev.subjects) {
@@ -125,8 +133,8 @@ function rawRowToRow(rawHeader: string[], rawRow: { [k: string]: string }): Memb
   const reddit = rawRow[rawHeader.indexOf('Reddit Link')];
   const type = rawRow[rawHeader.indexOf('Stream')] as EventType;
   const subjects = (rawRow[rawHeader.indexOf('Subject Matter Area')] || '').split(',').map(s => s.trim()).filter(s => s);
-
-  const dateAtMidnight = moment.tz((rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, '').replace(/\-/g, ' '), "UTC").toDate();
+  const dashedDateStr = (rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, '').replace(/\-/g, ' ');
+  const dateAtMidnight = moment.tz(dashedDateStr, "UTC").toDate();
   const dateAtSixThirty = new Date(dateAtMidnight.getTime() + ((5 + 18) * 60 + 30) * 60 * 1000);
 
   return {

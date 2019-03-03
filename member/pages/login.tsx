@@ -1,21 +1,28 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
 import Header from '../components/header';
-import firebase from 'firebase/app';
 import Head from 'next/head';
 import Meta from '../components/meta';
+import Router from 'next/router';
+import { ensureFirebase } from '../utils/firebase';
 
 
 export default () => {
+
   const loginWithGoogle = async () => {
+    const firebase = ensureFirebase();
     const provider = new firebase.auth.GoogleAuthProvider();
     const { user } = await firebase.auth().signInWithPopup(provider);
     if (user && !user.isAnonymous) {
-      const { email } = user;
+      const { email, emailVerified } = user;
+      if (email) {
+        Router.push('/event-manager');
+      }
     }
   }
 
   const loginWithGitHub = async () => {
+    const firebase = ensureFirebase();
     const provider = new firebase.auth.GithubAuthProvider();
     const { user } = await firebase.auth().signInWithPopup(provider);
     if (user && !user.isAnonymous) {

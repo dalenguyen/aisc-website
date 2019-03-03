@@ -1,26 +1,57 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Header from '../components/header';
 import Meta from '../components/meta';
 import TopBar from '../components/top-bar';
 import SideBar from '../components/side-bar';
 import Head from 'next/head'
-import firebase from 'firebase/app';
-import 'firebase/functions'
+import { AllEvents, MemberEvent } from "../../common/types";
+import { getEventId } from '../../common/event';
+import { ensureFirebase, authStateChecker } from '../utils/firebase';
+import Router from 'next/router'
 
+const firebase = ensureFirebase();
+const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
+
+const checkAuth = authStateChecker();
 
 export default () => {
 
-  useEffect(() => {
-    const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
-    firebase.functions().useFunctionsEmulator('http://localhost:3600');
 
-    const fetchEvents = async () => {
-      const a = await fetchEventsFb();
-      console.log(a);
+  const [{ user }, setUserState] = useState<{ user: firebase.User | null }>(
+    { user: null }
+  );
+
+  const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] }>({
+    upcomingEvents: []
+  });
+
+  const fetchAndSetEvents = async () => {
+    try {
+      const { data }: { data: AllEvents } = await fetchEventsFb() as any;
+      setEvents({ upcomingEvents: data.futureEvents as MemberEvent[] });
+    } catch (e) {
+      console.error('e', e)
     }
+  }
 
-    fetchEvents();
-  }, []);
+  const checkLogin = async () => {
+    const user = await checkAuth(firebase.auth());
+    if (!user || !user.email) {
+      Router.push('/login');
+    } else {
+      setUserState({ user });
+    }
+  }
+
+  useEffect(() => {
+    checkLogin();
+  }, [])
+
+  useEffect(() => {
+    if (user) {
+      fetchAndSetEvents();
+    }
+  }, [user]);
 
   return (
     <Fragment>
@@ -50,7 +81,16 @@ export default () => {
                       </h6>
                     </div>
                     <div className="card-body">
-
+                      <ul className="list-group">
+                        {
+                          upcomingEvents.map(ev => (
+                            <li className="list-group-item" key={getEventId(ev)}>
+                              <h5>{ev.title}</h5>
+                              Venue: {ev.venue}
+                            </li>
+                          ))
+                        }
+                      </ul>
                     </div>
                   </div>
                 </div>
