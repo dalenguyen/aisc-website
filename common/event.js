@@ -34,7 +34,7 @@ function eventStatus(ev) {
 }
 
 function SEOTitle(ev) {
-  return `${ev.acronym && `${ev.acronym} | `}${ev.title}`;
+  return `${ev.acronym && `[${ev.acronym}] `}${ev.title}`;
 }
 
 function pad(num) {
