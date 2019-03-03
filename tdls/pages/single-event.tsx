@@ -119,9 +119,6 @@ const SingleEvent = ({
 
     const liveChat = (ev.video || null) && (
       <Fragment>
-        {!isMember && (status === 'too_early' || status === 'countdown') && (
-          <p>This is an online streaming event.</p>
-        )}
         <section className="live-chat">
           {
             status !== 'expired' && (
@@ -258,13 +255,17 @@ const SingleEvent = ({
                       <a
                         target="_blank"
                         href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
-                        <h5>
+                        <h5 style={{ display: 'inline-block' }}>
                           <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'outline-danger' }[status]}`}>
                             Live in <Countdown expiresAt={date} />
                           </span>
                         </h5>
                       </a>
+                      {!isMember && (status === 'too_early' || status === 'countdown') && (
+                        <p>This is an online streaming event.</p>
+                      )}
                     </Fragment>
+
                   )
                 }
                 {
