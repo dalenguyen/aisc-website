@@ -12,6 +12,11 @@ main {
   .carousel-indicators {
     bottom: 8%;
   }
+
+  .carousel-item > img {
+    // prevent initial page flickering
+    min-height: 30vw;
+  }
   .carousel-caption {
     font-style: italic;
     letter-spacing: 0.12em;
