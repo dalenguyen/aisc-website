@@ -10,6 +10,8 @@ if (parsed) {
       [k.toLowerCase()]: v
     })
   }, {});
+
+
   const fbConfig = {
     global_env: envVars
   }

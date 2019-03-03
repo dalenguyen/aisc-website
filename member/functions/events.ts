@@ -1,7 +1,6 @@
 import { fetchEventsAndGroupings } from './common/event-sheet';
 import * as functions from 'firebase-functions';
-import admin from 'firebase-admin';
-// admin.initializeApp(functions.config().firebase);
+import * as admin from 'firebase-admin';
 
 async function getUserProfile(uid: string): Promise<any> {
   const db = admin.firestore();
@@ -23,6 +22,9 @@ export const fetchEvents = functions.https.onCall(async (data, context) => {
     }
 
     const googleKey = functions.config().global_env.google_key;
+    if (!googleKey) {
+      throw new Error("Google key is missing.");
+    }
     const allEvents = await fetchEventsAndGroupings(googleKey, false);
     return allEvents;
   }

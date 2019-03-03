@@ -42,6 +42,9 @@ function eventExpired(ev: PublicEvent) {
 
 
 export async function fetchEventsAndGroupings(googleKey: string, hideFutureVenue: boolean = true) {
+  if (!googleKey) {
+    throw new Error('Google key is required.');
+  }
   const data = await getRawEventData(googleKey);
   const [rawHeader, ...rawRows]:
     [string[], ...{ [k: string]: string }[]] = data.values;
