@@ -274,6 +274,31 @@ table,
   &-warning {
     color: $white;
   }
+
+  &-foundational {
+    color: $stream-foundational;
+    border-color: $stream-foundational;
+  }
+
+  &-codereview {
+    color: $stream-codereview;
+    border-color: $stream-codereview;
+  }
+
+  &-main {
+    color: $stream-main;
+    border-color: $stream-main;
+  }
+
+  &-fasttrack {
+    color: $stream-fasttrack;
+    border-color: $stream-fasttrack;
+  }
+
+  &-authors {
+    color: $stream-authors;
+    border-color: $stream-authors;
+  }
 }
 
 .badge-outline-danger {
@@ -281,6 +306,12 @@ table,
   color: $danger;
   font-weight: bold;
   border: 1px solid $danger;
+}
+
+.badge-outline {
+  background-color: $white;
+  font-weight: bold;
+  border: 1px solid;
 }
 
 // .tooltip {

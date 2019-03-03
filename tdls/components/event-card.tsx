@@ -11,6 +11,7 @@ import {
   getEventId, eventStatus, isImminent
 } from '../../common/event';
 import { toLongDateString } from '../utils/datetime';
+import { EventType } from '../../member/functions/common/types';
 
 const StatusBadge = ({ event: ev }: { event: PublicEvent }) => {
   const status = eventStatus(ev);
@@ -21,26 +22,40 @@ const StatusBadge = ({ event: ev }: { event: PublicEvent }) => {
       {(
         status === 'too_early' || status === 'countdown' || status === 'live'
       ) && (
-          <h5 style={{
-            position: 'absolute', top: "3%", left: "3%",
-            textAlign: 'right'
-          }}>
-            <span
-              className={classnames("badge", status === 'too_early' ? 'badge-outline-danger' : 'badge-danger')}>
-              {
-                status === 'too_early' && "Upcoming"
-              }
-              {status === 'live' && "Live"}
-              {
-                status === 'countdown' && (
-                  <Fragment>
-                    Live in <br /><Countdown expiresAt={date} />
-                  </Fragment>
-                )
-              }
-            </span>
-          </h5>
+          <span
+            className={classnames("badge", status === 'too_early' ? 'badge-outline-danger' : 'badge-danger')}>
+            {
+              status === 'too_early' && "Upcoming"
+            }
+            {status === 'live' && "Live"}
+            {
+              status === 'countdown' && (
+                <Fragment>
+                  Live in <br /><Countdown expiresAt={date} />
+                </Fragment>
+              )
+            }
+          </span>
         )}
+    </Fragment>
+  )
+}
+
+const TypeBadge = ({ event: ev }: { event: PublicEvent }) => {
+  const shorthand = {
+    'Main Stream': 'main',
+    'Foundational': 'foundational',
+    'Trending Paper': 'fasttrack',
+    'Author Speaking': 'authors',
+    'Code Review': 'codereview'
+  }[ev.type];
+
+  return (
+    <Fragment>
+      <span
+        className={classnames("badge badge-outline", "badge-" + shorthand)}>
+        {ev.type}
+      </span>
     </Fragment>
   )
 }
@@ -129,7 +144,15 @@ export default ({
         <Link href={`/events/${getEventId(ev)}`}>
           <a>
             <Thumb event={ev} height={"9.5rem"} />
-            {showEventStatus && <StatusBadge event={ev} />}
+            <div className="badge-area" style={{
+              position: 'absolute',
+              top: '3%',
+              left: '3%',
+              width: '95%'
+            }}>
+              {showEventStatus && <span className="mr-1"><StatusBadge event={ev} /></span>}
+              {ev.type !== 'Main Stream' && <TypeBadge event={ev} />}
+            </div>
             {showDate && <DateElem date={date} />}
           </a>
         </Link>
@@ -157,33 +180,42 @@ export const ShowcaseEventCard = ({ event: ev }: { event: PublicEvent }) => {
   return (
     <div className="event showcase container-fluid mt-1 mb-4 ml-0 mr-0">
       <div className="row">
-        <div className="col-xs-12 col-sm-6 info d-flex flex-column">
-          <div className="lead mt-1">
-            {isImminent(ev) ? (
-              <span className="badge badge-danger mr-3 mb-2 mt-2">
-                {
-                  status === 'live' && "We are live!"
-                }{
-                  (status === 'countdown') && (
-                    <Fragment>
-                      Live in <Countdown expiresAt={date} />
-                    </Fragment>
-                  )
-                }
-              </span>
-            ) : (
-                <span className="badge badge-outline-danger mr-3 mb-2 mt-2">
-                  {status === 'too_early' && (
-                    <Fragment>
-                      Live in <Countdown expiresAt={date} />
-                    </Fragment>
+        <div className="col-xs-12 col-sm-6 info d-flex flex-column" style={{
+          minHeight: '10rem'
+        }}>
+          <Link href={`/events/${getEventId(ev)}`}>
+            <a>
+              <div className="lead mt-1 badge-area mb-2 mt-2">
+                {isImminent(ev) ? (
+                  <span className="badge badge-danger mr-3">
+                    {
+                      status === 'live' && "We are live!"
+                    }{
+                      (status === 'countdown') && (
+                        <Fragment>
+                          Live in <Countdown expiresAt={date} />
+                        </Fragment>
+                      )
+                    }
+                  </span>
+                ) : (
+                    <span className="badge badge-outline-danger mr-2">
+                      {status === 'too_early' && (
+                        <Fragment>
+                          Live in <Countdown expiresAt={date} />
+                        </Fragment>
+                      )}
+                    </span>
                   )}
+                <span className="mr-2">
+                  <TypeBadge event={ev} />
                 </span>
-              )}
-            <div style={{ display: "inline-block" }} className="mb-2 mt-2">
-              {toLongDateString(date)}
-            </div>
-          </div>
+                <div style={{ display: "inline-block" }} className="mt-2 ">
+                  {toLongDateString(date)}
+                </div>
+              </div>
+            </a>
+          </Link>
           <div className="d-flex flex-grow-1 flex-column justify-content-center mt-2 mb-4">
             <FitText compressor={1.6} minFontSize={20}>
               <CardTitle event={ev} />

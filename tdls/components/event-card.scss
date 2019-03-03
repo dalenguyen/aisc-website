@@ -8,6 +8,16 @@
   margin-bottom: 3%;
   line-height: 1.2;
 
+  .badge-area {
+    text-align: left;
+    >* {
+      display: inline-block;
+    }
+    h6{
+      font-size: 1.1em;
+    }
+  }
+
   &.showcase {
     border:  1px solid #ddd;
   }
