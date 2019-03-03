@@ -1,7 +1,13 @@
 import firebase from 'firebase/app';
 import 'firebase/functions';
 import 'firebase/auth';
-import Firebase from 'firebase';
+import 'firebase/firestore';
+import getConfig from 'next/config'
+const { publicRuntimeConfig: { FB_BASE } } = getConfig()
+
+// if (!FB_BASE) {
+//   throw new Error("FB_BASE variable must be specified.");
+// }
 
 export const ensureFirebase = () => {
   if (firebase.apps.length === 0) {
@@ -15,8 +21,12 @@ export const ensureFirebase = () => {
       messagingSenderId: "885891444833"
     };
     firebase.initializeApp(config);
-    firebase.functions().useFunctionsEmulator('http://localhost:3600');
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    if (typeof window !== 'undefined') {
+      if (FB_BASE) {
+        firebase.functions().useFunctionsEmulator(FB_BASE);
+      }
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+    }
   }
 
   return firebase;
@@ -28,7 +38,8 @@ export const authStateChecker = () => {
   return (auth: firebase.auth.Auth) => {
     return new Promise<firebase.User | null>((resolve, reject) => {
       if (userLoaded) {
-        resolve(firebase.auth().currentUser);
+        const { currentUser } = firebase.auth();
+        resolve(currentUser);
       }
       const unsubscribe = auth.onAuthStateChanged(user => {
         userLoaded = true;

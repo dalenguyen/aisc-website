@@ -48,6 +48,8 @@ const EventRoutingHandler = ({ }) => {
   }, []);
 
   useEffect(() => {
+    console.log(process.env);
+
     configureProgressBar();
   }, []);
 

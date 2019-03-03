@@ -14,9 +14,9 @@ module.exports = withTypescript(
           use: 'raw-loader'
         }
       );
-      config.plugins.push(
-        new webpack.EnvironmentPlugin(process.env),
-      );
+      // config.plugins.push(
+      //   new webpack.EnvironmentPlugin(process.env),
+      // );
 
       return config
     },
