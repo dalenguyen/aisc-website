@@ -39,11 +39,6 @@ export default () => {
     if (!user || !user.email) {
       Router.push('/login');
     } else {
-      // TODO: get rid of this
-      // firebase.firestore().collection(`users`).doc(user.uid).set({
-      //   roles: ['member']
-      // })
-
       setUserState({ user });
     }
   }
@@ -110,7 +105,6 @@ export default () => {
             </div>
           </footer>
         </main>
-
       </div>
 
       <a className="scroll-to-top rounded" href="#page-top">
