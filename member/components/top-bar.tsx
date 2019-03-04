@@ -27,7 +27,7 @@ export default () => {
               {user.displayName || user.email}
             </span>
             <img className="img-profile rounded-circle"
-              src="https://source.unsplash.com/QAB-WJcbgJk/60x60"
+              src={user.photoURL || `https://source.unsplash.com/QAB-WJcbgJk/60x60`}
             />
           </a>
           {/* <!-- Dropdown - User Information --> */}
