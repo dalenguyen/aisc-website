@@ -3,10 +3,8 @@ import * as moment from 'moment-timezone';
 const fetch = require('isomorphic-unfetch');
 import { eventStatus } from '../common/event';
 
-
-async function getRawEventData(googleKey: string) {
-  const SHEET_ID = '1WghUEANwzE1f8fD_sdTvM9BEmr1C9bZjPlFSIJX9iLE';
-  const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Schedule?key=${googleKey}`;
+async function getRawEventData(googleKey: string, sheetId: string) {
+  const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Schedule?key=${googleKey}`;
   // get raw sheet data in JSON
   const resp = await fetch(SHEET_VALUE_URL, {
     method: 'GET',
@@ -41,11 +39,13 @@ function eventExpired(ev: PublicEvent) {
 }
 
 
-export async function fetchEventsAndGroupings(googleKey: string, hideFutureVenue: boolean = true) {
+export async function fetchEventsAndGroupings(
+  googleKey: string, sheetId: string, hideFutureVenue: boolean = true
+) {
   if (!googleKey) {
     throw new Error('Google key is required.');
   }
-  const data = await getRawEventData(googleKey);
+  const data = await getRawEventData(googleKey, sheetId);
   const [rawHeader, ...rawRows]:
     [string[], ...{ [k: string]: string }[]] = data.values;
   // convert raw JSON rows to our own event data type

@@ -4,19 +4,21 @@ import * as path from 'path';
 require('dotenv').config();
 
 const {
-  GOOGLE_KEY
+  GOOGLE_KEY, EVENT_SHEET_ID
 } = process.env;
 
 if (!GOOGLE_KEY) {
   throw new Error('GOOGLE_KEY must be specified as an environment variable');
+} else if (!EVENT_SHEET_ID) {
+  throw new Error('Sheet ID is required.');
 } else {
-  fetchAndSaveSchedule(GOOGLE_KEY);
+  fetchAndSaveSchedule(GOOGLE_KEY, EVENT_SHEET_ID);
 }
 
-async function fetchAndSaveSchedule(googleKey: string) {
+async function fetchAndSaveSchedule(googleKey: string, sheetId: string) {
   const [eventsAndGroupings, linkedInProfiles] = await Promise.all(
     [
-      fetchEventsAndGroupings(googleKey), fetchLinkedInProfiles(googleKey)
+      fetchEventsAndGroupings(googleKey, sheetId), fetchLinkedInProfiles(googleKey)
     ]
   );
 

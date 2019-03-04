@@ -34,10 +34,11 @@ export const fetchEvents = functions.https.onCall(async (data, context) => {
     } else {
       console.info("Fetching event info...");
       const googleKey = functions.config().global_env.google_key;
+      const sheetId = functions.config().global_env.event_sheet_id;
       if (!googleKey) {
         throw new Error("Google key is missing.");
       }
-      const allEvents = await fetchEventsAndGroupings(googleKey, false);
+      const allEvents = await fetchEventsAndGroupings(googleKey, sheetId, false);
       cache.set('default', allEvents);
       return allEvents;
     }
