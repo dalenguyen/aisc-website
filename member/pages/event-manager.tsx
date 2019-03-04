@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import Header from '../components/header';
 import Meta from '../components/meta';
 import TopBar from '../components/top-bar';
@@ -6,21 +6,13 @@ import SideBar from '../components/side-bar';
 import Head from 'next/head'
 import { AllEvents, MemberEvent } from "../../common/types";
 import { getEventId } from '../../common/event';
-import { ensureFirebase, authStateChecker } from '../utils/firebase';
-import Router from 'next/router'
+import { ensureFirebase } from '../utils/firebase';
+import { AuthContext } from '../components/user-context-wrapper';
 
 const firebase = ensureFirebase();
 const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
 
-const checkAuth = authStateChecker();
-
 export default () => {
-
-
-  const [{ user }, setUserState] = useState<{ user: firebase.User | null }>(
-    { user: null }
-  );
-
   const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] }>({
     upcomingEvents: []
   });
@@ -34,24 +26,13 @@ export default () => {
     }
   }
 
-  const checkLogin = async () => {
-    const user = await checkAuth(firebase.auth());
-    if (!user || !user.email) {
-      Router.push('/login');
-    } else {
-      setUserState({ user });
-    }
-  }
-
+  const user = useContext(AuthContext);
   useEffect(() => {
-    checkLogin();
-  }, [])
-
-  useEffect(() => {
-    if (user) {
+    if (user && user.emailVerified) {
       fetchAndSetEvents();
     }
   }, [user]);
+
 
   return (
     <Fragment>
@@ -110,27 +91,6 @@ export default () => {
       <a className="scroll-to-top rounded" href="#page-top">
         <i className="fas fa-angle-up"></i>
       </a>
-
-      {/* <!-- Logout Modal--> */}
-      <div className="modal fade" id="logoutModal"
-        tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div className="modal-footer">
-              <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a className="btn btn-primary" href="login.html">Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </Fragment>
   )
 }

@@ -32,6 +32,7 @@ export const fetchEvents = functions.https.onCall(async (data, context) => {
     if (cached) {
       return cached;
     } else {
+      console.info("Fetching event info...");
       const googleKey = functions.config().global_env.google_key;
       if (!googleKey) {
         throw new Error("Google key is missing.");
