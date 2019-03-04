@@ -9,24 +9,28 @@ import { ensureFirebase } from '../utils/firebase';
 
 export default () => {
 
+  const checkRedirect = (user: firebase.User | null) => {
+    if (user && !user.isAnonymous) {
+      const { email } = user;
+      if (email) {
+        Router.push('/');
+      }
+    }
+  }
+
   const loginWithGoogle = async () => {
     const firebase = ensureFirebase();
     const provider = new firebase.auth.GoogleAuthProvider();
     const { user } = await firebase.auth().signInWithPopup(provider);
-    if (user && !user.isAnonymous) {
-      const { email, emailVerified } = user;
-      if (email) {
-        Router.push('/event-manager');
-      }
-    }
+    checkRedirect(user);
   }
 
   const loginWithGitHub = async () => {
     const firebase = ensureFirebase();
     const provider = new firebase.auth.GithubAuthProvider();
     const { user } = await firebase.auth().signInWithPopup(provider);
-    if (user && !user.isAnonymous) {
-      const { email } = user;
+    if (user) {
+      checkRedirect(user);
     }
   }
 

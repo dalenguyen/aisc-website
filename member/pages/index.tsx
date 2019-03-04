@@ -27,12 +27,18 @@ export default () => {
   }
 
   const user = useContext(AuthContext);
+
   useEffect(() => {
     if (user && user.emailVerified) {
       fetchAndSetEvents();
     }
   }, [user]);
 
+  useEffect(() => {
+    if (user && user.emailVerified) {
+      fetchAndSetEvents();
+    }
+  }, []);
 
   return (
     <Fragment>
