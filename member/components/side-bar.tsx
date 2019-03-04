@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default () => {
   return (
     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -13,14 +15,24 @@ export default () => {
       <hr className="sidebar-divider my-0" />
 
       {/* <!-- Nav Item - Dashboard --> */}
-      <li className="nav-item active">
-        <a className="nav-link" href="index.html">
-          <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>Member Home</span></a>
+      <li className="nav-item">
+        <Link href="/">
+          <a className="nav-link" >
+            <i className="fas fa-fw fa-tachometer-alt"></i>
+            <span>Member Home</span></a>
+        </Link>
       </li>
-
       {/* <!-- Divider --> */}
       <hr className="sidebar-divider" />
+
+      <li className="nav-item">
+        <Link href="/event-manager">
+          <a className="nav-link" >
+            <i className="fas fa-fw fa-tachometer-alt"></i>
+            <span>Event Manager</span></a>
+        </Link>
+      </li>
+
     </ul>
   );
 }
