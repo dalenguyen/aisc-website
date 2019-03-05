@@ -6,8 +6,8 @@ const webpack = require('webpack');
 const INTERNAL_TOKEN = 'aaa';
 const INTERNAL_PATHS = ['speaker-prep'];
 
-const SITE_NAME = "Toronto Deep Learning Series";
-const SITE_ABBREV = "TDLS";
+const SITE_NAME = "Aggregate Intellect Socratic Circles";
+const SITE_ABBREV = "AISC";
 const SITE_NAME_FULL = `${SITE_NAME} (#${SITE_ABBREV})`
 
 function genPublicPaths(defaultPathMap) {
