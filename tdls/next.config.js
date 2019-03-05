@@ -68,6 +68,6 @@ module.exports = withTypescript(withCSS(withSass({
   genPublicPaths,
 
   publicRuntimeConfig: {
-    SITE_NAME, SITE_NAME_ABBREV: SITE_ABBREV, SITE_NAME_FULL
+    SITE_NAME, SITE_ABBREV, SITE_NAME_FULL
   }
 })))

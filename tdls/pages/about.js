@@ -7,14 +7,12 @@ import Head from 'next/head'
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
 const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
-
 import getConfig from 'next/config'
-const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 const About = ({ contributors }) => (
   <Fragment>
     <Head>
-      <title>About {SITE_APPREV} | {SITE_NAME_FULL}</title>
+      <title>About {SITE_ABBREV} | {SITE_NAME_FULL}</title>
       <ThemesAndSuch />
     </Head>
     <Header />
