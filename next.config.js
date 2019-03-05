@@ -5,6 +5,7 @@ const path = require('path');
 const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass');
 
+
 module.exports = withTypescript(
   withSass({
     webpack: (config) => {
@@ -22,14 +23,17 @@ module.exports = withTypescript(
     },
 
     exportPathMap: async function (defaultPathMap, config) {
+      const siteConfig = require(path.join(dir, 'next.config'));
       const { dir } = config;
-      const { exportPathMap } = require(path.join(dir, 'next.config'));
+      const { exportPathMap } = siteConfig;
 
       if (exportPathMap) {
         return exportPathMap(defaultPathMap, config);
       } else {
         return defaultPathMap;
       }
-    }
+    },
+
+    publicRuntimeConfig: siteConfig.publicRuntimeConfig
   })
 )

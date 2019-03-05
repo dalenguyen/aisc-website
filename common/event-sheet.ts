@@ -84,8 +84,8 @@ export async function fetchEventsAndGroupings(
 }
 
 
-export async function fetchLinkedInProfiles(googleKey: string) {
-  const data = await getRawLinkedInData(googleKey);
+export async function fetchLinkedInProfiles(googleKey: string, sheetId: string) {
+  const data = await getRawLinkedInData(googleKey, sheetId);
   const linkedInProfileByName: { [k: string]: string } = {};
   const [rawHeader, ...rawRows] = data.values;
   rawRows.forEach((r: { [k: string]: string }) => {
@@ -99,9 +99,8 @@ export async function fetchLinkedInProfiles(googleKey: string) {
 };
 
 
-async function getRawLinkedInData(googleKey: string) {
-  const SHEET_ID = '1WghUEANwzE1f8fD_sdTvM9BEmr1C9bZjPlFSIJX9iLE';
-  const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Profiles?key=${googleKey}`;
+async function getRawLinkedInData(googleKey: string, sheetId: string) {
+  const SHEET_VALUE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Profiles?key=${googleKey}`;
 
   // get raw sheet data in JSON
   const resp = await fetch(SHEET_VALUE_URL, {
