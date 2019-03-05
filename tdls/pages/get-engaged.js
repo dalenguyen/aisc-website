@@ -6,10 +6,13 @@ import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts';
 import GetEngagedSection from '../components/get-engaged-section';
 
+import getConfig from 'next/config'
+const { SITE_NAME_FULL } = getConfig().publicRuntimeConfig;
+
 const GetEngaged = ({ }) => (
   <Fragment>
     <Head>
-      <title>Get Engaged | Toronto Deep Learning Series</title>
+      <title>Get Engaged | {SITE_NAME_FULL}</title>
       <ThemesAndSuch />
     </Head>
     <Header />

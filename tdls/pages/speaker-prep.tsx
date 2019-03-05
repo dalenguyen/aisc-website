@@ -11,6 +11,9 @@ import Chart from "react-google-charts";
 import ReactMarkdown from 'react-markdown';
 import { Form, Badge, ListGroup } from 'react-bootstrap';
 
+import getConfig from 'next/config'
+const { SITE_NAME_FULL } = getConfig().publicRuntimeConfig;
+
 // const { prepTalk } = require(`../data/docs.json`);
 const prepTalk = require('../data/writeup/prep-talk.md');
 
@@ -84,7 +87,7 @@ const SpeakerPrep = ({ event }) => {
   return (
     <Fragment>
       <Head>
-        <title>Presentation Preparation | Toronto Deep Learning Series #TDLS</title>
+        <title>Presentation Preparation | {SITE_NAME_FULL}</title>
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
         <link rel="canonical" href="./index.html" />
         <ThemesAndSuch />

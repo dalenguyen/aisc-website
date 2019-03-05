@@ -13,7 +13,9 @@ import { ShowcaseEventCard } from '../components/event-card';
 import { ZoomLevel } from '../components/event-carousel';
 import configureProgressBar from '../utils/routing';
 import { findNextUpcomingEvent } from '../components/live-button';
-import { isImminent } from '../../common/event';
+
+import getConfig from 'next/config'
+const { SITE_NAME_FULL, SITE_ABBREV, SITE_NAME } = getConfig().publicRuntimeConfig;
 
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import Router from 'next/router'
@@ -92,7 +94,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
   return (
     <Fragment>
       <Head>
-        <title>Toronto Deep Learning Series TDLS</title>
+        <title>{SITE_NAME_FULL}</title>
         <meta name="description"
           content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning."
         />
@@ -142,7 +144,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
         </div>
         <a className="scroll-button" href="#main"><span></span></a>
         <div className="container tdls-intro">
-          <h1 className="title">Toronto Deep Learning Series (#TDLS)</h1>
+          <h1 className="title">{SITE_NAME_FULL}</h1>
         </div>
       </section>
       <main role="main" id="main">
@@ -388,9 +390,9 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
         <section className="container about-tdls">
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <h2 className="title">About TDLS</h2>
+              <h2 className="title">About {SITE_ABBREV}</h2>
               <p className="lead">
-                TDLS is a community of intellectually curious individuals, centered around technical
+                {SITE_NAME} is a community of intellectually curious individuals, centered around technical
                 review and discussion of advances in machine learning.
             </p>
               <p>

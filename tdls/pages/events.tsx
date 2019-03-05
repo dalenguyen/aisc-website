@@ -16,6 +16,10 @@ import { getQueryStringValue, mobileCheck } from '../../common/utils';
 import './events.scss';
 
 
+import getConfig from 'next/config'
+const { SITE_NAME_FULL } = getConfig().publicRuntimeConfig;
+
+
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
 import { AllEvents, PublicEvent, MemberEvent, EventType } from '../../common/types';
@@ -220,7 +224,7 @@ const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
   return (
     <Fragment>
       <Head>
-        <title>Events | Toronto Deep Learning Series #TDLS</title>
+        <title>Events | {SITE_NAME_FULL}</title>
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
         <ThemesAndSuch />
       </Head>

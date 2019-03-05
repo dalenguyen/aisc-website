@@ -6,6 +6,10 @@ const webpack = require('webpack');
 const INTERNAL_TOKEN = 'aaa';
 const INTERNAL_PATHS = ['speaker-prep'];
 
+const SITE_NAME = "Toronto Deep Learning Series";
+const SITE_ABBREV = "TDLS";
+const SITE_NAME_FULL = `${SITE_NAME} (#${SITE_ABBREV})`
+
 function genPublicPaths(defaultPathMap) {
   const { pastEvents, futureEvents } = require('./static/data/events.json');
   const events = pastEvents.concat(futureEvents);
@@ -61,5 +65,9 @@ module.exports = withTypescript(withCSS(withSass({
       ...internalPaths,
     };
   },
-  genPublicPaths
+  genPublicPaths,
+
+  publicRuntimeConfig: {
+    SITE_NAME, SITE_ABBREV, SITE_NAME_FULL
+  }
 })))

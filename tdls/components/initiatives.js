@@ -1,4 +1,6 @@
 import { Fragment } from 'react';
+import getConfig from 'next/config'
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 
 export default () => (
@@ -10,7 +12,7 @@ export default () => (
     `}</style>
     <ul className="useful-links list-unstyled">
       {[
-        ["TDLS", "https://tdls.a-i.science/"],
+        [SITE_ABBREV, "https://tdls.a-i.science/"],
         ["Blog", "https://blog.a-i.science/"],
         // ["Live Papers", "#"],
         // ["Spotlight", "#"],

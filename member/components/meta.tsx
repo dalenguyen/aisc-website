@@ -1,5 +1,9 @@
 import { Fragment } from "react";
 import '../scss/sb-admin-2.scss';
+if (typeof window !== 'undefined') {
+  require('jquery-slim');
+  require('bootstrap');
+}
 
 export default () => {
   return (

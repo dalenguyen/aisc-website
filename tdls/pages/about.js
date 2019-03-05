@@ -6,19 +6,21 @@ import Footer from '../components/footer'
 import Head from 'next/head'
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
+const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
+import getConfig from 'next/config'
 
 const About = ({ contributors }) => (
   <Fragment>
     <Head>
-      <title>About TDLS | Toronto Deep Learning Series</title>
+      <title>About {SITE_ABBREV} | {SITE_NAME_FULL}</title>
       <ThemesAndSuch />
     </Head>
     <Header />
     <section className="container" id="about_us">
       <hr />
-      <h2 className="mb-4">About TDLS</h2>
+      <h2 className="mb-4">About {SITE_ABBREV}</h2>
       <p>
-        <i>TDLS is a community of intellectually curious individuals centred around technical review and discussion
+        <i>{SITE_NAME_FULL} is a community of intellectually curious individuals centred around technical review and discussion
         of advances in machine learning. </i>
       </p>
       <p>
@@ -59,7 +61,7 @@ const About = ({ contributors }) => (
         }
       </div>
 
-      <h3 id="volunteers">TDLS Friends</h3>
+      <h3 id="volunteers">{SITE_ABBREV} Friends</h3>
 
       <div className="row profile-list">
         {[

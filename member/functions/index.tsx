@@ -29,18 +29,12 @@ export default () => {
   }
 
   const user = useContext(AuthContext);
-
   useEffect(() => {
     if (user && user.emailVerified) {
       fetchAndSetEvents();
     }
   }, [user]);
 
-  useEffect(() => {
-    if (user && user.emailVerified) {
-      fetchAndSetEvents();
-    }
-  }, []);
 
   return (
     <Fragment>
@@ -66,13 +60,13 @@ export default () => {
                   <div className="card shadow mb-4">
                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                       <h6 className="m-0 font-weight-bold text-primary">
-                        Next Up
+                        Upcoming Events
                       </h6>
                     </div>
                     <div className="card-body">
                       <ul className="list-group">
                         {
-                          upcomingEvents.slice(0, 2).map(ev => (
+                          upcomingEvents.map(ev => (
                             <li className="list-group-item" key={getEventId(ev)}>
                               <h5>{ev.title}</h5>
                               Venue: {ev.venue}

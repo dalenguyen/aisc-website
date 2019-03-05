@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 import Head from 'next/head'
+import getConfig from 'next/config'
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 import '../scss/sb-admin-2.scss';
 
@@ -14,7 +16,7 @@ export default () => {
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>TDLS Members</title>
+        <title>{SITE_ABBREV} Members</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
           crossOrigin="anonymous" />
@@ -31,7 +33,7 @@ export default () => {
             <div className="sidebar-brand-icon rotate-n-15">
               <i className="fas fa-laugh-wink"></i>
             </div>
-            <div className="sidebar-brand-text mx-3">TDLS Members</div>
+            <div className="sidebar-brand-text mx-3">{SITE_ABBREV} Members</div>
           </a>
 
           {/* <!-- Divider --> */}

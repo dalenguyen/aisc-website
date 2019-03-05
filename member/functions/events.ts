@@ -1,6 +1,13 @@
 import { fetchEventsAndGroupings } from './common/event-sheet';
+import { AllEvents } from './common/types';
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import * as LRU from 'lru-cache';
+
+const cache = new LRU<string, AllEvents>({
+  max: 1,
+  maxAge: 1000 * 30
+});
 
 async function getUserProfile(uid: string): Promise<any> {
   const db = admin.firestore();
@@ -21,11 +28,20 @@ export const fetchEvents = functions.https.onCall(async (data, context) => {
       );
     }
 
-    const googleKey = functions.config().global_env.google_key;
-    if (!googleKey) {
-      throw new Error("Google key is missing.");
+    const cached = cache.get('default');
+    if (cached) {
+      return cached;
+    } else {
+      console.info("Fetching event info...");
+      const googleKey = functions.config().global_env.google_key;
+      const sheetId = functions.config().global_env.event_sheet_id;
+      if (!googleKey) {
+        throw new Error("Google key is missing.");
+      }
+      const allEvents = await fetchEventsAndGroupings(googleKey, sheetId, false);
+      cache.set('default', allEvents);
+      return allEvents;
     }
-    const allEvents = await fetchEventsAndGroupings(googleKey, false);
-    return allEvents;
+
   }
 });

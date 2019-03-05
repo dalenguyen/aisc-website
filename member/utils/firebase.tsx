@@ -36,15 +36,15 @@ export const authStateChecker = () => {
   let userLoaded = false;
   const firebase = ensureFirebase();
   return (auth: firebase.auth.Auth) => {
-    return new Promise<firebase.User | null>((resolve, reject) => {
+    return new Promise<firebase.auth.Auth | null>((resolve, reject) => {
       if (userLoaded) {
-        const { currentUser } = firebase.auth();
-        resolve(currentUser);
+        const auth = firebase.auth();
+        resolve(auth);
       }
-      const unsubscribe = auth.onAuthStateChanged(user => {
+      const unsubscribe = auth.onAuthStateChanged(() => {
         userLoaded = true;
         unsubscribe();
-        resolve(user);
+        resolve(firebase.auth());
       }, reject);
     });
   }
