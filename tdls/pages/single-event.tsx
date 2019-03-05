@@ -23,6 +23,9 @@ import { PublicEvent, MemberEvent } from '../../common/types';
 import { SEOTitle } from '../../common/event';
 import { getQueryStringValue } from '../../common/utils';
 
+import getConfig from 'next/config'
+const { SITE_NAME } = getConfig().publicRuntimeConfig;
+
 import './single-event.scss';
 
 const SingleEvent = ({
@@ -165,7 +168,7 @@ const SingleEvent = ({
     return (
       <Fragment>
         <Head>
-          <title>{SEOTitle(ev)} | {ev.type} | Toronto Deep Learning Series (#TDLS)</title>
+          <title>{SEOTitle(ev)} | {ev.type} | {SITE_NAME}</title>
           <meta name="description" content={desc} />
           <ThemesAndSuch />
         </Head>

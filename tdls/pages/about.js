@@ -7,10 +7,13 @@ import Head from 'next/head'
 import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
 
+import getConfig from 'next/config'
+const { SITE_NAME } = getConfig().publicRuntimeConfig;
+
 const About = ({ contributors }) => (
   <Fragment>
     <Head>
-      <title>About TDLS | Toronto Deep Learning Series</title>
+      <title>About TDLS | {SITE_NAME}</title>
       <ThemesAndSuch />
     </Head>
     <Header />

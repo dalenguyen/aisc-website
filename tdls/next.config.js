@@ -61,5 +61,9 @@ module.exports = withTypescript(withCSS(withSass({
       ...internalPaths,
     };
   },
-  genPublicPaths
+  genPublicPaths,
+
+  publicRuntimeConfig: {
+    SITE_NAME: "Toronto Deep Learning Series (#TDLS)"
+  }
 })))
