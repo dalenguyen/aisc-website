@@ -24,7 +24,7 @@ import { SEOTitle } from '../../common/event';
 import { getQueryStringValue } from '../../common/utils';
 
 import getConfig from 'next/config'
-const { SITE_NAME } = getConfig().publicRuntimeConfig;
+const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 import './single-event.scss';
 
@@ -92,7 +92,7 @@ const SingleEvent = ({
     const venueSnippet = (
       <Fragment><strong>Venue</strong>: {
         status !== 'expired' ?
-          "(TDLS members: please refer to Slack or your calendar invite for location)" : venueToLink((ev as MemberEvent).venue)
+          `(${SITE_ABBREV} members: please refer to Slack or your calendar invite for location)` : venueToLink((ev as MemberEvent).venue)
       }
       </Fragment >
     )
@@ -168,7 +168,7 @@ const SingleEvent = ({
     return (
       <Fragment>
         <Head>
-          <title>{SEOTitle(ev)} | {ev.type} | {SITE_NAME}</title>
+          <title>{SEOTitle(ev)} | {ev.type} | {SITE_NAME_FULL}</title>
           <meta name="description" content={desc} />
           <ThemesAndSuch />
         </Head>

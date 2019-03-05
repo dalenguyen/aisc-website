@@ -8,6 +8,8 @@ import { AllEvents, MemberEvent } from "../../common/types";
 import { getEventId } from '../../common/event';
 import { ensureFirebase } from '../utils/firebase';
 import { AuthContext } from '../components/user-context-wrapper';
+import getConfig from 'next/config'
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 const firebase = ensureFirebase();
 const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
@@ -38,7 +40,7 @@ export default () => {
     <Fragment>
       <Head>
         <Meta />
-        <title>TDLS Members</title>
+        <title>{SITE_ABBREV} Members</title>
       </Head>
       <Header />
 

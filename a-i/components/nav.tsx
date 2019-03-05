@@ -1,3 +1,6 @@
+import getConfig from 'next/config'
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
+
 export default () => (
   <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div className="container">
@@ -15,7 +18,7 @@ export default () => (
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"
-              href="https://tdls.a-i.science/">TDLS</a>
+              href="https://tdls.a-i.science/">{SITE_ABBREV}</a>
           </li>
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"

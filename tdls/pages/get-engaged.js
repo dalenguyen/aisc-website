@@ -7,12 +7,12 @@ import SharedBodyScripts from '../components/shared-body-scripts';
 import GetEngagedSection from '../components/get-engaged-section';
 
 import getConfig from 'next/config'
-const { SITE_NAME } = getConfig().publicRuntimeConfig;
+const { SITE_NAME_FULL } = getConfig().publicRuntimeConfig;
 
 const GetEngaged = ({ }) => (
   <Fragment>
     <Head>
-      <title>Get Engaged | {SITE_NAME}</title>
+      <title>Get Engaged | {SITE_NAME_FULL}</title>
       <ThemesAndSuch />
     </Head>
     <Header />

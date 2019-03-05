@@ -4,6 +4,8 @@ import LiveButton from './live-button';
 import SocialButtons from './social-buttons';
 import './header.scss';
 import { AllEvents } from '../../common/types';
+import getConfig from 'next/config'
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: Component | null }) => {
   return (
@@ -24,8 +26,8 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
                 )
               }
               &nbsp;
-              TDLS
-              </a>
+              {SITE_ABBREV}
+            </a>
           </Link>
           <LiveButton allEvents={allEvents} />
           <button

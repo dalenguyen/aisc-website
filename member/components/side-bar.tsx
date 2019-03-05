@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import getConfig from 'next/config'
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 export default () => {
   return (
@@ -9,7 +11,7 @@ export default () => {
           <div className="sidebar-brand-icon rotate-n-15">
             <i className="fas fa-laugh-wink"></i>
           </div>
-          <div className="sidebar-brand-text mx-3">TDLS Members</div>
+          <div className="sidebar-brand-text mx-3">{SITE_ABBREV} Members</div>
         </a>
       </Link>
 
