@@ -41,7 +41,7 @@ main {
   .tdls-intro {
     text-shadow: 0.3vh 0.3vh 1.5vh #222;
     position: absolute;
-    bottom: 15vw;
+    bottom: 11vw;
     z-index: 1;
     text-align: center;
     left: 0;
@@ -52,10 +52,12 @@ main {
     }
 
     .title {
-      /* font-family: serif; */
+      font-family: IM Fell English SC;
       font-size: 4.6vw;
+      letter-spacing: 0.1em;
       font-weight: bold;
-      font-style: italic;
+      // text-transform: uppercase;
+      // font-style: italic;
       /* border-top-style: solid;
       border-top-width: 7px; */
       /* padding-bottom: 30px; */

@@ -93,6 +93,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
     <Fragment>
       <Head>
         <title>{SITE_NAME_FULL}</title>
+        <link href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC" rel="stylesheet" />
         <meta name="description"
           content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning."
         />
@@ -112,6 +113,9 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
 
           <div className="carousel-inner">
             <div className="carousel-item active">
+              <img className="d-block w-100" src="/static/images/socrates.jpeg" alt="First slide" />
+            </div>
+            <div className="carousel-item">
               <img className="d-block w-100 carousel-taint" src="/static/images/slide_01.jpeg" alt="First slide" />
               <div className="carousel-caption d-none d-md-block bg-dark">
                 <h4>welcoming &amp; supportive community</h4>
@@ -141,7 +145,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
         </div>
         <a className="scroll-button" href="#main"><span></span></a>
         <div className="container tdls-intro">
-          <h1 className="title">{SITE_NAME_FULL}</h1>
+          <h1 className="title">{SITE_NAME}</h1>
         </div>
       </section>
       <main role="main" id="main">
