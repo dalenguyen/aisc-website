@@ -7,8 +7,9 @@ export interface KeyDate {
 }
 
 export function extrapolateEventDates(ev: MemberEvent): KeyDate[] {
-  const dateM = moment(ev.date);
-  const twoWeeksM = dateM.subtract(2, "weeks");
+  const dateM = moment(new Date(ev.date));
+  const twoWeeksM = dateM.clone().subtract(2, "weeks");
+  const twoDaysM = dateM.clone().subtract(2, "days");
 
   return [
     {
@@ -16,8 +17,12 @@ export function extrapolateEventDates(ev: MemberEvent): KeyDate[] {
       what: "Two weeks"
     },
     {
+      date: twoDaysM.toDate(),
+      what: "Slides - final draft ready"
+    },
+    {
       date: new Date(ev.date),
-      what: "The event"
+      what: "Event day"
     }
   ];
 }

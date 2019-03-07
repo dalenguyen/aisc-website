@@ -97,7 +97,7 @@ export default () => {
                         <Row>
                           {upcomingEvents === 'loading' ? "Loading..." :
                             upcomingEvents.map(ev => (
-                              <Col className="mt-1 mb-1" sm={6} key={getEventId(ev)}>
+                              <Col className="mt-1 mb-1" lg={6} key={getEventId(ev)}>
                                 <SingleEventManager event={ev} />
                               </Col>
                             ))
@@ -150,7 +150,7 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
               {keyDates.map(kd => (
                 <li className={classnames("list-group-item p-2", new Date() > kd.date && "past")}
                   key={kd.date.getTime()}>
-                  {toLongDateString(kd.date)} - {kd.what}&nbsp;
+                  {toLongDateString(kd.date)} | {kd.what}&nbsp;
                   {
                     new Date() > kd.date && (
                       <i>
