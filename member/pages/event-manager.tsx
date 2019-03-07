@@ -12,14 +12,20 @@ import getConfig from 'next/config'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import * as classnames from 'classnames';
 import { toLongDateString } from "../../tdls/utils/datetime";
+import * as moment from 'moment';
 import { extrapolateEventDates } from "../utils/event-planner";
 import './event-manager.scss';
+import { asyncify, StorageLRU } from 'storage-lru';
+import { promisify } from 'util'
 
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
-
 const firebase = ensureFirebase();
 const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
+let lru: any;
 
+if (typeof window !== 'undefined') {
+  lru = new StorageLRU(asyncify(localStorage));
+}
 
 export default () => {
   const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] | "loading" }>({
@@ -27,12 +33,21 @@ export default () => {
   });
 
   const fetchAndSetEvents = async () => {
+    let allEvents: AllEvents | null = null;
     try {
-      const { data }: { data: AllEvents } = await fetchEventsFb() as any;
-      setEvents({ upcomingEvents: data.futureEvents as MemberEvent[] });
+      allEvents = await promisify(lru.getItem.bind(lru))('allEvents', { json: true });
     } catch (e) {
-      console.error('e', e)
+
     }
+    if (!allEvents) {
+      const { data }: { data: AllEvents } = await fetchEventsFb() as any;
+      allEvents = data;
+      await promisify(lru.setItem.bind(lru))('allEvents', allEvents, {
+        json: true,
+        cacheControl: 'max-age=300'
+      })
+    }
+    setEvents({ upcomingEvents: allEvents.futureEvents as MemberEvent[] });
   }
 
   const user = useContext(AuthContext);
@@ -114,13 +129,15 @@ export default () => {
 
 function SingleEventManager({ event: ev }: { event: MemberEvent }) {
   const date = new Date(ev.date);
+  const dateM = moment(date);
   const keyDates = extrapolateEventDates(ev);
 
   return (
     <Fragment>
       <Card>
         <Card.Header>
-          {toLongDateString(date)}
+          {toLongDateString(date)}&nbsp;
+          ({dateM.diff(new Date(), 'days')} days left)
         </Card.Header>
         <Card.Body>
           <Card.Title>
@@ -132,7 +149,7 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
             <ul className="list-group key-dates">
               {keyDates.map(kd => (
                 <li className={classnames("list-group-item p-2", new Date() > kd.date && "past")}
-                  key={date.getTime()}>
+                  key={kd.date.getTime()}>
                   {toLongDateString(kd.date)} - {kd.what}&nbsp;
                   {
                     new Date() > kd.date && (
