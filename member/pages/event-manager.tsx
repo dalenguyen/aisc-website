@@ -9,14 +9,19 @@ import { getEventId } from '../../common/event';
 import { ensureFirebase } from '../utils/firebase';
 import { AuthContext } from '../components/user-context-wrapper';
 import getConfig from 'next/config'
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { toLongDateString } from "../../tdls/utils/datetime";
+import { extrapolateEventDates } from "../utils/event-planner";
+
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 const firebase = ensureFirebase();
 const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
 
+
 export default () => {
-  const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] }>({
-    upcomingEvents: []
+  const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] | "loading" }>({
+    upcomingEvents: "loading"
   });
 
   const fetchAndSetEvents = async () => {
@@ -71,16 +76,17 @@ export default () => {
                       </h6>
                     </div>
                     <div className="card-body">
-                      <ul className="list-group">
-                        {
-                          upcomingEvents.map(ev => (
-                            <li className="list-group-item" key={getEventId(ev)}>
-                              <h5>{ev.title}</h5>
-                              Venue: {ev.venue}
-                            </li>
-                          ))
-                        }
-                      </ul>
+                      <Container fluid={true}>
+                        <Row>
+                          {upcomingEvents === 'loading' ? "Loading..." :
+                            upcomingEvents.map(ev => (
+                              <Col className="mt-1 mb-1" sm={6} key={getEventId(ev)}>
+                                <SingleEventManager event={ev} />
+                              </Col>
+                            ))
+                          }
+                        </Row>
+                      </Container>
                     </div>
                   </div>
                 </div>
@@ -102,4 +108,43 @@ export default () => {
       </a>
     </Fragment>
   )
+}
+
+function SingleEventManager({ event: ev }: { event: MemberEvent }) {
+  const date = new Date(ev.date);
+  const keyDates = extrapolateEventDates(ev);
+
+  return (
+    <Fragment>
+      <Card>
+        <Card.Header>
+          {toLongDateString(date)}
+        </Card.Header>
+        <Card.Body>
+          <Card.Title>
+            {ev.title}
+          </Card.Title>
+          Venue: {ev.venue}
+          <section className="mt-1">
+            <h6>Key dates</h6>
+            <ul className="list-group">
+              {keyDates.map(kd => (
+                <li className="list-group-item"
+                  key={date.getTime()}>
+                  {toLongDateString(kd.date)} - {kd.what}
+                </li>
+              ))}
+            </ul>
+          </section>
+          <Container>
+            <Row>
+              <Col sm={6} md={4}>
+
+              </Col>
+            </Row>
+          </Container>
+        </Card.Body>
+      </Card>
+    </Fragment>
+  );
 }

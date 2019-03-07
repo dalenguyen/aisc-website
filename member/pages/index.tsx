@@ -15,8 +15,8 @@ const firebase = ensureFirebase();
 const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
 
 export default () => {
-  const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] }>({
-    upcomingEvents: []
+  const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] | "loading" }>({
+    upcomingEvents: "loading"
   });
 
   const fetchAndSetEvents = async () => {
@@ -72,12 +72,13 @@ export default () => {
                     <div className="card-body">
                       <ul className="list-group">
                         {
-                          upcomingEvents.slice(0, 2).map(ev => (
-                            <li className="list-group-item" key={getEventId(ev)}>
-                              <h5>{ev.title}</h5>
-                              Venue: {ev.venue}
-                            </li>
-                          ))
+                          upcomingEvents === 'loading' ? "Loading..." :
+                            upcomingEvents.slice(0, 2).map(ev => (
+                              <li className="list-group-item" key={getEventId(ev)}>
+                                <h5>{ev.title}</h5>
+                                Venue: {ev.venue}
+                              </li>
+                            ))
                         }
                       </ul>
                     </div>
