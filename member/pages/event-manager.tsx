@@ -10,8 +10,10 @@ import { ensureFirebase } from '../utils/firebase';
 import { AuthContext } from '../components/user-context-wrapper';
 import getConfig from 'next/config'
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import * as classnames from 'classnames';
 import { toLongDateString } from "../../tdls/utils/datetime";
 import { extrapolateEventDates } from "../utils/event-planner";
+import './event-manager.scss';
 
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
@@ -126,12 +128,19 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
           </Card.Title>
           Venue: {ev.venue}
           <section className="mt-1">
-            <h6>Key dates</h6>
-            <ul className="list-group">
+            <h6>Key dates:</h6>
+            <ul className="list-group key-dates">
               {keyDates.map(kd => (
-                <li className="list-group-item"
+                <li className={classnames("list-group-item p-2", new Date() > kd.date && "past")}
                   key={date.getTime()}>
-                  {toLongDateString(kd.date)} - {kd.what}
+                  {toLongDateString(kd.date)} - {kd.what}&nbsp;
+                  {
+                    new Date() > kd.date && (
+                      <i>
+                        (past)
+                      </i>
+                    )
+                  }
                 </li>
               ))}
             </ul>
