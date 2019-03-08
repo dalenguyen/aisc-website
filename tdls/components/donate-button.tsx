@@ -1,6 +1,8 @@
 export default () => {
   return (
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <form action="https://www.paypal.com/cgi-bin/webscr"
+      method="post"
+      target="_blank">
       <input type="hidden" name="cmd" value="_s-xclick" />
       <input type="hidden" name="hosted_button_id" value="X5XZA8RRQNSWS" />
       <input
