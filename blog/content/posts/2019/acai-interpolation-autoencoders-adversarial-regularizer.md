@@ -25,8 +25,8 @@ Autoencoders are a class of neural nets that attempt to output an approximate re
 
 
 
-*   The encoder receives the input data `$x = (x_1, x_2, ..., x_n)$` and generates a latent code `$z = f_\theta(x)$`.
-*   The decoder receives the latent code `$ z = (z_1, z_2, ..., z_m) $` and attempts to reconstruct the input data as `$ \hat{x} = g_\phi(z) $`. The latent space is often of a lower dimension than the data (`$ m < n $`). 
+* The encoder receives the input data `$x = (x_1, x_2, ..., x_n)$` and generates a latent code `$z = f_\theta(x)$`.
+* The decoder receives the latent code `$ z = (z_1, z_2, ..., z_m) $` and attempts to reconstruct the input data as `$ \hat{x} = g_\phi(z) $`. The latent space is often of a lower dimension than the data (`$ m < n $`). 
 
 ![](/static/post-assets/acai/ae_crp.png)
 ***The architecture of a standard autoencoder***
@@ -73,49 +73,21 @@ When the algorithm converges, the interpolated points are expected to be indisti
 **Benchmark Development**
 
 The concept of semantic similarity is ambiguous, ill-defined, and difficult to quantify. Another contribution of this paper is to define a benchmark to quantitatively evaluate the quality of interpolations. Their benchmark is focused on the task of autoencoding `$32 \times 32$` greyscale images of lines. The lines are `$16$`-pixels long, beginning from the center of the image and extending outward at an angle `$\Lambda = [0, 2\pi]$`, with a single line per image. Using this data, a valid interpolation between `$x_1$`
-and `$x_2$` is an image of a line that smoothly and linearly adjusts
+and `$x_2$` is an image of a line that smoothly and linearly adjusts `$\Lambda$`
+from the angle of the line in `$x_1$` to the angle of the line in `$x_2$` while traversing the shortest path. Using these images, the following two criteria can be easily calculated and are used to evaluate the interpolation capability of different autoencoders:
 
-<p id="gdcalert46" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert47">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+1. Mean distance: measures the average distance between the interpolated points and real data points. 
+2. Smoothness: measures whether the angles of the interpolated lines follow a linear trajectory between the start and endpoint.
 
-from the angle of the line in 
+An ideal interpolation would achieve 0 for both scores. An example of an ideal interpolation between `$\pi$` and `$0$` is shown below.
 
-<p id="gdcalert47" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert48">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+![alt_text](/static/post-assets/acai/acai.png "a perfect interpolation")
 
- to the angle of the line in 
-
-<p id="gdcalert48" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert49">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- while traversing the shortest path. Using these images, the following two criteria can be easily calculated and are used to evaluate the interpolation capability of different autoencoders:
-
-
-    1. Mean distance: measures the average distance between the interpolated points and real data points. 
-
-
-    2. Smoothness: measures whether the angles of the interpolated lines follow a linear trajectory between the start and endpoint.
-
-An ideal interpolation would achieve 0 for both scores. An example of an ideal interpolation between 
-
-<p id="gdcalert49" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert50">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- and 0 is shown below.
-
-
-
-<p id="gdcalert50" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/ACAI2.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert51">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/ACAI2.png "image_tooltip")
-
-
-A perfect interpolation from 
-
-<p id="gdcalert51" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert52">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- to 0
+***A perfect interpolation from `$\pi$` to `$0$`***
 
 Using this benchmark, it is shown that ACAI substantially outperforms common autoencoder models (e.g., denoising and variational autoencoders) for the task of generating realistic and semantically meaningful interpolations. 
 
-**TDLS Discussions **
+**TDLS Discussions**
 
 In the TDLS session, a set of [discussion points](https://youtu.be/Tu3FqCD7-BY?t=3513) were raised, which can be used as pointers for future work and experimentation on autoencoder interpolation. 
 
@@ -123,12 +95,8 @@ First, the classification and clustering evaluations of ACAI representations are
 
 Second, the ACAI paper primarily focuses on computer vision tasks and even defines high-quality interpolations based on visual attributes of images. It would be extremely valuable to explore how ACAI and the benchmark could be extended to benefit non-visual tasks such as text interpolation. Finally, in this paper, the regularization procedure is applied to a vanilla autoencoder. It would be worth exploring the effects of using a similar regularization mechanism on other types of autoencoders. In particular, the possibility of improving the generative power of [variational autoencoders using the same idea was discussed in the TDLS session](https://youtu.be/Tu3FqCD7-BY?t=3574). 
 
- 
+**Additional Resources:**
 
-**Additional Resources: **
-
-
-
-*   The datasets they evaluated ACAI on are [MNIST](http://yann.lecun.com/exdb/mnist/), [SVHN](http://ufldl.stanford.edu/housenumbers/), and [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)** **all of which are publicly available.
-*   An implementation of ACAI in Tensoflow is available on [GitHub](https://github.com/brain-research/acai). 
+* The datasets they evaluated ACAI on are [MNIST](http://yann.lecun.com/exdb/mnist/), [SVHN](http://ufldl.stanford.edu/housenumbers/), and [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)** **all of which are publicly available.
+* An implementation of ACAI in Tensoflow is available on [GitHub](https://github.com/brain-research/acai). 
 
