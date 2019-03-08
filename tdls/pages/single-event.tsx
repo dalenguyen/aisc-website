@@ -326,7 +326,7 @@ const SingleEvent = ({
                 <hr />
                 <p><strong>Time:</strong> {timeSnippet}</p>
                 {
-                  isMember && (
+                  (isMember || status === 'expired') && (
                     <p>
                       {venueSnippet}
                     </p>
