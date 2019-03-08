@@ -36,9 +36,10 @@ Standard autoencoders focus on the reconstruction of the input `$x$` and barely 
 
 
 ![alt_text](/static/post-assets/acai/intp1.png "image_tooltip")
-***A visualization of the latent codes on the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset showing the discontinuity of latent the space***
 
-To read more on the continuity of the latent space you can read this [blog post](https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf). 
+***A visualization of the latent codes on the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset showing the discontinuity of latent the space. ***
+
+***To read more on the continuity of the latent space you can read this [blog post](https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf). ***
 
 **Adversarially Constrained Autoencoder Interpolation (ACAI)**
 
@@ -63,7 +64,7 @@ where `$\lambda$` is a scalar hyperparameter that can be used to control the wei
 L_{d} =  \left\| \alpha - \hat{\alpha} \right\|^2 + \lambda \left\|d_w(\gamma x  + (1 - \gamma) \hat{x})\right\|^2
 ```
 
-where `$\gamma$` is a scalar hyperparameter. The first term of the loss function attempts to recover $\alpha$`. The second term is a regularization term that is not crucial for creating high-quality interpolations but helps with the adversarial learning process in two ways. First, it enforces the critic to consistently output 0 for non-interpolated data; and second, it ensures that the critic is exposed to realistic data even when the autoencoder reconstructions are of poor quality.
+where `$\gamma$` is a scalar hyperparameter. The first term of the loss function attempts to recover `$\alpha$`. The second term is a regularization term that is not crucial for creating high-quality interpolations but helps with the adversarial learning process in two ways. First, it enforces the critic to consistently output 0 for non-interpolated data; and second, it ensures that the critic is exposed to realistic data even when the autoencoder reconstructions are of poor quality.
 
 When the algorithm converges, the interpolated points are expected to be indistinguishable from real data. Empirically, the authors show that the learned interpolations are semantically smooth interpolations of the two inputs `$x_1$` and `$x_2$`. Evaluation results on a set of clustering and classification tasks show that the ACAI learned representations are more effective on downstream tasks than non-ACAI learned representations. Given the improved performance on the downstream tasks,  the authors note that there may be a connection between interpolation and representation learning.
 
@@ -97,6 +98,6 @@ Second, the ACAI paper primarily focuses on computer vision tasks and even defin
 
 **Additional Resources:**
 
-* The datasets they evaluated ACAI on are [MNIST](http://yann.lecun.com/exdb/mnist/), [SVHN](http://ufldl.stanford.edu/housenumbers/), and [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)** **all of which are publicly available.
+* The datasets they evaluated ACAI on are [MNIST](http://yann.lecun.com/exdb/mnist/), [SVHN](http://ufldl.stanford.edu/housenumbers/), and [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html), all of which are publicly available.
 * An implementation of ACAI in Tensoflow is available on [GitHub](https://github.com/brain-research/acai). 
 
