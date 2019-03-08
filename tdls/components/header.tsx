@@ -1,7 +1,7 @@
 import { Fragment, Component } from 'react';
 import Link from 'next/link';
 import LiveButton from './live-button';
-import SocialButtons from './social-buttons';
+import DonateButton from './donate-button';
 import './header.scss';
 import { AllEvents } from '../../common/types';
 import getConfig from 'next/config'
@@ -65,13 +65,13 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
               </li>
             </ul>
             <div className="social-buttons desktop">
-              <SocialButtons />
+              <DonateButton />
             </div>
           </div>
         </nav>
       </header>
       <div className="social-buttons mobile">
-        <SocialButtons />
+        <DonateButton />
       </div>
     </Fragment>
   )
