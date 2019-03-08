@@ -81,7 +81,7 @@ from the angle of the line in `$x_1$` to the angle of the line in `$x_2$` while 
 
 An ideal interpolation would achieve 0 for both scores. An example of an ideal interpolation between `$\pi$` and `$0$` is shown below.
 
-![alt_text](/static/post-assets/acai/acai.png "a perfect interpolation")
+![alt_text](/static/post-assets/acai/Benchmark.png "a perfect interpolation")
 
 ***A perfect interpolation from `$\pi$` to `$0$`***
 
