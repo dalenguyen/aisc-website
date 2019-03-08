@@ -21,109 +21,31 @@ TDLS recently presented and discussed this paper led by Mahsa Rahimi. The detail
 
 **Interpolations in Autoencoders**
 
-Autoencoders are a class of neural nets that attempt to output an approximate reconstruction of an input `$x + y = b$` with minimal information loss. As an autoencoder is trained, it learns to encode the input data into a latent space, capturing all the information needed to reconstruct the output. An autoencoder consists of two parts, an encoder and a decoder, which can be described as follows:
+Autoencoders are a class of neural nets that attempt to output an approximate reconstruction of an input `$x$` with minimal information loss. As an autoencoder is trained, it learns to encode the input data into a latent space, capturing all the information needed to reconstruct the output. An autoencoder consists of two parts, an encoder and a decoder, which can be described as follows:
 
 
 
-*   The encoder receives the input data 
+*   The encoder receives the input data `$x = (x_1, x_2, ..., x_n)$` and generates a latent code `$z = f_\theta(x)$`.
+*   The decoder receives the latent code `$ z = (z_1, z_2, ..., z_m) $` and attempts to reconstruct the input data as `$ \hat{x} = g_\phi(z) $`. The latent space is often of a lower dimension than the data (`$ m < n $`). 
 
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-and generates a latent code 
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- = 
-
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-.
-*   The decoder receives the latent code 
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-and attempts to reconstruct the input data as 
-
-<p id="gdcalert6" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-= 
-
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-. The latent space is often of a lower dimension than the data (
-
-<p id="gdcalert8" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-). 
-
-The architecture of a standard autoencoder
-
-Standard autoencoders focus on the reconstruction of the input 
-
-<p id="gdcalert9" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- and barely learn the probabilistic features of the underlying dataset. As a result, they have very limited generative power. One approach that allows standard autoencoders to generate synthetic data is to facilitate interpolation by mixing the latent codes. However, the latent space learned by a regular autoencoder might not be continuous and may have large gaps between clusters of latent codes. Simply mixing the previously learned latent codes may result in interpolations that fall into regions that the decoder has never seen before, which may result in the creation of unrealistic data points. To mitigate this, the interpolation process needs to be integrated into the autoencoder architecture and its training, allowing the autoencoder to learn the underlying data manifold and to create meaningful interpolations. By borrowing ideas from Generative Adversarial Networks ([Goodfellow et al., 2014](https://papers.nips.cc/paper/5423-generative-adversarial-nets)), ACAI effectively integrates the interpolation process into the autoencoder architecture. [Berthelot et al. (2018](https://arxiv.org/abs/1807.07543)) propose a method that can create high-quality interpolations that are both indistinguishable from real data, and are a semantically meaningful combination of the inputs. We explain the ACAI approach in detail below. \
+![](/static/post-assets/acai/ae_crp.png)
+***The architecture of a standard autoencoder***
 
 
-<p id="gdcalert10" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/ACAI0.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert11">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+Standard autoencoders focus on the reconstruction of the input `$x$` and barely learn the probabilistic features of the underlying dataset. As a result, they have very limited generative power. One approach that allows standard autoencoders to generate synthetic data is to facilitate interpolation by mixing the latent codes. However, the latent space learned by a regular autoencoder might not be continuous and may have large gaps between clusters of latent codes. Simply mixing the previously learned latent codes may result in interpolations that fall into regions that the decoder has never seen before, which may result in the creation of unrealistic data points. To mitigate this, the interpolation process needs to be integrated into the autoencoder architecture and its training, allowing the autoencoder to learn the underlying data manifold and to create meaningful interpolations. By borrowing ideas from Generative Adversarial Networks ([Goodfellow et al., 2014](https://papers.nips.cc/paper/5423-generative-adversarial-nets)), ACAI effectively integrates the interpolation process into the autoencoder architecture. [Berthelot et al. (2018](https://arxiv.org/abs/1807.07543)) propose a method that can create high-quality interpolations that are both indistinguishable from real data, and are a semantically meaningful combination of the inputs. We explain the ACAI approach in detail below. 
 
 
-![alt_text](images/ACAI0.png "image_tooltip")
-
-
-A visualization of the latent codes on the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset showing the discontinuity of latent the space
+![alt_text](/static/post-assets/acai/intp1.png "image_tooltip")
+***A visualization of the latent codes on the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset showing the discontinuity of latent the space***
 
 To read more on the continuity of the latent space you can read this [blog post](https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf). 
 
 **Adversarially Constrained Autoencoder Interpolation (ACAI)**
 
-To interpolate two inputs 
+To interpolate two inputs `$x_1$` and `$x_2$`, ACAI performs the following steps: 
 
-<p id="gdcalert11" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert12">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-and 
-
-<p id="gdcalert12" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert13">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-, ACAI performs the following steps: 
-
-
-    1. Using two encoders, 
-
-<p id="gdcalert13" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert14">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- and 
-
-<p id="gdcalert14" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert15">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- are first encoded into the corresponding latent codes 
-
-<p id="gdcalert15" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert16">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- and 
-
-<p id="gdcalert16" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert17">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- where 
-
-<p id="gdcalert17" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert18">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- = 
-
-<p id="gdcalert18" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert19">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- and 
-
-<p id="gdcalert19" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert20">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- = 
-
-<p id="gdcalert20" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert21">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-.
-
-
-    2. The two latent codes are then interpolated via a convex combination 
+1. Using two encoders, `$x_1$` and `$x_2$` are first encoded into the corresponding latent codes `$z_1$` and `$z_2$` where `$z_1 = f_\theta(x_1)$` and `$z_2 = f_\theta(x_2)$`.
+2. The two latent codes are then interpolated via a convex combination 
 
 <p id="gdcalert21" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert22">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
