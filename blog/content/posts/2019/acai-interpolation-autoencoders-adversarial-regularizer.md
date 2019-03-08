@@ -45,135 +45,35 @@ To read more on the continuity of the latent space you can read this [blog post]
 To interpolate two inputs `$x_1$` and `$x_2$`, ACAI performs the following steps: 
 
 1. Using two encoders, `$x_1$` and `$x_2$` are first encoded into the corresponding latent codes `$z_1$` and `$z_2$` where `$z_1 = f_\theta(x_1)$` and `$z_2 = f_\theta(x_2)$`.
-2. The two latent codes are then interpolated via a convex combination 
-
-<p id="gdcalert21" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert22">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- for some 
-
-<p id="gdcalert22" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert23">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-.
-
-
-    3. The convex combination 
-
-<p id="gdcalert23" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert24">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- is then passed through a decoder to generate the interpolated data point, where  
-
-<p id="gdcalert24" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert25">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-= 
-
-<p id="gdcalert25" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert26">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-.
-
-
-    4. Finally, to ensure that interpolations are realistic, the decoded interpolation 
-
-<p id="gdcalert26" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert27">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-is passed through a critic network. The goal of the critic network is to predict the mixing coefficient 
-
-<p id="gdcalert27" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert28">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-from the interpolated data point 
-
-<p id="gdcalert28" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert29">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-. The autoencoder is then trained to fool the critic network into thinking that 
-
-<p id="gdcalert29" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert30">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- is always 0, meaning that it attempts to fool the critic network into thinking the interpolated data is actually non-interpolated. 
+2. The two latent codes are then interpolated via a convex combination `$z = \alpha z_1 + (1 - \alpha)z_2$` for some `$\alpha \in [0, 0.5]$`.
+3. The convex combination `$z$` is then passed through a decoder to generate the interpolated data point, where `$ \hat{x}_\alpha = g_\phi(z) $`.
+4. Finally, to ensure that interpolations are realistic, the decoded interpolation `$ \hat{x}_\alpha $` is passed through a critic network. The goal of the critic network is to predict the mixing coefficient `$\alpha$`
+from the interpolated data point `$ \hat{x}_\alpha $`. The autoencoder is then trained to fool the critic network into thinking that `$\alpha$` is always 0, meaning that it attempts to fool the critic network into thinking the interpolated data is actually non-interpolated. 
 
 Fooling the critic network is achieved by adding a term to the autoencoder's loss function. In ACAI, the encoders and the decoder are trained to minimize the following loss function: 
 
+```math
+L_{f,g} =  \left\| x - \hat{x} \right\|^2 + \lambda \left\|d_w(\hat{x}_a)\right\|^2
+```
+
+where `$\lambda$` is a scalar hyperparameter that can be used to control the weight of the regularization term on the right, and `$d_w(\hat{x}_a)$` is the critic network parametrized by `$w$`.  The first term of the loss function attempts to reconstruct the input, and the second term tries to make the critic network output 0 at all times.  The critic network is trained to optimize the following loss function:
 
 
-<p id="gdcalert30" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert31">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+```math
+L_{d} =  \left\| \alpha - \hat{\alpha} \right\|^2 + \lambda \left\|d_w(\gamma x  + (1 - \gamma) \hat{x})\right\|^2
+```
 
+where `$\gamma$` is a scalar hyperparameter. The first term of the loss function attempts to recover $\alpha$`. The second term is a regularization term that is not crucial for creating high-quality interpolations but helps with the adversarial learning process in two ways. First, it enforces the critic to consistently output 0 for non-interpolated data; and second, it ensures that the critic is exposed to realistic data even when the autoencoder reconstructions are of poor quality.
 
+When the algorithm converges, the interpolated points are expected to be indistinguishable from real data. Empirically, the authors show that the learned interpolations are semantically smooth interpolations of the two inputs $\x_1$` and $\x_2$`. Evaluation results on a set of clustering and classification tasks show that the ACAI learned representations are more effective on downstream tasks than non-ACAI learned representations. Given the improved performance on the downstream tasks,  the authors note that there may be a connection between interpolation and representation learning.
 
-where 
+![alt_text](/static/post-assets/acai/acai.png "The ACAI Architecture")
+***The ACAI Architecture***
 
-<p id="gdcalert31" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert32">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+**Benchmark Development**
 
- is a scalar hyperparameter that can be used to control the weight of the regularization term on the right, and 
-
-<p id="gdcalert32" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert33">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-is the critic network parametrized by 
-
-<p id="gdcalert33" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert34">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-.  The first term of the loss function attempts to reconstruct the input, and the second term tries to make the critic network output 0 at all times.  The critic network is trained to optimize the following loss function:
-
-
-
-<p id="gdcalert34" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert35">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-
-where 
-
-<p id="gdcalert35" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert36">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-is a scalar hyperparameter. The first term of the loss function attempts to recover 
-
-<p id="gdcalert36" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert37">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-. The second term is a regularization term that is not crucial for creating high-quality interpolations but helps with the adversarial learning process in two ways. First, it enforces the critic to consistently output 0 for non-interpolated data; and second, it ensures that the critic is exposed to realistic data even when the autoencoder reconstructions are of poor quality.
-
-When the algorithm converges, the interpolated points are expected to be indistinguishable from real data. Empirically, the authors show that the learned interpolations are semantically smooth interpolations of the two inputs 
-
-<p id="gdcalert37" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert38">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-and 
-
-<p id="gdcalert38" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert39">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-. Evaluation results on a set of clustering and classification tasks show that the ACAI learned representations are more effective on downstream tasks than non-ACAI learned representations. Given the improved performance on the downstream tasks,  the authors note that there may be a connection between interpolation and representation learning.
-
-
-
-<p id="gdcalert39" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/ACAI1.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert40">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/ACAI1.png "image_tooltip")
-
-
-The ACAI Architecture
-
-**Benchmark Development **
-
-The concept of semantic similarity is ambiguous, ill-defined, and difficult to quantify. Another contribution of this paper is to define a benchmark to quantitatively evaluate the quality of interpolations. Their benchmark is focused on the task of autoencoding 
-
-<p id="gdcalert40" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert41">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- greyscale images of lines. The lines are 
-
-<p id="gdcalert41" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert42">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
--pixels long, beginning from the center of the image and extending outward at an angle 
-
-<p id="gdcalert42" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert43">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- [0, 2
-
-<p id="gdcalert43" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert44">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-], with a single line per image. Using this data, a valid interpolation between 
-
-<p id="gdcalert44" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert45">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-and 
-
-<p id="gdcalert45" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert46">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
- is an image of a line that smoothly and linearly adjusts
+The concept of semantic similarity is ambiguous, ill-defined, and difficult to quantify. Another contribution of this paper is to define a benchmark to quantitatively evaluate the quality of interpolations. Their benchmark is focused on the task of autoencoding `$32 \times 32$` greyscale images of lines. The lines are `$16$`-pixels long, beginning from the center of the image and extending outward at an angle `$\Lambda = [0, 2\pi]$`, with a single line per image. Using this data, a valid interpolation between `$x_1$`
+and `$x_2$` is an image of a line that smoothly and linearly adjusts
 
 <p id="gdcalert46" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: equation: use MathJax/LaTeX if your publishing platform supports it. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert47">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
