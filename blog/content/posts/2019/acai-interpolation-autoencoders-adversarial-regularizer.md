@@ -21,7 +21,7 @@ TDLS recently presented and discussed this paper led by Mahsa Rahimi. The detail
 
 **Interpolations in Autoencoders**
 
-Autoencoders are a class of neural nets that attempt to output an approximate reconstruction of an input $z = x + y$ with minimal information loss. As an autoencoder is trained, it learns to encode the input data into a latent space, capturing all the information needed to reconstruct the output. An autoencoder consists of two parts, an encoder and a decoder, which can be described as follows:
+Autoencoders are a class of neural nets that attempt to output an approximate reconstruction of an input `$x + y = b$` with minimal information loss. As an autoencoder is trained, it learns to encode the input data into a latent space, capturing all the information needed to reconstruct the output. An autoencoder consists of two parts, an encoder and a decoder, which can be described as follows:
 
 
 
