@@ -1,0 +1,14 @@
+.social-buttons  {
+  > li {
+    margin-left: 0.2rem;
+  }
+
+  > li > a {
+    color: #5a5a5a;
+    fill: #5a5a5a;
+  }
+}
+
+header .social-buttons {
+  display: inline;
+}

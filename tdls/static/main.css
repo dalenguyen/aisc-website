@@ -8,22 +8,9 @@
 We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
 
 
-header .social-buttons {
-  display: inline;
-}
-
 .fa.fa-external-link {
   vertical-align: super;
   font-size: x-small;
-}
-
-.social-buttons > li {
-  margin-left: 0.2rem;
-}
-
-.social-buttons > li > a {
-  color: #5a5a5a;
-  fill: #5a5a5a;
 }
 
 body {
@@ -333,36 +320,9 @@ a.scroll-button span {
   margin-right: 1em;
 }
 
-#subject-filter-area {
-  min-width: 200px;
-}
 
 .dropdown.active {
   border: 4px solid yellow;
-}
-
-#subject-filter-area,
-#stream-filter-area {
-  margin-right: 2em;
-}
-
-#subject-filter-area,
-#past-event-list_filter,
-#stream-filter-area {
-  display: inline-block;
-}
-
-#subject-filter-area .horizontal-elem,
-#stream-filter-area .horizontal-elem {
-  display: inline-block;
-}
-
-#stream-filter-area .dropdown {
-  width: 120px;
-}
-
-#subject-filter-area select {
-  display: inline-block;
 }
 
 #get-engaged .row {
@@ -377,9 +337,6 @@ a.scroll-button span {
   display: flex;
 }
 
-#sma-links a {
-  color: var(--main-color);
-}
 
 #get-engaged h4 {
   font-style: italic;
