@@ -22,7 +22,7 @@ class MyApp extends App<{}, {}> {
 
     return (
       <Container>
-        <PageTransition timeout={300} classNames="page-transition">
+        <PageTransition timeout={200} classNames="page-transition">
           <Component {...pageProps} />
         </PageTransition>
       </Container>
