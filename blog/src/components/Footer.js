@@ -10,7 +10,7 @@ function Footer(props) {
         <span>&copy; </span>
         <span>{now.getFullYear()} </span>
         <span>
-          <a href="//a-i.science">{props.copyright}</a>
+          <a href="//tdls.a-i.science/about">About TDLS</a>
         </span>
       </p>
     </footer>
