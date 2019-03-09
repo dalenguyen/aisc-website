@@ -7,8 +7,6 @@ function Footer(props) {
   return (
     <footer className="center w5 f6 tc mt4">
       <p>
-        <span>&copy; </span>
-        <span>{now.getFullYear()} </span>
         <span>
           <a href="//tdls.a-i.science/about">About TDLS</a>
         </span>

@@ -54,6 +54,13 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
                   </a>
                 </Link>
               </li>
+              <li className="nav-item dropdown">
+                <Link href="//blog.a-i.science">
+                  <a className="nav-link">
+                    Blog
+                  </a>
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link href="/get-engaged">
                   <a className="nav-link">Get Engaged</a>
