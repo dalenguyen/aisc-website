@@ -9,23 +9,45 @@ import { getEventId } from '../../common/event';
 import { ensureFirebase } from '../utils/firebase';
 import { AuthContext } from '../components/user-context-wrapper';
 import getConfig from 'next/config'
-const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import * as classnames from 'classnames';
+import { toLongDateString } from "../../tdls/utils/datetime";
+import * as moment from 'moment';
+import { extrapolateEventDates } from "../utils/event-planner";
+import './event-manager.scss';
+import { asyncify, StorageLRU } from 'storage-lru';
+import { promisify } from 'util'
 
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 const firebase = ensureFirebase();
 const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
+let lru: any;
+
+if (typeof window !== 'undefined') {
+  lru = new StorageLRU(asyncify(localStorage));
+}
 
 export default () => {
-  const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] }>({
-    upcomingEvents: []
+  const [{ upcomingEvents }, setEvents] = useState<{ upcomingEvents: MemberEvent[] | "loading" }>({
+    upcomingEvents: "loading"
   });
 
   const fetchAndSetEvents = async () => {
+    let allEvents: AllEvents | null = null;
     try {
-      const { data }: { data: AllEvents } = await fetchEventsFb() as any;
-      setEvents({ upcomingEvents: data.futureEvents as MemberEvent[] });
+      allEvents = await promisify(lru.getItem.bind(lru))('allEvents', { json: true });
     } catch (e) {
-      console.error('e', e)
+
     }
+    if (!allEvents) {
+      const { data }: { data: AllEvents } = await fetchEventsFb() as any;
+      allEvents = data;
+      await promisify(lru.setItem.bind(lru))('allEvents', allEvents, {
+        json: true,
+        cacheControl: 'max-age=300'
+      })
+    }
+    setEvents({ upcomingEvents: allEvents.futureEvents as MemberEvent[] });
   }
 
   const user = useContext(AuthContext);
@@ -71,16 +93,17 @@ export default () => {
                       </h6>
                     </div>
                     <div className="card-body">
-                      <ul className="list-group">
-                        {
-                          upcomingEvents.map(ev => (
-                            <li className="list-group-item" key={getEventId(ev)}>
-                              <h5>{ev.title}</h5>
-                              Venue: {ev.venue}
-                            </li>
-                          ))
-                        }
-                      </ul>
+                      <Container fluid={true}>
+                        <Row>
+                          {upcomingEvents === 'loading' ? "Loading..." :
+                            upcomingEvents.map(ev => (
+                              <Col className="mt-1 mb-1" lg={6} key={getEventId(ev)}>
+                                <SingleEventManager event={ev} />
+                              </Col>
+                            ))
+                          }
+                        </Row>
+                      </Container>
                     </div>
                   </div>
                 </div>
@@ -102,4 +125,52 @@ export default () => {
       </a>
     </Fragment>
   )
+}
+
+function SingleEventManager({ event: ev }: { event: MemberEvent }) {
+  const date = new Date(ev.date);
+  const dateM = moment(date);
+  const keyDates = extrapolateEventDates(ev);
+
+  return (
+    <Fragment>
+      <Card>
+        <Card.Header>
+          {toLongDateString(date)}&nbsp;
+          ({dateM.diff(new Date(), 'days')} days left)
+        </Card.Header>
+        <Card.Body>
+          <Card.Title>
+            {ev.title}
+          </Card.Title>
+          Venue: {ev.venue}
+          <section className="mt-1">
+            <h6>Key dates:</h6>
+            <ul className="list-group key-dates">
+              {keyDates.map(kd => (
+                <li className={classnames("list-group-item p-2", new Date() > kd.date && "past")}
+                  key={kd.date.getTime()}>
+                  {toLongDateString(kd.date)} | {kd.what}&nbsp;
+                  {
+                    new Date() > kd.date && (
+                      <i>
+                        (past)
+                      </i>
+                    )
+                  }
+                </li>
+              ))}
+            </ul>
+          </section>
+          <Container>
+            <Row>
+              <Col sm={6} md={4}>
+
+              </Col>
+            </Row>
+          </Container>
+        </Card.Body>
+      </Card>
+    </Fragment>
+  );
 }

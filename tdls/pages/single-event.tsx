@@ -205,7 +205,7 @@ const SingleEvent = ({
                     </a></Link> {SEOTitle(ev)}
                 </h1>
               </div>
-              <section className="info-below ml-3">
+              <article className="info-below ml-3">
                 {
                   ev.why && (
                     <Fragment>
@@ -214,7 +214,7 @@ const SingleEvent = ({
                     </Fragment>
                   )
                 }
-                <p>
+                <section>
                   <h5 className="mt-3">Subjects: </h5>
                   <ul
                     className="list-unstyled list-inline display-inline"
@@ -235,8 +235,8 @@ const SingleEvent = ({
                       ))
                     }
                   </ul>
-                </p>
-                <p>
+                </section>
+                <section>
                   <h5 className="mt-3">
                     Stream:
                 </h5>
@@ -244,8 +244,8 @@ const SingleEvent = ({
                 <Link href={`/events?stream=${ev.type}`}>
                     <a className="btn btn-info">{ev.type}</a>
                   </Link>
-                </p>
-              </section>
+                </section>
+              </article>
             </div>
 
             <div className="col-12 col-lg-4">
@@ -326,7 +326,7 @@ const SingleEvent = ({
                 <hr />
                 <p><strong>Time:</strong> {timeSnippet}</p>
                 {
-                  isMember && (
+                  (isMember || status === 'expired') && (
                     <p>
                       {venueSnippet}
                     </p>

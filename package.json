@@ -60,6 +60,7 @@
     "jquery-slim": "^3.0.0",
     "lodash": "^4.17.11",
     "lru-cache": "^5.1.1",
+    "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
     "next": "^7.0.3",
     "next-page-transitions": "^1.0.0-alpha.6",
@@ -77,7 +78,8 @@
     "react-modal-video": "^1.2.1",
     "react-responsive-embed": "^2.1.0",
     "react-slick": "^0.23.2",
-    "react-youtube": "^7.9.0"
+    "react-youtube": "^7.9.0",
+    "storage-lru": "^0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
@@ -85,6 +87,7 @@
     "@types/classnames": "^2.2.7",
     "@types/express": "^4.16.1",
     "@types/lodash": "^4.14.121",
+    "@types/moment": "^2.13.0",
     "@types/next": "^8.0.1",
     "@types/nprogress": "0.0.29",
     "@types/react": "^16.8.4",

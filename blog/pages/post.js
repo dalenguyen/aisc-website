@@ -45,6 +45,7 @@ function Index(props) {
           border: 1px solid #DDD;
         }
       `}</style>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossOrigin="anonymous" />
       <Page
         body={Body(pageJson)}
         siteTitle={`${CONFIG.siteTitle} - ${pageJson.title}`}

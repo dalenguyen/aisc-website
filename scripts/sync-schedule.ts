@@ -18,7 +18,8 @@ if (!GOOGLE_KEY) {
 async function fetchAndSaveSchedule(googleKey: string, sheetId: string) {
   const [eventsAndGroupings, linkedInProfiles] = await Promise.all(
     [
-      fetchEventsAndGroupings(googleKey, sheetId), fetchLinkedInProfiles(googleKey)
+      fetchEventsAndGroupings(googleKey, sheetId),
+      fetchLinkedInProfiles(googleKey, sheetId)
     ]
   );
 
