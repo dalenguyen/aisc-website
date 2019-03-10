@@ -114,7 +114,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
 
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="d-block w-100" src="/static/images/socrates.jpeg" alt="First slide" />
+              <img className="d-block w-100" src="/static/images/socrates.png" alt="First slide" />
             </div>
             <div className="carousel-item">
               <img className="d-block w-100 carousel-taint" src="/static/images/slide_01.jpeg" alt="First slide" />
