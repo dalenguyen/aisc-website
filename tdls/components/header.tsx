@@ -73,9 +73,7 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
               </li>
             </ul>
             <div className="social-buttons desktop">
-              <div className="d-inline-block">
-                <DonateButton />
-              </div>
+              <DonateButton className="d-inline-block" />
               <div className="d-inline-block">
                 <SocialButtons />
               </div>
@@ -84,9 +82,7 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
         </nav>
       </header>
       <div className="social-buttons mobile">
-        <div className="d-inline-block">
-          <DonateButton />
-        </div>
+        <DonateButton />
         <div className="d-inline-block">
           <SocialButtons />
         </div>

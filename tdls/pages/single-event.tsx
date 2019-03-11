@@ -27,6 +27,7 @@ import getConfig from 'next/config'
 const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 import './single-event.scss';
+import DonateButton, { DonateForm } from '../components/donate-button';
 
 const SingleEvent = ({
   event: ev,
@@ -337,7 +338,7 @@ const SingleEvent = ({
                 }
               </section>
               <hr />
-              <p className="">
+              <div className="">
                 <a
                   className="btn btn-danger subscribe-youtube"
                   target="_blank"
@@ -347,15 +348,24 @@ const SingleEvent = ({
                 <Link href="/get-engaged">
                   <a className="btn btn-primary">Get Engaged</a>
                 </Link>&nbsp;
-              </p>
+                <DonateForm className="d-inline-block">
+                  <input
+                    className="btn btn-warning"
+                    type="submit"
+                    name="submit"
+                    value="Donate"
+                    title="PayPal - The safer, easier way to pay online!"
+                    alt="Donate" />
+                </DonateForm>
+              </div>
 
-              <p>
+              <div className="mt-2">
                 <Link href="/events">
                   <a className="btn btn-secondary">
                     <i className="fa fa-arrow-circle-left"></i> Back to events
                 </a>
                 </Link>
-              </p>
+              </div>
             </div>
           </div>
         </section>
