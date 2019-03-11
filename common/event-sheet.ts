@@ -137,7 +137,7 @@ function rawRowToRow(rawHeader: string[], rawRow: { [k: string]: string }): Memb
   const subjects = (rawRow[rawHeader.indexOf('Subject Matter Area')] || '').split(',').map(s => s.trim()).filter(s => s);
   const dashedDateStr = (rawRow[rawHeader.indexOf('Date')] || '').replace(/\./g, '').replace(/\-/g, ' ');
   const dateAtMidnight = moment.tz(dashedDateStr, "UTC").toDate();
-  const dateAtSixThirty = new Date(dateAtMidnight.getTime() + ((5 + 18) * 60 + 30) * 60 * 1000);
+  const dateAtSixThirty = new Date(dateAtMidnight.getTime() + ((4 + 18) * 60 + 30) * 60 * 1000);
 
   return {
     title,
