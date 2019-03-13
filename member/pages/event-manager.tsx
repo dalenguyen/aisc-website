@@ -17,6 +17,7 @@ import { extrapolateEventDates } from "../utils/event-planner";
 import './event-manager.scss';
 import { asyncify, StorageLRU } from 'storage-lru';
 import { promisify } from 'util'
+import Link from 'next/link';
 
 import { ytThumb } from '../../common/youtube';
 
@@ -138,9 +139,6 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
   const date = new Date(ev.date);
   const dateM = moment(date);
   const keyDates = extrapolateEventDates(ev);
-  const ytThumbEditLink = ev.video ? (
-    <img src={ytThumb(ev.video)} />
-  ) : null;
   return (
     <Fragment>
       <Card>
@@ -149,10 +147,13 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
           ({dateM.diff(new Date(), 'days')} days left)
         </Card.Header>
         <Card.Body>
+          <div className="yt-thumb-edit float-right m-1">
+            {ytThumbEditLink(ev)}
+          </div>
           <Card.Title>
             {ev.title}
           </Card.Title>
-          {ytThumbEditLink}
+
           Venue: {ev.venue}
           <section className="mt-1">
             <h6>Key dates:</h6>
@@ -183,4 +184,18 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
       </Card>
     </Fragment>
   );
+}
+
+function ytThumbEditLink(ev: MemberEvent) {
+  if (ev.video) {
+    return (
+      <Link href={`/thumb-editor?event=${getEventId(ev)}`}>
+        <a>
+          <img className="yt-thumb-edit-img" src={ytThumb(ev.video)} />
+        </a>
+      </Link>
+    );
+  } else {
+    return null;
+  }
 }
