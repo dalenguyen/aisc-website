@@ -1,5 +1,5 @@
 
-export function getYouTubeId(url) {
+export function getYouTubeId(url: string) {
   if (!url) {
     return null;
   }
@@ -16,7 +16,7 @@ export function getYouTubeId(url) {
 }
 
 
-export function ytThumb(url) {
+export function ytThumb(url: string) {
   const id = getYouTubeId(url);
   return `https://img.youtube.com/vi/${id}/0.jpg`;
 }
