@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Fragment, useContext } from "react";
 import { AuthContext } from './auth-context-wrapper';
 
-
 export default () => {
   const s = useContext(AuthContext);
   let userSnippet;

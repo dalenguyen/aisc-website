@@ -15,7 +15,7 @@ import {
 import { ModalVideoContext, } from '../components/youtube-modal';
 import { WEEKDAYS, MONTH_NAMES } from '../utils/datetime';
 import { venueToLink } from '../utils/venue';
-import { ytThumb, getYouTubeId } from '../utils/youtube';
+import { ytThumb, getYouTubeId } from '../../common/youtube';
 import Link from 'next/link';
 import ResponsiveEmbed from 'react-responsive-embed';
 import { mobileCheck } from '../../common/utils';

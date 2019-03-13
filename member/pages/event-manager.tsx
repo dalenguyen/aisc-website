@@ -18,6 +18,8 @@ import './event-manager.scss';
 import { asyncify, StorageLRU } from 'storage-lru';
 import { promisify } from 'util'
 
+import { ytThumb } from '../../common/youtube';
+
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 const firebase = ensureFirebase();
 const fetchEventsFb = firebase.functions().httpsCallable('fetchEvents');
@@ -97,7 +99,12 @@ export default () => {
                         <Row>
                           {upcomingEvents === 'loading' ? "Loading..." :
                             upcomingEvents.map(ev => (
-                              <Col className="mt-1 mb-1" lg={6} key={getEventId(ev)}>
+                              <Col
+                                className="mt-1 mb-1"
+                                sm={12}
+                                xl={6}
+                                key={getEventId(ev)}
+                              >
                                 <SingleEventManager event={ev} />
                               </Col>
                             ))
@@ -131,7 +138,9 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
   const date = new Date(ev.date);
   const dateM = moment(date);
   const keyDates = extrapolateEventDates(ev);
-
+  const ytThumbEditLink = ev.video ? (
+    <img src={ytThumb(ev.video)} />
+  ) : null;
   return (
     <Fragment>
       <Card>
@@ -143,6 +152,7 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
           <Card.Title>
             {ev.title}
           </Card.Title>
+          {ytThumbEditLink}
           Venue: {ev.venue}
           <section className="mt-1">
             <h6>Key dates:</h6>

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { ytThumb } from '../utils/youtube';
+import { ytThumb } from '../../common/youtube';
 import FitText from 'react-fittext';
 import { Countdown } from '../components/live-button';
 import { PublicEvent } from '../../common/types';
