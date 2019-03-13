@@ -170,7 +170,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
           {
             eventCarousel(
               'Upcoming Events',
-              futureEvents.slice(0, 5), 5)
+              futureEvents.slice(0, 15), 5)
           }
 
           {

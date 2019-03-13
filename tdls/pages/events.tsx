@@ -191,7 +191,7 @@ const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
   const { pastEvents, futureEvents, subjects, streams } = allEvents;
 
   const [{ filteredPast, filteredFuture }, setEventState] = useState({
-    filteredPast: cap(pastEvents, 18), filteredFuture: cap(futureEvents, 5)
+    filteredPast: cap(pastEvents, 18), filteredFuture: cap(futureEvents, 8)
   });
 
   const [{ filter }, setEventFilter] = useState({ filter: props.filter });
