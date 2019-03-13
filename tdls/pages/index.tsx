@@ -163,7 +163,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
             eventCarousel(
               'Authors Speaking',
               ([] as PublicEvent[]).concat(
-                filterEvents(futureEvents, { type: 'Author Speaking' }).slice(0, 1))
+                filterEvents(futureEvents, { type: 'Author Speaking' }).slice(0, 2))
                 .concat(filterEvents(pastEvents, { type: 'Author Speaking' })), 4
             )
           }
