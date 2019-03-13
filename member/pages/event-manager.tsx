@@ -7,7 +7,7 @@ import Head from 'next/head'
 import { AllEvents, MemberEvent } from "../../common/types";
 import { getEventId } from '../../common/event';
 import { ensureFirebase } from '../utils/firebase';
-import { AuthContext } from '../components/user-context-wrapper';
+import { AuthContext } from '../components/auth-context-wrapper';
 import getConfig from 'next/config'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import * as classnames from 'classnames';
@@ -50,7 +50,7 @@ export default () => {
     setEvents({ upcomingEvents: allEvents.futureEvents as MemberEvent[] });
   }
 
-  const user = useContext(AuthContext);
+  const { user } = useContext(AuthContext) || { user: null };
 
 
   useEffect(() => {

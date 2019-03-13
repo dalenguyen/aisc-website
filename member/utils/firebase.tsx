@@ -33,20 +33,36 @@ export const ensureFirebase = () => {
 }
 
 export const authStateChecker = () => {
-  let userLoaded = false;
+  let currUser: firebase.User | null = null;
   const firebase = ensureFirebase();
-  return (auth: firebase.auth.Auth) => {
-    return new Promise<firebase.auth.Auth | null>((resolve, reject) => {
-      if (userLoaded) {
-        const auth = firebase.auth();
-        resolve(auth);
+
+  firebase.auth().onAuthStateChanged((user) => {
+    currUser = user;
+  }, (error) => {
+    console.error(error);
+  });
+
+  const waitOnAuth = () => {
+    return new Promise<firebase.User | null>((resolve, reject) => {
+      if (currUser) {
+        resolve(currUser);
+      } else {
+        const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+          unsubscribe();
+          resolve(user);
+        }, reject);
       }
-      const unsubscribe = auth.onAuthStateChanged(() => {
-        userLoaded = true;
-        unsubscribe();
-        resolve(firebase.auth());
-      }, reject);
     });
   }
+
+  const getAuth = async () => {
+    return firebase.auth();
+  }
+
+  const logout = async () => {
+    await firebase.auth().signOut();
+  }
+
+  return { waitOnAuth, getAuth, logout }
 }
 

@@ -1,20 +1,12 @@
 import * as React from 'react';
-import { Fragment, useContext, useEffect, useState } from "react";
-import { AuthContext } from './user-context-wrapper';
-import Router from 'next/router';
-import { ensureFirebase } from '../utils/firebase';
-const firebase = ensureFirebase();
+import { Fragment, useContext } from "react";
+import { AuthContext } from './auth-context-wrapper';
 
 
 export default () => {
-  const logout = async () => {
-    await firebase.auth().signOut();
-    Router.push('/login');
-  }
-
-  const user = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext) || { user: null, logout: null };
   return (
-    user ? (
+    (user && logout) ? (
       <ul className="navbar-nav ml-auto">
         <div className="topbar-divider d-none d-sm-block"></div>
         {/* <!-- Nav Item - User Information --> */}

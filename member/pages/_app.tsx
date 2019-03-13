@@ -1,6 +1,6 @@
 import React from 'react'
 import App, { Container } from 'next/app'
-import UserContextWrapper from '../components/user-context-wrapper';
+import UserContextWrapper from '../components/auth-context-wrapper';
 
 
 interface P { }

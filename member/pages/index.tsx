@@ -7,7 +7,7 @@ import Head from 'next/head'
 import { AllEvents, MemberEvent } from "../../common/types";
 import { getEventId } from '../../common/event';
 import { ensureFirebase } from '../utils/firebase';
-import { AuthContext } from '../components/user-context-wrapper';
+import { AuthContext } from '../components/auth-context-wrapper';
 import getConfig from 'next/config'
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
@@ -28,7 +28,7 @@ export default () => {
     }
   }
 
-  const user = useContext(AuthContext);
+  const { user } = useContext(AuthContext) || { user: null };
 
   useEffect(() => {
     if (user && user.emailVerified) {
