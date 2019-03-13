@@ -21,6 +21,8 @@ export type MemberEvent = PublicEvent & {
   venue: string;
 }
 
+export type EventId = string;
+
 export type EventType = 'Main Stream' | 'Foundational' | 'Trending Paper' | 'Author Speaking' | 'Code Review';
 
 export interface AllEvents {

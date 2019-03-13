@@ -1,3 +1,3 @@
 
 export { initializeAuth } from './auth';
-export { fetchEvents } from './events';
+export * from './events';
