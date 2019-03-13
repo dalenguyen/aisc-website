@@ -1,25 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import * as React from 'react';
 import Router from 'next/router'
 import { authStateChecker } from '../utils/firebase';
 
 const { waitOnAuth, logout, getAuth } = authStateChecker();
 
-export const AuthContext = React.createContext<{
+type AuthContext = {
   user: firebase.User, logout: () => Promise<void>
-} | null>(null);
+} | "checking" | null;
+
+export const AuthContext = React.createContext<AuthContext>(null);
 
 export default ({ children }: { children: React.ReactNode }) => {
-  const [{ user }, setUserState] = useState<{ user: firebase.User | null }>(
-    { user: null }
+  const [{ user }, setUserState] = useState<{
+    user: firebase.User | "checking" | null
+  }>(
+    { user: 'checking' }
   );
+
+  const prevUser = usePrevious(user);
+
   const checkLogin = async () => {
     const user = await waitOnAuth() || null;
     setUserState({ user });
-
-    if (!user || !user.email) {
-      Router.push('/login');
-    }
   }
 
   const subscribeToAuth = async () => {
@@ -37,9 +40,34 @@ export default ({ children }: { children: React.ReactNode }) => {
     subscribeToAuth();
   }, []);
 
+  useEffect(() => {
+    if (prevUser !== null && user === null) {
+      // logged out
+      Router.push('/login');
+    }
+  }, [user])
+
+  let context: AuthContext;
+
+  if (user === 'checking') {
+    context = 'checking';
+  } else if (user === null) {
+    context = null;
+  } else {
+    context = { user, logout };
+  }
+
   return (
-    <AuthContext.Provider value={user && { user, logout } || null}>
+    <AuthContext.Provider value={context}>
       {children}
     </AuthContext.Provider>
   )
+}
+
+function usePrevious<T>(value: T) {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
 }
