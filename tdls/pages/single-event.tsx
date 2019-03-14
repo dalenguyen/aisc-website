@@ -102,8 +102,9 @@ const SingleEvent = ({
       <Fragment>
         <h5>Agenda</h5>
         <ul className="list-unstyled">
-          <li>5:30-6:15,   arrivals and socializing</li>
-          <li>6:15-6:30    intros and announcements</li>
+          <li>5:30-6:05,   arrivals and socializing</li>
+          <li>6:05-6:10,   welcome and announcements</li>
+          <li>6:10-6:30,   breakout discussions (please try to skim the paper to be ready for this part)</li>
           <li>6:30-7:15,   algorithm review</li>
           <li>7:15-8:00,   results and discussions</li>
         </ul>
