@@ -1,5 +1,5 @@
 import { getQueryStringValue } from '../../../../common/utils';
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState, Fragment, useRef, forwardRef } from 'react';
 import Header from '../../../components/header';
 import Head from 'next/head'
 import Meta from '../../../components/meta';
@@ -8,9 +8,11 @@ import TopBar from '../../../components/top-bar';
 import MemberFooter from '../../../components/footer';
 import { ensureFirebase } from '../../../utils/firebase';
 import { ytThumb } from '../../../../common/youtube';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Button } from 'react-bootstrap';
 import getConfig from 'next/config'
+import * as html2canvas from 'html2canvas';
 import { MemberEvent, PublicEvent } from '../../../../common/types';
+import { EventId } from '../../../functions/common/types';
 const firebase = ensureFirebase();
 
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
@@ -30,6 +32,13 @@ export default () => {
     content: ``
   });
 
+  const drawEl = useRef<HTMLDivElement>(null);
+  const saveImage = () => {
+    if (drawEl.current && eventId) {
+      printDiv(eventId, drawEl.current);
+    }
+  }
+
   async function fetchAndSetEvent() {
     const { data: event }: { data: MemberEvent } = await fetchSingleEvent({ id: eventId }) as any;
     setEventState({ event });
@@ -48,7 +57,7 @@ export default () => {
     text-shadow: 3px 3px 3px #444;
   }
   .th-title {
-    right: 10%;
+    right: 10%; left: 10%;
     bottom: 10%;
     font-size: 3vw;
     line-height: 3vw;
@@ -56,7 +65,7 @@ export default () => {
     text-shadow: 2px 2px 3px #444;
   }
   .th-thumb {
-    background: #fff url(${ytThumb(event.video)}) no-repeat center center;
+    background: url(${ytThumb(event.video)}) no-repeat center center;
     background-size: cover;
     text-align: right;
   }
@@ -108,7 +117,9 @@ export default () => {
               <Row>
                 <Col sm={6} lg={6}>
                   {
-                    event !== "fetching" && thumbCanvas(content, event)
+                    event !== "fetching" && (
+                      <ThumbCanvas ref={drawEl} content={content} event={event} />
+                    )
                   }
                 </Col>
                 <Col sm={6}>
@@ -124,6 +135,13 @@ export default () => {
                 </Col>
 
               </Row>
+              <Row>
+                <Col sm={12}>
+                  {/* <Button onClick={saveImage}>
+                    Save image
+                  </Button> */}
+                </Col>
+              </Row>
             </Container>
             <MemberFooter />
           </div>
@@ -133,9 +151,12 @@ export default () => {
   );
 }
 
-function thumbCanvas(content: string, ev: PublicEvent) {
+const ThumbCanvas = forwardRef<HTMLDivElement, {
+  content: string, event: PublicEvent
+}>((
+  { content, event: ev }, ref) => {
   return (
-    <div style={{
+    <div ref={ref} style={{
       width: "100%",
       paddingTop: "56.25%",
     }}>
@@ -163,4 +184,21 @@ function thumbCanvas(content: string, ev: PublicEvent) {
       </div>
     </div>
   )
+});
+
+async function printDiv(eventId: EventId, div: HTMLDivElement) {
+  const canvas = await html2canvas(div, { useCORS: true });
+  const myImage = canvas.toDataURL();
+  downloadURI(myImage, `event-thumb-${eventId}.png`);
+}
+
+function downloadURI(uri: string, name: string) {
+  var link = document.createElement("a");
+
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  //after creating link you should delete dynamic link
+  //clearDynamicLink(link); 
 }
