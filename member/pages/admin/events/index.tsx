@@ -202,28 +202,37 @@ function ytThumbEditLink(ev: MemberEvent) {
 }
 
 function createLiveStreamLink(ev: MemberEvent) {
+
+  const [{ creating }, setCreatingState] = useState({ creating: false });
+
+  async function createLiveStreamEvent(ev: MemberEvent) {
+    const r = confirm(
+      `Are you sure you want to create a new YouTube live stream event for "${ev.title}"?`
+    );
+    if (r) {
+      try {
+        setCreatingState({ creating: true });
+        const d = await _createLiveStreamEvent({ event_id: getEventId(ev) });
+        console.log(d);
+      } catch (e) {
+        console.error(e);
+      }
+      setCreatingState({ creating: false });
+
+
+    } else {
+
+    }
+  }
+
   return (
     <button
       onClick={() => createLiveStreamEvent(ev)}
-      className="btn btn-danger btn-sm">
-      +YT live stream...
+      className="btn btn-danger btn-sm"
+      disabled={creating}
+    >
+      {creating ? "Creating..." : "+YT live stream..."}
     </button>
   )
 }
 
-async function createLiveStreamEvent(ev: MemberEvent) {
-  const r = confirm(
-    `Create a new YouTube live stream event for "${ev.title}"?`
-  );
-  if (r) {
-    try {
-      const d = await _createLiveStreamEvent({ event_id: getEventId(ev) });
-      console.log(d);
-    } catch (e) {
-      console.error(e);
-    }
-
-  } else {
-
-  }
-}
