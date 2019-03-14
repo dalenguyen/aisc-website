@@ -1,7 +1,7 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import UserContextWrapper from '../components/auth-context-wrapper';
-
+import './_app.scss';
 
 interface P { }
 

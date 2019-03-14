@@ -3,6 +3,7 @@ import Header from '../components/header';
 import Meta from '../components/meta';
 import TopBar from '../components/top-bar';
 import SideBar from '../components/side-bar';
+import MemberFooter from '../components/footer';
 import Head from 'next/head'
 import { AllEvents, MemberEvent } from "../../common/types";
 import { getEventId } from '../../common/event';
@@ -87,13 +88,7 @@ export default () => {
               </div>
             </div>
           </div>
-          <footer className="sticky-footer bg-white">
-            <div className="container my-auto">
-              <div className="copyright text-center my-auto">
-                <span>Copyright &copy; Aggregate Intellect, Inc 2019</span>
-              </div>
-            </div>
-          </footer>
+          <MemberFooter />
         </main>
       </div>
 
