@@ -34,20 +34,35 @@ export default () => {
     const { data: event }: { data: MemberEvent } = await fetchSingleEvent({ id: eventId }) as any;
     setEventState({ event });
     setContentState({
-      content: `
-      <style>
-      .th-thumb, th-title, th-acronym {
-        position: absolute;
-      }
-      .th-thumb {
-        top: 0; left: 0; right: 0; bottom: 0;
-        z-index: 0;
-      }
-      </style>
-      <img class="th-thumb" src="${ytThumb(event.video)}" />
-      <div class="th-title">${event.title}</div>
-      <div class="th-acronym">${event.acronym}</div>
-      `})
+      content: `<style>
+  .th-thumb, .th-title, .th-acronym {
+    position: absolute;
+  }
+  .th-thumb {
+    background: #fff url(${ytThumb(event.video)}) no-repeat center center;
+    background-size: cover;
+    text-align: right;
+  }
+  .th-acronym {
+    right: 10%;
+    top: 10%;
+    font-size: 5vb;
+    line-height: 5vb;
+    color: #1cff41;
+    text-shadow: 3px 3px 3px #444;
+  }
+  .th-title {
+    right: 10%;
+    bottom: 10%;
+    font-size: 3rem;
+    line-height: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 3px #444;
+  }
+</style>
+<div class="th-acronym">${event.acronym}</div>
+<div class="th-title">${event.title}</div>`
+    })
   }
 
   useEffect(() => {
@@ -126,6 +141,7 @@ function thumbCanvas(content: string, ev: PublicEvent) {
             position: 'relative',
             top: 0, left: 0, width: "100%", height: "100%"
           }}
+          className="th-thumb"
           dangerouslySetInnerHTML={{ __html: content }}>
         </div>
       </div>
