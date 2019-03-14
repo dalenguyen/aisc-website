@@ -2,9 +2,9 @@ import { fetchEventsAndGroupings } from './common/event-sheet';
 import { AllEvents, PublicEvent } from './common/types';
 import * as functions from 'firebase-functions';
 import * as LRU from 'lru-cache';
-import { EventId } from '../../common/types';
+import { EventId } from './common/types';
 import * as assert from 'assert';
-import { getEventId } from '../../common/event';
+import { getEventId } from './common/event';
 import { assertRole as assertRole } from './utils/auth';
 
 const cache = new LRU<string, AllEvents>({

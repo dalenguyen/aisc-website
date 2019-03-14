@@ -1,25 +1,24 @@
 import { Fragment, useContext, useEffect, useState } from "react";
-import Header from '../components/header';
-import Meta from '../components/meta';
-import TopBar from '../components/top-bar';
-import SideBar from '../components/side-bar';
+import Header from '../../../components/header';
+import Meta from '../../../components/meta';
+import TopBar from '../../../components/top-bar';
+import SideBar from '../../../components/side-bar';
 import Head from 'next/head'
-import { AllEvents, MemberEvent } from "../../common/types";
-import { getEventId } from '../../common/event';
-import { ensureFirebase } from '../utils/firebase';
-import { AuthContext } from '../components/auth-context-wrapper';
+import { AllEvents, MemberEvent } from "../../../../common/types";
+import { getEventId } from '../../../../common/event';
+import { ensureFirebase } from '../../../utils/firebase';
+import { AuthContext } from '../../../components/auth-context-wrapper';
 import getConfig from 'next/config'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import * as classnames from 'classnames';
-import { toLongDateString } from "../../tdls/utils/datetime";
+import { toLongDateString } from "../../../../tdls/utils/datetime";
 import * as moment from 'moment';
-import { extrapolateEventDates } from "../utils/event-planner";
-import './index.scss';
+import { extrapolateEventDates } from "../../../utils/event-planner";
+import './event-manager.scss';
 import { asyncify, StorageLRU } from 'storage-lru';
 import { promisify } from 'util'
 import Link from 'next/link';
-
-import { ytThumb } from '../../common/youtube';
+import { ytThumb } from '../../../../common/youtube';
 
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 const firebase = ensureFirebase();

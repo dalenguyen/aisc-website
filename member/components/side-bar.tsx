@@ -30,7 +30,7 @@ export default () => {
       <hr className="sidebar-divider" />
 
       <li className="nav-item">
-        <Link href="/event-manager">
+        <Link href="/admin/events/">
           <a className="nav-link" >
             <i className="fas fa-fw fa-tachometer-alt"></i>
             <span>Event Manager</span></a>
