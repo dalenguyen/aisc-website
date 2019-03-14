@@ -34,14 +34,11 @@ export default () => {
     const { data: event }: { data: MemberEvent } = await fetchSingleEvent({ id: eventId }) as any;
     setEventState({ event });
     setContentState({
-      content: `<div class="th-spotlight"></div>
+      content: `<div class="th-spotlight" />
 <div class="th-acronym">${event.acronym}</div>
 <div class="th-title">${event.title}</div>
 
 <style>
-  .th-thumb, .th-title, .th-acronym, .th-spotlight {
-    position: absolute;
-  }
   .th-acronym {
     right: 10%;
     top: 10%;
@@ -147,6 +144,13 @@ function thumbCanvas(content: string, ev: PublicEvent) {
         top: 0, left: 0, right: 0, bottom: 0
       }}
       >
+        <style>
+          {`
+          .th-thumb, .th-title, .th-acronym, .th-spotlight {
+            position: absolute;
+          }
+        `}
+        </style>
         <div
           style={{
             position: 'relative',
