@@ -25,7 +25,7 @@ export const ensureFirebase = () => {
       if (FB_BASE) {
         firebase.functions().useFunctionsEmulator(FB_BASE);
       }
-      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     }
   }
 

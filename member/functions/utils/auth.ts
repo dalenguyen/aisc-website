@@ -1,6 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
+admin.initializeApp();
+
 export type Role = "member" | "admin" | "general";
 
 export async function assertAuth(context: functions.https.CallableContext) {
