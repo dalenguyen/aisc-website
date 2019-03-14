@@ -190,7 +190,7 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
 function ytThumbEditLink(ev: MemberEvent) {
   if (ev.video) {
     return (
-      <Link href={`/thumb-editor?event=${getEventId(ev)}`}>
+      <Link href={`thumb-editor?event=${getEventId(ev)}`}>
         <a>
           <img className="yt-thumb-edit-img" src={ytThumb(ev.video)} />
         </a>
