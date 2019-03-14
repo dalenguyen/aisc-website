@@ -1,5 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import Header from '../../../components/header';
+import MemberFooter from '../../../components/footer';
 import Meta from '../../../components/meta';
 import TopBar from '../../../components/top-bar';
 import SideBar from '../../../components/side-bar';
@@ -14,11 +15,12 @@ import * as classnames from 'classnames';
 import { toLongDateString } from "../../../../tdls/utils/datetime";
 import * as moment from 'moment';
 import { extrapolateEventDates } from "../../../utils/event-planner";
-import './event-manager.scss';
+import './index.scss';
 import { asyncify, StorageLRU } from 'storage-lru';
 import { promisify } from 'util'
 import Link from 'next/link';
 import { ytThumb } from '../../../../common/youtube';
+import { User } from "firebase";
 
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 const firebase = ensureFirebase();
@@ -51,9 +53,11 @@ export default () => {
     }
     setEvents({ upcomingEvents: allEvents.futureEvents as MemberEvent[] });
   }
-
-  const { user } = useContext(AuthContext) || { user: null };
-
+  let user: User | null = null;
+  const c = useContext(AuthContext)
+  if (c !== 'checking' && c !== null) {
+    user = c.user;
+  }
 
   useEffect(() => {
     if (user && user.emailVerified) {
@@ -117,13 +121,7 @@ export default () => {
               </div>
             </div>
           </div>
-          <footer className="sticky-footer bg-white">
-            <div className="container my-auto">
-              <div className="copyright text-center my-auto">
-                <span>Copyright &copy; Aggregate Intellect, Inc 2019</span>
-              </div>
-            </div>
-          </footer>
+          <MemberFooter />
         </main>
       </div>
 
@@ -147,7 +145,9 @@ function SingleEventManager({ event: ev }: { event: MemberEvent }) {
         </Card.Header>
         <Card.Body>
           <div className="yt-thumb-edit float-right m-1">
-            {ytThumbEditLink(ev)}
+            {ev.video ?
+              ytThumbEditLink(ev) :
+              createLiveStreamLink(ev)}
           </div>
           <Card.Title>
             {ev.title}
@@ -196,5 +196,26 @@ function ytThumbEditLink(ev: MemberEvent) {
     );
   } else {
     return null;
+  }
+}
+
+function createLiveStreamLink(ev: MemberEvent) {
+  return (
+    <button
+      onClick={() => createLiveStreamEvent(ev)}
+      className="btn btn-danger btn-sm">
+      +YT event...
+    </button>
+  )
+}
+
+function createLiveStreamEvent(ev: MemberEvent) {
+  const r = confirm(
+    `Create a new YouTube live stream event for "${ev.title}"?`
+  );
+  if (r) {
+
+  } else {
+
   }
 }

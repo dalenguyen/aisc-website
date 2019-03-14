@@ -13,7 +13,7 @@ export const ensureFirebase = () => {
   if (firebase.apps.length === 0) {
 
     const config = {
-      apiKey: "AIzaSyBtiVuEp_B46gEiI-O3aGjt_5Rx_CCwnfQ",
+      apiKey: "AIzaSyDKE-KzqzCm97SO4tUbtdQmoa1pgGMUQwc",
       authDomain: "central-splice-231701.firebaseapp.com",
       databaseURL: "https://central-splice-231701.firebaseio.com",
       projectId: "central-splice-231701",
