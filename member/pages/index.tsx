@@ -10,6 +10,7 @@ import { getEventId } from '../../common/event';
 import { ensureFirebase } from '../utils/firebase';
 import { AuthContext } from '../components/auth-context-wrapper';
 import getConfig from 'next/config'
+import { User } from "firebase";
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 const firebase = ensureFirebase();
@@ -29,7 +30,11 @@ export default () => {
     }
   }
 
-  const { user } = useContext(AuthContext) || { user: null };
+  let user: User | null = null;
+  const c = useContext(AuthContext);
+  if (c !== 'checking' && c !== null) {
+    user = c.user;
+  }
 
   useEffect(() => {
     if (user && user.emailVerified) {
