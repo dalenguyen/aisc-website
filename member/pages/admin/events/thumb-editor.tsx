@@ -34,22 +34,13 @@ export default () => {
     const { data: event }: { data: MemberEvent } = await fetchSingleEvent({ id: eventId }) as any;
     setEventState({ event });
     setContentState({
-      content: `<style>
+      content: `<div class="th-spotlight"></div>
+<div class="th-acronym">${event.acronym}</div>
+<div class="th-title">${event.title}</div>
+
+<style>
   .th-thumb, .th-title, .th-acronym, .th-spotlight {
     position: absolute;
-  }
-  .th-thumb {
-    background: #fff url(${ytThumb(event.video)}) no-repeat center center;
-    background-size: cover;
-    text-align: right;
-  }
-  .th-spotlight {
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: radial-gradient(
-      circle,
-      transparent 160px,
-      rgba(0, 0, 0, 0.85) 350px
-  );
   }
   .th-acronym {
     right: 10%;
@@ -67,10 +58,20 @@ export default () => {
     color: #fff;
     text-shadow: 2px 2px 3px #444;
   }
-</style>
-<div class="th-spotlight"></div>
-<div class="th-acronym">${event.acronym}</div>
-<div class="th-title">${event.title}</div>`
+  .th-thumb {
+    background: #fff url(${ytThumb(event.video)}) no-repeat center center;
+    background-size: cover;
+    text-align: right;
+  }
+  .th-spotlight {
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(
+      circle,
+      transparent 200px,
+      rgba(0, 0, 0, 0.85) 350px
+  );
+  }
+</style>`
     })
   }
 
