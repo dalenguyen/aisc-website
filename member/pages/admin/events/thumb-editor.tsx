@@ -35,7 +35,7 @@ export default () => {
     setEventState({ event });
     setContentState({
       content: `<style>
-  .th-thumb, .th-title, .th-acronym {
+  .th-thumb, .th-title, .th-acronym, .th-spotlight {
     position: absolute;
   }
   .th-thumb {
@@ -43,23 +43,32 @@ export default () => {
     background-size: cover;
     text-align: right;
   }
+  .th-spotlight {
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(
+      circle,
+      transparent 160px,
+      rgba(0, 0, 0, 0.85) 350px
+  );
+  }
   .th-acronym {
     right: 10%;
     top: 10%;
-    font-size: 5vb;
-    line-height: 5vb;
+    font-size: 5vw;
+    line-height: 5vw;
     color: #1cff41;
     text-shadow: 3px 3px 3px #444;
   }
   .th-title {
     right: 10%;
     bottom: 10%;
-    font-size: 3rem;
-    line-height: 3rem;
+    font-size: 3vw;
+    line-height: 3vw;
     color: #fff;
     text-shadow: 2px 2px 3px #444;
   }
 </style>
+<div class="th-spotlight"></div>
 <div class="th-acronym">${event.acronym}</div>
 <div class="th-title">${event.title}</div>`
     })
@@ -99,7 +108,12 @@ export default () => {
             </nav>
             <Container fluid={true}>
               <Row>
-                <Col lg={5}>
+                <Col sm={6} lg={6}>
+                  {
+                    event !== "fetching" && thumbCanvas(content, event)
+                  }
+                </Col>
+                <Col sm={6}>
                   <textarea style={{
                     width: "100%",
                     height: "100%"
@@ -110,11 +124,7 @@ export default () => {
 
                   </textarea>
                 </Col>
-                <Col lg={7}>
-                  {
-                    event !== "fetching" && thumbCanvas(content, event)
-                  }
-                </Col>
+
               </Row>
             </Container>
             <MemberFooter />
@@ -144,6 +154,7 @@ function thumbCanvas(content: string, ev: PublicEvent) {
           className="th-thumb"
           dangerouslySetInnerHTML={{ __html: content }}>
         </div>
+
       </div>
     </div>
   )
