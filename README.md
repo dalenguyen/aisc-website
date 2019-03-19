@@ -4,7 +4,7 @@ https://aisc.a-i.science
 
 Source code for AISC website.
 
-[![Release](https://img.shields.io/badge/release-v.0.1.0-yellow.svg)](https://github.com/TDLS/tdls.github.io/releases/tag/v.0.1.0)
+[![Release](https://img.shields.io/badge/release-v.0.1.0-yellow.svg)](https://github.com/Aggregate-Intellect/aisc-website/releases/tag/v.0.1.0)
 
 Note: this repository contains multiple websites.
 
@@ -43,7 +43,7 @@ Note: only `3000` may work due to domain restrictions on Google Key. Similarly, 
 1. Fork this repository.
 2. `git clone https://github.com/<YOUR-USERNAME>/aisc-website`
 3. make changes, commit & push to your own fork
-4. Go to the webpage of your own fork (`https://github.com/<YOUR-USERNAME>/tdls-website`) and make a pull request to `https://github.com/tdls/tdls-website`.
+4. Go to the webpage of your own fork (`https://github.com/<YOUR-USERNAME>/aisc-website`) and make a pull request to `https://github.com/Aggregate-Intellect/aisc-website`.
 5. We will be notified of your PR and review as soon as we can.
 
 ### If you have write permission to this repository

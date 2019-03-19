@@ -10,7 +10,7 @@ export default () => (
       Want to get involved? Here are some ways you can join in the fun - or email/tweet at us if you have other
       thoughts or ideas!
     </p>
-    <h4 id="contribute">Contribute to TDLS</h4>
+    <h4 id="contribute">Contribute to AISC</h4>
     <div className="row">
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
@@ -23,7 +23,7 @@ export default () => (
                 target="_blank">
                 <i className="fa fa-twitter fa-2x"></i>
               </a>
-              <a href="mailto:events@a-i.science?subject:I%20am%20interested%20to%20speak%20at%20TDLS" target="_blank">
+              <a href="mailto:events@a-i.science?subject:I%20am%20interested%20to%20speak%20at%20AISC" target="_blank">
                 <i className="fa fa-envelope fa-2x"></i>
               </a>
             </div>
@@ -62,7 +62,7 @@ and
               <a href="https://github.com/Aggregate-Intellect/aisc-website/blob/master/README.md" target="_blank">
                 <i className="fa fa-github fa-2x"></i>
               </a>
-              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20Change%20suggestion%20for%20TDLS%20website:%20"
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20Change%20suggestion%20for%20AISC%20website:%20"
                 target="_blank">
                 <i className="fa fa-twitter fa-2x"></i>
               </a>
@@ -175,10 +175,10 @@ and
             <h5 className="card-title">Companies</h5>
             <p className="card-text mb-auto mt-auto">If you want to host us, please send us an email or tweet at us</p>
             <div className="mt-auto">
-              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20host%20TDLS" target="_blank">
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20host%20AISC" target="_blank">
                 <i className="fa fa-twitter fa-2x"></i>
               </a>
-              <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20host%20TDLS" target="_blank">
+              <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20host%20AISC" target="_blank">
                 <i className="fa fa-envelope fa-2x"></i>
               </a>
             </div>
@@ -191,11 +191,11 @@ and
             <h5 className="card-title">Student Groups at Universities</h5>
             <p className="card-text mb-auto mt-auto">If you want to co-host an event with us, please send us an email or tweet at us</p>
             <div className="mt-auto">
-              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
+              <a href="https://twitter.com/intent/tweet?text=@tdls_to%20We%20want%20to%20co-host%20an%20event%20with%20AISC"
                 target="_blank">
                 <i className="fa fa-twitter fa-2x"></i>
               </a>
-              <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20co-host%20an%20event%20with%20TDLS"
+              <a href="mailto:events@a-i.science?subject:%20We%20want%20to%20co-host%20an%20event%20with%20AISC"
                 target="_blank">
                 <i className="fa fa-envelope fa-2x"></i>
               </a>

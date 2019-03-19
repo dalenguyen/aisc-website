@@ -28,7 +28,7 @@ export default () => (
             </a>
         </li>
         <li className="list-inline-item">
-            <a href="https://github.com/TDLS" target="_blank">
+            <a href="https://github.com/Aggregate-Intellect" target="_blank">
                 <i className="fa fa-github fa-2x" />
             </a>
         </li>

@@ -14,7 +14,7 @@ editor: Mahsa Rahimi, Serena McDonnell
 *   Developed a synthetic benchmark to quantify the quality of interpolations.
 *   Examined the performance of ACAI learned representations on downstream tasks.
 
-TDLS recently presented and discussed this paper led by Mahsa Rahimi. The details of the event can be found on the [TDLS website](https://aisc.a-i.science/events/2019-02-07/), and the full presentation can be viewed on [YouTube](https://www.youtube.com/watch?v=FdeHlC4QiqA&t=2871s). Here, we present an overview of the paper, along with the discussion points raised at the TDLS session.
+AISC recently presented and discussed this paper led by Mahsa Rahimi. The details of the event can be found on the [AISC website](https://aisc.a-i.science/events/2019-02-07/), and the full presentation can be viewed on [YouTube](https://www.youtube.com/watch?v=FdeHlC4QiqA&t=2871s). Here, we present an overview of the paper, along with the discussion points raised at the AISC session.
 
 ---
 
@@ -84,13 +84,13 @@ An ideal interpolation would achieve 0 for both scores. An example of an ideal i
 
 Using this benchmark, it is shown that ACAI substantially outperforms common autoencoder models (e.g., denoising and variational autoencoders) for the task of generating realistic and semantically meaningful interpolations. 
 
-**TDLS Discussions**
+**AISC Discussions**
 
-In the TDLS session, a set of [discussion points](https://youtu.be/Tu3FqCD7-BY?t=3513) were raised, which can be used as pointers for future work and experimentation on autoencoder interpolation. 
+In the AISC session, a set of [discussion points](https://youtu.be/Tu3FqCD7-BY?t=3513) were raised, which can be used as pointers for future work and experimentation on autoencoder interpolation. 
 
-First, the classification and clustering evaluations of ACAI representations are conducted on three different datasets: [MNIST](http://yann.lecun.com/exdb/mnist/), [SVHN](http://ufldl.stanford.edu/housenumbers/), and [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html). While the results for both clustering and classification tasks are reasonable for the two simpler datasets (i.e., MNIST and SVHN), the classification improvement on CIFAR is not nearly as significant, and the CIFAR clustering outcome is poor for all of the autoencoders, including ACAI. TDLS brought up the idea of extending ACAI to be more effective on complicated datasets. 
+First, the classification and clustering evaluations of ACAI representations are conducted on three different datasets: [MNIST](http://yann.lecun.com/exdb/mnist/), [SVHN](http://ufldl.stanford.edu/housenumbers/), and [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html). While the results for both clustering and classification tasks are reasonable for the two simpler datasets (i.e., MNIST and SVHN), the classification improvement on CIFAR is not nearly as significant, and the CIFAR clustering outcome is poor for all of the autoencoders, including ACAI. AISC brought up the idea of extending ACAI to be more effective on complicated datasets. 
 
-Second, the ACAI paper primarily focuses on computer vision tasks and even defines high-quality interpolations based on visual attributes of images. It would be extremely valuable to explore how ACAI and the benchmark could be extended to benefit non-visual tasks such as text interpolation. Finally, in this paper, the regularization procedure is applied to a vanilla autoencoder. It would be worth exploring the effects of using a similar regularization mechanism on other types of autoencoders. In particular, the possibility of improving the generative power of [variational autoencoders using the same idea was discussed in the TDLS session](https://youtu.be/Tu3FqCD7-BY?t=3574). 
+Second, the ACAI paper primarily focuses on computer vision tasks and even defines high-quality interpolations based on visual attributes of images. It would be extremely valuable to explore how ACAI and the benchmark could be extended to benefit non-visual tasks such as text interpolation. Finally, in this paper, the regularization procedure is applied to a vanilla autoencoder. It would be worth exploring the effects of using a similar regularization mechanism on other types of autoencoders. In particular, the possibility of improving the generative power of [variational autoencoders using the same idea was discussed in the AISC session](https://youtu.be/Tu3FqCD7-BY?t=3574). 
 
 **Additional Resources:**
 

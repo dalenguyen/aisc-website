@@ -1,2 +1,2 @@
 # Redirect default Netlify subdomain to primary domain
-http://tdls.netlify.com/* http://aisc.a-i.science/:splat 301!
+http://aisc.netlify.com/* http://aisc.a-i.science/:splat 301!

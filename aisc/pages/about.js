@@ -72,7 +72,7 @@ const About = ({ contributors }) => (
       </div>
 
       <h3>Website Contributors</h3>
-      <p>We're open source, so feel free to clone <a target="_blank" href="https://github.com/TDLS/tdls.github.io">our GitHub repo</a>, make changes, and submit a pull request, and your
+      <p>We're open source, so feel free to clone <a target="_blank" href="https://github.com/Aggregate-Intellect/aisc-website">our GitHub repo</a>, make changes, and submit a pull request, and your
       GitHub handle would show up here</p>
       {
         contributors ? <article id="site-contributors">
@@ -124,7 +124,7 @@ About.getInitialProps = async function () {
 }
 
 async function getContributors() {
-  const url = `https://api.github.com/repos/TDLS/tdls.github.io/contributors`;
+  const url = `https://api.github.com/repos/Aggregate-Intellect/aisc-website/contributors`;
   const resp = await fetch(url, {
     method: 'GET',
     cache: 'default'
