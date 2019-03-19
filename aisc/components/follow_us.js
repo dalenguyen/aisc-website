@@ -12,7 +12,7 @@ export default () => (
       {[
         ["YouTube", "https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1"],
         ["LinkedIn", "https://www.linkedin.com/company/18994830/"],
-        ["Twitter", "https://twitter.com/tdls_to"],
+        ["Twitter", "https://twitter.com/aisc_to"],
         ["Reddit", "https://www.reddit.com/user/tdls_to"],
         ["Instagram", "https://www.instagram.com/tdls_to/"],
         ["Email", "mailto:events@a-i.science"],

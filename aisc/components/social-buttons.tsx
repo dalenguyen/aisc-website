@@ -23,7 +23,7 @@ export default () => (
             </a>
         </li>
         <li className="list-inline-item">
-            <a href="https://twitter.com/tdls_to" target="_blank">
+            <a href="https://twitter.com/aisc_to" target="_blank">
                 <i className="fa fa-twitter fa-2x" />
             </a>
         </li>
