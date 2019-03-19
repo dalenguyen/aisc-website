@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 
 import Head from 'next/head';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 
 import Header from '../components/header';
 import AIThemes from '../components/ai-themes';
