@@ -21,7 +21,7 @@ export default () => (
           </li>
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"
-              href="https://blog.a-i.science/">Blog</a>
+              href="https://aisc.a-i.science/">AISC</a>
           </li>
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"
