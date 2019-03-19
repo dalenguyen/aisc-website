@@ -1,5 +1,4 @@
 import getConfig from 'next/config'
-const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 export default () => (
   <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -18,7 +17,7 @@ export default () => (
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"
-              href="https://aisc.a-i.science/">{SITE_ABBREV}</a>
+              href="https://a-i.science/">Home</a>
           </li>
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"

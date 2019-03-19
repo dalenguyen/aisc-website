@@ -2,6 +2,8 @@ const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass')
 const webpack = require('webpack');
 
+const SITE_NAME = "A.I. Socratic Circles";
+
 module.exports = withTypescript(withSass({
 
   webpack: (config) => {
@@ -24,5 +26,8 @@ module.exports = withTypescript(withSass({
     );
 
     return config
+  },
+  publicRuntimeConfig: {
+    SITE_NAME
   }
 }))
