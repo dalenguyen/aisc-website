@@ -12,7 +12,7 @@ import { AuthContext } from '../../../components/auth-context-wrapper';
 import getConfig from 'next/config'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import * as classnames from 'classnames';
-import { toLongDateString } from "../../../../tdls/utils/datetime";
+import { toLongDateString } from "../../../../aisc/utils/datetime";
 import * as moment from 'moment';
 import { extrapolateEventDates } from "../../../utils/event-planner";
 import { asyncify, StorageLRU } from 'storage-lru';

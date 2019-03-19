@@ -24,13 +24,13 @@ async function fetchAndSaveSchedule(googleKey: string, sheetId: string) {
   );
 
   fs.writeFileSync(
-    path.join(__dirname, '..', 'tdls', 'static', 'data', `events.json`),
+    path.join(__dirname, '..', 'aisc', 'static', 'data', `events.json`),
     JSON.stringify(eventsAndGroupings, null, 2)
   );
   console.log("Events written to disk.");
 
   fs.writeFileSync(
-    path.join(__dirname, '..', 'tdls', 'static', 'data', `profiles.json`),
+    path.join(__dirname, '..', 'aisc', 'static', 'data', `profiles.json`),
     JSON.stringify(linkedInProfiles, null, 2)
   );
   console.log("Profiles written to disk.");

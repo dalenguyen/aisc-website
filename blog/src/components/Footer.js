@@ -8,7 +8,7 @@ function Footer(props) {
     <footer className="center w5 f6 tc mt4">
       <p>
         <span>
-          <a href="//aisc.a-i.science/about">About TDLS</a>
+          <a href="//aisc.a-i.science/about">About AISC</a>
         </span>
       </p>
     </footer>

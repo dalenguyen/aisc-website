@@ -16,7 +16,7 @@ nvm is highly recommended.
 
 
 ```bash
-npm run tdls
+npm run aisc
 ```
 
 ```bash

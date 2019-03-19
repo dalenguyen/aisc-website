@@ -4,8 +4,8 @@ const withTypescript = require('@zeit/next-typescript');
 const withSass = require('@zeit/next-sass')
 const webpack = require('webpack');
 
-const SITE_NAME = "Toronto Deep Learning Series";
-const SITE_ABBREV = "TDLS";
+const SITE_NAME = "A.I. Socratic Circles";
+const SITE_ABBREV = "AISC";
 const SITE_NAME_FULL = `${SITE_NAME} (#${SITE_ABBREV})`
 
 module.exports = withTypescript(withSass({

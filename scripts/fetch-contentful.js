@@ -30,7 +30,7 @@ async function fetchAndSaveWriteups() {
   });
 
   const entries = items.map(({ fields }) => fields);
-  const dir = path.join(__dirname, '..', 'tdls', 'data', type);
+  const dir = path.join(__dirname, '..', 'aisc', 'data', type);
 
   ensureDir(dir);
   entries.forEach(e => {
@@ -62,7 +62,7 @@ async function fetchAndSaveType(client, type) {
   const entries = items.map(({ fields }) => fields);
 
   fs.writeFileSync(
-    path.join(__dirname, '..', 'tdls', 'data', `${type}.json`),
+    path.join(__dirname, '..', 'aisc', 'data', `${type}.json`),
     JSON.stringify(entries, null, 2)
   );
 
