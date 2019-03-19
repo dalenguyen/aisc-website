@@ -17,16 +17,8 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
           style={{ backgroundColor: 'white' }}
         >
           {before}
-
           <Link href="/">
             <a className="navbar-brand">
-              {
-                !before && (
-                  <img src="/static/images/tdls_logo.svg"
-                    style={{ height: '40px', width: 'auto' }} />
-                )
-              }
-              &nbsp;
               {SITE_ABBREV}
             </a>
           </Link>
