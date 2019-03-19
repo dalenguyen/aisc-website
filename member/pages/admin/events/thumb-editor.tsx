@@ -54,7 +54,7 @@ export default () => {
     font-size: 5vw;
     line-height: 5vw;
     color: #1cff41;
-    text-shadow: 3px 3px 3px #444;
+    text-shadow: 0.2vw 0.2vw 0.2vw #444;
   }
   .th-title {
     right: 10%; left: 10%;
@@ -62,7 +62,7 @@ export default () => {
     font-size: 3vw;
     line-height: 3vw;
     color: #fff;
-    text-shadow: 2px 2px 3px #444;
+    text-shadow: 0.1vw 0.1vw 0.1vw #444;
   }
   .th-thumb {
     background: url(${ytThumb(event.video)}) no-repeat center center;
@@ -73,8 +73,8 @@ export default () => {
     top: 0; left: 0; right: 0; bottom: 0;
     background-image: radial-gradient(
       circle,
-      transparent 200px,
-      rgba(0, 0, 0, 0.85) 350px
+      transparent 20vw,
+      rgba(0, 0, 0, 0.85) 25vw
   );
   }
 </style>`
