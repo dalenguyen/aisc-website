@@ -124,7 +124,7 @@ export default () => (
     <section className="contact-section bg-black">
       <div className="container">
         <div className="row">
-          <div className="offset-md-2 col-md-4 mb-3 mb-md-0">
+          <div className="offset-md-4 col-md-4 mb-5 mb-md-0">
             <div className="card py-4 h-100">
               <div className="card-body text-center">
                 <i className="fas fa-envelope text-primary mb-2"></i>
@@ -133,17 +133,6 @@ export default () => (
                 <div className="small text-black-50">
                   <a href="mailto:events@a-i.science">events@a-i.science</a>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-4 mb-3 mb-md-0">
-            <div className="card py-4 h-100">
-              <div className="card-body text-center">
-                <i className="fas fa-mobile-alt text-primary mb-2"></i>
-                <h4 className="text-uppercase m-0">Phone</h4>
-                <hr className="my-4" />
-                <div className="small text-black-50">+1 (555) 902-8832</div>
               </div>
             </div>
           </div>
