@@ -50,13 +50,13 @@ const About = ({ contributors }) => (
       <h3 id="steering-committee">Steering Committee</h3>
       <div className="row profile-list">
         {[
-          ['Amir Feizpour', 'Founder and Head of Operations', '/static/images/amir.jpeg', 'https://www.linkedin.com/in/amirfzpr/'],
-          ['Ehsan Amjadian', 'Head of Research', '/static/images/ehsan.jpeg', 'https://www.linkedin.com/in/ehsanamjadian/'],
+          ['Amir Feizpour', 'Partnership Lead', '/static/images/amir.jpeg', 'https://www.linkedin.com/in/amirfzpr/'],
+          ['Ehsan Amjadian', '"Lunch & Learn" Stream Lead', '/static/images/ehsan.jpeg', 'https://www.linkedin.com/in/ehsanamjadian/'],
           ['Felipe Pérez', '"Foundational" Stream Lead', '/static/images/felipe.jpeg', 'https://www.linkedin.com/in/felipe-perez-/'],
           ['Gordon Gibson', '“Fast Track” Stream Lead', '/static/images/gordon.jpeg', 'https://www.linkedin.com/in/gordon-gibson-874b3130/'],
           ['Lindsay Brin', 'Chief Phrasing Officer and Inclusivity Lead', '/static/images/lindsay.jpeg', 'https://www.linkedin.com/in/lindsaydbrin/'],
           ['Serena McDonnell', '"Main" Stream Lead', '/static/images/serena.jpeg', 'https://www.linkedin.com/in/serenamcdonnell/'],
-          ['Xiyang Chen', 'Head of Technology and "Code Review" Stream Lead', '/static/images/xiyang.jpeg', 'https://www.linkedin.com/in/xiyangchen/'],
+          ['Xiyang Chen', '"Code Review" Stream Lead', '/static/images/xiyang.jpeg', 'https://www.linkedin.com/in/xiyangchen/'],
         ].map(profileCard)
         }
       </div>
