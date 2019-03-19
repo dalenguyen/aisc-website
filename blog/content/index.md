@@ -1,5 +1,5 @@
 ---
-siteTitle: "Blog A.I."
+siteTitle: "AISC Blog"
 description: "Documenting A.I. progress"
 stylesheets:
   - "https://unpkg.com/tachyons@4.7.4/css/tachyons.min.css"
