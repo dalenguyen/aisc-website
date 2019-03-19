@@ -1,10 +1,10 @@
 {
-  "name": "tdls-website",
+  "name": "aisc-website",
   "version": "1.0.0",
-  "description": "Source code for TDLS website.",
+  "description": "Source code for AISC website.",
   "main": "main.js",
   "scripts": {
-    "tdls": "npm run dev-sync-blog && npm run sync-data && next tdls -p 3000",
+    "aisc": "npm run dev-sync-blog && npm run sync-data && next aisc -p 3000",
     "member": "concurrently \"next member -p 3500\" \"npm run member-fb\"",
     "a-i": "npm run dev-sync-blog && npm run sync-data && next a-i -p 3100",
     "blog": "concurrently \"next blog -p 3200\" \"npm run dev-watch-blog\"",
@@ -18,16 +18,16 @@
     "sync-contentful": "node scripts/fetch-contentful.js",
     "sync-schedule": "ts-node scripts/sync-schedule.ts",
     "sync-data": "npm run sync-contentful & npm run sync-schedule",
-    "tdls-build-sitemap": "cross-env SITE_ROOT=https://aisc.a-i.science node scripts/build-sitemap.js tdls",
+    "aisc-build-sitemap": "cross-env SITE_ROOT=https://aisc.a-i.science node scripts/build-sitemap.js aisc",
     "a-i-build-sitemap": "cross-env SITE_ROOT=https://a-i.science node scripts/build-sitemap.js a-i",
     "blog-build-sitemap": "cross-env SITE_ROOT=https://blog.a-i.science node scripts/build-sitemap.js blog",
-    "tdls-build": "npm run dev-sync-blog && npm run sync-data && next build tdls && npm run tdls-build-sitemap",
+    "aisc-build": "npm run dev-sync-blog && npm run sync-data && next build aisc && npm run aisc-build-sitemap",
     "member-build": "next build member",
     "a-i-build": "npm run dev-sync-blog && next build a-i && npm run a-i-build-sitemap",
     "blog-build": "npm run dev-sync-blog && cd blog && next build && cd .. && npm run blog-build-sitemap",
-    "tdls-start": "next start tdls",
+    "aisc-start": "next start aisc",
     "a-i-start": "next start a-i",
-    "tdls-export": "npm run tdls-build && next export tdls && cp tdls/root-static/* tdls/out/",
+    "aisc-export": "npm run aisc-build && next export aisc && cp aisc/root-static/* aisc/out/",
     "member-fb-deploy": "npm run member-fb-build && cp member/functions/package.json member/functions-dist && cross-env GOOGLE_APPLICATION_CREDENTIALS=`pwd`/keys/fb-service.json firebase deploy",
     "member-export": "npm run member-build && next export member",
     "a-i-export": "npm run a-i-build && next export a-i && cp a-i/root-static/* a-i/out/",
@@ -35,14 +35,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdls/tdls.github.io.git"
+    "url": "git+https://github.com/aggregate-intellect/aisc-website.git"
   },
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/tdls/tdls.github.io/issues"
+    "url": "https://github.com/Aggregate-Intellect/aisc-website/issues"
   },
-  "homepage": "https://github.com/tdls/tdls.github.io#readme",
+  "homepage": "https://github.com/Aggregate-Intellect/aisc-website#readme",
   "dependencies": {
     "@types/lru-cache": "^5.1.0",
     "@types/moment-timezone": "^0.5.10",

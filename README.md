@@ -41,7 +41,7 @@ Note: only `3000` may work due to domain restrictions on Google Key. Similarly, 
 ### If you do not have write permission to this repository
 
 1. Fork this repository.
-2. `git clone https://github.com/<YOUR-USERNAME>/tdls-website`
+2. `git clone https://github.com/<YOUR-USERNAME>/aisc-website`
 3. make changes, commit & push to your own fork
 4. Go to the webpage of your own fork (`https://github.com/<YOUR-USERNAME>/tdls-website`) and make a pull request to `https://github.com/tdls/tdls-website`.
 5. We will be notified of your PR and review as soon as we can.

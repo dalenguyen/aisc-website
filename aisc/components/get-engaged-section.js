@@ -54,12 +54,12 @@ export default () => (
             <h5 className="card-title">Improve this site</h5>
             <p className="card-text mb-auto mt-auto">Amazing! We're open source, so feel free to clone
             <a target="_blank"
-                href="https://github.com/TDLS/tdls.github.io">our GitHub repo</a>, make changes,
+                href="https://github.com/Aggregate-Intellect/aisc-website">our GitHub repo</a>, make changes,
 and
     submit a pull request - or you can email or tweet at us with your suggestions.</p>
             <div className="mt-auto">
 
-              <a href="https://github.com/TDLS/tdls.github.io/blob/master/README.md" target="_blank">
+              <a href="https://github.com/Aggregate-Intellect/aisc-website/blob/master/README.md" target="_blank">
                 <i className="fa fa-github fa-2x"></i>
               </a>
               <a href="https://twitter.com/intent/tweet?text=@tdls_to%20Change%20suggestion%20for%20TDLS%20website:%20"
@@ -103,7 +103,7 @@ and
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
-            <h5 className="card-title">Subscribe to Learn More about TDLS</h5>
+            <h5 className="card-title">Subscribe to Learn More about AISC</h5>
             <div id="mc_embed_signup" className="mt-auto">
               <form action="https://science.us20.list-manage.com/subscribe/post?u=c7831af29c0c46bd5ec4c04c7&amp;id=9e6c32b697"
                 method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate"
