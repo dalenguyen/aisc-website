@@ -14,7 +14,7 @@ editor: Mahsa Rahimi, Serena McDonnell
 *   Developed a synthetic benchmark to quantify the quality of interpolations.
 *   Examined the performance of ACAI learned representations on downstream tasks.
 
-TDLS recently presented and discussed this paper led by Mahsa Rahimi. The details of the event can be found on the [TDLS website](https://tdls.a-i.science/events/2019-02-07/), and the full presentation can be viewed on [YouTube](https://www.youtube.com/watch?v=FdeHlC4QiqA&t=2871s). Here, we present an overview of the paper, along with the discussion points raised at the TDLS session.
+TDLS recently presented and discussed this paper led by Mahsa Rahimi. The details of the event can be found on the [TDLS website](https://aisc.a-i.science/events/2019-02-07/), and the full presentation can be viewed on [YouTube](https://www.youtube.com/watch?v=FdeHlC4QiqA&t=2871s). Here, we present an overview of the paper, along with the discussion points raised at the TDLS session.
 
 ---
 

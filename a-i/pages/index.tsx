@@ -75,7 +75,7 @@ export default () => (
               <div className="d-flex h-100">
                 <div className="project-text w-100 my-auto text-center text-lg-right">
                   <h4 className="text-white">Research Media Hub</h4>
-                  <p className="mb-0 text-white-50">Engage with our expert community through our <a href="https://tdls.a-i.science" target="_blank">paper discussion events</a> in person or virtually to get exposed to the latest developments of in machine learning. Or read <a href="https://blog.a-i.science" target="_blank">our blog</a> to see brief reviews of the most recent and trending topics. </p>
+                  <p className="mb-0 text-white-50">Engage with our expert community through our <a href="https://aisc.a-i.science" target="_blank">paper discussion events</a> in person or virtually to get exposed to the latest developments of in machine learning. Or read <a href="https://blog.a-i.science" target="_blank">our blog</a> to see brief reviews of the most recent and trending topics. </p>
                   <hr className="d-none d-lg-block mb-0 mr-0" />
                 </div>
               </div>

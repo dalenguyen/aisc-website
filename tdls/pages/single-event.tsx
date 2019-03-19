@@ -63,7 +63,7 @@ const SingleEvent = ({
       setIsMobile({ isMobile });
     }, []);
 
-    const embedDomain = typeof window === 'undefined' ? 'tdls.a-i.science' : window.location.host.split(":")[0];
+    const embedDomain = typeof window === 'undefined' ? 'aisc.a-i.science' : window.location.host.split(":")[0];
 
     useEffect(() => {
       // force rerender

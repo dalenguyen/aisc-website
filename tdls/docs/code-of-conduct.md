@@ -1,25 +1,25 @@
 
-# TDLS Code of Conduct
+# AISC Code of Conduct
 
-This code of conduct applies to all TDLS spaces, including the mailing list, slack channel as well as any other spaces that TDLS hosts both online and off. Anyone who violates this code of conduct may be sanctioned or expelled from these spaces at the discretion of the Steering Committee. Some of our hosts may have additional rules in place, which will be made clearly available to participants. Participants are responsible for knowing and abiding by these rules.
+This code of conduct applies to all AISC spaces, including the mailing list, slack channel as well as any other spaces that AISC hosts both online and off. Anyone who violates this code of conduct may be sanctioned or expelled from these spaces at the discretion of the Steering Committee. Some of our hosts may have additional rules in place, which will be made clearly available to participants. Participants are responsible for knowing and abiding by these rules.
 
 ## Reporting
 
-If you are being harassed by a member of TDLS, or notice that someone else is being harassed, or have any other concerns, please contact the members of the steering committee (events@a-i.science). If the person who is harassing you is on the committee, they will recuse themselves from handling your incident. We will respond as promptly as we can.
+If you are being harassed by a member of AISC, or notice that someone else is being harassed, or have any other concerns, please contact the members of the steering committee (events@a-i.science). If the person who is harassing you is on the committee, they will recuse themselves from handling your incident. We will respond as promptly as we can.
 
 ## Confidentiality
 
-We will respect confidentiality requests for the purpose of protecting victims of abuse. At our discretion, we may publicly name a person about whom we’ve received harassment complaints, or privately warn third parties about them, if we believe that doing so will increase the safety of TDLS members or the general public. We will not name harassment victims without their affirmative consent.
+We will respect confidentiality requests for the purpose of protecting victims of abuse. At our discretion, we may publicly name a person about whom we’ve received harassment complaints, or privately warn third parties about them, if we believe that doing so will increase the safety of AISC members or the general public. We will not name harassment victims without their affirmative consent.
 
 ## Consequences
 
-**Participants asked to stop any behavior in violation of this code of conduct are expected to comply immediately.** If a participant engages in harassing behavior, organizers may take any action they deem appropriate, up to and including expulsion from all TDLS spaces and identification of the participant as a harasser to other TDLS members or the general public.
+**Participants asked to stop any behavior in violation of this code of conduct are expected to comply immediately.** If a participant engages in harassing behavior, organizers may take any action they deem appropriate, up to and including expulsion from all AISC spaces and identification of the participant as a harasser to other AISC members or the general public.
 
 _Fine print:_ In order to protect volunteers from abuse and burnout, we reserve the right to reject any report we believe to have been made in bad faith. Reports intended to silence legitimate criticism may be deleted without response.
 
 ## Zero tolerance for harassment
 
-TDLS is a welcoming and respectful environment and we are dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of participants in any form.
+AISC is a welcoming and respectful environment and we are dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of participants in any form.
 
 **Harassment includes:**
 
@@ -49,7 +49,7 @@ Networking with the purpose of finding jobs is an important aspect of the commun
 
 ## Participation in events and other spaces
 
-Conversation and discussion about advanced machine learning topics is the core of TDLS. These discussion would naturally get heated but the participants should never cross the line of decency and respect.
+Conversation and discussion about advanced machine learning topics is the core of AISC. These discussion would naturally get heated but the participants should never cross the line of decency and respect.
 
 Examples of unacceptable behavior follows:
 

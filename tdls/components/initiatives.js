@@ -12,7 +12,7 @@ export default () => (
     `}</style>
     <ul className="useful-links list-unstyled">
       {[
-        [SITE_ABBREV, "https://tdls.a-i.science/"],
+        [SITE_ABBREV, "https://aisc.a-i.science/"],
         ["Blog", "https://blog.a-i.science/"],
         // ["Live Papers", "#"],
         // ["Spotlight", "#"],

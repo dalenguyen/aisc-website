@@ -18,7 +18,7 @@ export default () => (
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"
-              href="https://tdls.a-i.science/">{SITE_ABBREV}</a>
+              href="https://aisc.a-i.science/">{SITE_ABBREV}</a>
           </li>
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"

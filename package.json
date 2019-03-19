@@ -18,7 +18,7 @@
     "sync-contentful": "node scripts/fetch-contentful.js",
     "sync-schedule": "ts-node scripts/sync-schedule.ts",
     "sync-data": "npm run sync-contentful & npm run sync-schedule",
-    "tdls-build-sitemap": "cross-env SITE_ROOT=https://tdls.a-i.science node scripts/build-sitemap.js tdls",
+    "tdls-build-sitemap": "cross-env SITE_ROOT=https://aisc.a-i.science node scripts/build-sitemap.js tdls",
     "a-i-build-sitemap": "cross-env SITE_ROOT=https://a-i.science node scripts/build-sitemap.js a-i",
     "blog-build-sitemap": "cross-env SITE_ROOT=https://blog.a-i.science node scripts/build-sitemap.js blog",
     "tdls-build": "npm run dev-sync-blog && npm run sync-data && next build tdls && npm run tdls-build-sitemap",

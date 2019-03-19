@@ -145,7 +145,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
           </a>
         </div>
         <a className="scroll-button" href="#main"><span></span></a>
-        <div className="container tdls-intro">
+        <div className="container aisc-intro">
           <h1 className="title">{SITE_NAME}</h1>
         </div>
       </section>
@@ -391,7 +391,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
           </Link>
         </section>
         <hr />
-        <section className="container about-tdls">
+        <section className="container about-aisc">
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <h2 className="title">About {SITE_ABBREV}</h2>

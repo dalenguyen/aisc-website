@@ -6,8 +6,8 @@ stylesheets:
 topLinks:
   - text: "Blog Home"
     href: "/"
-  - text: "TDLS"
-    href: "https://tdls.a-i.science"
+  - text: "AISC"
+    href: "https://aisc.a-i.science"
   - text: "Aggregate Intellect"
     href: "https://a-i.science"
 backgroundClass: "bg-dark-gray"

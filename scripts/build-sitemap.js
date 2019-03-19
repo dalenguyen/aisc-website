@@ -10,7 +10,7 @@ const [n, _, siteName] = process.argv;
 
 assert(siteName, 'site name argument is required.');
 
-const SITE_ROOT = process.env.SITE_ROOT || 'https://tdls.a-i.science'
+const SITE_ROOT = process.env.SITE_ROOT || 'https://aisc.a-i.science'
 const SOURCE = process.env.SOURCE || path.join(__dirname, '..', siteName, 'pages', '/**/*.[tj]*')
 const DESTINATION = process.env.DESTINATION || path.join(__dirname, '..', siteName, 'root-static', 'sitemap.xml')
 

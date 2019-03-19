@@ -7,7 +7,7 @@ editor: Taraneh Khazaei, Lindsay Brin
 
 --- 
 
-Self-Attention Generative Adversarial Networks (SAGAN; [Zhang et al., 2018](https://arxiv.org/pdf/1805.08318.pdf)) are convolutional neural networks that use the self-attention paradigm to capture long-range spatial relationships in existing images to better synthesize new images. TDLS recently presented and discussed this paper, led by  Xiyang Chen. The details of the event can be found on the [TDLS website](https://tdls.a-i.science/events/2018-06-11/), and the full presentation can be viewed on [YouTube](https://www.youtube.com/watch?v=FdeHlC4QiqA). Here, we present an overview of the paper and its main contributions.
+Self-Attention Generative Adversarial Networks (SAGAN; [Zhang et al., 2018](https://arxiv.org/pdf/1805.08318.pdf)) are convolutional neural networks that use the self-attention paradigm to capture long-range spatial relationships in existing images to better synthesize new images. TDLS recently presented and discussed this paper, led by  Xiyang Chen. The details of the event can be found on the [TDLS website](https://aisc.a-i.science/events/2018-06-11/), and the full presentation can be viewed on [YouTube](https://www.youtube.com/watch?v=FdeHlC4QiqA). Here, we present an overview of the paper and its main contributions.
 
 ---
 
