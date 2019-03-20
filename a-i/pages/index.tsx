@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Header from '../components/header';
 import AIThemes from '../components/ai-themes';
 import Nav from '../components/nav';
+import "./index.scss";
 
 export default () => (
   <Fragment>
@@ -93,22 +94,53 @@ export default () => (
             <h3 className="mt-3 mb-4">Our Team</h3>
             <div className="row profile-list d-flex justify-content-center">
               {[
-                ['Amir Feizpour', 'Head of Operations', '/static/img/amir.jpeg', 'https://www.linkedin.com/in/amirfzpr/'],
-                ['Xiyang Chen', 'Head of Technology', '/static/img/xiyang.jpeg', 'https://www.linkedin.com/in/xiyangchen/'],
+                ['Amir Feizpour', 'Head of Operations', null, '/static/img/amir.jpeg', 'https://www.linkedin.com/in/amirfzpr/'],
+                ['Xiyang Chen', 'Head of Technology', null, '/static/img/xiyang.jpeg', 'https://www.linkedin.com/in/xiyangchen/'],
               ].map(profileCard)
               }
             </div>
 
             <h3 className="mt-3 mb-4">Advisors</h3>
 
-            <div className="row profile-list d-flex justify-content-center">
+            <ul className="list-group">
               {[
-                ['Alan Aspuru-Guzik', 'Academic Advisor', '/static/img/alan.jpeg', 'https://www.linkedin.com/in/alanaspuru/'],
-                ['Vik Pant', 'Business/Product Development Advisor', '/static/img/vik.jpeg', 'https://www.linkedin.com/in/vikpant/'],
-                ['Dave Scharbach', 'Business Advisor', '/static/img/dave.jpeg', 'https://www.linkedin.com/in/davidscharbach/'],
-              ].map(profileCard)
+                ['Alan Aspuru-Guzik', 'Academic Advisor', (<Fragment>
+                  Professor at University of Toronto<br />
+                  Chair at CIFAR <br />
+                  Founder at Zapata Computing, and Kebotix
+                </Fragment>), '/static/img/alan.jpeg', 'https://www.linkedin.com/in/alanaspuru/'],
+                ['Vik Pant', 'Business/Product Development Advisor', (
+                  <Fragment>
+                    PhD, Information Science<br />
+                    Over 15 years in high performing enterprise SaaS vendors including Oracle, SAP, and Open Text<br />
+                    Significant startup advising experience
+                </Fragment>
+                ), '/static/img/vik.jpeg', 'https://www.linkedin.com/in/vikpant/'],
+                ['David Scharbach', 'Business Advisor', (
+                  <Fragment>
+                    Founded of TMLS, the largest machine learning community in Toronto
+                  </Fragment>
+                ), '/static/img/dave.jpeg', 'https://www.linkedin.com/in/davidscharbach/'],
+              ].map((([n, p, c, t, l]) => {
+                return (
+                  <li className="list-group-item d-flex flex-col">
+                    <img
+                      className="profile rounded-circle mr-3 ml-3"
+                      src={t} style={{ width: "135px", height: "135px" }} />
+                    <div className="media-body mt-2">
+                      <h4>
+                        <a href={l} target="_blank">
+                          <b>{n} <i className="fa fa-linkedin-square"></i></b>
+                        </a>
+                      </h4>
+                      {p && (<p>{p}</p>)}
+                      {c && (<p className="credentials">{c}</p>)}
+                    </div>
+                  </li>
+                )
+              }))
               }
-            </div>
+            </ul>
           </div>
         </div>
       </div>
@@ -207,18 +239,20 @@ export default () => (
   </Fragment>
 );
 
-function profileCard([name, title, photo, linkedIn]: [string, string, string, string]) {
+function profileCard([name, title, credentials, photo, linkedIn]: [string, string, string, string, string]) {
   return (
-    <div key={name} className="col-lg-3 col-6">
+    <div key={name} className="col-lg-4 col-6">
       <div className="media-top">
         <a href={linkedIn} target="_blank">
           <img
-            className="profile rounded-circle mr-3"
+            className="profile rounded-circle"
             src={photo} width="135px" />
         </a>
         <div className="media-body mt-2">
           <a href={linkedIn} target="_blank">
-            <b>{name} <i className="fa fa-linkedin-square"></i></b>
+            <h4>
+              <b>{name} <i className="fa fa-linkedin-square"></i></b>
+            </h4>
           </a>
           {title && (
             <p>{title}</p>
