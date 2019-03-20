@@ -85,6 +85,35 @@ export default () => (
       </div>
     </section>
 
+    <section id="team" className="team-section mt-4 mb-4">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-10 col-lg-8 mx-auto text-center">
+            <h2 className="mt-3 mb-4">Who We Are</h2>
+            <h3 className="mt-3 mb-4">Our Team</h3>
+            <div className="row profile-list d-flex justify-content-center">
+              {[
+                ['Amir Feizpour', 'Head of Operations', '/static/img/amir.jpeg', 'https://www.linkedin.com/in/amirfzpr/'],
+                ['Xiyang Chen', 'Head of Technology', '/static/img/xiyang.jpeg', 'https://www.linkedin.com/in/xiyangchen/'],
+              ].map(profileCard)
+              }
+            </div>
+
+            <h3 className="mt-3 mb-4">Advisors</h3>
+
+            <div className="row profile-list d-flex justify-content-center">
+              {[
+                ['Alan Aspuru-Guzik', 'Academic Advisor', '/static/img/alan.jpeg', 'https://www.linkedin.com/in/alanaspuru/'],
+                ['Vik Pant', 'Business/Product Development Advisor', '/static/img/vik.jpeg', 'https://www.linkedin.com/in/vikpant/'],
+                ['Dave Scharbach', 'Business Advisor', '/static/img/dave.jpeg', 'https://www.linkedin.com/in/davidscharbach/'],
+              ].map(profileCard)
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     {/* <!-- Signup Section --> */}
     <section id="signup" className="signup-section">
       <div className="container">
@@ -177,3 +206,24 @@ export default () => (
     <script src="/static/js/grayscale.js"></script>
   </Fragment>
 );
+
+function profileCard([name, title, photo, linkedIn]: [string, string, string, string]) {
+  return (
+    <div key={name} className="col-lg-3 col-6">
+      <div className="media-top">
+        <img
+          className="profile rounded-circle mr-3"
+          src={photo} width="120px" />
+        <div className="media-body">
+          <a href={linkedIn}>
+            <b>{name} <i className="fa fa-linkedin-square"></i></b>
+          </a>
+          {title && (
+            <p>{title}</p>
+          )
+          }
+        </div>
+      </div>
+    </div>
+  );
+}
