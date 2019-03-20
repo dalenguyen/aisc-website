@@ -104,7 +104,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
       <EventRoutingHandler />
       <Header allEvents={allEvents} />
       <section id="welcome">
-        <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-ride="carousel" data-interval="6000">
+        <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-ride="carousel" data-interval="4500">
           <ol className="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
