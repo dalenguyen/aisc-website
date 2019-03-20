@@ -10,7 +10,7 @@ export default () => (
     `}</style>
     <ul className="useful-links list-unstyled">
       {[
-        ["YouTube", "https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1"],
+        ["YouTube", "https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg?view_as=subscriber&sub_confirmation=1"],
         ["LinkedIn", "https://www.linkedin.com/company/18994830/"],
         ["Twitter", "https://twitter.com/aisc_to"],
         ["Reddit", "https://www.reddit.com/user/tdls_to"],

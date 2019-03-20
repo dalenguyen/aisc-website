@@ -75,7 +75,9 @@ export default () => (
               <div className="d-flex h-100">
                 <div className="project-text w-100 my-auto text-center text-lg-right">
                   <h4 className="text-white">Research Media Hub</h4>
-                  <p className="mb-0 text-white-50">Engage with our expert community through our <a href="https://aisc.a-i.science" target="_blank">paper discussion events</a> in person or virtually to get exposed to the latest developments of in machine learning. Or read <a href="https://blog.a-i.science" target="_blank">our blog</a> to see brief reviews of the most recent and trending topics. </p>
+                  <p className="mb-0 text-white-50">
+                    Engage with our expert community through our <a href="https://aisc.a-i.science" target="_blank">paper discussion events</a>
+                    in person or virtually to get exposed to the latest developments of machine learning. Or read <a href="https://blog.a-i.science" target="_blank">our blog</a> to see brief reviews of the most recent and trending topics. </p>
                   <hr className="d-none d-lg-block mb-0 mr-0" />
                 </div>
               </div>
@@ -113,7 +115,7 @@ export default () => (
                 ['David Scharbach', 'Business Advisor', (
                   <Fragment>
                     10+ years of experience in communications roles<br />
-                    Founded of TMLS, the largest machine learning community in Toronto
+                    Founded TMLS, the largest machine learning community in Toronto
                   </Fragment>
                 ), '/static/img/dave.jpeg', 'https://www.linkedin.com/in/davidscharbach/'],
               ].map((([n, p, c, t, l]: any[]) => {
@@ -197,14 +199,23 @@ export default () => (
         </div>
 
         <div className="social d-flex justify-content-center">
-          <a href="#" className="mx-2">
+          <a href="https://twitter.com/aisc_to" className="mx-2" target="_blank">
             <i className="fab fa-twitter"></i>
           </a>
-          <a href="#" className="mx-2">
-            <i className="fab fa-facebook-f"></i>
+          <a href="https://www.linkedin.com/company/18994830/admin/" className="mx-2" target="_blank">
+            <i className="fab fa-linkedin"></i>
           </a>
-          <a href="#" className="mx-2">
+          <a href="https://github.com/Aggregate-Intellect" className="mx-2" target="_blank">
             <i className="fab fa-github"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg" className="mx-2" target="_blank">
+            <i className="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.reddit.com/user/tdls_to" className="mx-2" target="_blank">
+            <i className="fab fa-reddit"></i>
+          </a>
+          <a href="https://www.instagram.com/tdls_to/" className="mx-2" target="_blank">
+            <i className="fab fa-instagram"></i>
           </a>
         </div>
 

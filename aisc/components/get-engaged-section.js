@@ -211,7 +211,7 @@ and
     our YouTube channel.</p>
             <div className="mt-auto">
 
-              <a href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1" target="_blank">
+              <a href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg?view_as=subscriber&sub_confirmation=1" target="_blank">
                 <i className="fa fa-youtube fa-2x"></i>
               </a>
               <a href="https://twitter.com/intent/tweet?text=@tdls_to%20" target="_blank">

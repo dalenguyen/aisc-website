@@ -25,7 +25,7 @@ export default () => (
           </li>
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger"
-              href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">YouTube</a>
+              href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg?view_as=subscriber&sub_confirmation=1">YouTube</a>
           </li>
         </ul>
       </div>

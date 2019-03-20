@@ -11,20 +11,25 @@ export default () => (
         </li>
         <li className="list-inline-item">
             <a
-                href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1"
+                href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg?view_as=subscriber&sub_confirmation=1"
                 target="_blank"
             >
                 <i className="fa fa-youtube fa-2x" />
             </a>
         </li>
         <li className="list-inline-item">
-            <a href="https://www.reddit.com/user/tdls_to" target="_blank">
-                <i className="fa fa-reddit fa-2x" />
+            <a href="https://twitter.com/aisc_to" target="_blank">
+                <i className="fa fa-twitter fa-2x" />
             </a>
         </li>
         <li className="list-inline-item">
-            <a href="https://twitter.com/aisc_to" target="_blank">
-                <i className="fa fa-twitter fa-2x" />
+            <a href="https://www.linkedin.com/company/18994830/admin/" target="_blank">
+                <i className="fa fa-linkedin fa-2x" />
+            </a>
+        </li>
+        <li className="list-inline-item">
+            <a href="https://www.reddit.com/user/tdls_to" target="_blank">
+                <i className="fa fa-reddit fa-2x" />
             </a>
         </li>
         <li className="list-inline-item">

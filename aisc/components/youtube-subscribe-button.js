@@ -16,7 +16,7 @@ export default () => {
     <div>
       <a
         className="btn btn-danger"
-        href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+        href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg?view_as=subscriber&sub_confirmation=1">
         <i className="fa fa-youtube" style={{ fontSize: "1.5em" }}></i>&nbsp;Subscribe to AISC YouTube Channel
       </a>
     </div>

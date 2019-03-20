@@ -259,7 +259,7 @@ const SingleEvent = ({
                     <Fragment>
                       <a
                         target="_blank"
-                        href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                        href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg?view_as=subscriber&sub_confirmation=1">
                         <h5 style={{ display: 'inline-block' }}>
                           <span className={`badge badge-${{ 'countdown': 'danger', 'too_early': 'outline-danger' }[status]}`}>
                             Live in <Countdown expiresAt={date} />
@@ -343,7 +343,7 @@ const SingleEvent = ({
                 <a
                   className="btn btn-danger subscribe-youtube"
                   target="_blank"
-                  href="https://www.youtube.com/c/TorontoDeepLearningSeries?view_as=subscriber&sub_confirmation=1">
+                  href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg?view_as=subscriber&sub_confirmation=1">
                   <i className="fa fa-youtube"></i>&nbsp;Subscribe
                 </a>&nbsp;
                 <Link href="/get-engaged">
