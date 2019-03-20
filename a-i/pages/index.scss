@@ -1,5 +1,16 @@
+@import "../scss/variables.scss";
+
 #team {
   .credentials {
     font-size: 80%;
   }
+
+.team-title {
+  color: $gray-600;
 }
+
+.team-subtitle {
+  color: $primary-shade-3;
+}
+}
+

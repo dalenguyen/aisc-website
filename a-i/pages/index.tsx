@@ -90,8 +90,8 @@ export default () => (
       <div className="container">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto text-center">
-            <h2 className="mt-3 mb-4">Who We Are</h2>
-            <h3 className="mt-3 mb-4">Our Team</h3>
+            <h2 className="mt-3 mb-4 team-title">Who We Are</h2>
+            <h3 className="mt-3 mb-4 team-subtitle">Our Team</h3>
             <div className="row profile-list d-flex justify-content-center">
               {[
                 ['Amir Feizpour', 'Head of Operations', null, '/static/img/amir.jpeg', 'https://www.linkedin.com/in/amirfzpr/'],
@@ -100,8 +100,7 @@ export default () => (
               }
             </div>
 
-            <h3 className="mt-3 mb-4">Advisors</h3>
-
+            <h3 className="mt-3 mb-4 team-subtitle">Advisors</h3>
             <ul className="list-group">
               {[
                 ['Alan Aspuru-Guzik', 'Academic Advisor', (<Fragment>
@@ -136,7 +135,7 @@ export default () => (
                           <b>{n} <i className="fa fa-linkedin-square"></i></b>
                         </a>
                       </h4>
-                      {p && (<p>{p}</p>)}
+                      {p && (<p class="lead">{p}</p>)}
                       {c && (<p className="credentials">{c}</p>)}
                     </div>
                   </li>
