@@ -147,6 +147,7 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
         <a className="scroll-button" href="#main"><span></span></a>
         <div className="container aisc-intro">
           <h1 className="title">{SITE_NAME}</h1>
+          <div className="formerly">(formerly TDLS)</div>
         </div>
       </section>
       <main role="main" id="main">
