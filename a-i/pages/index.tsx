@@ -103,11 +103,6 @@ export default () => (
             <h3 className="mt-3 mb-4 team-subtitle">Advisors</h3>
             <ul className="list-group">
               {[
-                ['Alan Aspuru-Guzik', 'Academic Advisor', (<Fragment>
-                  Professor at University of Toronto<br />
-                  Chair at CIFAR <br />
-                  Founder at Zapata Computing, and Kebotix
-                </Fragment>), '/static/img/alan.jpeg', 'https://www.linkedin.com/in/alanaspuru/'],
                 ['Vik Pant', 'Business/Product Development Advisor', (
                   <Fragment>
                     PhD, Information Science<br />
