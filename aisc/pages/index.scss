@@ -14,11 +14,6 @@ main {
     bottom: 8%;
   }
 
-  .formerly {
-    font-size: 2.5rem;
-    // font-family: IM Fell English SC;
-  }
-
   .carousel-item > img {
     // prevent initial page flickering
     min-height: 41vw;
@@ -48,7 +43,7 @@ main {
   }
 
   .aisc-intro {
-    text-shadow: 0.3vh 0.3vh 1.5vh #222;
+    text-shadow: 0.3vw 0.5vw 1vw #222;
     position: absolute;
     bottom: 11vw;
     z-index: 1;
@@ -60,9 +55,22 @@ main {
       color: #5a5a5a;
     }
 
+    @media (max-width: 768px) {
+      text-shadow: 0.2vw 0.2vw 0.2vw #000;
+    }
+
+    .formerly {
+      font-size: 3vw;
+      // font-family: IM Fell English SC;
+      @media (max-width: 768px) {
+        font-size: 5vw;
+      }
+    }
+  
+
     .title {
       font-family: IM Fell English SC;
-      font-size: 5vw;
+      font-size: 5.5vw;
       letter-spacing: 0.1em;
       font-weight: bold;
       // text-transform: uppercase;
@@ -73,6 +81,9 @@ main {
       /* border-bottom-style: solid; */
       /* border-bottom-width: 2px; */
       text-align: center;
+      @media (max-width: 768px) {
+        font-size: 7vw;
+      }
     }
 
     .abstract, .authors {
