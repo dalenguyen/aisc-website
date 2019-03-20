@@ -118,6 +118,7 @@ export default () => (
                 ), '/static/img/vik.jpeg', 'https://www.linkedin.com/in/vikpant/'],
                 ['David Scharbach', 'Business Advisor', (
                   <Fragment>
+                    10+ years of experience in communications roles<br />
                     Founded of TMLS, the largest machine learning community in Toronto
                   </Fragment>
                 ), '/static/img/dave.jpeg', 'https://www.linkedin.com/in/davidscharbach/'],
