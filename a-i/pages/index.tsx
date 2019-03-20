@@ -122,12 +122,14 @@ export default () => (
                     Founded of TMLS, the largest machine learning community in Toronto
                   </Fragment>
                 ), '/static/img/dave.jpeg', 'https://www.linkedin.com/in/davidscharbach/'],
-              ].map((([n, p, c, t, l]) => {
+              ].map((([n, p, c, t, l]: any[]) => {
                 return (
                   <li className="list-group-item d-flex flex-col">
-                    <img
-                      className="profile rounded-circle mr-3 ml-3"
-                      src={t} style={{ width: "135px", height: "135px" }} />
+                    <a href={l} target="_blank">
+                      <img
+                        className="profile rounded-circle mr-3 ml-3"
+                        src={t} style={{ width: "135px", height: "135px" }} />
+                    </a>
                     <div className="media-body mt-2">
                       <h4>
                         <a href={l} target="_blank">
