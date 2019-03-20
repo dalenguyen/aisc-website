@@ -211,11 +211,13 @@ function profileCard([name, title, photo, linkedIn]: [string, string, string, st
   return (
     <div key={name} className="col-lg-3 col-6">
       <div className="media-top">
-        <img
-          className="profile rounded-circle mr-3"
-          src={photo} width="120px" />
-        <div className="media-body">
-          <a href={linkedIn}>
+        <a href={linkedIn} target="_blank">
+          <img
+            className="profile rounded-circle mr-3"
+            src={photo} width="135px" />
+        </a>
+        <div className="media-body mt-2">
+          <a href={linkedIn} target="_blank">
             <b>{name} <i className="fa fa-linkedin-square"></i></b>
           </a>
           {title && (
