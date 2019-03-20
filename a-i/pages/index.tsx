@@ -198,7 +198,7 @@ export default () => (
           </div>
         </div>
 
-        <div className="social d-flex justify-content-center">
+        <div className="social d-flex justify-content-center lead">
           <a href="https://twitter.com/aisc_to" className="mx-2" target="_blank">
             <i className="fab fa-twitter"></i>
           </a>
