@@ -107,7 +107,7 @@ export default () => (
               {[
                 ['Vik Pant', 'Business/Product Development Advisor', (
                   <Fragment>
-                    PhD, Information Science<br />
+                    PhD Candidate, Information Science<br />
                     Over 15 years in high performing enterprise SaaS vendors including Oracle, SAP, and Open Text<br />
                     Significant startup advising experience
                 </Fragment>
