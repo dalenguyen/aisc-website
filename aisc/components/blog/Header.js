@@ -9,9 +9,6 @@ const stylesheets = [
 function Header(props) {
   return (
     <Head>
-      {stylesheets && stylesheets.length > 0 && stylesheets.map((stylesheet, i) => {
-        return <link key={i} rel="stylesheet" href={stylesheet} />
-      })}
     </Head>
   )
 }

@@ -9,8 +9,8 @@ import PagePreview from '../components/blog/PagePreview'
 import { formatDate } from '../utils/blog/date'
 import { makeUrl, filterPosts } from '../utils/blog/content'
 import Hero from '../components/hero';
-import getConfig from 'next/config'
 
+import getConfig from 'next/config'
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 import CONFIG from '../content/index.json'

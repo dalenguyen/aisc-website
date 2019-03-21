@@ -10,6 +10,11 @@ import Hero from '../../components/hero';
 import CONFIG from '../../content/index.json'
 import { nameToLink } from '../../components/profile';
 
+
+import getConfig from 'next/config'
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
+
+
 function Index(props) {
   const { fullUrl = '' } = props.router.query;
   const filename = '/posts' + fullUrl.split("/blog")[1];
@@ -34,7 +39,7 @@ function Index(props) {
           </a>
         </Link>
       } />
-      <Hero />
+      <Hero title={`${SITE_ABBREV} Blog`} />
       <style jsx global>{`
         .content a {
           color: #0365A5;

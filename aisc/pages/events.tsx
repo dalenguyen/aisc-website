@@ -16,12 +16,13 @@ import './events.scss';
 
 
 import getConfig from 'next/config'
-const { SITE_NAME_FULL } = getConfig().publicRuntimeConfig;
+const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
 import { AllEvents, PublicEvent, MemberEvent, EventType } from '../../common/types';
+import Hero from '../components/hero';
 
 interface Filter {
   searchText: string | ""
@@ -227,6 +228,10 @@ const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
       </Head>
       <Header allEvents={allEvents} />
+      <Hero
+        title={`${SITE_ABBREV} Events`}
+        subtitle={`Find live stream, recordings, paper, code & more of all of our events.`}
+      />
       <main role="main" id="main">
         <EventFilters
           {...filter}
