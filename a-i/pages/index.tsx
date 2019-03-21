@@ -182,44 +182,31 @@ export default () => (
 
     {/* <!-- Contact Section --> */}
     <section className="contact-section bg-black">
-      <div className="container">
-        <div className="row">
-          <div className="offset-md-4 col-md-4 mb-5 mb-md-0">
-            <div className="card py-4 h-100">
-              <div className="card-body text-center">
-                <i className="fas fa-envelope text-primary mb-2"></i>
-                <h4 className="text-uppercase m-0">Email</h4>
-                <hr className="my-4" />
-                <div className="small text-black-50">
-                  <a href="mailto:events@a-i.science">events@a-i.science</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="social d-flex justify-content-center lead">
-          <a href="https://twitter.com/aisc_to" className="mx-2" target="_blank">
-            <i className="fab fa-twitter"></i>
-          </a>
-          <a href="https://www.linkedin.com/company/18994830/" className="mx-2" target="_blank">
-            <i className="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/Aggregate-Intellect" className="mx-2" target="_blank">
-            <i className="fab fa-github"></i>
-          </a>
-          <a href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg" className="mx-2" target="_blank">
-            <i className="fab fa-youtube"></i>
-          </a>
-          <a href="https://www.reddit.com/user/tdls_to" className="mx-2" target="_blank">
-            <i className="fab fa-reddit"></i>
-          </a>
-          <a href="https://www.instagram.com/tdls_to/" className="mx-2" target="_blank">
-            <i className="fab fa-instagram"></i>
-          </a>
-        </div>
-
+      <div className="social d-flex justify-content-center lead">
+        <a href="https://twitter.com/aisc_to" className="mx-2" target="_blank">
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/18994830/" className="mx-2" target="_blank">
+          <i className="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/Aggregate-Intellect" className="mx-2" target="_blank">
+          <i className="fab fa-github"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UCfk3pS8cCPxOgoleriIufyg" className="mx-2" target="_blank">
+          <i className="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.reddit.com/user/tdls_to" className="mx-2" target="_blank">
+          <i className="fab fa-reddit"></i>
+        </a>
+        <a href="https://www.instagram.com/tdls_to/" className="mx-2" target="_blank">
+          <i className="fab fa-instagram"></i>
+        </a>
+        <a href="mailto:events@a-i.science" className="mx-2">
+          <i className="fa fa-envelope"></i>
+        </a>
       </div>
+
     </section>
 
 
