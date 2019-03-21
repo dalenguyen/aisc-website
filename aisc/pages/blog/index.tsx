@@ -3,7 +3,6 @@ import { Fragment } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import BlogHead from '../../components/blog/Header';
-import ThemesAndSuch from '../../components/themes-and-such';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import PagePreview from '../../components/blog/PagePreview'
@@ -20,7 +19,6 @@ function Index({ }) {
       <Head>
         <title>{`${CONFIG.siteTitle} - Index`}</title>
         <meta name="description" content={CONFIG.description} />
-        <ThemesAndSuch />
       </Head>
       <BlogHead />
       <Header before={

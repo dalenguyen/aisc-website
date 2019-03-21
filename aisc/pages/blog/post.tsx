@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { withRouter } from 'next/router'
 import BlogHead from '../../components/blog/Header';
-import ThemesAndSuch from '../../components/themes-and-such';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Hero from '../../components/blog/Hero';
@@ -25,7 +24,6 @@ function Index(props) {
       <Head>
         <title>{`${pageJson.title} | ${CONFIG.siteTitle}`}</title>
         <meta name="description" content={CONFIG.description} />
-        <ThemesAndSuch />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossOrigin="anonymous" />
       </Head>
       <BlogHead />

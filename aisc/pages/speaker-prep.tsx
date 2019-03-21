@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
-import ThemesAndSuch from '../components/themes-and-such';
 import { getEventById } from '../utils/event-fetch';
 import { toLongDateString } from '../utils/datetime';
 import Chart from "react-google-charts";
@@ -90,7 +89,6 @@ const SpeakerPrep = ({ event }) => {
         <title>Presentation Preparation | {SITE_NAME_FULL}</title>
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
         <link rel="canonical" href="./index.html" />
-        <ThemesAndSuch />
       </Head>
       <Header allEvents={null} />
       <main role="main" id="main">

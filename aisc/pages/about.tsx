@@ -4,7 +4,6 @@ import fetch from 'isomorphic-unfetch'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Head from 'next/head'
-import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
 const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 import getConfig from 'next/config'
@@ -13,7 +12,6 @@ const About = ({ contributors }) => (
   <Fragment>
     <Head>
       <title>About {SITE_ABBREV} | {SITE_NAME_FULL}</title>
-      <ThemesAndSuch />
     </Head>
     <Header />
     <section className="container" id="about_us">

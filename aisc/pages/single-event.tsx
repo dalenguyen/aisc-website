@@ -5,7 +5,6 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import { Countdown } from '../components/live-button';
 import Head from 'next/head'
-import ThemesAndSuch from '../components/themes-and-such';
 import SharedBodyScripts from '../components/shared-body-scripts'
 import { getEventById, getLinkedInProfiles } from '../utils/event-fetch';
 import { nameToLink } from '../components/profile';
@@ -27,7 +26,7 @@ import getConfig from 'next/config'
 const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 import './single-event.scss';
-import DonateButton, { DonateForm } from '../components/donate-button';
+import { DonateForm } from '../components/donate-button';
 
 const SingleEvent = ({
   event: ev,
@@ -172,7 +171,6 @@ const SingleEvent = ({
         <Head>
           <title>{SEOTitle(ev)} | {ev.type} | {SITE_NAME_FULL}</title>
           <meta name="description" content={desc} />
-          <ThemesAndSuch />
         </Head>
         <Header before={
           <Link href="/events">

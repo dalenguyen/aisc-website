@@ -4,14 +4,12 @@ import ReactMarkdown from 'react-markdown';
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Head from 'next/head'
-import ThemesAndSuch from '../components/themes-and-such';
 const content = require(`../docs/code-of-conduct.md`);
 
 const CodeOfConduct = () => (
   <Fragment>
     <Head>
       <title>Code of Conduct</title>
-      <ThemesAndSuch />
     </Head>
     <Header />
     <style jsx>{`

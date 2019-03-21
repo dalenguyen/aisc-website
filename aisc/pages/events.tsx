@@ -9,7 +9,6 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
-import ThemesAndSuch from '../components/themes-and-such';
 import EventList from '../components/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import { getQueryStringValue, mobileCheck } from '../../common/utils';
@@ -226,7 +225,6 @@ const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
       <Head>
         <title>Events | {SITE_NAME_FULL}</title>
         <meta name="description" content="Community of intellectually curious individuals centered around technical review and discussion of advances in machine learning." />
-        <ThemesAndSuch />
       </Head>
       <Header allEvents={allEvents} />
       <main role="main" id="main">

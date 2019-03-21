@@ -7,7 +7,6 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
-import ThemesAndSuch from '../components/themes-and-such';
 import EventCarousel, { filterEvents } from '../components/event-carousel';
 import { ShowcaseEventCard } from '../components/event-card';
 import { ZoomLevel } from '../components/event-carousel';
@@ -99,7 +98,6 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
         />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-        <ThemesAndSuch />
       </Head>
       <EventRoutingHandler />
       <Header allEvents={allEvents} />
