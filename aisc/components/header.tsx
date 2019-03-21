@@ -44,18 +44,16 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
 
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item dropdown">
+              <li className="nav-item">
                 <Link href="/events">
                   <a className="nav-link">
                     Events <i className="fa fa-search"></i>
                   </a>
                 </Link>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item">
                 <Link href="/blog">
-                  <a className="nav-link">
-                    Blog
-                  </a>
+                  <a className="nav-link">Blog</a>
                 </Link>
               </li>
               <li className="nav-item">
@@ -63,7 +61,7 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
                   <a className="nav-link">Get Engaged</a>
                 </Link>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item">
                 <Link href="/about">
                   <a className="nav-link">About Us</a>
                 </Link>
