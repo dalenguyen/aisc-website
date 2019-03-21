@@ -5,8 +5,8 @@ import Link from 'next/link'
 function PageLink(props) {
   return (
     <Link href={`post?fullUrl=${props.href}`} as={props.href}>
-      <a className={`b black o-80 glow no-underline lh-solid ${props.className}`}>
-        { props.children }
+      <a className={`${props.className}`}>
+        {props.children}
       </a>
     </Link>
   )
@@ -16,11 +16,13 @@ function PagePreview(props) {
   return (
     <div className="mb4 pb2 bb b--light-gray">
       <PageLink href={props.href} className="f3">
-        { props.title }
+        <h3>
+          {props.title}
+        </h3>
       </PageLink>
       {props.preview && (
         <p className="mv1 o-60">
-          { props.preview }
+          {props.preview}
           <PageLink href={props.href}>
             <span> »</span>
           </PageLink>
@@ -28,8 +30,8 @@ function PagePreview(props) {
       )}
       {props.date && (
         <small className="db ttu o-40">
-          <time key={ new Date(props.date).toISOString() }>
-            { props.date }
+          <time key={new Date(props.date).toISOString()}>
+            {props.date}
           </time>
         </small>
       )}

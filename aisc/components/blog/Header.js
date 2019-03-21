@@ -17,9 +17,6 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  siteTitle: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  stylesheets: PropTypes.array,
 }
 
 export default Header

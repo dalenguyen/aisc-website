@@ -30,7 +30,7 @@ function Index(props) {
       </Head>
       <BlogHead />
       <Header before={
-        <Link href="/blog">
+        <Link href="/blog/">
           <a ><i className="top-go-back-link fa fa-arrow-circle-left"></i>
           </a>
         </Link>
@@ -41,7 +41,6 @@ function Index(props) {
           color: #0365A5;
           text-decoration: none;
           border-bottom: 1px solid #DFDFDF;
-          transition: all 300ms ease;
         }
 
         a:hover, a:focus {
@@ -72,11 +71,11 @@ function Index(props) {
 
 function Body({ author, title, editor, bodyHtml }) {
   return (
-    <div className="content center mw7 pa3 pa4-ns">
+    <article className="content center mw7 pa3 pa4-ns">
       <h1 className="mt0 lh-title">{title}</h1>
       <p>Written by <b>{author}</b> | Edited by <b>{editor}</b></p>
       <div dangerouslySetInnerHTML={{ __html: bodyHtml }}></div>
-    </div >
+    </article>
   )
 }
 
