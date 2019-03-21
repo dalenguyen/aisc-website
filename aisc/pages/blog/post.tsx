@@ -5,10 +5,12 @@ import Page from '../../components/blog/Page'
 import CONFIG from '../../content/index.json'
 
 function Index(props) {
+  const { fullUrl } = props.router.query;
+  const filename = '/posts' + fullUrl.split("/blog")[1];
   let pageJson = {}
   if (props.router.query) {
     if (props.router.query.fullUrl) {
-      pageJson = require(`../content${props.router.query.fullUrl}.json`)
+      pageJson = require(`../../content${filename}.json`)
     }
   }
 

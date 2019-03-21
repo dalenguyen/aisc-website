@@ -60,9 +60,12 @@ module.exports = withTypescript(withCSS(withSass({
       }
     });
 
+    const blogPaths = exportBlogPathMap();
+
     return {
       ...publicPaths,
       ...internalPaths,
+      ...blogPaths
     };
   },
   genPublicPaths,
@@ -83,7 +86,7 @@ function exportBlogPathMap() {
       const obj = {}
       if (fileObj.paths) {
         // Handle custom paths / aliases.
-        obj.page = `/blog/post`
+        obj.page = `/blog`
         obj.query = {
           fullUrl: file.match(/^content(.+)\.json$/)[1]
         }
@@ -92,7 +95,7 @@ function exportBlogPathMap() {
         })
       } else if (file.indexOf('content/posts') === 0) {
         // Handle posts.
-        const page = BLOG_PATH_PREFIX + file.split('content').join('').split('.json').join('')
+        const page = BLOG_PATH_PREFIX + file.split('content/posts').join('').split('.json').join('')
         console.log("ppppppppp", page);
         posts[page] = {
           page: `/blog/post`,

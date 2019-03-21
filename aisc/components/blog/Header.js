@@ -9,9 +9,6 @@ const stylesheets = [
 function Header(props) {
   return (
     <Head>
-      <title>{props.siteTitle}</title>
-      <meta name="description" content={props.description} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
       {stylesheets && stylesheets.length > 0 && stylesheets.map((stylesheet, i) => {
         return <link key={i} rel="stylesheet" href={stylesheet} />
       })}
