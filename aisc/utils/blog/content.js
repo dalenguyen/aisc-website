@@ -1,5 +1,5 @@
 export function makeUrl(article) {
-  return `${article.dir.split('content').join('')}/${article.base.split('.json').join('')}`
+  return `/blog${article.dir.split('content/posts').join('')}/${article.base.split('.json').join('')}`
 }
 
 export function filterPosts(summaryJson) {

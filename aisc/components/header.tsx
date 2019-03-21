@@ -47,7 +47,7 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
                 </Link>
               </li>
               <li className="nav-item dropdown">
-                <Link href="//blog.a-i.science">
+                <Link href="/blog">
                   <a className="nav-link">
                     Blog
                   </a>
