@@ -14,7 +14,7 @@ export default () => (
         ["LinkedIn", "https://www.linkedin.com/company/18994830/"],
         ["Twitter", "https://twitter.com/aisc_to"],
         ["Reddit", "https://www.reddit.com/user/tdls_to"],
-        ["Instagram", "https://www.instagram.com/tdls_to/"],
+        ["Instagram", "https://www.instagram.com/aisc_to/"],
         ["Email", "mailto:events@a-i.science"],
       ].map(([name, link]) => (
         <li key={name}>

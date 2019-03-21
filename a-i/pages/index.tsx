@@ -199,7 +199,7 @@ export default () => (
         <a href="https://www.reddit.com/user/tdls_to" className="mx-2" target="_blank">
           <i className="fab fa-reddit"></i>
         </a>
-        <a href="https://www.instagram.com/tdls_to/" className="mx-2" target="_blank">
+        <a href="https://www.instagram.com/aisc_to/" className="mx-2" target="_blank">
           <i className="fab fa-instagram"></i>
         </a>
         <a href="mailto:events@a-i.science" className="mx-2">

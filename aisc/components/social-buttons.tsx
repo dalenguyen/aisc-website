@@ -38,7 +38,7 @@ export default () => (
             </a>
         </li>
         <li className="list-inline-item">
-            <a href="https://www.instagram.com/tdls_to/" target="_blank">
+            <a href="https://www.instagram.com/aisc_to/" target="_blank">
                 <i className="fa fa-instagram fa-2x" />
             </a>
         </li>

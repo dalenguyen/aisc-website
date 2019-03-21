@@ -29,11 +29,10 @@ export default () => (
         }
       }
     `}</style>
-    <footer className="footer navbar-expand-lg navbar-dark">
+    <footer className="footer navbar-expand-lg navbar-dark text-center">
       <div className="container">
-
         <div className="row">
-          <div className="col-12 offset-sm-3 col-sm-3">
+          <div className="col-12 offset-sm-2 col-sm-3">
             <h5 className="mb-3">Get Engaged</h5>
             <GetEngaged />
           </div>
@@ -46,20 +45,11 @@ export default () => (
             <UsefulLinksSection />
           </div>
         </div>
-        <div className="col-12 col-sm-6">
-          <div className="copyright">
-            &copy; 2018-2019&nbsp;
+        <div className="copyright text-center mt-4">
+          &copy; 2018-2019&nbsp;
           <a href="//a-i.science">
-              Aggregate Intellect Inc.
+            Aggregate Intellect Inc.
           </a>
-          </div>
-          <ul className="list-unstyled">
-            <li>
-              <Link href="/code-of-conduct">
-                <a>Code of Conduct</a>
-              </Link>
-            </li>
-          </ul>
         </div>
       </div>
     </footer>

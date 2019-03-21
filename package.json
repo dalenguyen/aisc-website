@@ -4,10 +4,10 @@
   "description": "Source code for AISC website.",
   "main": "main.js",
   "scripts": {
-    "aisc": "npm run dev-sync-blog && npm run sync-data && npm run aisc-serve",
+    "aisc": "npm run aisc-sync-blog && npm run sync-data && npm run aisc-serve",
     "aisc-serve": "concurrently \"next aisc -p 3000\" \"npm run dev-watch-blog\"",
     "member": "concurrently \"next member -p 3500\" \"npm run member-fb\"",
-    "a-i": "npm run dev-sync-blog && npm run sync-data && next a-i -p 3100",
+    "a-i": "npm run aisc-sync-blog && npm run sync-data && next a-i -p 3100",
     "dev-watch-blog": "cd aisc && processmd content/**/*.md --highlight-code=0 --outputDir content --preview 110 --summaryOutput content/summary.json --watch",
     "aisc-sync-blog": "cd aisc && processmd content/**/*.md --highlight-code=0 --outputDir content --preview 110 --summaryOutput content/summary.json",
     "member-fb-watch": "cd member && tsc --watch",

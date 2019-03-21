@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-
+import Link from 'next/link';
 
 export default () => (
   <Fragment>
@@ -12,11 +12,14 @@ export default () => (
       {[
         ["Contribute", "/get-engaged#contribute"],
         ["For Organizations", "/get-engaged#for-organizations"],
+        ["Code of Conduct", "/code-of-conduct"]
       ].map(([name, link]) => (
         <li key={name}>
-          <a href={link}>
-            <p className="card-title">{name}</p>
-          </a>
+          <Link href={link}>
+            <a>
+              <p className="card-title">{name}</p>
+            </a>
+          </Link>
         </li>
       ))}
     </ul>
