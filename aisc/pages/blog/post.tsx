@@ -68,7 +68,7 @@ function Index(props) {
   )
 }
 
-function Body({ author, title, editors, bodyHtml }) {
+function Body({ author, title, editors = "", bodyHtml }) {
   return (
     <article className="content center mw7 pa3 pa4-ns">
       <h1 className="mt0 lh-title">{title}</h1>
