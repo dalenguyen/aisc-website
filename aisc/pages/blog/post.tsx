@@ -6,7 +6,7 @@ import { withRouter } from 'next/router'
 import BlogHead from '../../components/blog/Header';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import Hero from '../../components/blog/Hero';
+import Hero from '../../components/hero';
 import CONFIG from '../../content/index.json'
 import { nameToLink } from '../../components/profile';
 

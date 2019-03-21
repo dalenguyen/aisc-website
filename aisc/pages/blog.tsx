@@ -2,16 +2,19 @@ import React from 'react'
 import { Fragment } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import BlogHead from '../../components/blog/Header';
-import Header from '../../components/header';
-import Footer from '../../components/footer';
-import PagePreview from '../../components/blog/PagePreview'
-import { formatDate } from '../../utils/blog/date'
-import { makeUrl, filterPosts } from '../../utils/blog/content'
-import Hero from '../../components/blog/Hero';
+import BlogHead from '../components/blog/Header';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import PagePreview from '../components/blog/PagePreview'
+import { formatDate } from '../utils/blog/date'
+import { makeUrl, filterPosts } from '../utils/blog/content'
+import Hero from '../components/hero';
+import getConfig from 'next/config'
 
-import CONFIG from '../../content/index.json'
-import SUMMARY_JSON from '../../content/summary.json'
+const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
+
+import CONFIG from '../content/index.json'
+import SUMMARY_JSON from '../content/summary.json'
 
 function Index({ }) {
   return (
@@ -27,7 +30,9 @@ function Index({ }) {
           </a>
         </Link>
       } />
-      <Hero />
+      <Hero
+        title={`${SITE_ABBREV} Blog`}
+      />
       <Body summaryJson={SUMMARY_JSON} />
       <Footer />
     </Fragment>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Header from '../header'
 import Header1 from './Header'
 import Footer from '../footer'
-import Hero from './Hero'
+import Hero from '../hero'
 import './Page.scss';
 
 function Page(props) {
