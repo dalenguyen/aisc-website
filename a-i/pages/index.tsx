@@ -202,7 +202,7 @@ export default () => (
           <a href="https://twitter.com/aisc_to" className="mx-2" target="_blank">
             <i className="fab fa-twitter"></i>
           </a>
-          <a href="https://www.linkedin.com/company/18994830/admin/" className="mx-2" target="_blank">
+          <a href="https://www.linkedin.com/company/18994830/" className="mx-2" target="_blank">
             <i className="fab fa-linkedin"></i>
           </a>
           <a href="https://github.com/Aggregate-Intellect" className="mx-2" target="_blank">

@@ -23,7 +23,7 @@ export default () => (
             </a>
         </li>
         <li className="list-inline-item">
-            <a href="https://www.linkedin.com/company/18994830/admin/" target="_blank">
+            <a href="https://www.linkedin.com/company/18994830/" target="_blank">
                 <i className="fa fa-linkedin fa-2x" />
             </a>
         </li>
