@@ -1,11 +1,17 @@
 import React from 'react'
+import { Fragment } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 import { withRouter } from 'next/router'
-import Page from '../../components/blog/Page'
-
+import BlogHead from '../../components/blog/Header';
+import ThemesAndSuch from '../../components/themes-and-such';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import Hero from '../../components/blog/Hero';
 import CONFIG from '../../content/index.json'
 
 function Index(props) {
-  const { fullUrl } = props.router.query;
+  const { fullUrl = '' } = props.router.query;
   const filename = '/posts' + fullUrl.split("/blog")[1];
   let pageJson = {}
   if (props.router.query) {
@@ -15,7 +21,21 @@ function Index(props) {
   }
 
   return (
-    <div>
+    <Fragment>
+      <Head>
+        <title>{`${pageJson.title} | ${CONFIG.siteTitle}`}</title>
+        <meta name="description" content={CONFIG.description} />
+        <ThemesAndSuch />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossOrigin="anonymous" />
+      </Head>
+      <BlogHead />
+      <Header before={
+        <Link href="/blog">
+          <a ><i className="top-go-back-link fa fa-arrow-circle-left"></i>
+          </a>
+        </Link>
+      } />
+      <Hero />
       <style jsx global>{`
         .content a {
           color: #0365A5;
@@ -44,30 +64,18 @@ function Index(props) {
           border: 1px solid #DDD;
         }
       `}</style>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossOrigin="anonymous" />
-      <Page
-        body={Body(pageJson)}
-        siteTitle={`${CONFIG.siteTitle} - ${pageJson.title}`}
-        heroTitle={CONFIG.siteTitle}
-        description={CONFIG.description}
-        stylesheets={CONFIG.stylesheets}
-        topLinks={CONFIG.topLinks}
-        backgroundClass={CONFIG.backgroundClass}
-        copyright={CONFIG.copyright}
-        siteId={CONFIG.siteId}
-        author={CONFIG.author}
-        editor={CONFIG.editor}
-      />
-    </div>
+      <Body {...pageJson} />
+      <Footer />
+    </Fragment>
   )
 }
 
-function Body(props) {
+function Body({ author, title, editor, bodyHtml }) {
   return (
     <div className="content center mw7 pa3 pa4-ns">
-      <h1 className="mt0 lh-title">{props.title}</h1>
-      <p>Written by <b>{props.author}</b> | Edited by <b>{props.editor}</b></p>
-      <div dangerouslySetInnerHTML={{ __html: props.bodyHtml }}></div>
+      <h1 className="mt0 lh-title">{title}</h1>
+      <p>Written by <b>{author}</b> | Edited by <b>{editor}</b></p>
+      <div dangerouslySetInnerHTML={{ __html: bodyHtml }}></div>
     </div >
   )
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import BlogHead from '../../components/blog/Header';
 import ThemesAndSuch from '../../components/themes-and-such';
 import Header from '../../components/header';
+import Footer from '../../components/footer';
 import PagePreview from '../../components/blog/PagePreview'
 import { formatDate } from '../../utils/blog/date'
 import { makeUrl, filterPosts } from '../../utils/blog/content'
@@ -30,23 +31,10 @@ function Index({ }) {
       } />
       <Hero />
       <Body summaryJson={SUMMARY_JSON} />
+      <Footer />
     </Fragment>
   )
 }
-
-{/* <div>
-<Page
-  siteTitle={`${CONFIG.siteTitle} - Index`}
-  heroTitle={CONFIG.siteTitle}
-  description={CONFIG.description}
-  stylesheets={CONFIG.stylesheets}
-  topLinks={CONFIG.topLinks}
-  backgroundClass={CONFIG.backgroundClass}
-  body={Body({ summaryJson: SUMMARY_JSON })}
-  copyright={CONFIG.copyright}
-  siteId={CONFIG.siteId}
-/>
-</div> */}
 
 function Body({ summaryJson }) {
   const postList = filterPosts(summaryJson)

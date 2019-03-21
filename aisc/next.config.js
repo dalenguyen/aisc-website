@@ -96,7 +96,6 @@ function exportBlogPathMap() {
       } else if (file.indexOf('content/posts') === 0) {
         // Handle posts.
         const page = BLOG_PATH_PREFIX + file.split('content/posts').join('').split('.json').join('')
-        console.log("ppppppppp", page);
         posts[page] = {
           page: `/blog/post`,
           query: {
@@ -105,7 +104,5 @@ function exportBlogPathMap() {
         }
       }
     })
-  return Object.assign({}, {
-    [`${BLOG_PATH_PREFIX}`]: { page: '/blog/' }
-  }, posts, paths) // aliases
+  return Object.assign({}, posts, paths) // aliases
 }
