@@ -8,6 +8,7 @@ import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Hero from '../../components/blog/Hero';
 import CONFIG from '../../content/index.json'
+import { nameToLink } from '../../components/profile';
 
 function Index(props) {
   const { fullUrl = '' } = props.router.query;
@@ -67,11 +68,13 @@ function Index(props) {
   )
 }
 
-function Body({ author, title, editor, bodyHtml }) {
+function Body({ author, title, editors, bodyHtml }) {
   return (
     <article className="content center mw7 pa3 pa4-ns">
       <h1 className="mt0 lh-title">{title}</h1>
-      <p>Written by <b>{author}</b> | Edited by <b>{editor}</b></p>
+      <p>Written by <b>{nameToLink(author)}</b> | Edited by {editors.split(",").map(
+        (e: string) => <b className="ml-1 mr-1">{nameToLink(e.trim())}</b>
+      )}</p>
       <div dangerouslySetInnerHTML={{ __html: bodyHtml }}></div>
     </article>
   )

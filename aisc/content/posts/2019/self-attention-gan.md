@@ -2,7 +2,7 @@
 title: GANs Need Some Attention, Too
 date: 2019-02-09
 author: Bilal Shahid
-editor: Taraneh Khazaei, Lindsay Brin
+editors: Taraneh Khazaei, Lindsay Brin
 ---
 
 --- 

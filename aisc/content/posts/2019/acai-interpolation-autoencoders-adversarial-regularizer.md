@@ -2,7 +2,7 @@
 title: Interpolation in Autoencoders via an Adversarial Regularizer
 date: 2019-03-07
 author: Taraneh Khazaei
-editor: Mahsa Rahimi, Serena McDonnell
+editors: Mahsa Rahimi, Serena McDonnell
 ---
 
 ---

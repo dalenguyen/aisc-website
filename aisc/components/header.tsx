@@ -3,14 +3,19 @@ import Link from 'next/link';
 import LiveButton from './live-button';
 import DonateButton from './donate-button';
 import SocialButtons from './social-buttons';
+import Head from 'next/head';
 import './header.scss';
 import { AllEvents } from '../../common/types';
+import ThemesAndSuch from '../components/themes-and-such';
 import getConfig from 'next/config'
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: Component | null }) => {
   return (
     <Fragment>
+      <Head>
+        <ThemesAndSuch />
+      </Head>
       <header className="main-navbar">
         <nav
           className="navbar navbar-expand-md fixed-top navbar-inverse"
