@@ -23,6 +23,7 @@ export default ({ className }: { className?: string }) => {
   return (
     <DonateForm className={className}>
       <input
+        className="donate-button"
         type="image"
         src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
         name="submit"
