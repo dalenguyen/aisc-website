@@ -189,6 +189,7 @@ const SingleEvent = ({
                     allowFullScreen
                   />) : (
                     <div className="empty-info">
+                      <div className="background"></div>
                       <p className="lead">
                         No recording or live stream video available yet.
                         </p>

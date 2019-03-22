@@ -31,13 +31,28 @@
 
 
   .empty-info {
-    padding: 3rem;
+    padding: 7rem;
     user-select: none;
-    background-color: #eee;
     display: flex;           /* establish flex container */
     flex-direction: column;  /* make main axis vertical */
     justify-content: center; /* center items vertically, in this case */
     align-items: center;     /* center items horizontally, in this case */
+    position: relative;
+    p {
+      color: white;
+
+    }
+    .background {
+      position: absolute;
+      top: 0; left:0; right: 0;bottom: 0;
+      background-image: url(/static/images/logo-medium.png);
+      background-color: black;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: blur(7px) brightness(50%);
+      z-index: -1;
+    }
   }
 
   .subscribe-youtube {
