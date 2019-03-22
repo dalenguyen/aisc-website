@@ -14,10 +14,8 @@ We recommend moving this block and the preceding CSS link to the HEAD of your HT
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   /* Padding below the footer and lighter body text */
-  padding-top: 4rem;
+  padding-top: 3.7rem;
   padding-bottom: 0;
   color: #5a5a5a;
   --main-color: #5a5a5a;

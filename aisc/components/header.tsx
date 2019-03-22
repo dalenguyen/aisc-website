@@ -18,8 +18,7 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
       </Head>
       <header className="main-navbar">
         <nav
-          className="navbar navbar-expand-md fixed-top navbar-inverse"
-          style={{ backgroundColor: 'white' }}
+          className="navbar navbar-expand-md fixed-top navbar-dark bg-dark"
         >
           {before}
           <Link href="/">
