@@ -42,7 +42,7 @@ function Index({ }) {
 function Body({ summaryJson }) {
   const postList = filterPosts(summaryJson)
   return (
-    <section className="mt-4 mb-4 postlist container text-center">
+    <section className="mt-5 mb-5 postlist container text-center">
       {postList.map((article, i) => {
         const href = makeUrl(article)
         const date = formatDate(article.date)

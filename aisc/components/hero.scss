@@ -1,0 +1,13 @@
+.title-hero {
+  position: relative;
+  .backdrop {
+    position: absolute;
+    top: -10px; left:-10px; right:-10px;bottom: -10px;
+    background-image: url(/static/images/socrates.jpeg);
+    background-size: 100%;
+    background-position: center 30%;
+    filter: blur(7px) brightness(60%) ;
+    z-index: -1;
+  }
+
+}

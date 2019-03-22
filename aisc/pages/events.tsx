@@ -232,7 +232,7 @@ const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
         title={`${SITE_ABBREV} Events`}
         subtitle={`Find live stream, recordings, paper, code & more of all of our events.`}
       />
-      <main role="main" id="main">
+      <main role="main" id="main" className="mt-4">
         <EventFilters
           {...filter}
           onChange={(filter) => setEventFilter({ filter })}
