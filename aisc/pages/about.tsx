@@ -9,7 +9,6 @@ const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 import getConfig from 'next/config'
 
 const About = ({ contributors }) => {
-  console.log(contributors)
   return (
     <Fragment>
       <Head>

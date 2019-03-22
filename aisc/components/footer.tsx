@@ -9,12 +9,13 @@ export default () => (
   <Fragment>
     <style jsx>{`
       .footer {
-        background-color: #5a5a5a;
+        background-color: #111;
         color: #fff;
         margin-top: 30px;
         padding-top: 20px;
         padding-bottom: 20px;
       }
+      
       .footer a {
         color: white;
       }
