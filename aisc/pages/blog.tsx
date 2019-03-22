@@ -9,6 +9,7 @@ import PagePreview from '../components/blog/PagePreview'
 import { formatDate } from '../utils/blog/date'
 import { makeUrl, filterPosts } from '../utils/blog/content'
 import Hero from '../components/hero';
+import { getEventsAndGroupings } from '../utils/event-fetch';
 
 import getConfig from 'next/config'
 const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
@@ -16,7 +17,7 @@ const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 import CONFIG from '../content/index.json'
 import SUMMARY_JSON from '../content/summary.json'
 
-function Index({ }) {
+function Index({ allEvents }) {
   return (
     <Fragment>
       <Head>
@@ -24,12 +25,7 @@ function Index({ }) {
         <meta name="description" content={CONFIG.description} />
       </Head>
       <BlogHead />
-      <Header before={
-        <Link href="/events">
-          <a ><i className="top-go-back-link fa fa-arrow-circle-left"></i>
-          </a>
-        </Link>
-      } />
+      <Header />
       <Hero
         title={`${SITE_ABBREV} Blog`}
       />

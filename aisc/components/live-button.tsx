@@ -44,7 +44,7 @@ function singularOrPlural(num: number, unit: string) {
   }
 }
 
-export default ({ allEvents }: { allEvents: AllEvents }) => {
+export default ({ allEvents }: { allEvents?: AllEvents }) => {
 
   const [{ upcomingEvent: prefetched }, setUpcomingEventData] = useState<{ upcomingEvent: PublicEvent | null }>({
     upcomingEvent: null

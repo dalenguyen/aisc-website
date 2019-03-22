@@ -7,10 +7,8 @@ import Head from 'next/head';
 import './header.scss';
 import { AllEvents } from '../../common/types';
 import ThemesAndSuch from '../components/themes-and-such';
-import getConfig from 'next/config'
-const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
-export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: Component | null }) => {
+export default ({ allEvents, before = null }: { allEvents?: AllEvents, before?: Component | null }) => {
   return (
     <Fragment>
       <Head>
