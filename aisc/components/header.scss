@@ -1,12 +1,24 @@
 
-.main-navbar .nav-item a {
-  color: black;
-  font-weight: 500;
-  letter-spacing: 0.07em;
-}
+.main-navbar {
+  > .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .nav-item a {
+    color: black;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+  }
+  .dropdown-menu a {
+    color: black;
+  }
 
-.main-navbar .dropdown-menu a {
-  color: black;
+  .logo {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(1px 1px 1px #333);
+  }
+  
 }
 
 .navbar {

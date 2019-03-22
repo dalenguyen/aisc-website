@@ -24,7 +24,10 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
           {before}
           <Link href="/">
             <a className="navbar-brand">
-              {SITE_ABBREV}
+              <img
+                className="logo"
+                src="/static/images/logo-small.png"
+              />
             </a>
           </Link>
           <LiveButton allEvents={allEvents} />
