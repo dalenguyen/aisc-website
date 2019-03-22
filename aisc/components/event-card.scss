@@ -3,6 +3,14 @@
   object-fit: cover;
 }
 
+.card-img-placeholder {
+  background-image: url(/static/images/logo-medium.png);
+  background-color: black;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .event {
   margin: 1%;
   margin-bottom: 3%;

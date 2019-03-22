@@ -62,13 +62,20 @@ const TypeBadge = ({ event: ev }: { event: PublicEvent }) => {
 
 const Thumb = ({ event: ev, height }: { event: PublicEvent, height: string }) => {
   return (
-    <img className="card-img-top"
-      src={ev.video ? ytThumb(ev.video) : '/static/images/placeholder.jpeg'}
-      alt="Card image cap"
-      style={{
-        height
-      }}
-    />
+    ev.video ? (
+      <img className="card-img-top"
+        src={ytThumb(ev.video)}
+        alt="Card image cap"
+        style={{
+          height,
+        }}
+      />
+    ) :
+      <div className="card-img-placeholder"
+        style={{
+          height,
+        }}>
+      </div>
   );
 }
 
