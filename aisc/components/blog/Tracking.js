@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function getGaScript (siteId) {
+function getGaScript(siteId) {
   return `
   (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
   function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -15,13 +15,9 @@ function getGaScript (siteId) {
 function Tracking(props) {
   return (
     <div>
-      <script dangerouslySetInnerHTML={{ __html: getGaScript(props.siteId) }} />
+      <script dangerouslySetInnerHTML={{ __html: getGaScript('UA-131780670-1') }} />
     </div>
   )
-}
-
-Tracking.propTypes = {
-  siteId: PropTypes.string.isRequired,
 }
 
 export default Tracking
