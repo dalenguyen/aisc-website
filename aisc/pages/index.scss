@@ -28,6 +28,9 @@ main {
     bottom: 10%;
     opacity: 0.7;
     background-color: #000 !important;
+    * {
+      font-weight: 400;
+    }
   }
 
   .carousel-taint {
@@ -43,7 +46,7 @@ main {
   }
 
   .aisc-intro {
-    text-shadow: 0.3vw 0.5vw 1vw #222;
+    text-shadow: 0.2vw 0.3vw 0.7vw #222;
     position: absolute;
     bottom: 11vw;
     z-index: 1;
