@@ -18,7 +18,7 @@ export default ({ allEvents, before = null }: { allEvents: AllEvents, before?: C
       </Head>
       <header className="main-navbar">
         <nav
-          className="navbar navbar-expand-md fixed-top navbar-dark bg-dark"
+          className="navbar navbar-expand-md fixed-top navbar-dark bg-black"
         >
           {before}
           <Link href="/">

@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import { Fragment } from 'react';
 import UsefulLinksSection from '../components/useful-links-section';
-import Initiatives from '../components/initiatives';
 import GetEngaged from '../components/get_engaged_footer';
 import FollowUs from '../components/follow_us';
 
@@ -9,8 +7,8 @@ export default () => (
   <Fragment>
     <style jsx>{`
       .footer {
-        background-color: #111;
-        color: #fff;
+        /* background-color: #111; */
+        /* color: #fff; */
         margin-top: 30px;
         padding-top: 20px;
         padding-bottom: 20px;
@@ -22,6 +20,7 @@ export default () => (
       .footer h5 {
         text-decoration: underline;
         text-underline-position: under;
+        color: #fff5cd;
       }
       @media (max-width: 576px) {
         .footer {
@@ -30,7 +29,7 @@ export default () => (
         }
       }
     `}</style>
-    <footer className="footer navbar-expand-lg navbar-dark text-center">
+    <footer className="footer bg-black navbar-expand-lg navbar-dark text-center">
       <div className="container">
         <div className="row">
           <div className="col-12 offset-sm-2 col-sm-3">

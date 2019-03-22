@@ -78,7 +78,7 @@ function Body({ author, title, editors = "", bodyHtml }) {
     <article className="content center mw7 pa3 pa4-ns">
       <h1 className="mt0 lh-title">{title}</h1>
       <p>Written by <b>{nameToLink(author)}</b> | Edited by {editors.split(",").map(
-        (e: string) => <b className="ml-1 mr-1">{nameToLink(e.trim())}</b>
+        (e: string) => <b key={e} className="ml-1 mr-1">{nameToLink(e.trim())}</b>
       )}</p>
       <div dangerouslySetInnerHTML={{ __html: bodyHtml }}></div>
     </article>
