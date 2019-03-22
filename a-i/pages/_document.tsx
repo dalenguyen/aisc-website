@@ -34,9 +34,6 @@ class MyDocument extends Document {
           <NextScript />
           <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous" />
-          <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,500,700,500i,700i,900,900i" rel="stylesheet" />
-          <link rel="icon" type="image/png" href="/static/images/tdls_logo.png" />
-          <link href="/static/main.css" rel="stylesheet" />
         </body>
       </html>
     )

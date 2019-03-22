@@ -132,7 +132,7 @@ export default () => (
                           <b>{n} <i className="fa fa-linkedin-square"></i></b>
                         </a>
                       </h4>
-                      {p && (<p class="lead">{p}</p>)}
+                      {p && (<p className="lead">{p}</p>)}
                       {c && (<p className="credentials">{c}</p>)}
                     </div>
                   </li>
