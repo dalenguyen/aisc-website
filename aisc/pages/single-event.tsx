@@ -193,9 +193,13 @@ const SingleEvent = ({
                       <p className="lead">
                         No recording or live stream video available yet.
                         </p>
-                      <p className="lead">
-                        If this is a future event, please check back a few days before the session starts.
+                      {
+                        status !== 'expired' && (
+                          <p className="lead">
+                            Please check back a few days before the event starts.
                         </p>
+                        )
+                      }
                     </div>
                   )
               }
