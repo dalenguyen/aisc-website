@@ -46,7 +46,12 @@ main {
   }
 
   .aisc-intro {
-    text-shadow: 0.2vw 0.3vw 0.7vw #222;
+    // text-shadow: 0.2vw 0.3vw 0.7vw #222;
+    filter: drop-shadow(0.2vw 0.3vw 0.3vw #000);
+    // background: -webkit-linear-gradient(45deg, #fcf9d4, #d8ca5c 80%);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+
     position: absolute;
     bottom: 11vw;
     z-index: 1;

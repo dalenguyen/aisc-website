@@ -12,7 +12,6 @@ import { nameToLink } from '../../components/profile';
 
 
 import getConfig from 'next/config'
-const { SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 
 function Index(props) {
