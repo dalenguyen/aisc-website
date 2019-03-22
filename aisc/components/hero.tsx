@@ -1,7 +1,7 @@
 import React from 'react'
 import './hero.scss';
 
-function Hero({ title, subtitle }: { title: string, subtitle?: string }) {
+function Hero({ title, subtitle }: { title: string | JSX.Element, subtitle?: string | JSX.Element }) {
   return (
     <div className={`relative tc title-hero`}>
       <div className="backdrop"></div>
