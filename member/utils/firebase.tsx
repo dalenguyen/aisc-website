@@ -33,25 +33,26 @@ export const ensureFirebase = () => {
 }
 
 export const authStateChecker = () => {
-  let currUser: firebase.User | null = null;
   const firebase = ensureFirebase();
 
   firebase.auth().onAuthStateChanged((user) => {
-    currUser = user;
+    localStorage.setItem('authUser', JSON.stringify(user));
   }, (error) => {
     console.error(error);
   });
 
   const waitOnAuth = () => {
-    return new Promise<firebase.User | null>((resolve, reject) => {
-      if (currUser) {
-        resolve(currUser);
-      } else {
-        const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-          unsubscribe();
-          resolve(user);
-        }, reject);
-      }
+    return new Promise<firebase.User | null>((resolve) => {
+      const currUser: firebase.User | null = JSON.parse(localStorage.getItem('authUser') || 'null');
+      // if (currUser) {
+      //   resolve(currUser);
+      // } else {
+      //   const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      //     unsubscribe();
+      //     resolve(user);
+      //   }, reject);
+      // }
+      resolve(currUser);
     });
   }
 
@@ -61,6 +62,7 @@ export const authStateChecker = () => {
 
   const logout = async () => {
     await firebase.auth().signOut();
+    localStorage.removeItem('authUser');
   }
 
   return { waitOnAuth, getAuth, logout }
