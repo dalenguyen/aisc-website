@@ -16,7 +16,7 @@ export interface Filter {
   stream: EventType | 'all'
 }
 
-const EMPTY_FILTER: Filter = {
+export const EMPTY_FILTER: Filter = {
   searchText: "", subject: "all", stream: "all"
 };
 
@@ -80,7 +80,7 @@ export default ({
   }, [])
 
   return (
-    <Form inline className="event-filter-bar form-inline">
+    <Form inline className="form-inline">
       <InputGroup className="mb-2 mr-sm-2" size="lg">
         <InputGroup.Text
           as={InputGroup.Prepend}
@@ -91,7 +91,7 @@ export default ({
           onChange={onSearchChange}
           value={searchText}
           ref={searchElem}
-          placeholder="Search events"
+          placeholder="Search all events"
           aria-describedby="basic-addon1"
         />
       </InputGroup>
@@ -140,7 +140,7 @@ export default ({
             ))
           }
         </DropdownButton>
-        {!filterClean(currFilter) && (
+        {!isFilterClean(currFilter) && (
           <Button
             className="ml-1 mr-1"
             variant="outline-success"
@@ -160,7 +160,7 @@ export default ({
 
 
 
-function filterClean(f: Filter) {
+export function isFilterClean(f: Filter) {
   return !Object.keys(f).some(k => {
     if (k === 'subject') {
       return f[k] !== 'all'

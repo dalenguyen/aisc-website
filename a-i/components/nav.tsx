@@ -1,4 +1,3 @@
-import getConfig from 'next/config'
 
 export default () => (
   <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">

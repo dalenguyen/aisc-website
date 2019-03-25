@@ -1,5 +1,5 @@
 import { Fragment, useMemo } from 'react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
@@ -12,6 +12,9 @@ import { ShowcaseEventCard } from '../components/events/event-card';
 import { ZoomLevel } from '../components/events/event-carousel';
 import configureProgressBar from '../utils/routing';
 import { findNextUpcomingEvent } from '../components/live-button';
+
+import EventSearchFilter, { Filter, isEmpty, EMPTY_FILTER, isFilterClean } from '../components/events/event-search-filter';
+import EventResults from '../components/events/event-results';
 
 import getConfig from 'next/config'
 const { SITE_NAME_FULL, SITE_ABBREV, SITE_NAME } = getConfig().publicRuntimeConfig;
@@ -69,7 +72,14 @@ function eventCarousel(label: string, events: PublicEvent[], zoomLevel: ZoomLeve
   return (
     <Fragment key={label}>
       <div className="mt-3">
-        {paperGroupLabel(label)}
+        <div className="d-flex">
+          {paperGroupLabel(label)}
+          <Link href="/events">
+            <a className="nav-link">
+              <i className="fa fa-search"></i>
+            </a>
+          </Link>
+        </div>
         <EventCarousel
           shuffle={false}
           events={events}
@@ -81,12 +91,55 @@ function eventCarousel(label: string, events: PublicEvent[], zoomLevel: ZoomLeve
 }
 
 const Index = ({ allEvents }: { allEvents: AllEvents }) => {
-  const { pastEvents, futureEvents, subjects } = allEvents;
+  const { pastEvents, futureEvents, subjects, streams } = allEvents;
   const pastAndFutureEvents = futureEvents.concat(pastEvents);
   const countdownEvent = useMemo(() => {
     const e = findNextUpcomingEvent(allEvents);
     return e;
   }, [allEvents]);
+
+  const [{ filter }, setEventFilter] = useState({ filter: EMPTY_FILTER });
+  const restEventCarousels = (
+    <Fragment>
+      <EventCarousel
+        shuffle={false}
+        events={filterEvents(pastAndFutureEvents, { type: 'Trending Paper' })}
+        zoomLevel={3}
+      />
+
+      {
+        eventCarousel(
+          'Authors Speaking',
+          ([] as PublicEvent[]).concat(
+            filterEvents(futureEvents, { type: 'Author Speaking' }).slice(0, 2))
+            .concat(filterEvents(pastEvents, { type: 'Author Speaking' })), 4
+        )
+      }
+      {
+        eventCarousel(
+          'Upcoming Events',
+          futureEvents.slice(0, 15), 5)
+      }
+
+      {
+        eventCarousel(
+          'Recent Presentations',
+          pastEvents.slice(0, 20), 8)
+      }
+      {
+        eventCarousel(
+          'Implementations',
+          filterEvents(pastAndFutureEvents, { type: 'Code Review' }), 8
+        )
+      }
+      {
+        eventCarousel(
+          'Foundational Papers',
+          filterEvents(pastAndFutureEvents, { type: 'Foundational' }), 8
+        )
+      }
+    </Fragment >
+  )
 
   return (
     <Fragment>
@@ -154,46 +207,32 @@ const Index = ({ allEvents }: { allEvents: AllEvents }) => {
             countdownEvent && (
               <div className="mt-3">
                 {paperGroupLabel("Up Next")}
+
+
                 <ShowcaseEventCard
                   event={countdownEvent}
                 />
               </div>
             )
           }
-          {
-            eventCarousel('Trending Papers', filterEvents(pastAndFutureEvents, { type: 'Trending Paper' }), 3)
-          }
-          {
-            eventCarousel(
-              'Authors Speaking',
-              ([] as PublicEvent[]).concat(
-                filterEvents(futureEvents, { type: 'Author Speaking' }).slice(0, 2))
-                .concat(filterEvents(pastEvents, { type: 'Author Speaking' })), 4
-            )
-          }
-          {
-            eventCarousel(
-              'Upcoming Events',
-              futureEvents.slice(0, 15), 5)
-          }
-
-          {
-            eventCarousel(
-              'Recent Presentations',
-              pastEvents.slice(0, 20), 8)
-          }
-          {
-            eventCarousel(
-              'Implementations',
-              filterEvents(pastAndFutureEvents, { type: 'Code Review' }), 8
-            )
-          }
-          {
-            eventCarousel(
-              'Foundational Papers',
-              filterEvents(pastAndFutureEvents, { type: 'Foundational' }), 8
-            )
-          }
+          <div className="d-flex align-content-center">
+            <div>
+              {paperGroupLabel('Trending Papers')}
+            </div>
+            <div className="ml-3">
+              <EventSearchFilter
+                {...filter}
+                onChange={(filter) => setEventFilter({ filter })}
+                subjects={subjects}
+                streams={streams} />
+            </div>
+          </div>
+          {isFilterClean(filter) ? restEventCarousels : (
+            <EventResults
+              groupByPastAndFuture={false}
+              allEvents={allEvents}
+              filter={filter} />
+          )}
         </section>
         <hr />
         <section className="container by-subjects">

@@ -4,9 +4,13 @@ import { AllEvents, PublicEvent, MemberEvent } from '../../../common/types';
 import EventList from './event-list';
 import { Filter } from './event-search-filter';
 
-export default (props: { allEvents: AllEvents, filter: Filter }) => {
+export default (props: {
+  allEvents: AllEvents,
+  filter: Filter,
+  groupByPastAndFuture: boolean
+}) => {
 
-  const { allEvents, filter } = props;
+  const { allEvents, filter, groupByPastAndFuture } = props;
   const { pastEvents, futureEvents } = allEvents;
 
 
@@ -43,19 +47,25 @@ export default (props: { allEvents: AllEvents, filter: Filter }) => {
 
   return (
     <Fragment>
-      {filteredFuture.length > 0 && (
-        <h4 id="upcoming">
-          <span className="badge badge-outline-danger badge-pill">
-            Upcoming</span></h4>
-      )}
-      <EventList
-        events={filteredFuture} showToolbar={false}
-        showEventStatus={true}
-      />
-      {filteredPast.length > 0 && (
-        <h4><span className="badge badge-pill badge-secondary">Past</span></h4>
-      )}
-      <EventList events={filteredPast} showToolbar={false} />
+      {groupByPastAndFuture ? (
+        <Fragment>
+          {filteredFuture.length > 0 && (
+            <h4 id="upcoming">
+              <span className="badge badge-outline-danger badge-pill">
+                Upcoming</span></h4>
+          )}
+          <EventList
+            events={filteredFuture} showToolbar={false}
+            showEventStatus={true}
+          />
+          {filteredPast.length > 0 && (
+            <h4><span className="badge badge-pill badge-secondary">Past</span></h4>
+          )}
+          <EventList events={filteredPast} showToolbar={false} />
+        </Fragment>
+      ) : (
+          <EventList events={filteredFuture.concat(filteredPast)} showToolbar={false} />
+        )}
     </Fragment>
   );
 }

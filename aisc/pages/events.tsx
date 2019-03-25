@@ -18,7 +18,10 @@ const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 import { AllEvents } from '../../common/types';
 import Hero from '../components/hero';
 
-const Events = ({ allEvents, filter: pFilter }: { allEvents: AllEvents, filter: Filter }) => {
+const Events = ({ allEvents, filter: pFilter }: {
+  allEvents: AllEvents,
+  filter: Filter
+}) => {
   const { subjects, streams } = allEvents;
   const [{ filter }, setEventFilter] = useState({ filter: pFilter });
 
@@ -34,13 +37,18 @@ const Events = ({ allEvents, filter: pFilter }: { allEvents: AllEvents, filter: 
         subtitle={`Find live stream, recordings, paper, code & more of all of our events.`}
       />
       <main role="main" id="main" className="mt-4">
-        <EventSearchFilter
-          {...filter}
-          onChange={(filter) => setEventFilter({ filter })}
-          subjects={subjects}
-          streams={streams} />
+        <div className="mt-5 ml-3">
+          <EventSearchFilter
+            {...filter}
+            onChange={(filter) => setEventFilter({ filter })}
+            subjects={subjects}
+            streams={streams} />
+        </div>
         <section className="container-fluid">
-          <EventResults allEvents={allEvents} filter={filter} />
+          <EventResults
+            allEvents={allEvents}
+            groupByPastAndFuture={true}
+            filter={filter} />
         </section>
       </main>
       <Footer />
