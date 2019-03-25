@@ -3,7 +3,6 @@ import './get-engaged-section.scss';
 
 export default () => (
   <section className="container" id="get-engaged">
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css" />
     <hr />
     <h2>Get Engaged</h2>
     <p>
@@ -103,39 +102,10 @@ and
       <div className="col-lg-3 col-md-4 col-sm-6">
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
-            <h5 className="card-title">Subscribe to Learn More about AISC</h5>
-            <div id="mc_embed_signup" className="mt-auto">
-              <form action="https://science.us20.list-manage.com/subscribe/post?u=c7831af29c0c46bd5ec4c04c7&amp;id=9e6c32b697"
-                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate"
-                target="_blank" noValidate>
-                <div id="mc_embed_signup_scroll">
-                  <div className="indicates-required"><span className="asterisk">*</span> indicates required</div>
-                  <div className="mc-field-group">
-                    <label htmlFor="mce-EMAIL">Email Address <span className="asterisk">*</span>
-                    </label>
-                    <input type="email" name="EMAIL" className="required email" id="mce-EMAIL" />
-                  </div>
-                  <div className="mc-field-group">
-                    <label htmlFor="mce-FNAME">First Name </label>
-                    <input type="text" name="FNAME" className="" id="mce-FNAME" />
-                  </div>
-                  <div className="mc-field-group">
-                    <label htmlFor="mce-LNAME">Last Name </label>
-                    <input type="text" name="LNAME" className="" id="mce-LNAME" />
-                  </div>
-                  <div id="mce-responses" className="clear">
-                    <div className="response" id="mce-error-response" style={{ display: 'none' }}></div>
-                    <div className="response" id="mce-success-response" style={{ display: 'none' }}></div>
-                  </div>
-                  <div
-                    style={{ position: 'absolute', left: '-5000px' }}
-                    aria-hidden="true"><input type="text"
-                      name="b_c7831af29c0c46bd5ec4c04c7_9e6c32b697"
-                      tabIndex="-1" /></div>
-                  <div className="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
-                    className="button" /></div>
-                </div>
-              </form>
+            <h5 className="card-title">Follow Us on LinkedIn to Receive Updates</h5>
+            <div className="mt-auto ml-auto mr-auto">
+              <script src="https://platform.linkedin.com/in.js" type="text/javascript" dangerouslySetInnerHTML={{ __html: 'lang: en_US' }}></script>
+              <script type="IN/FollowCompany" data-id="18994830" data-counter="bottom"></script>
             </div>
           </div>
         </div>

@@ -151,29 +151,11 @@ export default () => (
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto text-center">
 
-            <i className="far fa-paper-plane fa-2x mb-2 text-white"></i>
-            <h2 className="text-white mb-5">Subscribe to receive updates!</h2>
-
-            <form
-              className="form-inline d-flex validate"
-              action="https://science.us20.list-manage.com/subscribe/post?u=c7831af29c0c46bd5ec4c04c7&amp;id=9e6c32b697"
-              method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
-              target="_blank" noValidate
-            >
-              <input type="email"
-                name="EMAIL"
-                id="mce-EMAIL"
-                className="required form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
-                placeholder="Enter email address..." />
-              <div
-                style={{ position: 'absolute', left: '-5000px' }}
-                aria-hidden="true"><input type="text"
-                  name="b_c7831af29c0c46bd5ec4c04c7_9e6c32b697"
-                  tabIndex={-1} /></div>
-              <button type="submit"
-                id="mc-embedded-subscribe"
-                className="btn btn-primary mx-auto">Subscribe</button>
-            </form>
+            <h2 className="text-white mb-5">Follow us on LinkedIn to receive updates!</h2>
+            <h2>
+              <script src="https://platform.linkedin.com/in.js" type="text/javascript" dangerouslySetInnerHTML={{ __html: 'lang: en_US' }}></script>
+              <script type="IN/FollowCompany" data-id="18994830" data-counter="bottom"></script>
+            </h2>
           </div>
         </div>
       </div>
