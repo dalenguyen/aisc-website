@@ -151,11 +151,13 @@ export default () => (
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto text-center">
 
-            <h2 className="text-white mb-5">Follow us on LinkedIn to receive updates!</h2>
-            <h2>
-              <script src="https://platform.linkedin.com/in.js" type="text/javascript" dangerouslySetInnerHTML={{ __html: 'lang: en_US' }}></script>
-              <script type="IN/FollowCompany" data-id="18994830" data-counter="bottom"></script>
-            </h2>
+            <h2 className="text-white">Follow us on LinkedIn to receive updates!</h2>
+            <div style={{ fontSize: "300%", color: "white" }}>
+              <i className="fa fa-caret-down"></i>
+            </div>
+            <a href="https://www.linkedin.com/company/a-i-science/" target="_blank">
+              <img src="/static/img/follow-us-on-linkedin.jpg" />
+            </a>
           </div>
         </div>
       </div>
@@ -213,7 +215,7 @@ export default () => (
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     {/* <!-- Custom scripts for this template --> */}
     <script src="/static/js/grayscale.js"></script>
-  </Fragment>
+  </Fragment >
 );
 
 function profileCard([name, title, credentials, photo, linkedIn]: [string, string, string, string, string]) {

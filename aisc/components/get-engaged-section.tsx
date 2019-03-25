@@ -103,9 +103,11 @@ and
         <div className="card border-primary mb-3">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">Follow Us on LinkedIn to Receive Updates</h5>
+
             <div className="mt-auto ml-auto mr-auto">
-              <script src="https://platform.linkedin.com/in.js" type="text/javascript" dangerouslySetInnerHTML={{ __html: 'lang: en_US' }}></script>
-              <script type="IN/FollowCompany" data-id="18994830" data-counter="bottom"></script>
+              <a href="https://www.linkedin.com/company/a-i-science/" target="_blank">
+                <img src="/static/images/follow-us-on-linkedin.jpg" />
+              </a>
             </div>
           </div>
         </div>
