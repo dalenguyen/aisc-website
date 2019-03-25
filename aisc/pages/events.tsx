@@ -1,9 +1,5 @@
-import { Fragment, useState, useEffect, useRef, MutableRefObject } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import React from 'react';
-import {
-  InputGroup, DropdownButton, Dropdown, FormControl,
-  Form, Button
-} from 'react-bootstrap';
 
 import Head from 'next/head'
 import Header from '../components/header'
@@ -11,7 +7,7 @@ import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
 import EventList from '../components/events/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
-import { getQueryStringValue, mobileCheck } from '../../common/utils';
+import EventSearchFilter, { Filter } from '../components/events/event-search-filter';
 import './events.scss';
 
 
@@ -20,167 +16,9 @@ const { SITE_NAME_FULL, SITE_ABBREV } = getConfig().publicRuntimeConfig;
 
 
 import debounce from 'lodash/debounce';
-import isEmpty from 'lodash/isEmpty';
-import { AllEvents, PublicEvent, MemberEvent, EventType } from '../../common/types';
+import { AllEvents, PublicEvent, MemberEvent } from '../../common/types';
 import Hero from '../components/hero';
 
-interface Filter {
-  searchText: string | ""
-  subject: string | 'all'
-  stream: EventType | 'all'
-}
-
-const EMPTY_FILTER: Filter = {
-  searchText: "", subject: "all", stream: "all"
-};
-
-const EventFilters = ({
-  subject: initSubject = 'all',
-  searchText: initSearchText = '',
-  stream: initStream = 'all',
-  onChange = () => undefined,
-  subjects = [],
-  streams = [] }:
-  ({
-    onChange: (f: Filter) => void, subjects: string[],
-    streams: string[]
-  } & Filter)
-) => {
-  const [currFilter, setFilter] = useState({
-    subject: initSubject,
-    searchText: initSearchText,
-    stream: initStream
-  });
-
-  const { searchText, subject, stream } = currFilter;
-
-  const onSearchChange = (e: any) => {
-    const newVal = e.target.value;
-
-    setFilter(Object.assign({}, currFilter, { searchText: newVal }));
-  }
-
-  const onSubjectChange = (newVal: string) => {
-    setFilter(Object.assign({}, currFilter, { subject: newVal }));
-  }
-  const onStreamChange = (newVal: string) => {
-    setFilter(Object.assign({}, currFilter, { stream: newVal }));
-  }
-
-  const clearFilter = () => {
-    setFilter(EMPTY_FILTER);
-  }
-
-  // apply filter to event list
-  useEffect(() => {
-    onChange(currFilter);
-  }, [searchText, subject, stream]);
-
-  useEffect(() => {
-    const subjectFromURL = getQueryStringValue('subject');
-    if (subjectFromURL) {
-      setFilter(Object.assign({}, currFilter, { subject: subjectFromURL }));
-    }
-  }, []);
-
-  const searchElem = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const isMobile = mobileCheck();
-    if (!isMobile && searchElem.current) {
-      searchElem.current.focus();
-    }
-  }, [])
-
-  return (
-    <Form inline className="event-filter-bar form-inline">
-      <InputGroup className="mb-2 mr-sm-2" size="lg">
-        <InputGroup.Text
-          as={InputGroup.Prepend}
-        >
-          <i className="fa fa-search"></i>
-        </InputGroup.Text>
-        <FormControl
-          onChange={onSearchChange}
-          value={searchText}
-          ref={searchElem}
-          placeholder="Search events"
-          aria-describedby="basic-addon1"
-        />
-      </InputGroup>
-      <InputGroup className="mb-2 mr-sm-2" >
-        <DropdownButton
-          id="subject-filter"
-          size="lg"
-          className="ml-1 mr-1"
-          variant={subject === 'all' ? 'outline-secondary' : 'success'}
-          title={subject === 'all' ? 'By subject' : subject}
-          value={subject}
-        >
-          <Dropdown.Item
-            value="all"
-            onSelect={() => onSubjectChange('all')}
-          >All</Dropdown.Item>
-          <Dropdown.Divider />
-          {
-            subjects.map(s => (
-              <Dropdown.Item
-                key={s}
-                onSelect={() => onSubjectChange(s)}>{s}</Dropdown.Item>
-            ))
-          }
-        </DropdownButton>
-        <DropdownButton
-          id="stream-filter"
-          size="lg"
-          className="ml-1 mr-1"
-          variant={stream === 'all' ? 'outline-secondary' : 'success'}
-          title={stream === 'all' ? 'By stream' : stream}
-          value={stream}
-        >
-          <Dropdown.Item
-            value="all"
-            onSelect={() => onStreamChange('all')}
-          >All</Dropdown.Item>
-          <Dropdown.Divider />
-          {
-            streams.map(s => (
-              <Dropdown.Item
-                key={s}
-                onSelect={() => onStreamChange(s)}>
-                {s}
-              </Dropdown.Item>
-            ))
-          }
-        </DropdownButton>
-        {!filterClean(currFilter) && (
-          <Button
-            className="ml-1 mr-1"
-            variant="outline-success"
-            size="lg"
-            onClick={clearFilter}
-          >
-            <i className="fa fa-times"></i>
-          </Button>
-        )}
-      </InputGroup>
-
-
-    </Form>
-  );
-}
-
-function filterClean(f: Filter) {
-  return !Object.keys(f).some(k => {
-    if (k === 'subject') {
-      return f[k] !== 'all'
-    } else if (k === 'stream') {
-      return f[k] !== 'all'
-    } else {
-      return !isEmpty(f[k])
-    }
-  });
-}
 
 function cap<T>(arr: T[], limit: number) {
   return arr.slice(0, limit);
@@ -233,7 +71,7 @@ const Events = (props: { allEvents: AllEvents, filter: Filter }) => {
         subtitle={`Find live stream, recordings, paper, code & more of all of our events.`}
       />
       <main role="main" id="main" className="mt-4">
-        <EventFilters
+        <EventSearchFilter
           {...filter}
           onChange={(filter) => setEventFilter({ filter })}
           subjects={subjects}
