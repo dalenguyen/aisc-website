@@ -1,11 +1,11 @@
-import React, {  } from 'react';
+import React, { } from 'react';
 import EventCard from './event-card';
 import './event-list.scss';
 
 import {
   getEventId
-} from '../../common/event';
-import { PublicEvent } from '../../common/types';
+} from '../../../common/event';
+import { PublicEvent } from '../../../common/types';
 
 export default ({
   events, showToolbar = true,

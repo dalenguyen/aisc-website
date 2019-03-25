@@ -9,7 +9,7 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
-import EventList from '../components/event-list';
+import EventList from '../components/events/event-list';
 import { getEventsAndGroupings } from '../utils/event-fetch';
 import { getQueryStringValue, mobileCheck } from '../../common/utils';
 import './events.scss';

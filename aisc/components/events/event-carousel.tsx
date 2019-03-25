@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import EventCard from './event-card';
 import './event-carousel.scss';
 import range from 'lodash/range';
-import { EventType, PublicEvent } from '../../common/types';
+import { EventType, PublicEvent } from '../../../common/types';
 
 export type ZoomLevel = 1 | 3 | 4 | 5 | 6 | 8;
 

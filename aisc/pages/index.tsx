@@ -7,9 +7,9 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import SharedBodyScripts from '../components/shared-body-scripts'
-import EventCarousel, { filterEvents } from '../components/event-carousel';
-import { ShowcaseEventCard } from '../components/event-card';
-import { ZoomLevel } from '../components/event-carousel';
+import EventCarousel, { filterEvents } from '../components/events/event-carousel';
+import { ShowcaseEventCard } from '../components/events/event-card';
+import { ZoomLevel } from '../components/events/event-carousel';
 import configureProgressBar from '../utils/routing';
 import { findNextUpcomingEvent } from '../components/live-button';
 

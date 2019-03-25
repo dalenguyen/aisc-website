@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
-import { ytThumb } from '../../common/youtube';
+import { ytThumb } from '../../../common/youtube';
 import FitText from 'react-fittext';
-import { Countdown } from '../components/live-button';
-import { PublicEvent } from '../../common/types';
+import { Countdown } from '../live-button';
+import { PublicEvent } from '../../../common/types';
 import Link from 'next/link';
 import "./event-card.scss";
 import classnames from 'classnames';
-import { SEOTitle } from '../../common/event';
+import { SEOTitle } from '../../../common/event';
 import {
   getEventId, eventStatus, isImminent
-} from '../../common/event';
-import { toLongDateString } from '../utils/datetime';
-import { EventType } from '../../member/functions/common/types';
+} from '../../../common/event';
+import { toLongDateString } from '../../utils/datetime';
+import { EventType } from '../../../member/functions/common/types';
 
 const StatusBadge = ({ event: ev }: { event: PublicEvent }) => {
   const status = eventStatus(ev);
