@@ -8,7 +8,9 @@ main {
   padding-right: 0;
   user-select: none;
   position: relative;
-  
+  .carousel-control-next, .carousel-control-prev {
+    z-index: 9999;
+  }
 
   .carousel-indicators {
     bottom: 8%;
