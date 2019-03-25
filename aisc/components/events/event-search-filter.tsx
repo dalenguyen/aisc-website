@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { getQueryStringValue, mobileCheck } from '../../../common/utils';
 import isEmpty from 'lodash/isEmpty';
 import { EventType } from '../../../common/types';
+import './event-search-filter.scss';
 
 import {
   InputGroup, DropdownButton, Dropdown, FormControl,
